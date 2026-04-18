@@ -50,6 +50,7 @@ const SELECTOR_STEPS: Step[] = [
     hint: "",
     options: [
       { val: "local", label: "Vor Ort in Mülheim", sub: "Einzel, Gruppe, Einzelcoaching" },
+      { val: "tour", label: "Vor Ort, aber nicht in Mülheim", sub: "DACH-Tour · ca. 3× pro Jahr · Warteliste" },
       { val: "digital", label: "24/7 · Digital im gesamten DACH", sub: "Video, Live-Calls, asynchron" },
       { val: "egal", label: "Beides ist möglich", sub: "Entscheidung erst beim Erstgespräch" },
     ],
@@ -61,6 +62,7 @@ const SELECTOR_STEPS: Step[] = [
     hint: "",
     options: [
       { val: "einstieg", label: "Erst mal Orientierung", sub: "Einzelstunde oder Videoanalyse" },
+      { val: "messenger", label: "Laufende Hilfe per Messenger", sub: "Schriftlich + Videofeedback im Alltag" },
       { val: "programm", label: "Strukturierter Weg", sub: "8–10 Wochen, begleitet" },
       { val: "begleitung", label: "Laufende Begleitung", sub: "Membership, Monatsfokus" },
     ],
@@ -107,16 +109,28 @@ function recommend(answers: Answers): string[] {
   const format = answers.format as string | undefined;
   const depth = answers.depth as string | undefined;
 
+  if (depth === "messenger") {
+    if (format === "local") return ["messenger-beratung", "local-kennenlern"];
+    if (format === "tour") return ["messenger-beratung", "tour-termine"];
+    return ["messenger-beratung", "videoanalyse"];
+  }
+
+  if (format === "tour") {
+    if (depth === "programm") return ["tour-termine", "signatur"];
+    if (depth === "begleitung") return ["tour-termine", "club"];
+    return ["tour-termine", "videoanalyse"];
+  }
+
   if (depth === "einstieg") {
     if (format === "local") return ["local-kennenlern", "videoanalyse"];
-    return ["videoanalyse", "signatur"];
+    return ["videoanalyse", "messenger-beratung"];
   }
   if (depth === "programm") {
     if (intense) return ["signatur", "videoanalyse"];
     return format === "local" ? ["local-einzel", "signatur"] : ["signatur", "club"];
   }
   if (depth === "begleitung") {
-    return ["club", "signatur"];
+    return ["club", "messenger-beratung"];
   }
   return ["videoanalyse", "signatur"];
 }
@@ -148,6 +162,16 @@ const RESULT_MAP: Record<string, Result> = {
     title: "Einzelcoaching vor Ort",
     tag: "Individuell · Vor Ort",
     desc: "Für Themen, die direkt im echten Umfeld bearbeitet werden sollten. Individuelle Analyse, direkte Umsetzung, klare Aufgaben.",
+  },
+  "tour-termine": {
+    title: "Tour-Termine in der DACH-Region",
+    tag: "Auf Tour · Vor Ort",
+    desc: "Ca. 3× pro Jahr besuche ich ausgewählte Regionen für strukturierte Trainings vor Ort. Begrenzte Plätze über die Warteliste — digital begleitet, persönlich angestoßen.",
+  },
+  "messenger-beratung": {
+    title: "Messengerberatung",
+    tag: "Messenger · 24/7",
+    desc: "Beratung im Tempo eures Alltags. Ihr schickt Fragen und Videos direkt ein und erhaltet schriftliche Einordnungen plus Videofeedback — ohne Termindruck.",
   },
   "case-lab": {
     title: "OMD Pro Case Lab",
