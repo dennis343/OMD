@@ -55,6 +55,37 @@ const ENTRIES: Entry[] = [
   },
 ];
 
+type Tour = {
+  tag: string;
+  title: string;
+  sub: string;
+  desc: string;
+  forWho: string;
+  nutzen: string;
+  expect: string[];
+  cta: string;
+  ctaHref: string;
+  img: string;
+};
+
+const TOUR: Tour = {
+  tag: "Auf Tour",
+  title: "Tour-Termine in der DACH-Region",
+  sub: "Ca. 3× pro Jahr · Ausgewählte Regionen · Warteliste",
+  desc: "Wer nicht in Mülheim wohnt, muss nicht auf persönliches Training verzichten. Etwa dreimal im Jahr besuche ich ausgewählte Regionen in Deutschland, Österreich und der Schweiz — für strukturierte Trainings vor Ort, kompakt geplant und sauber begleitet.",
+  forWho: "Ihr wollt persönliches Training, wohnt aber nicht in Mülheim und Umgebung — und seid bereit, einen Tour-Termin in eurer Region abzuwarten.",
+  nutzen:
+    "Ihr arbeitet einmal sauber persönlich an eurem Thema — und nehmt einen klaren Trainingsplan für die Zeit danach mit. Digital begleitet, persönlich angestoßen.",
+  expect: [
+    "Ankündigung der nächsten Tour-Region per Newsletter",
+    "Begrenzte Plätze · Vergabe in Reihenfolge der Warteliste",
+    "Vor-Ort-Slot plus digitale Vorbereitung & Nachbetreuung",
+  ],
+  cta: "Auf die Tour-Warteliste",
+  ctaHref: WA_URL,
+  img: "https://picsum.photos/seed/omd-tour/1600/900",
+};
+
 type ClusterItem = { name: string; desc: string; mehrwert: string };
 type Cluster = { name: string; title: string; nutzen: string; items: ClusterItem[] };
 
@@ -151,6 +182,41 @@ export default function Offers(_props: OffersProps = {}) {
           ))}
         </div>
 
+        <article className="tour-block">
+          <div className="tour-tag">{TOUR.tag}</div>
+
+          <div className="tour-img tile">
+            <img src={TOUR.img} alt={TOUR.title} loading="lazy" />
+            <span className="tile-caption">DACH-Tour · Begrenzte Termine pro Jahr</span>
+          </div>
+
+          <div className="tour-body">
+            <div className="mono" style={{ marginBottom: 14 }}>{TOUR.sub}</div>
+            <h3 className="serif tour-h">{TOUR.title}</h3>
+            <p className="tour-desc">{TOUR.desc}</p>
+
+            <div className="tour-row">
+              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Gut für euch, wenn</div>
+              <p>{TOUR.forWho}</p>
+            </div>
+            <div className="tour-row">
+              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Konkreter Nutzen</div>
+              <p style={{ color: "var(--cream)" }}>{TOUR.nutzen}</p>
+            </div>
+
+            <div className="mono" style={{ color: "var(--brass)", margin: "24px 0 10px" }}>→ Was ihr erwarten könnt</div>
+            <ul className="tour-list">
+              {TOUR.expect.map((it) => (
+                <li key={it}><span style={{ color: "var(--brass)" }} aria-hidden="true">+</span> {it}</li>
+              ))}
+            </ul>
+
+            <a className="btn btn-primary" style={{ marginTop: 24 }} href={TOUR.ctaHref} target="_blank" rel="noopener">
+              {TOUR.cta} <span className="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+
         <div className="cluster-head">
           <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>§ Gruppen & Alltagsthemen</div>
           <h3 className="serif cluster-h">Sortiert nach Wirkung — nicht nach Kursliste.</h3>
@@ -211,6 +277,17 @@ export default function Offers(_props: OffersProps = {}) {
         .entry-list li:last-child { border-bottom: none; }
         .entry-card .btn { margin-top: 24px; align-self: flex-start; }
 
+        .tour-block { background: var(--bg-3); border: 1px solid var(--cream); padding: 36px 24px 32px; margin-bottom: 56px; position: relative; display: grid; grid-template-columns: 1fr; gap: 28px; }
+        .tour-tag { position: absolute; top: -10px; left: 24px; background: var(--cream); color: var(--bg); font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 3px 10px; }
+        .tour-img { height: 220px; }
+        .tour-h { font-size: clamp(28px, 4.4vw, 48px); letter-spacing: -0.025em; line-height: 1.02; font-weight: 360; margin-bottom: 18px; }
+        .tour-desc { font-size: 15.5px; line-height: 1.55; color: var(--ink-2); max-width: 56ch; margin-bottom: 22px; }
+        .tour-row { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 14px; }
+        .tour-row p { font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+        .tour-list { list-style: none; }
+        .tour-list li { padding: 9px 0; font-size: 13.5px; color: var(--ink-2); display: flex; gap: 10px; border-bottom: 1px solid var(--line); }
+        .tour-list li:last-child { border-bottom: none; }
+
         .cluster-head { margin-bottom: 24px; }
         .cluster-h { font-size: clamp(24px, 3.8vw, 44px); letter-spacing: -0.02em; font-weight: 360; max-width: 22ch; margin-bottom: 16px; }
         .cluster-lead { font-size: 15px; line-height: 1.55; color: var(--ink-2); max-width: 56ch; font-family: var(--serif); font-weight: 300; }
@@ -237,6 +314,13 @@ export default function Offers(_props: OffersProps = {}) {
           .entry-card.is-large { padding: 44px 44px 40px; }
           .cluster-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
           .cluster-card { padding: 32px 28px 28px; }
+        }
+        @media (min-width: 700px) {
+          .tour-block { padding: 44px 36px 40px; gap: 40px; grid-template-columns: 1fr 1.2fr; }
+          .tour-img { height: 100%; min-height: 320px; }
+        }
+        @media (min-width: 1000px) {
+          .tour-block { padding: 56px 56px 48px; gap: 56px; }
         }
       `}</style>
     </section>
