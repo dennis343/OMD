@@ -1,51 +1,54 @@
-// Proof.jsx — Stimmen, Ergebnisse, Vertrauensbeweise
+// Proof.jsx — Stimmen, Ergebnisse, Vertrauensbeweise + Disclaimer
 function Proof() {
   const testimonials = [
     {
       quote: "Nach sechs Wochen ist unser Luis das erste Mal an einem Hund vorbeigegangen, ohne dass ich Angst hatte. Jenny arbeitet ruhig, klar, und wir verstehen endlich, was wir tun.",
       who: "Katrin & Luis",
       what: "Programm „Reizoffen & führbar“ · 24/7",
+      img: "https://picsum.photos/seed/testi-1/600/600",
     },
     {
       quote: "Wir haben vorher bei zwei anderen Trainern Lautstärke gebucht. Hier bekommen wir Methode. Das ist ein Unterschied wie Tag und Nacht.",
       who: "Jan & Miro",
       what: "Einzelcoaching Mülheim + Videoanalyse Pro",
+      img: "https://picsum.photos/seed/testi-2/600/600",
     },
     {
-      quote: "Als Hundeschule haben wir mit dem OMD Case Lab einen ehrlichen Sparringspartner. Unser Team spricht heute die gleiche Sprache bei Problemfällen.",
+      quote: "Als Hundeschule haben wir mit dem Pro Case Lab einen ehrlichen Sparringspartner. Unser Team spricht heute die gleiche Sprache bei Problemfällen.",
       who: "Clara, Hundeschule Nordwind",
       what: "Pro & Business · Case Lab",
+      img: "https://picsum.photos/seed/testi-3/600/600",
     },
   ];
 
   const press = ["DOGS Magazine", "WDR", "Süddeutsche", "Partner Hund", "Dogs Today DE", "Hunde Welt"];
 
   const cases = [
-    { before: "Vorher · Leinenaggression, täglich Eskalationen", after: "Nach 9 Wochen · Ruhige Begegnungen, Halter in Führung", tag: "Signaturprogramm" },
-    { before: "Vorher · Rückzug, Unsicherheit in der Stadt", after: "Nach 6 Monaten · Club-Begleitung, Alltag trägt", tag: "oooh my dog! Club" },
-    { before: "Vorher · Schule mit 1:1-Stundendruck", after: "Nach 12 Wochen · Premium-System, 40 % mehr Marge", tag: "Pro & Business" },
+    { before: "Leinenaggression, täglich Eskalationen", after: "Ruhige Begegnungen, Halter in Führung", dauer: "9 Wochen", tag: "Signaturprogramm" },
+    { before: "Rückzug, Unsicherheit in der Stadt", after: "Club-Begleitung, Alltag trägt", dauer: "6 Monate", tag: "oooh my dog! Club" },
+    { before: "Schule mit 1:1-Stundendruck", after: "Premium-System, 40 % mehr Marge", dauer: "12 Wochen", tag: "Pro & Business" },
   ];
 
   return (
-    <section id="stimmen" style={{ padding: "140px 0", borderBottom: "1px solid var(--line)" }}>
+    <section id="stimmen" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
 
         {/* Press row */}
-        <div style={{ marginBottom: 96, paddingBottom: 32, borderBottom: "1px solid var(--line)" }}>
-          <div className="mono" style={{ marginBottom: 24, color: "var(--brass)" }}>§ Presse · Erwähnungen</div>
-          <div style={{ display: "flex", gap: 48, flexWrap: "wrap", alignItems: "baseline" }}>
+        <div style={{ marginBottom: 56, paddingBottom: 28, borderBottom: "1px solid var(--line)" }}>
+          <div className="mono" style={{ marginBottom: 18, color: "var(--brass)" }}>§ Presse · Erwähnungen</div>
+          <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "baseline" }}>
             {press.map((p, i) => (
-              <span key={i} className="serif" style={{ fontSize: 22, color: "var(--ink-3)", fontStyle: "italic", fontWeight: 340 }}>{p}</span>
+              <span key={i} className="serif" style={{ fontSize: "clamp(16px, 2.2vw, 22px)", color: "var(--ink-3)", fontStyle: "italic", fontWeight: 340 }}>{p}</span>
             ))}
           </div>
         </div>
 
         {/* Headline */}
-        <div style={{ marginBottom: 80, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }} className="proof-head">
+        <div className="proof-head">
           <div>
             <div className="mono" style={{ color: "var(--brass)" }}>§ Stimmen · Ergebnisse</div>
           </div>
-          <h2 className="serif" style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340 }}>
+          <h2 className="serif proof-h">
             Was Halter und Schulen
             <br />
             <span style={{ color: "var(--ink-3)" }}>nach der Arbeit mit uns sagen.</span>
@@ -53,63 +56,127 @@ function Proof() {
         </div>
 
         {/* Testimonials */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 96 }} className="testi-grid">
+        <div className="testi-grid">
           {testimonials.map((t, i) => (
-            <div key={i} style={{
-              padding: "36px 32px 32px",
-              background: "var(--bg-2)", border: "1px solid var(--line-2)",
-              display: "flex", flexDirection: "column",
-            }}>
-              <div className="serif" style={{ fontSize: 48, color: "var(--brass)", lineHeight: 0.5, marginBottom: 18 }}>„</div>
-              <p className="serif" style={{ fontSize: 18, lineHeight: 1.45, fontWeight: 340, color: "var(--cream)", marginBottom: 24, flex: 1 }}>
-                {t.quote}
-              </p>
-              <div style={{ borderTop: "1px solid var(--line)", paddingTop: 16 }}>
-                <div style={{ fontSize: 14, color: "var(--ink-2)" }}>{t.who}</div>
-                <div className="mono" style={{ marginTop: 4 }}>{t.what}</div>
+            <div key={i} className="testi-card">
+              <div className="testi-img tile">
+                <img src={t.img} alt={t.who} loading="lazy" />
+              </div>
+              <div className="testi-content">
+                <div className="serif" style={{ fontSize: 44, color: "var(--brass)", lineHeight: 0.5, marginBottom: 16 }}>„</div>
+                <p className="serif testi-quote">{t.quote}</p>
+                <div style={{ borderTop: "1px solid var(--line)", paddingTop: 14, marginTop: 18 }}>
+                  <div style={{ fontSize: 14, color: "var(--ink-2)" }}>{t.who}</div>
+                  <div className="mono" style={{ marginTop: 4 }}>{t.what}</div>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Case studies (before / after) */}
-        <div style={{ marginBottom: 80 }}>
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 32 }}>§ Case Studies · Vorher / Nachher</div>
-          <div style={{ display: "grid", gap: 2, background: "var(--line-2)", border: "1px solid var(--line-2)" }}>
+        {/* Case studies */}
+        <div style={{ marginTop: 64 }}>
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>§ Case Studies · Vorher / Nachher</div>
+          <div className="cases-wrap">
             {cases.map((c, i) => (
-              <div key={i} style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr 120px", background: "var(--bg)", padding: "24px 28px", gap: 24, alignItems: "center" }} className="case-row">
-                <div className="mono" style={{ color: "var(--brass)" }}>{c.tag}</div>
-                <div style={{ fontSize: 14.5, color: "var(--ink-3)" }}>{c.before}</div>
-                <div style={{ fontSize: 14.5, color: "var(--cream)", fontFamily: "var(--serif)", fontStyle: "italic" }}>→ {c.after}</div>
-                <a className="mono" href="#" style={{ textAlign: "right" }}>Lesen →</a>
+              <div key={i} className="case-row">
+                <div className="case-tag mono">{c.tag}</div>
+                <div className="case-before">
+                  <div className="mono" style={{ color: "var(--ink-4)", marginBottom: 4 }}>Vorher</div>
+                  <div>{c.before}</div>
+                </div>
+                <div className="case-dauer mono">{c.dauer}</div>
+                <div className="case-after">
+                  <div className="mono" style={{ color: "var(--brass)", marginBottom: 4 }}>Nachher</div>
+                  <div className="serif" style={{ fontStyle: "italic", color: "var(--cream)" }}>→ {c.after}</div>
+                </div>
               </div>
             ))}
           </div>
         </div>
 
         {/* Video placeholder */}
-        <div>
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>§ Videoausschnitt · OMD in Arbeit</div>
-          <div className="ph" style={{ height: 440, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <div style={{ textAlign: "center" }}>
-              <div style={{
-                width: 78, height: 78, borderRadius: 50,
-                border: "1px solid var(--brass)", display: "grid", placeItems: "center",
-                margin: "0 auto 16px", color: "var(--brass)", fontSize: 20,
-              }}>▶</div>
-              <div className="mono" style={{ color: "var(--ink-2)" }}>Showreel · 1:48 · Feld, Stadt, Videoanalyse</div>
+        <div style={{ marginTop: 56 }}>
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>§ Videoausschnitt · OMD in Arbeit</div>
+          <div className="tile proof-video">
+            <img src="https://picsum.photos/seed/omd-showreel/1600/900" alt="OMD Showreel" loading="lazy" />
+            <div className="play-btn">
+              <div className="play-icon">▶</div>
+              <div className="mono" style={{ marginTop: 12 }}>Showreel · 1:48 · Feld, Stadt, Videoanalyse</div>
             </div>
           </div>
         </div>
 
-        <style>{`
-          @media (max-width: 900px) {
-            .proof-head { grid-template-columns: 1fr !important; gap: 24px !important; }
-            .testi-grid { grid-template-columns: 1fr !important; }
-            .case-row { grid-template-columns: 1fr !important; gap: 8px !important; }
-          }
-        `}</style>
+        {/* Disclaimer */}
+        <div className="proof-disclaimer">
+          <div className="mono" style={{ color: "var(--ink-4)", marginBottom: 10 }}>§ Hinweis zu Ergebnissen</div>
+          <p>
+            Alle dargestellten Ergebnisse, Testimonials und Case Studies sind <em style={{ fontStyle: "italic" }}>exemplarisch</em>
+            {" "}und nicht automatisch 1:1 auf jeden Hund und jede Halter-Konstellation übertragbar.
+            Es ist jedoch sehr wahrscheinlich, dass ein vergleichbarer Erfolg eintritt, wenn ihr konsequent
+            nach dem System und den Anleitungen arbeitet. Training ist Zusammenarbeit — Ergebnisse entstehen durch
+            die Umsetzung.
+          </p>
+        </div>
       </div>
+
+      <style>{`
+        .proof-head { margin-bottom: 48px; display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .proof-h { font-size: clamp(28px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; }
+
+        .testi-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .testi-card {
+          background: var(--bg-2); border: 1px solid var(--line-2);
+          display: flex; flex-direction: column;
+          overflow: hidden;
+        }
+        .testi-img { height: 200px; }
+        .testi-content { padding: 28px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+        .testi-quote { font-size: 17px; line-height: 1.45; font-weight: 340; color: var(--cream); flex: 1; }
+
+        .cases-wrap {
+          background: var(--line-2); border: 1px solid var(--line-2);
+          display: grid; gap: 2px;
+        }
+        .case-row {
+          display: grid; grid-template-columns: 1fr;
+          background: var(--bg);
+          padding: 22px 24px; gap: 14px;
+        }
+        .case-tag { color: var(--brass); }
+        .case-before, .case-after { font-size: 14px; color: var(--ink-3); line-height: 1.45; }
+        .case-dauer { color: var(--ink-4); }
+
+        .proof-video { height: 240px; position: relative; }
+
+        .proof-disclaimer {
+          margin-top: 56px;
+          padding: 24px 24px;
+          border: 1px solid var(--line);
+          background: var(--bg-2);
+          max-width: 72ch;
+        }
+        .proof-disclaimer p {
+          font-size: 13.5px; line-height: 1.6; color: var(--ink-3);
+        }
+
+        @media (min-width: 700px) {
+          .testi-grid { grid-template-columns: 1fr 1fr; }
+          .testi-img { height: 220px; }
+          .case-row {
+            grid-template-columns: 1.5fr 2fr 100px 2fr;
+            gap: 20px; align-items: center;
+            padding: 22px 28px;
+          }
+          .proof-video { height: 360px; }
+        }
+        @media (min-width: 1000px) {
+          .testi-grid { grid-template-columns: repeat(3, 1fr); }
+          .testi-img { height: 240px; }
+          .proof-video { height: 440px; }
+          .proof-head { grid-template-columns: 1fr 2fr; gap: 56px; margin-bottom: 72px; }
+        }
+      `}</style>
     </section>
   );
 }
