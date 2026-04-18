@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>oooh my dog! — Training, das mitdenkt</title>
+  <title>oooh my dog! — Hundetraining mit System. Vor Ort, 24/7 und für Profis.</title>
+  <meta name="description" content="Premium-Hundetraining aus Mülheim: lokal im Ruhrgebiet, digital im gesamten deutschsprachigen Raum (24/7) und als Pro & Business für Hundeschulen. Klarheit statt Chaos." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,29 +22,38 @@
   <script type="text/babel" src="components/Nav.jsx"></script>
   <script type="text/babel" src="components/Hero.jsx"></script>
   <script type="text/babel" src="components/Pillars.jsx"></script>
-  <script type="text/babel" src="components/Selector.jsx"></script>
+  <script type="text/babel" src="components/Audience.jsx"></script>
   <script type="text/babel" src="components/Method.jsx"></script>
   <script type="text/babel" src="components/Offers.jsx"></script>
-  <script type="text/babel" src="components/Jenny.jsx"></script>
+  <script type="text/babel" src="components/Anywhere.jsx"></script>
   <script type="text/babel" src="components/Pro.jsx"></script>
+  <script type="text/babel" src="components/Finder.jsx"></script>
   <script type="text/babel" src="components/Proof.jsx"></script>
+  <script type="text/babel" src="components/Jenny.jsx"></script>
+  <script type="text/babel" src="components/FAQ.jsx"></script>
   <script type="text/babel" src="components/Footer.jsx"></script>
+  <script type="text/babel" src="components/Selector.jsx"></script>
 
   <script type="text/babel">
     function App() {
       const [selectorOpen, setSelectorOpen] = React.useState(false);
+      const openSelector = () => setSelectorOpen(true);
 
       return (
         <>
-          <Nav onOpenSelector={() => setSelectorOpen(true)} />
-          <Hero onOpenSelector={() => setSelectorOpen(true)} />
+          <Nav onOpenSelector={openSelector} />
+          <Hero onOpenSelector={openSelector} />
           <Pillars />
+          <Audience />
           <Method />
-          <Offers onOpenSelector={() => setSelectorOpen(true)} />
-          <Jenny />
+          <Offers onOpenSelector={openSelector} />
+          <Anywhere onOpenSelector={openSelector} />
           <Pro />
+          <Finder onOpenSelector={openSelector} />
           <Proof />
-          <FinalCTA onOpenSelector={() => setSelectorOpen(true)} />
+          <Jenny />
+          <FAQ />
+          <FinalCTA onOpenSelector={openSelector} />
           <Footer />
           <Selector open={selectorOpen} onClose={() => setSelectorOpen(false)} />
         </>

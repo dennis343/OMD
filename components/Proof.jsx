@@ -1,29 +1,29 @@
-// Proof.jsx — testimonials, press, case studies, video
+// Proof.jsx — Stimmen, Ergebnisse, Vertrauensbeweise
 function Proof() {
   const testimonials = [
     {
       quote: "Nach sechs Wochen ist unser Luis das erste Mal an einem Hund vorbeigegangen, ohne dass ich Angst hatte. Jenny arbeitet ruhig, klar, und wir verstehen endlich, was wir tun.",
       who: "Katrin & Luis",
-      what: "Programm „Reizoffen & führbar“",
+      what: "Programm „Reizoffen & führbar“ · 24/7",
     },
     {
       quote: "Wir haben vorher bei zwei anderen Trainern Lautstärke gebucht. Hier bekommen wir Methode. Das ist ein Unterschied wie Tag und Nacht.",
       who: "Jan & Miro",
-      what: "Einzelcoaching + Videoanalyse Pro",
+      what: "Einzelcoaching Mülheim + Videoanalyse Pro",
     },
     {
       quote: "Als Hundeschule haben wir mit dem OMD Case Lab einen ehrlichen Sparringspartner. Unser Team spricht heute die gleiche Sprache bei Problemfällen.",
       who: "Clara, Hundeschule Nordwind",
-      what: "OMD Pro · Case Lab",
+      what: "Pro & Business · Case Lab",
     },
   ];
 
-  const press = ["DOGS Magazine", "SWR", "Süddeutsche", "Partner Hund", "Dogs Today DE", "Hunde Welt"];
+  const press = ["DOGS Magazine", "WDR", "Süddeutsche", "Partner Hund", "Dogs Today DE", "Hunde Welt"];
 
   const cases = [
     { before: "Vorher · Leinenaggression, täglich Eskalationen", after: "Nach 9 Wochen · Ruhige Begegnungen, Halter in Führung", tag: "Signaturprogramm" },
-    { before: "Vorher · Rückzug, Unsicherheit in der Stadt", after: "Nach 6 Monaten · Club-Begleitung, Alltag trägt", tag: "OMD Club" },
-    { before: "Vorher · Schule mit 1:1-Stundendruck", after: "Nach 12 Wochen · Premium-System, 40 % mehr Marge", tag: "OMD Pro" },
+    { before: "Vorher · Rückzug, Unsicherheit in der Stadt", after: "Nach 6 Monaten · Club-Begleitung, Alltag trägt", tag: "oooh my dog! Club" },
+    { before: "Vorher · Schule mit 1:1-Stundendruck", after: "Nach 12 Wochen · Premium-System, 40 % mehr Marge", tag: "Pro & Business" },
   ];
 
   return (
@@ -43,7 +43,7 @@ function Proof() {
         {/* Headline */}
         <div style={{ marginBottom: 80, display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }} className="proof-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Stimmen</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>§ Stimmen · Ergebnisse</div>
           </div>
           <h2 className="serif" style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340 }}>
             Was Halter und Schulen

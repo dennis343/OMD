@@ -1,19 +1,23 @@
-// Footer.jsx — final CTA + footer
+// Footer.jsx — Finaler CTA + Footer
 function FinalCTA({ onOpenSelector }) {
   return (
     <section id="kontakt" style={{ padding: "160px 0", background: "var(--bg-2)", position: "relative", overflow: "hidden" }}>
       <div className="shell" style={{ position: "relative", zIndex: 2 }}>
         <div className="mono" style={{ color: "var(--brass)", marginBottom: 28 }}>§ Nächster Schritt</div>
-        <h2 className="serif" style={{ fontSize: "clamp(48px, 8vw, 132px)", lineHeight: 0.92, letterSpacing: "-0.035em", fontWeight: 340, maxWidth: "16ch", marginBottom: 56 }}>
+        <h2 className="serif" style={{ fontSize: "clamp(48px, 8vw, 132px)", lineHeight: 0.92, letterSpacing: "-0.035em", fontWeight: 340, maxWidth: "16ch", marginBottom: 32 }}>
           Finden wir heraus,
           <br />
           <em style={{ color: "var(--brass)" }}>was wirklich passt.</em>
         </h2>
+        <p style={{ fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", maxWidth: "52ch", fontFamily: "var(--serif)", fontWeight: 300, marginBottom: 48 }}>
+          Ob ihr lokal, digital oder als Profi bei uns richtig seid — ein kurzes Gespräch bringt
+          mehr Klarheit als zehn Infoseiten.
+        </p>
         <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
           <button className="btn btn-primary" onClick={onOpenSelector} style={{ fontSize: 15, padding: "18px 26px" }}>
             Passendes Angebot finden <span className="arrow">→</span>
           </button>
-          <a className="btn btn-ghost" href="#" style={{ fontSize: 15, padding: "18px 26px" }}>Erstgespräch buchen →</a>
+          <a className="btn btn-ghost" href="#kontakt" style={{ fontSize: 15, padding: "18px 26px" }}>Kennenlern-Coaching buchen →</a>
           <a className="btn btn-ghost" href="#pro" style={{ fontSize: 15, padding: "18px 26px" }}>Für Hundeschulen →</a>
         </div>
       </div>
@@ -35,10 +39,10 @@ function FinalCTA({ onOpenSelector }) {
 
 function Footer() {
   const cols = [
-    { h: "Für Halter", items: ["Signaturprogramm", "Videoanalyse Pro", "OMD Club", "Saisonale Sprints", "Einzelcoaching München"] },
-    { h: "Für Hundeschulen", items: ["Case Lab", "Premium System", "Methodik-Intensivtage", "Strategie 1:1", "Berufswechsel-Check"] },
-    { h: "Über uns", items: ["Jenny", "Methodik", "Presse", "Stimmen", "Kontakt"] },
-    { h: "Rechtliches", items: ["Impressum", "Datenschutz", "AGB", "Teilnahmebedingungen"] },
+    { h: "Vor Ort", items: ["Kennenlern-Coaching", "Einzelcoaching", "Orientierung & Führung", "Soziales Lernen", "Spezialthemen"] },
+    { h: "24/7", items: ["Reizoffen & führbar", "Videoanalyse Pro", "oooh my dog! Club", "Saisonale Sprints", "Online-Sprechstunde"] },
+    { h: "Pro & Business", items: ["OMD Pro Case Lab", "Premium Hundeschule System", "Berufswechsel-Realitätscheck"] },
+    { h: "Über uns", items: ["Jenny", "Methodik", "Stimmen", "Presse", "Kontakt"] },
   ];
 
   return (
@@ -50,15 +54,15 @@ function Footer() {
               <span className="brand-mark">ö</span>
               <div>
                 <div className="brand-name">oooh my dog!</div>
-                <div className="brand-sub">Hundetraining · Seit 2018</div>
+                <div className="brand-sub">Hundetraining mit System</div>
               </div>
             </a>
             <p style={{ marginTop: 24, fontSize: 14, lineHeight: 1.55, color: "var(--ink-3)", maxWidth: "32ch" }}>
-              Training, das mitdenkt. Für reizoffene Hunde, verantwortungsvolle Halter und
-              Hundeschulen mit System-Denken.
+              Hundetraining mit System. Vor Ort in Mülheim, digital im gesamten
+              deutschsprachigen Raum und im Pro-Bereich für Hundeschulen und Fachkunden.
             </p>
             <div className="mono" style={{ marginTop: 24, color: "var(--ink-3)" }}>
-              München · Bundesweit digital
+              Mülheim · Ruhrgebiet · DACH digital
             </div>
           </div>
           {cols.map((c, i) => (
@@ -74,7 +78,7 @@ function Footer() {
         </div>
 
         <div style={{ borderTop: "1px solid var(--line)", paddingTop: 24, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-          <span className="mono">© 2026 oooh my dog! · Jenny <span style={{ color: "var(--brass)" }}>+</span> Team</span>
+          <span className="mono">© 2026 oooh my dog! · Jennifer Bakir <span style={{ color: "var(--brass)" }}>+</span> Team</span>
           <span className="mono">Gestaltet für Menschen, die ihren Hund lieben und ernst nehmen.</span>
         </div>
       </div>
