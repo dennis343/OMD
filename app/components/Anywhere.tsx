@@ -76,6 +76,21 @@ const OFFERS: Offer[] = [
     href: BOOK_URL,
     img: "https://picsum.photos/seed/omd-sprech/1000/700",
   },
+  {
+    num: "06",
+    title: "Messengerberatung",
+    sub: "Messenger · Laufend",
+    desc: "Beratung im Tempo eures Alltags — über Messenger. Ihr schickt Fragen, Videos und kurze Szenen direkt ein und erhaltet schriftliche Einordnungen, Sprachnachrichten und Videofeedback. Kein Termindruck, kein Anfahrtsweg — dafür schnelle Antworten genau dann, wenn die Situation gerade noch frisch ist.",
+    expect: [
+      "Direkte Kommunikation per Messenger",
+      "Videoanalyse einzelner Alltagsszenen",
+      "Festes Antwortfenster pro Werktag",
+    ],
+    nutzen: "Ihr bekommt Hilfe genau dann, wenn ihr sie braucht — ohne auf den nächsten Termin zu warten.",
+    cta: "Messengerberatung anfragen",
+    href: WA_URL,
+    img: "https://picsum.photos/seed/omd-messenger/1000/700",
+  },
 ];
 
 export default function Anywhere({ onOpenSelector }: AnywhereProps) {
