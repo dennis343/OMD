@@ -16,17 +16,18 @@ function Nav({ onOpenSelector }) {
           <span className="brand-mark">ö</span>
           <div>
             <div className="brand-name">oooh my dog!</div>
-            <div className="brand-sub">Hundetraining · Seit 2018</div>
+            <div className="brand-sub">Hundetraining mit System</div>
           </div>
         </a>
         <div className="nav-links">
-          <a href="#system">Das System</a>
-          <a href="#angebote">Angebote</a>
-          <a href="#jenny">Jenny</a>
-          <a href="#pro">Für Hundeschulen</a>
+          <a href="#vor-ort">Vor Ort</a>
+          <a href="#anywhere">24/7</a>
+          <a href="#pro">Pro & Business</a>
+          <a href="#jenny">Über uns</a>
           <a href="#stimmen">Stimmen</a>
+          <a href="#kontakt">Kontakt</a>
         </div>
-        <button className="nav-cta" onClick={onOpenSelector}>Passendes Angebot finden →</button>
+        <button className="nav-cta" onClick={onOpenSelector}>Kennenlernen →</button>
       </div>
     </nav>
   );

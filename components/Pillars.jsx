@@ -1,46 +1,55 @@
-// Pillars.jsx — three pillars Local / Anywhere / Pro
+// Pillars.jsx — Vor Ort / 24/7 / Pro & Business
 function Pillars() {
   const pillars = [
     {
       num: "01",
-      name: "OMD Local",
-      tag: "München · Vor Ort",
-      desc: "Das lokale Premium-Kerngeschäft. Einzelcoachings, Gruppen, Intensivtage und Events — die Fallbibliothek, aus der alles andere entsteht.",
-      items: ["Einzelcoaching", "Gruppentraining", "Intensivtage", "Spezialthemen", "Events & Talks"],
+      name: "Vor Ort",
+      tag: "Mülheim · Ruhrgebiet",
+      headline: "Für Teams aus Mülheim und Umgebung",
+      desc: "Persönliches Training, Gruppen, Einzelcoachings und strukturierte Begleitung für euren Alltag — direkt bei euch vor Ort.",
+      items: ["Kennenlern-Coaching", "Einzelcoaching", "Orientierung & Führung", "Soziales Lernen", "Spezialthemen"],
       accent: "var(--cream)",
+      cta: "Vor-Ort-Angebote ansehen",
+      href: "#vor-ort",
     },
     {
       num: "02",
-      name: "OMD Anywhere",
-      tag: "Bundesweit · Digital",
-      desc: "Standardisierte Programme, asynchrone Analysen und saisonale Remote-Sprints. Methode, nicht Minuten — für alle, die nicht in München wohnen.",
-      items: ["Signaturprogramm", "Videoanalyse Pro", "OMD Club · Membership", "Saisonale Sprints", "Live-Talks"],
+      name: "24/7",
+      tag: "DACH · Digital",
+      headline: "Für Hundehalter im gesamten deutschsprachigen Raum",
+      desc: "Online-Coaching, Videoanalyse, Programme und flexible Begleitung — ohne Anfahrt, aber mit System. Auch wenn ihr nicht in Mülheim wohnt.",
+      items: ["Reizoffen & führbar", "Videoanalyse Pro", "oooh my dog! Club", "Saisonale Sprints", "Online-Sprechstunde"],
       accent: "var(--brass)",
       featured: true,
+      cta: "Digitale Angebote ansehen",
+      href: "#anywhere",
     },
     {
       num: "03",
-      name: "OMD Pro",
-      tag: "B2B · Hundeschulen & Trainer",
-      desc: "Fallsupervision, Methodik und Positionierung für Hundeschulen, die an ihrem System arbeiten. Beratung, kein Franchise.",
-      items: ["Case Lab · Supervision", "Premium-System (Lizenz)", "Methodik-Intensivtage", "Berufswechsel-Check", "1:1 Strategie"],
+      name: "Pro & Business",
+      tag: "B2B · Für Profis",
+      headline: "Für Hundeschulen, Profis und ambitionierte Menschen",
+      desc: "Strategie, Kursdidaktik, Fallsupervision, Aufbau und Premium-Positionierung — für alle, die nicht klein-klein im Tagesgeschäft hängen bleiben wollen.",
+      items: ["OMD Pro Case Lab", "Premium Hundeschule System", "Berufswechsel-Realitätscheck"],
       accent: "var(--moss)",
+      cta: "Pro-Angebote ansehen",
+      href: "#pro",
     },
   ];
 
   return (
-    <section id="system" style={{ padding: "120px 0", borderBottom: "1px solid var(--line)" }}>
+    <section id="saeulen" style={{ padding: "120px 0", borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, marginBottom: 88 }} className="pillars-intro">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Das OMD-System</div>
-            <div className="mono" style={{ marginTop: 8 }}>Drei Säulen · Ein Fundament</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>§ Die drei Wege</div>
+            <div className="mono" style={{ marginTop: 8 }}>Drei Säulen · Ein System</div>
           </div>
           <div>
             <h2 className="serif" style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340 }}>
-              Ein System, das an der richtigen Stelle ansetzt —
-              <span style={{ color: "var(--ink-3)" }}> beim Halter, beim Hund, bei der Schule.</span>
+              Drei klare Wege — je nachdem, wo du stehst und was du brauchst.
+              <span style={{ color: "var(--ink-3)" }}> Keine Vermischung. Kein Rätselraten.</span>
             </h2>
           </div>
         </div>
@@ -53,7 +62,7 @@ function Pillars() {
               borderLeft: i === 0 ? "none" : "1px solid var(--line-2)",
               background: p.featured ? "var(--bg-2)" : "transparent",
               position: "relative",
-              minHeight: 560,
+              minHeight: 620,
               display: "flex", flexDirection: "column",
             }}>
               {p.featured && (
@@ -62,7 +71,7 @@ function Pillars() {
                   background: "var(--brass)", color: "var(--bg)",
                   padding: "4px 10px",
                   fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.15em", textTransform: "uppercase",
-                }}>Unser Hebel</div>
+                }}>Skalier-Säule</div>
               )}
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 40 }}>
@@ -70,18 +79,21 @@ function Pillars() {
                 <span className="mono">{p.tag}</span>
               </div>
 
-              <h3 className="serif" style={{ fontSize: 38, letterSpacing: "-0.02em", fontWeight: 380, marginBottom: 20 }}>
+              <h3 className="serif" style={{ fontSize: 42, letterSpacing: "-0.02em", fontWeight: 380, marginBottom: 14 }}>
                 {p.name}
               </h3>
+              <div style={{ fontSize: 14, fontStyle: "italic", fontFamily: "var(--serif)", color: "var(--ink-3)", marginBottom: 22 }}>
+                {p.headline}
+              </div>
 
-              <p style={{ fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 32, flex: 1 }}>
+              <p style={{ fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 28 }}>
                 {p.desc}
               </p>
 
-              <ul style={{ listStyle: "none", borderTop: "1px solid var(--line)" }}>
+              <ul style={{ listStyle: "none", borderTop: "1px solid var(--line)", marginBottom: 24, flex: 1 }}>
                 {p.items.map((it, j) => (
                   <li key={j} style={{
-                    padding: "13px 0",
+                    padding: "12px 0",
                     borderBottom: "1px solid var(--line)",
                     fontSize: 13.5,
                     color: "var(--ink-2)",
@@ -92,16 +104,12 @@ function Pillars() {
                   </li>
                 ))}
               </ul>
+
+              <a href={p.href} className="btn-link mono" style={{ color: p.accent }}>
+                {p.cta} →
+              </a>
             </article>
           ))}
-        </div>
-
-        {/* Methodik footer row */}
-        <div style={{ marginTop: 48, display: "flex", justifyContent: "space-between", alignItems: "center", gap: 24, flexWrap: "wrap" }}>
-          <div className="mono" style={{ color: "var(--brass)" }}>
-            ↳ Gemeinsame Methodik: Diagnose vor Übung · Klarheit statt Lautstärke · Aufbau statt Unterdrückung
-          </div>
-          <a className="btn-link mono" href="#angebote">Konkrete Angebote ansehen →</a>
         </div>
       </div>
 

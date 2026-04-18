@@ -1,4 +1,4 @@
-// Selector.jsx — interactive "welches Angebot passt?" quiz
+// Selector.jsx — interaktiver Angebotsfinder
 const { useState: useStateSel, useMemo } = React;
 
 const SELECTOR_STEPS = [
@@ -7,7 +7,7 @@ const SELECTOR_STEPS = [
     question: "Wer sucht hier nach einer Lösung?",
     hint: "Damit wir in der richtigen Säule starten.",
     options: [
-      { val: "halter", label: "Ich bin Hundehalter", sub: "Für mich und meinen Hund" },
+      { val: "halter", label: "Ich bin Hundehalter:in", sub: "Für mich und meinen Hund" },
       { val: "schule", label: "Ich führe eine Hundeschule", sub: "Oder bin selbstständige:r Trainer:in" },
       { val: "wechsel", label: "Ich will beruflich in Richtung Hund", sub: "Realitätscheck vor Ausbildung" },
     ],
@@ -15,8 +15,8 @@ const SELECTOR_STEPS = [
   {
     id: "topic",
     when: (a) => a.who === "halter",
-    question: "Was beschäftigt dich gerade am meisten?",
-    hint: "Mehrfach möglich — wähle bis zu zwei.",
+    question: "Was beschäftigt euch gerade am meisten?",
+    hint: "Mehrfach möglich — wählt bis zu zwei.",
     multi: true, max: 2,
     options: [
       { val: "reizoffen", label: "Reizoffenheit, Leinenaggression, Pöbeln" },
@@ -30,17 +30,17 @@ const SELECTOR_STEPS = [
   {
     id: "format",
     when: (a) => a.who === "halter",
-    question: "Wie willst du arbeiten?",
+    question: "Wie wollt ihr arbeiten?",
     options: [
-      { val: "local", label: "Vor Ort in München", sub: "Einzel, Gruppe, Intensivtage" },
-      { val: "digital", label: "Bundesweit digital", sub: "Video, Live-Calls, asynchron" },
+      { val: "local", label: "Vor Ort in Mülheim", sub: "Einzel, Gruppe, Einzelcoaching" },
+      { val: "digital", label: "24/7 · Digital im gesamten DACH", sub: "Video, Live-Calls, asynchron" },
       { val: "egal", label: "Beides ist möglich", sub: "Entscheidung erst beim Erstgespräch" },
     ],
   },
   {
     id: "depth",
     when: (a) => a.who === "halter",
-    question: "Wie tief willst du einsteigen?",
+    question: "Wie tief wollt ihr einsteigen?",
     options: [
       { val: "einstieg", label: "Erst mal Orientierung", sub: "Einzelstunde oder Videoanalyse" },
       { val: "programm", label: "Strukturierter Weg", sub: "8–10 Wochen, begleitet" },
@@ -55,16 +55,6 @@ const SELECTOR_STEPS = [
       { val: "faelle", label: "Schwierige Fälle sicher führen", sub: "Supervision, Methodik" },
       { val: "system", label: "Das Schul-System verbessern", sub: "Angebote, Onboarding, Didaktik" },
       { val: "premium", label: "Premium positionieren", sub: "Preise, Kundenführung, Qualität" },
-    ],
-  },
-  {
-    id: "school_size",
-    when: (a) => a.who === "schule",
-    question: "Wie ist die Schule aufgestellt?",
-    options: [
-      { val: "solo", label: "Ich arbeite solo" },
-      { val: "team", label: "Kleines Team, 2–5 Personen" },
-      { val: "gross", label: "Größere Schule / mehrere Standorte" },
     ],
   },
   {
@@ -83,14 +73,13 @@ function recommend(answers) {
   const w = answers.who;
 
   if (w === "schule") {
-    if (answers.school_goal === "faelle") return ["case-lab", "methodik-tag"];
+    if (answers.school_goal === "faelle") return ["case-lab", "premium-system"];
     if (answers.school_goal === "system") return ["premium-system", "case-lab"];
-    return ["premium-system", "strategie-1-1"];
+    return ["premium-system", "case-lab"];
   }
 
   if (w === "wechsel") {
-    if (answers.wechsel_phase === "idee") return ["berufswechsel-check", "hospitanz"];
-    return ["berufswechsel-check", "strategie-1-1"];
+    return ["berufswechsel-check", "premium-system"];
   }
 
   // halter branch
@@ -100,12 +89,12 @@ function recommend(answers) {
   const depth = answers.depth;
 
   if (depth === "einstieg") {
-    if (format === "local") return ["local-einzel", "videoanalyse"];
+    if (format === "local") return ["local-kennenlern", "videoanalyse"];
     return ["videoanalyse", "signatur"];
   }
   if (depth === "programm") {
     if (intense) return ["signatur", "videoanalyse"];
-    return format === "local" ? ["intensivtag", "signatur"] : ["signatur", "club"];
+    return format === "local" ? ["local-einzel", "signatur"] : ["signatur", "club"];
   }
   if (depth === "begleitung") {
     return ["club", "signatur"];
@@ -116,69 +105,43 @@ function recommend(answers) {
 const RESULT_MAP = {
   "signatur": {
     title: "Reizoffen & führbar",
-    tag: "Signaturprogramm · OMD Anywhere",
+    tag: "Signaturprogramm · 24/7",
     desc: "8–10 Wochen Premium-Programm für reizoffene, unsichere oder schnell überforderte Hunde. Intake, Videoanalyse, Kernmodule, Live-Call pro Woche, Homework-Reviews.",
-    price: "ab 790 €",
   },
   "videoanalyse": {
     title: "Videoanalyse Pro",
-    tag: "Asynchron · OMD Anywhere",
-    desc: "Du lädst 3–5 Videos hoch, füllst eine strukturierte Anamnese aus. Du erhältst ein priorisiertes Feedbackvideo plus Trainingsplan.",
-    price: "149 – 249 €",
+    tag: "Asynchron · 24/7",
+    desc: "Ihr sendet Alltagsszenen, füllt eine strukturierte Anamnese aus und erhaltet eine priorisierte Analyse plus Trainingsplan.",
   },
   "club": {
-    title: "OMD Club",
-    tag: "Membership · OMD Anywhere",
-    desc: "2 Live-Sessions pro Monat, Themenbibliothek, Q&A, Monatsfokus, Community. Planbare Begleitung statt jedes Mal neu buchen.",
-    price: "49 – 79 € / Monat",
+    title: "oooh my dog! Club",
+    tag: "Membership · 24/7",
+    desc: "Regelmäßige Live-Sessions, Themenbibliothek, Q&A, Monatsfokus, Community. Planbare Begleitung statt jedes Mal neu buchen.",
+  },
+  "local-kennenlern": {
+    title: "Kennenlern-Coaching",
+    tag: "Einstieg · Vor Ort",
+    desc: "Der strukturierte Einstieg für neue Teams. Ersteinschätzung, nächste Schritte, ein sinnvoller Trainingsweg — statt Rätselraten.",
   },
   "local-einzel": {
-    title: "Kennenlern-Einzelstunde",
-    tag: "Vor Ort · OMD Local",
-    desc: "Eine Stunde, um euch kennenzulernen, die Situation einzuordnen und einen ehrlichen nächsten Schritt zu finden.",
-    price: "49 €",
-  },
-  "intensivtag": {
-    title: "Intensivtag München",
-    tag: "Vor Ort · OMD Local",
-    desc: "Ein Tag, konzentriert an eurem Thema. Diagnose, Aufbau, Praxis im echten Alltag. Preis auf Anfrage.",
-    price: "auf Anfrage",
+    title: "Einzelcoaching vor Ort",
+    tag: "Individuell · Vor Ort",
+    desc: "Für Themen, die direkt im echten Umfeld bearbeitet werden sollten. Individuelle Analyse, direkte Umsetzung, klare Aufgaben.",
   },
   "case-lab": {
     title: "OMD Pro Case Lab",
-    tag: "Supervision · OMD Pro",
-    desc: "Monatliche Fallsupervision für Hundeschulen mit anspruchsvollen Teams. Fallbesprechung, Methodenentscheidungen, Halterkommunikation.",
-    price: "auf Anfrage",
+    tag: "Fallsupervision · Pro & Business",
+    desc: "Fallsupervision und strategische Begleitung für Hundeschulen mit anspruchsvollen Fällen. Mehr Sicherheit, bessere Kundenführung.",
   },
   "premium-system": {
     title: "Premium Hundeschule System",
-    tag: "B2B · OMD Pro",
-    desc: "Angebotsarchitektur, Onboarding, Anamnese, Homework-Sheets, Kundenführung, Premium-Positionierung. Beratung und Lizenz, kein Franchise.",
-    price: "auf Anfrage",
-  },
-  "methodik-tag": {
-    title: "Methodik-Intensivtag",
-    tag: "B2B · OMD Pro",
-    desc: "Ein Tag für dich und dein Team: Diagnose, Trainingsaufbau, Grenzfälle. Fundament für eine ruhige, klare Lernkultur.",
-    price: "auf Anfrage",
-  },
-  "strategie-1-1": {
-    title: "1:1 Strategie-Session",
-    tag: "B2B · OMD Pro",
-    desc: "Eine Session mit Jenny — für eine konkrete Entscheidung zu Positionierung, Team oder nächstem Produkt.",
-    price: "auf Anfrage",
+    tag: "Strategie · Pro & Business",
+    desc: "Strategie, Struktur und skalierbare Angebotslogik für Hundeschulen. Angebotsarchitektur, Kurslogik und Premium-Positionierung.",
   },
   "berufswechsel-check": {
     title: "Berufswechsel Hund · Realitätscheck",
-    tag: "Orientierung · OMD Pro",
-    desc: "Orientierung, Hospitation, Fallverständnis, Business-Grundlagen, Ethik. Premium und ehrlich — statt ‚Werde Hundetrainer:in‘ als Erstprodukt.",
-    price: "auf Anfrage",
-  },
-  "hospitanz": {
-    title: "Hospitations-Tag",
-    tag: "Orientierung · OMD Pro",
-    desc: "Ein Tag mit, statt über Hundetraining. Du erlebst echte Kunden, echte Hunde, echte Entscheidungen.",
-    price: "auf Anfrage",
+    tag: "Orientierung · Pro & Business",
+    desc: "Ehrliche Orientierung für Menschen, die beruflich in den Hundebereich wollen. Einordnung, Qualitätsmaßstäbe, saubere Entscheidungshilfe.",
   },
 };
 
@@ -241,7 +204,7 @@ function Selector({ open, onClose }) {
         {/* header */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 40 }}>
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Selektor</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>§ Angebotsfinder</div>
             <div className="mono" style={{ marginTop: 4 }}>
               {finished ? "Empfehlung" : `Schritt ${stepIdx + 1} von ${activeSteps.length}`}
             </div>
@@ -323,7 +286,7 @@ function Selector({ open, onClose }) {
         {finished && (
           <div>
             <h3 className="serif" style={{ fontSize: 36, lineHeight: 1.08, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
-              Für dich passen wir am besten:
+              Für euch passen wir am besten:
             </h3>
             <p className="mono">Zwei Empfehlungen, geordnet nach Passung</p>
 
@@ -346,16 +309,15 @@ function Selector({ open, onClose }) {
                     {r.title}
                   </h4>
                   <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 20 }}>{r.desc}</p>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderTop: "1px solid var(--line)", paddingTop: 16 }}>
-                    <span className="serif" style={{ fontSize: 20, color: "var(--brass)" }}>{r.price}</span>
-                    <a className="btn-link mono" href="#angebote">Details →</a>
+                  <div style={{ borderTop: "1px solid var(--line)", paddingTop: 16 }}>
+                    <a className="btn-link mono" href="#kontakt">Mehr erfahren →</a>
                   </div>
                 </div>
               ))}
             </div>
 
             <div style={{ marginTop: 36, display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <button className="btn btn-primary">Erstgespräch anfragen <span className="arrow">→</span></button>
+              <a className="btn btn-primary" href="#kontakt" onClick={onClose}>Erstgespräch anfragen <span className="arrow">→</span></a>
               <button className="btn btn-ghost" onClick={reset}>Nochmal starten</button>
             </div>
           </div>
