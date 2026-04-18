@@ -1,15 +1,46 @@
-// Legal.jsx — Impressum & Datenschutz Modals
-function LegalModal({ open, onClose, kind }) {
+"use client";
+
+import { useEffect } from "react";
+
+export type LegalKind = "impressum" | "datenschutz" | null;
+
+type LegalModalProps = {
+  open: boolean;
+  onClose: () => void;
+  kind: LegalKind;
+};
+
+export default function LegalModal({ open, onClose, kind }: LegalModalProps) {
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open, onClose]);
+
   if (!open) return null;
 
   const isImpressum = kind === "impressum";
+  const titleId = "legal-title";
 
   return (
-    <div className="legal-overlay" onClick={onClose}>
-      <div className="legal-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="legal-close mono" onClick={onClose} aria-label="Schließen">× Schließen</button>
+    <div className="legal-overlay" onClick={onClose} role="presentation">
+      <div
+        className="legal-modal"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+      >
+        <button className="legal-close mono" onClick={onClose} aria-label="Dialog schließen" type="button">
+          × Schließen
+        </button>
 
-        {isImpressum ? <Impressum /> : <Datenschutz />}
+        {isImpressum ? <Impressum titleId={titleId} /> : <Datenschutz titleId={titleId} />}
       </div>
 
       <style>{`
@@ -37,21 +68,9 @@ function LegalModal({ open, onClose, kind }) {
           padding: 4px 8px;
         }
         .legal-close:hover { color: var(--brass); }
-        .legal-modal h2 {
-          font-family: var(--serif); font-weight: 340;
-          font-size: clamp(26px, 4vw, 42px);
-          letter-spacing: -0.022em; line-height: 1.08;
-          margin-bottom: 28px;
-        }
-        .legal-modal h3 {
-          font-family: var(--mono); color: var(--brass);
-          font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-          margin: 28px 0 10px;
-        }
-        .legal-modal p, .legal-modal ul, .legal-modal li {
-          font-size: 14.5px; line-height: 1.6; color: var(--ink-2);
-          margin-bottom: 8px;
-        }
+        .legal-modal h2 { font-family: var(--serif); font-weight: 340; font-size: clamp(26px, 4vw, 42px); letter-spacing: -0.022em; line-height: 1.08; margin-bottom: 28px; }
+        .legal-modal h3 { font-family: var(--mono); color: var(--brass); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin: 28px 0 10px; }
+        .legal-modal p, .legal-modal ul, .legal-modal li { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 8px; }
         .legal-modal ul { list-style: none; padding-left: 0; }
         .legal-modal a { color: var(--brass); }
         @media (min-width: 700px) {
@@ -62,11 +81,11 @@ function LegalModal({ open, onClose, kind }) {
   );
 }
 
-function Impressum() {
+function Impressum({ titleId }: { titleId: string }) {
   return (
     <>
       <div className="mono" style={{ color: "var(--brass)", marginBottom: 14 }}>§ Rechtliches</div>
-      <h2 className="serif">Impressum</h2>
+      <h2 id={titleId} className="serif">Impressum</h2>
 
       <h3>Angaben gemäß § 5 TMG</h3>
       <ul>
@@ -88,9 +107,7 @@ function Impressum() {
         Erlaubnis zur gewerbsmäßigen Ausbildung oder Anleitung zur Ausbildung von Hunden
         nach § 11 Abs. 1 Satz 1 Nr. 8f TierSchG i.V.m. § 11 GewO.
       </p>
-      <p>
-        Erteilt am 05.07.2024 durch das Veterinäramt Mülheim an der Ruhr.
-      </p>
+      <p>Erteilt am 05.07.2024 durch das Veterinäramt Mülheim an der Ruhr.</p>
 
       <h3>Zuständige Aufsichtsbehörde</h3>
       <ul>
@@ -112,11 +129,11 @@ function Impressum() {
   );
 }
 
-function Datenschutz() {
+function Datenschutz({ titleId }: { titleId: string }) {
   return (
     <>
       <div className="mono" style={{ color: "var(--brass)", marginBottom: 14 }}>§ Rechtliches</div>
-      <h2 className="serif">Datenschutz­erklärung</h2>
+      <h2 id={titleId} className="serif">Datenschutz­erklärung</h2>
 
       <h3>1. Verantwortlicher</h3>
       <p>
@@ -167,5 +184,3 @@ function Datenschutz() {
     </>
   );
 }
-
-window.LegalModal = LegalModal;

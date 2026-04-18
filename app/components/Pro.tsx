@@ -1,74 +1,73 @@
-// Pro.jsx — Säule 3: Pro & Business — mit "Warum Jenny" + Referenzen
-function Pro() {
-  const whyJenny = [
-    {
-      t: "Eigene Premium-Schule",
-      d: "Jenny führt selbst eine Hundeschule mit System — vom Kennenlern-Einzel bis zum Signaturprogramm. Keine Theorie, sondern gelebte Praxis.",
-    },
-    {
-      t: "Didaktik + Kommunikation",
-      d: "Studium der Erwachsenenbildung und 13 Jahre Führungsarbeit in der Kommunikationsbranche. Jenny kann Fachwissen nicht nur haben, sondern auch vermitteln — an Halter und an Kolleg:innen.",
-    },
-    {
-      t: "Anspruchsvolle Fälle",
-      d: "Der Schwerpunkt liegt seit Jahren auf reizoffenen, unsicheren und energiegeladenen Hunden. Jenny lebt selbst mit zwei belgischen Schäferhunden — das prägt das System.",
-    },
-    {
-      t: "System, das skaliert",
-      d: "Angebotsarchitektur, Didaktik, Positionierung und Kundenführung — alles ist so gebaut, dass es in anderen Schulen übernommen und angepasst werden kann.",
-    },
-  ];
+import { WA_URL } from "@/app/lib/constants";
 
-  const modules = [
-    {
-      n: "06",
-      name: "OMD Pro Case Lab",
-      tag: "Fallsupervision",
-      forWho: "Für Hundeschulen und Trainer:innen, die mit anspruchsvollen Fällen arbeiten und ihre Qualität erhöhen wollen.",
-      nutzen: "Ihr führt schwierige Fälle sicherer, kommuniziert klarer mit Haltern und trefft fundiertere Trainingsentscheidungen.",
-      includes: ["Fundierte Fallbesprechungen", "Klare Einordnung", "Blick auf Trainingslogik und Halterführung", "Übertragbare Entscheidungslogiken"],
-      cta: "Pro Case Lab anfragen",
-    },
-    {
-      n: "07",
-      name: "Premium Hundeschule System",
-      tag: "Strategie · Angebotsarchitektur",
-      forWho: "Für Hundeschulen, die nicht im Tagesgeschäft hängen bleiben wollen, sondern ein tragfähiges Premium-System aufbauen.",
-      nutzen: "Ihr habt klarere Angebote, höhere Kundenbindung, weniger 1:1-Stundendruck und ein System, das auch ohne ständige Präsenz der Chefin funktioniert.",
-      includes: ["Schärfung des Angebotsportfolios", "Didaktische Kurslogik", "Struktur für Kundenerfolg", "Ansatzpunkte für skalierbare Formate"],
-      cta: "Business-Beratung anfragen",
-      featured: true,
-    },
-    {
-      n: "08",
-      name: "Berufswechsel Hund · Realitätscheck",
-      tag: "Orientierung",
-      forWho: "Für Menschen, die überlegen, ob der Hundebereich beruflich der richtige Weg für sie ist.",
-      nutzen: "Ihr spart euch teure Fehlentscheidungen und startet entweder mit realistischen Erwartungen — oder mit der Klarheit, dass dieser Weg nicht der richtige ist.",
-      includes: ["Ehrliche Einordnung statt Schönfärberei", "Realistischer Blick auf Anforderungen", "Orientierung zu Qualität und Verantwortung", "Saubere Entscheidungshilfe"],
-      cta: "Realitätscheck ansehen",
-    },
-  ];
+type Module = {
+  n: string;
+  name: string;
+  tag: string;
+  forWho: string;
+  nutzen: string;
+  includes: string[];
+  cta: string;
+  featured?: boolean;
+};
 
-  const references = [
-    { name: "Hundeschule Nordwind", role: "Case Lab · Supervision", img: "https://picsum.photos/seed/ref-1/600/600" },
-    { name: "Tailwind Training", role: "Premium System · Strategie", img: "https://picsum.photos/seed/ref-2/600/600" },
-    { name: "Hundewelt Rheinaue", role: "Methodik-Intensivtage", img: "https://picsum.photos/seed/ref-3/600/600" },
-    { name: "Clever Paws", role: "Angebotsarchitektur", img: "https://picsum.photos/seed/ref-4/600/600" },
-  ];
+const WHY_JENNY = [
+  { t: "Eigene Premium-Schule", d: "Jenny führt selbst eine Hundeschule mit System — vom Kennenlern-Einzel bis zum Signaturprogramm. Keine Theorie, sondern gelebte Praxis." },
+  { t: "Didaktik + Kommunikation", d: "Studium der Erwachsenenbildung und 13 Jahre Führungsarbeit in der Kommunikationsbranche. Jenny kann Fachwissen nicht nur haben, sondern auch vermitteln — an Halter und an Kolleg:innen." },
+  { t: "Anspruchsvolle Fälle", d: "Der Schwerpunkt liegt seit Jahren auf reizoffenen, unsicheren und energiegeladenen Hunden. Jenny lebt selbst mit zwei belgischen Schäferhunden — das prägt das System." },
+  { t: "System, das skaliert", d: "Angebotsarchitektur, Didaktik, Positionierung und Kundenführung — alles ist so gebaut, dass es in anderen Schulen übernommen und angepasst werden kann." },
+];
 
+const MODULES: Module[] = [
+  {
+    n: "06",
+    name: "OMD Pro Case Lab",
+    tag: "Fallsupervision",
+    forWho: "Für Hundeschulen und Trainer:innen, die mit anspruchsvollen Fällen arbeiten und ihre Qualität erhöhen wollen.",
+    nutzen: "Ihr führt schwierige Fälle sicherer, kommuniziert klarer mit Haltern und trefft fundiertere Trainingsentscheidungen.",
+    includes: ["Fundierte Fallbesprechungen", "Klare Einordnung", "Blick auf Trainingslogik und Halterführung", "Übertragbare Entscheidungslogiken"],
+    cta: "Pro Case Lab anfragen",
+  },
+  {
+    n: "07",
+    name: "Premium Hundeschule System",
+    tag: "Strategie · Angebotsarchitektur",
+    forWho: "Für Hundeschulen, die nicht im Tagesgeschäft hängen bleiben wollen, sondern ein tragfähiges Premium-System aufbauen.",
+    nutzen: "Ihr habt klarere Angebote, höhere Kundenbindung, weniger 1:1-Stundendruck und ein System, das auch ohne ständige Präsenz der Chefin funktioniert.",
+    includes: ["Schärfung des Angebotsportfolios", "Didaktische Kurslogik", "Struktur für Kundenerfolg", "Ansatzpunkte für skalierbare Formate"],
+    cta: "Business-Beratung anfragen",
+    featured: true,
+  },
+  {
+    n: "08",
+    name: "Berufswechsel Hund · Realitätscheck",
+    tag: "Orientierung",
+    forWho: "Für Menschen, die überlegen, ob der Hundebereich beruflich der richtige Weg für sie ist.",
+    nutzen: "Ihr spart euch teure Fehlentscheidungen und startet entweder mit realistischen Erwartungen — oder mit der Klarheit, dass dieser Weg nicht der richtige ist.",
+    includes: ["Ehrliche Einordnung statt Schönfärberei", "Realistischer Blick auf Anforderungen", "Orientierung zu Qualität und Verantwortung", "Saubere Entscheidungshilfe"],
+    cta: "Realitätscheck ansehen",
+  },
+];
+
+const REFERENCES = [
+  { name: "Hundeschule Nordwind", role: "Case Lab · Supervision", img: "https://picsum.photos/seed/ref-1/600/600" },
+  { name: "Tailwind Training", role: "Premium System · Strategie", img: "https://picsum.photos/seed/ref-2/600/600" },
+  { name: "Hundewelt Rheinaue", role: "Methodik-Intensivtage", img: "https://picsum.photos/seed/ref-3/600/600" },
+  { name: "Clever Paws", role: "Angebotsarchitektur", img: "https://picsum.photos/seed/ref-4/600/600" },
+];
+
+export default function Pro() {
   return (
-    <section id="pro" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
+    <section id="pro" aria-labelledby="pro-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
-
         <div className="pro-head">
           <div>
             <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>§ Säule 03 · Pro & Business</div>
             <div className="label" style={{ color: "var(--ink-3)" }}>Hundeschulen · Trainer:innen · Fachkunden</div>
           </div>
           <div>
-            <h2 className="serif pro-h2">
-              Für alle, die nicht „irgendwas mit Hunden" machen wollen —
+            <h2 id="pro-heading" className="serif pro-h2">
+              Für alle, die nicht „irgendwas mit Hunden“ machen wollen —
               <span style={{ color: "var(--ink-3)" }}> sondern Struktur, Qualität und Premium-Niveau aufbauen.</span>
             </h2>
             <p className="pro-lead">
@@ -79,10 +78,9 @@ function Pro() {
           </div>
         </div>
 
-        {/* Why Jenny block */}
         <div className="why-jenny">
           <div className="why-jenny-img tile">
-            <img src="https://picsum.photos/seed/jenny-pro/900/1100" alt="Jennifer Bakir · Pro-Beratung" loading="lazy" />
+            <img src="https://picsum.photos/seed/jenny-pro/900/1100" alt="Jennifer Bakir bei der Pro-Beratung" loading="lazy" />
             <span className="tile-caption">Jenny · Pro-Beratung</span>
           </div>
           <div>
@@ -94,8 +92,8 @@ function Pro() {
             </h3>
 
             <div className="why-grid">
-              {whyJenny.map((w, i) => (
-                <div key={i} className="why-cell">
+              {WHY_JENNY.map((w, i) => (
+                <div key={w.t} className="why-cell">
                   <span className="serif why-n">0{i + 1}</span>
                   <div>
                     <div className="serif why-t">{w.t}</div>
@@ -107,13 +105,10 @@ function Pro() {
           </div>
         </div>
 
-        {/* 3 modules */}
         <div className="pro-grid">
-          {modules.map((m, i) => (
-            <article key={i} className={`pro-card ${m.featured ? "is-featured" : ""}`}>
-              {m.featured && (
-                <div className="pro-badge">Hebel</div>
-              )}
+          {MODULES.map((m) => (
+            <article key={m.n} className={`pro-card ${m.featured ? "is-featured" : ""}`}>
+              {m.featured && <div className="pro-badge">Hebel</div>}
 
               <div className="pro-card-head">
                 <span className="serif pro-n">{m.n}</span>
@@ -135,30 +130,27 @@ function Pro() {
               <div className="pro-block" style={{ flex: 1 }}>
                 <div className="mono" style={{ color: "var(--moss)", marginBottom: 8 }}>→ Was drin ist</div>
                 <ul className="pro-list">
-                  {m.includes.map((it, j) => (
-                    <li key={j}><span style={{ color: "var(--moss)" }}>+</span> {it}</li>
+                  {m.includes.map((it) => (
+                    <li key={it}><span style={{ color: "var(--moss)" }} aria-hidden="true">+</span> {it}</li>
                   ))}
                 </ul>
               </div>
 
-              <a className="btn-link" href="https://api.whatsapp.com/send/?phone=491713457959&text=Hi+Jenny+ich+bin+an+deinen+Leistungen+interessiert&type=phone_number&app_absent=0" target="_blank" rel="noopener" style={{ color: "var(--moss)" }}>
+              <a className="btn-link" href={WA_URL} target="_blank" rel="noopener" style={{ color: "var(--moss)" }}>
                 {m.cta} →
               </a>
             </article>
           ))}
         </div>
 
-        {/* References / Videos */}
         <div className="refs-block">
           <div style={{ marginBottom: 32 }}>
             <div className="mono" style={{ color: "var(--moss)", marginBottom: 12 }}>§ Referenzen · Schulen, mit denen wir arbeiten</div>
-            <h3 className="serif refs-head">
-              Keine Behauptungen, sondern Zusammenarbeit.
-            </h3>
+            <h3 className="serif refs-head">Keine Behauptungen, sondern Zusammenarbeit.</h3>
           </div>
           <div className="refs-grid">
-            {references.map((r, i) => (
-              <div key={i} className="ref-card">
+            {REFERENCES.map((r) => (
+              <div key={r.name} className="ref-card">
                 <div className="tile ref-img">
                   <img src={r.img} alt={r.name} loading="lazy" />
                 </div>
@@ -170,13 +162,12 @@ function Pro() {
             ))}
           </div>
 
-          {/* Video placeholder */}
           <div className="ref-video">
             <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>§ Videoausschnitt · Pro Case Lab in Aktion</div>
             <div className="tile ref-video-tile">
-              <img src="https://picsum.photos/seed/pro-video/1600/900" alt="Pro Case Lab Video" loading="lazy" />
+              <img src="https://picsum.photos/seed/pro-video/1600/900" alt="Pro Case Lab · Videoausschnitt" loading="lazy" />
               <div className="play-btn">
-                <div className="play-icon">▶</div>
+                <div className="play-icon" aria-hidden="true">▶</div>
                 <div className="mono" style={{ marginTop: 12 }}>Pro-Showreel · 2:10 · Fallarbeit, Strategie, Supervision</div>
               </div>
             </div>
@@ -190,8 +181,8 @@ function Pro() {
               Kurzes Erstgespräch, ehrliche Diagnose: Wo steht ihr, und welches Modul trägt jetzt den größten Hebel?
             </p>
           </div>
-          <a className="btn btn-primary" href="https://api.whatsapp.com/send/?phone=491713457959&text=Hi+Jenny+ich+bin+an+deinen+Leistungen+interessiert&type=phone_number&app_absent=0" target="_blank" rel="noopener" style={{ justifyContent: "center" }}>
-            Gespräch per WhatsApp <span className="arrow">→</span>
+          <a className="btn btn-primary" href={WA_URL} target="_blank" rel="noopener" style={{ justifyContent: "center" }}>
+            Gespräch per WhatsApp <span className="arrow" aria-hidden="true">→</span>
           </a>
         </div>
       </div>
@@ -201,43 +192,19 @@ function Pro() {
         .pro-h2 { font-size: clamp(28px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; }
         .pro-lead { font-size: 16px; line-height: 1.55; color: var(--ink-2); margin-top: 22px; max-width: 58ch; font-family: var(--serif); font-weight: 300; }
 
-        .why-jenny {
-          display: grid; grid-template-columns: 1fr; gap: 32px;
-          margin-bottom: 64px;
-          background: var(--bg-2); border: 1px solid var(--line-2);
-          padding: 28px;
-        }
+        .why-jenny { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 64px; background: var(--bg-2); border: 1px solid var(--line-2); padding: 28px; }
         .why-jenny-img { height: 260px; }
         .why-h { font-size: clamp(24px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 340; margin-bottom: 28px; }
         .why-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        .why-cell {
-          display: grid; grid-template-columns: 40px 1fr;
-          gap: 14px;
-          padding: 16px 0;
-          border-top: 1px solid var(--line);
-        }
+        .why-cell { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
         .why-n { color: var(--moss); font-style: italic; font-size: 22px; font-weight: 300; }
         .why-t { font-size: 18px; letter-spacing: -0.015em; color: var(--cream); margin-bottom: 6px; }
         .why-d { font-size: 14px; line-height: 1.55; color: var(--ink-2); }
 
-        .pro-grid {
-          display: grid; grid-template-columns: 1fr;
-          border-top: 1px solid var(--line-2);
-        }
-        .pro-card {
-          padding: 32px 24px 28px;
-          border-bottom: 1px solid var(--line-2);
-          display: flex; flex-direction: column;
-          background: transparent;
-          position: relative;
-        }
+        .pro-grid { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line-2); }
+        .pro-card { padding: 32px 24px 28px; border-bottom: 1px solid var(--line-2); display: flex; flex-direction: column; background: transparent; position: relative; }
         .pro-card.is-featured { background: var(--bg-2); }
-        .pro-badge {
-          position: absolute; top: -1px; right: 20px;
-          background: var(--moss); color: var(--bg);
-          padding: 4px 10px;
-          font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-        }
+        .pro-badge { position: absolute; top: -1px; right: 20px; background: var(--moss); color: var(--bg); padding: 4px 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
         .pro-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
         .pro-n { font-size: 32px; font-style: italic; color: var(--moss); font-weight: 300; }
         .pro-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 380; margin-bottom: 20px; line-height: 1.08; }
@@ -246,35 +213,17 @@ function Pro() {
         .pro-list { list-style: none; }
         .pro-list li { font-size: 13px; color: var(--ink-2); padding: 5px 0; display: flex; gap: 10px; }
 
-        .refs-block {
-          margin-top: 64px;
-          padding-top: 56px;
-          border-top: 1px solid var(--line-2);
-        }
+        .refs-block { margin-top: 64px; padding-top: 56px; border-top: 1px solid var(--line-2); }
         .refs-head { font-size: clamp(24px, 3.6vw, 40px); letter-spacing: -0.02em; font-weight: 340; max-width: 24ch; }
         .refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .ref-img { aspect-ratio: 1 / 1; }
         .ref-video { margin-top: 48px; }
         .ref-video-tile { height: 240px; position: relative; }
-        .play-btn {
-          position: absolute; inset: 0;
-          display: flex; flex-direction: column; align-items: center; justify-content: center;
-          text-align: center; z-index: 3;
-        }
-        .play-icon {
-          width: 62px; height: 62px; border-radius: 50%;
-          border: 1px solid var(--brass); display: grid; place-items: center;
-          color: var(--brass); font-size: 18px; background: rgba(22,19,15,0.4); backdrop-filter: blur(4px);
-        }
+        .play-btn { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 3; }
+        .play-icon { width: 62px; height: 62px; border-radius: 50%; border: 1px solid var(--brass); display: grid; place-items: center; color: var(--brass); font-size: 18px; background: rgba(22,19,15,0.4); backdrop-filter: blur(4px); }
 
-        .pro-foot {
-          margin-top: 48px;
-          display: grid; grid-template-columns: 1fr; gap: 20px; align-items: center;
-        }
-        .pro-foot-quote {
-          border: 1px solid var(--line-2); padding: 28px 28px;
-          background: var(--bg-2);
-        }
+        .pro-foot { margin-top: 48px; display: grid; grid-template-columns: 1fr; gap: 20px; align-items: center; }
+        .pro-foot-quote { border: 1px solid var(--line-2); padding: 28px 28px; background: var(--bg-2); }
         .pro-foot-quote p { font-size: 18px; line-height: 1.4; font-weight: 360; font-style: italic; color: var(--ink-2); max-width: 52ch; }
 
         @media (min-width: 700px) {
@@ -296,5 +245,3 @@ function Pro() {
     </section>
   );
 }
-
-window.Pro = Pro;
