@@ -23,21 +23,21 @@ export default function Audience() {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="aud-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>Selbstcheck</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Selbstcheck</div>
             <div className="mono" style={{ marginTop: 8 }}>Passt das zu euch?</div>
           </div>
           <div>
             <h2 id="audience-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340 }}>
-              Ihr seid hier richtig, wenn ihr nicht einfach
-              <em style={{ color: "var(--brass)", fontStyle: "italic" }}> irgendetwas </em>
-              ausprobieren wollt.
+              Für Menschen, die ihren Hund
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> verstehen </em>
+              wollen — nicht nur beschäftigen.
             </h2>
           </div>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: 32 }} className="aud-grid">
           <div style={{ background: "var(--bg)", border: "1px solid var(--line-2)", padding: "40px 44px" }}>
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>+ Gut für euch</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 24 }}>+ Gut für euch</div>
             <p style={{ fontSize: 18, lineHeight: 1.5, fontFamily: "var(--serif)", fontWeight: 340, color: "var(--ink-2)", marginBottom: 28 }}>
               oooh my dog! ist besonders passend für Menschen, die:
             </p>
@@ -55,7 +55,7 @@ export default function Audience() {
                     color: "var(--ink-2)",
                   }}
                 >
-                  <span className="serif" style={{ color: "var(--brass)", fontStyle: "italic", fontSize: 18, minWidth: 28 }}>
+                  <span className="serif" style={{ color: "var(--omd-yellow)", fontStyle: "italic", fontSize: 18, minWidth: 28 }}>
                     0{i + 1}
                   </span>
                   <span>{p}</span>

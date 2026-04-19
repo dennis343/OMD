@@ -37,14 +37,14 @@ export default function Method() {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="method-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>Differenzierung</div>
-            <div className="mono" style={{ marginTop: 8 }}>Sechs Gründe</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Methodik</div>
+            <div className="mono" style={{ marginTop: 8 }}>Sechs Prinzipien</div>
           </div>
           <div>
             <h2 id="method-heading" className="serif" style={{ fontSize: "clamp(34px, 4.8vw, 62px)", lineHeight: 1.04, letterSpacing: "-0.022em", fontWeight: 340, marginBottom: 28 }}>
-              Warum oooh my dog! nicht
-              <em style={{ color: "var(--brass)", fontStyle: "italic" }}> irgendeine </em>
-              Hundeschule ist.
+              Präzision statt Druck.
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> Didaktik </em>
+              statt Dressur.
             </h2>
             <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: "58ch", fontFamily: "var(--serif)", fontWeight: 300 }}>
               Wir verzichten auf aversive Methoden — auch bei anspruchsvollen Fällen.
@@ -78,8 +78,8 @@ export default function Method() {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 22 }}>
-                <span className="serif" style={{ fontSize: 28, fontStyle: "italic", color: "var(--brass)", fontWeight: 300 }}>{d.n}.</span>
-                <span className="mono">Unterschied</span>
+                <span className="serif" style={{ fontSize: 28, fontStyle: "italic", color: "var(--omd-yellow)", fontWeight: 300 }}>{d.n}.</span>
+                <span className="mono">Prinzip</span>
               </div>
               <h3 className="serif" style={{ fontSize: 24, letterSpacing: "-0.018em", fontWeight: 380, marginBottom: 14 }}>
                 {d.title}

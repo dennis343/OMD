@@ -18,7 +18,7 @@ const COLS: Column[] = [
     ],
   },
   {
-    h: "24/7",
+    h: "Online",
     items: [
       ["Reizoffen & führbar", "#anywhere"],
       ["Videoanalyse Pro", "#anywhere"],

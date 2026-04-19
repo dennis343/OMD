@@ -4,12 +4,12 @@ import { BOOK_URL } from "@/app/lib/constants";
 
 type HeroProps = { onOpenSelector: () => void };
 
-const TRUST = ["Alltagsnah", "Systematisch", "Ruhig & klar", "Auch digital", "Premium"] as const;
+const TRUST = ["Reizoffen verstehen", "Ruhig führen", "Systematisch aufbauen", "Alltag tragen", "Ohne Zwang"] as const;
 const STATS: [string, string][] = [
   ["1 400+", "begleitete Hunde"],
   ["13 Jahre", "Führung in Kommunikation"],
   ["0 %", "aversive Methoden"],
-  ["DACH", "digitale Reichweite"],
+  ["DACH", "Online-Reichweite"],
 ];
 
 export default function Hero({ onOpenSelector }: HeroProps) {
@@ -22,25 +22,26 @@ export default function Hero({ onOpenSelector }: HeroProps) {
     >
       <div className="shell">
         <div className="hero-meta">
-          <span className="mono" style={{ color: "var(--brass)" }}>Vor Ort · 24/7 · Pro & Business</span>
+          <span className="mono" style={{ color: "var(--omd-yellow)" }}>Vor Ort · Online · Pro & Business</span>
           <span className="mono">Mülheim · Ruhrgebiet · DACH</span>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 32 }}>
           <h1 id="hero-headline" className="serif hero-headline">
-            Hundetraining
+            Reizoffene Hunde.
             <br />
-            mit <em style={{ fontStyle: "italic", color: "var(--omd-yellow)" }}>System.</em>
+            <em style={{ fontStyle: "italic", color: "var(--omd-yellow)" }}>Klar geführt.</em>
             <br />
-            Vor Ort, 24/7 und für Profis.
+            Für ein echtes Miteinander.
           </h1>
 
           <div className="hero-bottom">
             <p className="hero-sub">
-              Für Menschen, die Klarheit statt Chaos wollen. Wir helfen Hundehaltern, ihre Hunde
-              im Alltag besser zu verstehen, klarer zu führen und nachhaltig zu entwickeln —
-              lokal in Mülheim, digital im gesamten deutschsprachigen Raum und im Pro-Bereich
-              für Hundeschulen und ambitionierte Fachkunden.
+              Euer Hund bellt, zieht, überdreht — und ihr wollt endlich wieder atmen,
+              ohne jeden Spaziergang zu fürchten. Wir geben euch die didaktische Struktur,
+              die aus Reizoffenheit Führbarkeit macht: ruhig, systematisch, ohne Zwang —
+              vor Ort in Mülheim, online in der gesamten DACH-Region und im Pro-Bereich
+              für Hundeschulen.
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "flex-start" }}>
@@ -73,7 +74,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
           </div>
           <div className="tile">
             <img src="https://picsum.photos/seed/omd-hero-3/1400/900" alt="" loading="lazy" />
-            <span className="tile-caption">Videoanalyse · 24/7</span>
+            <span className="tile-caption">Videoanalyse · Online</span>
           </div>
         </div>
 

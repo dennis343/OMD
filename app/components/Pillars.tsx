@@ -25,7 +25,7 @@ const PILLARS: Pillar[] = [
   },
   {
     num: "02",
-    name: "24/7",
+    name: "Online",
     tag: "DACH · Digital",
     headline: "Für Hundehalter im gesamten deutschsprachigen Raum",
     desc: "Online-Coaching, Videoanalyse, Programme und flexible Begleitung — ohne Anfahrt, aber mit System. Auch wenn ihr nicht in Mülheim wohnt.",
@@ -54,13 +54,14 @@ export default function Pillars() {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, marginBottom: 88 }} className="pillars-intro">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>Die drei Wege</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Die drei Wege</div>
             <div className="mono" style={{ marginTop: 8 }}>Drei Säulen · Ein System</div>
           </div>
           <div>
             <h2 id="pillars-heading" className="serif" style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340 }}>
-              Drei klare Wege — je nachdem, wo du stehst und was du brauchst.
-              <span style={{ color: "var(--ink-3)" }}> Keine Vermischung. Kein Rätselraten.</span>
+              Drei klare Wege —
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> ein System.</em>
+              <span style={{ color: "var(--ink-3)" }}> Je nachdem, wo ihr steht und was euer Hund braucht.</span>
             </h2>
           </div>
         </div>

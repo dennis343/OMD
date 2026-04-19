@@ -9,7 +9,7 @@ const FAQS = [
   },
   {
     q: "Wir wohnen nicht in Mülheim — kommt ihr für uns überhaupt infrage?",
-    a: "Ja. Die Säule 24/7 ist genau dafür gebaut. Ob Videoanalyse, Signaturprogramm oder Club — ihr bekommt dieselbe Methodik digital, ohne Anfahrt. Die meisten unserer digitalen Kunden haben uns noch nie persönlich gesehen.",
+    a: "Ja. Die Säule Online ist genau dafür gebaut. Ob Videoanalyse, Signaturprogramm oder Club — ihr bekommt dieselbe Methodik digital, ohne Anfahrt. Die meisten unserer Online-Kunden haben uns noch nie persönlich gesehen.",
   },
   {
     q: "Unser Hund ist reizoffen, unsicher oder schnell überfordert. Ist das bei euch richtig?",
@@ -45,13 +45,14 @@ export default function FAQ() {
       <div className="shell">
         <div className="faq-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>FAQ</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)" }}>FAQ</div>
             <div className="mono" style={{ marginTop: 8 }}>Häufige Fragen</div>
           </div>
           <div>
             <h2 id="faq-heading" className="serif" style={{ fontSize: "clamp(30px, 5vw, 62px)", lineHeight: 1.04, letterSpacing: "-0.02em", fontWeight: 340 }}>
-              Schnelle Antworten auf
-              <em style={{ color: "var(--brass)", fontStyle: "italic" }}> das Wichtigste.</em>
+              Ehrliche Antworten
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> vor </em>
+              der Buchung.
             </h2>
           </div>
         </div>
