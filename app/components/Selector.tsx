@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL } from "@/app/lib/constants";
+import { BOOK_ONLINE_URL, BOOK_URL } from "@/app/lib/constants";
 
 type Answers = Record<string, string | string[]>;
 
@@ -21,7 +21,7 @@ const SELECTOR_STEPS: Step[] = [
   {
     id: "track",
     question: "Was passt zu euch?",
-    hint: "Einmal klicken — wir zeigen euch direkt die passenden Angebote.",
+    hint: "Einmal klicken — wir zeigen euch direkt den passenden Einstieg.",
     options: [
       { val: "vor-ort", label: "Vor Ort in Mülheim", sub: "Gruppenstunden, Einzelcoaching, Kennenlern-Stunde" },
       { val: "online", label: "Online im gesamten DACH-Raum", sub: "Videoanalyse, Online-Kennenlern, Programme" },
@@ -31,8 +31,10 @@ const SELECTOR_STEPS: Step[] = [
   {
     id: "topic",
     when: (a) => a.track === "vor-ort",
-    question: "Was ist euer wichtigstes Thema?",
-    hint: "Wählt das Thema, das euch am meisten beschäftigt.",
+    question: "Was sind eure wichtigsten Themen?",
+    hint: "Mehrfachauswahl möglich — wählt bis zu drei Themen.",
+    multi: true,
+    max: 3,
     options: [
       { val: "orientierung", label: "Orientierung — ich brauche erst Klarheit", sub: "Profi-Blick auf Situation + passender Weg" },
       { val: "basis", label: "Basis & Junghund", sub: "Signalkontrolle, saubere Grundlagen" },
@@ -72,6 +74,19 @@ const SELECTOR_STEPS: Step[] = [
   },
 ];
 
+const TOPIC_TO_COURSE: Record<string, string> = {
+  basis: "gruppe-signalkontrolle",
+  fuehrung: "gruppe-lenken",
+  freilauf: "gruppe-unsichtbare-leine",
+  sozial: "gruppe-sozialkontakt",
+  praezision: "gruppe-longieren",
+  bh: "gruppe-begleithunde",
+  giftkoeder: "gruppe-giftkoeder",
+  jagd: "gruppe-jagdkontrolle",
+  komplex: "einzelcoaching",
+  orientierung: "orientierung-note",
+};
+
 function recommend(answers: Answers): string[] {
   const track = answers.track as string | undefined;
 
@@ -84,52 +99,94 @@ function recommend(answers: Answers): string[] {
 
   if (track === "online") {
     const d = answers.digital as string | undefined;
-    if (d === "einstieg") return ["online-kennenlern", "videoanalyse"];
-    if (d === "einschaetzung") return ["videoanalyse", "online-kennenlern"];
-    if (d === "programm") return ["signatur", "online-kennenlern"];
-    if (d === "laufend") return ["club", "signatur"];
-    if (d === "messenger") return ["messenger-beratung", "videoanalyse"];
-    return ["online-kennenlern", "videoanalyse"];
+    if (d === "einstieg") return ["online-kennenlern"];
+    if (d === "einschaetzung") return ["videoanalyse"];
+    if (d === "programm") return ["signatur"];
+    if (d === "laufend") return ["club"];
+    if (d === "messenger") return ["messenger-beratung"];
+    return ["online-kennenlern"];
   }
 
-  const topic = answers.topic as string | undefined;
-  const kennenlern = "local-kennenlern";
-  switch (topic) {
-    case "orientierung":
-      return [kennenlern, "gruppen-uebersicht"];
-    case "basis":
-      return ["gruppe-signalkontrolle", kennenlern];
-    case "fuehrung":
-      return ["gruppe-lenken", kennenlern];
-    case "freilauf":
-      return ["gruppe-unsichtbare-leine", kennenlern];
-    case "sozial":
-      return ["gruppe-sozialkontakt", kennenlern];
-    case "praezision":
-      return ["gruppe-longieren", kennenlern];
-    case "bh":
-      return ["gruppe-begleithunde", kennenlern];
-    case "giftkoeder":
-      return ["gruppe-giftkoeder", kennenlern];
-    case "jagd":
-      return ["gruppe-jagdkontrolle", kennenlern];
-    case "komplex":
-      return ["einzelcoaching", kennenlern];
-    default:
-      return [kennenlern, "gruppen-uebersicht"];
+  const topics = (answers.topic as string[] | undefined) || [];
+  if (!topics.length) return ["orientierung-note"];
+  const keys: string[] = [];
+  for (const t of topics) {
+    const k = TOPIC_TO_COURSE[t];
+    if (k && !keys.includes(k)) keys.push(k);
   }
+  return keys.length ? keys : ["orientierung-note"];
 }
 
-type Result = { title: string; tag: string; desc: string; ctaLabel: string; ctaHref: string; external?: boolean };
+type Result = {
+  title: string;
+  tag: string;
+  desc: string;
+  ziel?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  external?: boolean;
+};
 
 const RESULT_MAP: Record<string, Result> = {
-  "local-kennenlern": {
-    title: "Kennenlern-Einzel · Mülheim",
+  "orientierung-note": {
+    title: "Orientierungsgespräch",
     tag: "Einstieg · Vor Ort",
-    desc: "Der strukturierte Einstieg für neue Teams direkt am Hundeplatz. Ersteinschätzung, nächste Schritte, sinnvoller Trainingsweg — statt Rätselraten. Jede Gruppe startet damit.",
-    ctaLabel: "Termin am Platz buchen",
-    ctaHref: BOOK_URL,
-    external: true,
+    desc: "Ihr braucht erst Klarheit? Genau dafür ist das Kennenlern-Einzel da. Wir sehen euch an, klären eure Themen und zeigen euch den sinnvollsten Weg für alles Weitere.",
+    ziel: "Klarheit über eure Ausgangslage und einen individuellen Trainingsweg — statt wochenlang zu recherchieren.",
+  },
+  "gruppe-signalkontrolle": {
+    title: "Signalkontrolle",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Saubere, wirksame Signale für die Situationen, die im Alltag zählen — Sitz, Platz, Bleib, Rückruf, Stopp. Nicht im Wohnzimmer, sondern dort, wo es darauf ankommt.",
+    ziel: "Euer Hund hört, weil er versteht — auch unter Reizen.",
+  },
+  "gruppe-lenken": {
+    title: "Lenken & Grenzen setzen",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Klare, faire Führung ohne Härte. Ihr lernt, Räume zu eröffnen, Grenzen sauber zu kommunizieren und euren Hund durch komplexe Situationen zu lenken.",
+    ziel: "Weniger Diskussion, mehr Ruhe — euer Hund weiß, was okay ist und was nicht.",
+  },
+  "gruppe-unsichtbare-leine": {
+    title: "Unsichtbare Leine",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Freilaufarbeit auf hohem Niveau: orientiertes Mitlaufen, sauberer Rückruf, freiwilliges Mitdenken. Die Verbindung, die hält — auch ohne physische Leine.",
+    ziel: "Spaziergänge werden leicht — ihr könnt euch auf euren Hund verlassen.",
+  },
+  "gruppe-sozialkontakt": {
+    title: "Sozialkontakt",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Strukturierte, gut moderierte Hundebegegnungen für unsichere, überschwängliche oder pöbelige Hunde. Ihr lernt zu lesen, einzuordnen und passend zu reagieren.",
+    ziel: "Begegnungen werden kalkulierbar — kein Stress, keine Dauer-Anspannung.",
+  },
+  "gruppe-longieren": {
+    title: "Longieren",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Präzise Distanzarbeit über Körpersprache. Ihr lernt, euren Hund auf Entfernung zu lenken, fokussiert zu halten und feinabgestimmt zu führen.",
+    ziel: "Minimale Signale, große Wirkung — überträgt sich direkt in den Alltag.",
+  },
+  "gruppe-begleithunde": {
+    title: "Begleithunde",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Vorbereitung auf die Begleithundeprüfung — alltagsnah, fair und mit echtem Trainingsnutzen. Auch ohne Prüfungsambition ein Programm für saubere Grundlagen.",
+    ziel: "Anerkannter Nachweis als Team — und spürbar entspannterer Alltag.",
+  },
+  "gruppe-giftkoeder": {
+    title: "Anti-Giftköder",
+    tag: "Exklusivgruppe · Vor Ort",
+    desc: "Strukturiertes Anti-Giftköder-Training mit echtem Aufbau — vom Markersignal über Distanzarbeit bis zur sauberen Generalisierung im Alltag. Verlässlich abrufbar.",
+    ziel: "Die Sorge „was, wenn er etwas frisst“ fällt weg — auf jedem Spaziergang.",
+  },
+  "gruppe-jagdkontrolle": {
+    title: "Jagdkontrolle",
+    tag: "Exklusivgruppe · Vor Ort",
+    desc: "Arbeit am echten Jagdverhalten — Rückruf unter starken Reizen, Impulskontrolle, alternative Verhaltensketten. Für Hunde, die jagen wollen.",
+    ziel: "Freilauf wird wieder möglich — ihr führt, statt festzuhalten.",
+  },
+  einzelcoaching: {
+    title: "Einzelcoaching am Ort des Geschehens",
+    tag: "Individuell · Vor Ort",
+    desc: "Maßgeschneidertes 1:1-Training direkt dort, wo die Herausforderung entsteht — Stadt, Park, Zuhause oder unterwegs. Für komplexe, alltagsnahe Themen.",
+    ziel: "Ihr arbeitet genau an eurem Thema, im Tempo eures Hundes.",
   },
   "online-kennenlern": {
     title: "Kennenlern-Einzel · Online",
@@ -138,85 +195,6 @@ const RESULT_MAP: Record<string, Result> = {
     ctaLabel: "Online-Kennenlern für 49 € buchen",
     ctaHref: BOOK_ONLINE_URL,
     external: true,
-  },
-  "gruppen-uebersicht": {
-    title: "Gruppenstunden-Übersicht",
-    tag: "Vor Ort · Mülheim",
-    desc: "Alle Basis- und Exklusivgruppen auf einen Blick: Signalkontrolle, Lenken & Grenzen, Unsichtbare Leine, Sozialkontakt, Longieren, Begleithunde, Anti-Giftköder, Jagdkontrolle.",
-    ctaLabel: "Gruppenstunden ansehen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-signalkontrolle": {
-    title: "Signalkontrolle (Basisgruppe)",
-    tag: "Basisgruppe · Vor Ort",
-    desc: "Saubere, wirksame Signale für die Situationen, die im Alltag zählen — Sitz, Platz, Bleib, Rückruf, Stopp. Nicht im Wohnzimmer, sondern dort, wo es darauf ankommt.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-lenken": {
-    title: "Lenken & Grenzen setzen (Basisgruppe)",
-    tag: "Basisgruppe · Vor Ort",
-    desc: "Klare, faire Führung ohne Härte. Ihr lernt, Räume zu eröffnen, Grenzen sauber zu kommunizieren und euren Hund durch komplexe Situationen zu lenken.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-unsichtbare-leine": {
-    title: "Unsichtbare Leine (Basisgruppe)",
-    tag: "Basisgruppe · Vor Ort",
-    desc: "Freilaufarbeit auf hohem Niveau: orientiertes Mitlaufen, sauberer Rückruf, freiwilliges Mitdenken. Die Verbindung, die hält — auch ohne physische Leine.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-sozialkontakt": {
-    title: "Sozialkontakt (Basisgruppe)",
-    tag: "Basisgruppe · Vor Ort",
-    desc: "Strukturierte, gut moderierte Hundebegegnungen für unsichere, überschwängliche oder pöbelige Hunde. Ihr lernt zu lesen, einzuordnen und passend zu reagieren — statt zu hoffen.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-longieren": {
-    title: "Longieren (Basisgruppe)",
-    tag: "Basisgruppe · Vor Ort",
-    desc: "Präzise Distanzarbeit über Körpersprache. Ihr lernt, euren Hund auf Entfernung zu lenken, fokussiert zu halten und feinabgestimmt zu führen.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-begleithunde": {
-    title: "Begleithunde (Basisgruppe)",
-    tag: "Basisgruppe · Vor Ort",
-    desc: "Vorbereitung auf die Begleithundeprüfung — alltagsnah, fair und mit echtem Trainingsnutzen. Auch ohne Prüfungsambition ein hervorragendes Programm für saubere Grundlagen.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-giftkoeder": {
-    title: "Anti-Giftköder (Exklusivgruppe)",
-    tag: "Exklusivgruppe · Vor Ort",
-    desc: "Strukturiertes Anti-Giftköder-Training mit echtem Aufbau — vom Markersignal über Distanzarbeit bis zur sauberen Generalisierung im Alltag. Kein „einmal Tabu üben“, sondern verlässlich abrufbar.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  "gruppe-jagdkontrolle": {
-    title: "Jagdkontrolle (Exklusivgruppe)",
-    tag: "Exklusivgruppe · Vor Ort",
-    desc: "Arbeit am echten Jagdverhalten — Rückruf unter starken Reizen, Impulskontrolle, alternative Verhaltensketten. Freilauf wird wieder möglich.",
-    ctaLabel: "Gruppe ansehen & buchen",
-    ctaHref: GRUPPEN_URL,
-    external: true,
-  },
-  einzelcoaching: {
-    title: "Einzelcoaching am Ort des Geschehens",
-    tag: "Individuell · Vor Ort",
-    desc: "Maßgeschneidertes 1:1-Training direkt dort, wo die Herausforderung entsteht — Stadt, Park, Zuhause oder unterwegs. Für komplexe, alltagsnahe Themen.",
-    ctaLabel: "Einzelcoaching anfragen",
-    ctaHref: "#kontakt",
   },
   signatur: {
     title: "Signaturprogramm",
@@ -328,7 +306,9 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
   if (!open) return null;
 
+  const track = answers.track as string | undefined;
   const results = finished ? recommend(answers).map((k) => RESULT_MAP[k]).filter(Boolean) : [];
+  const isVorOrt = finished && track === "vor-ort";
 
   return (
     <div
@@ -478,14 +458,88 @@ export default function Selector({ open, onClose }: SelectorProps) {
           </div>
         )}
 
-        {finished && (
+        {finished && isVorOrt && (
           <div>
-            <h3 id="selector-title" className="serif" style={{ fontSize: 36, lineHeight: 1.08, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
+            <h3 id="selector-title" className="serif" style={{ fontSize: 32, lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
+              Das passt zu eurem Thema:
+            </h3>
+            <p className="mono">
+              {results.length > 1 ? `${results.length} Empfehlungen · Einstieg ist immer das Kennenlern-Einzel.` : "Euer Kurs · Einstieg ist immer das Kennenlern-Einzel."}
+            </p>
+
+            <div style={{ marginTop: 28, display: "grid", gap: 12 }}>
+              {results.map((r) => (
+                <div
+                  key={r.title}
+                  style={{
+                    padding: "22px 24px 20px",
+                    background: "var(--bg-2)",
+                    border: "1px solid var(--line-2)",
+                    borderRadius: 4,
+                  }}
+                >
+                  <div className="mono" style={{ marginBottom: 8 }}>{r.tag}</div>
+                  <h4 className="serif" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 400, marginBottom: 10, lineHeight: 1.2 }}>
+                    {r.title}
+                  </h4>
+                  <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: r.ziel ? 12 : 0 }}>{r.desc}</p>
+                  {r.ziel && (
+                    <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--cream)", borderTop: "1px solid var(--line)", paddingTop: 10 }}>
+                      <span style={{ color: "var(--brass)", fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", marginRight: 8 }}>Ziel</span>
+                      {r.ziel}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 28, padding: "28px 28px 24px", background: "var(--bg-3)", border: "1px solid var(--brass)", borderRadius: 4, position: "relative" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  top: -10,
+                  left: 24,
+                  background: "var(--brass)",
+                  color: "var(--bg)",
+                  fontFamily: "var(--mono)",
+                  fontSize: 10,
+                  letterSpacing: "0.16em",
+                  textTransform: "uppercase",
+                  padding: "3px 10px",
+                }}
+              >
+                Dein Einstieg
+              </div>
+              <h4 className="serif" style={{ fontSize: 24, letterSpacing: "-0.02em", fontWeight: 400, marginBottom: 10, lineHeight: 1.2 }}>
+                Kennenlern-Einzel — der strukturierte Start.
+              </h4>
+              <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 20 }}>
+                Jede Gruppe startet mit einem Kennenlern-Einzel. Wir sehen euch einmal sauber an, ordnen eure Themen ein und zeigen euch den sinnvollsten Weg — am Hundeplatz in Mülheim oder online per Videoanalyse.
+              </p>
+              <div className="kl-ctas" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                <a className="btn btn-primary" href={BOOK_URL} target="_blank" rel="noopener" style={{ justifyContent: "center" }}>
+                  Am Hundeplatz buchen <span className="arrow" aria-hidden="true">→</span>
+                </a>
+                <a className="btn btn-ghost" href={BOOK_ONLINE_URL} target="_blank" rel="noopener" style={{ justifyContent: "center", borderColor: "var(--brass)" }}>
+                  Online-Kennenlern · 49 € <span className="arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+            <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+              <button className="btn btn-ghost" onClick={reset} type="button">Nochmal starten</button>
+            </div>
+          </div>
+        )}
+
+        {finished && !isVorOrt && (
+          <div>
+            <h3 id="selector-title" className="serif" style={{ fontSize: 32, lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
               Für euch passt am besten:
             </h3>
-            <p className="mono">Zwei Empfehlungen, geordnet nach Passung — direkt buchbar.</p>
+            <p className="mono">Eure Empfehlung — direkt weitergehen.</p>
 
-            <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="result-grid">
+            <div style={{ marginTop: 28, display: "grid", gridTemplateColumns: results.length > 1 ? "1fr 1fr" : "1fr", gap: 16 }} className="result-grid">
               {results.map((r, i) => (
                 <div
                   key={r.title}
@@ -499,7 +553,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
                     flexDirection: "column",
                   }}
                 >
-                  {i === 0 && (
+                  {i === 0 && results.length > 1 && (
                     <div
                       style={{
                         position: "absolute",
@@ -522,18 +576,20 @@ export default function Selector({ open, onClose }: SelectorProps) {
                     {r.title}
                   </h4>
                   <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 20, flex: 1 }}>{r.desc}</p>
-                  <div style={{ borderTop: "1px solid var(--line)", paddingTop: 16 }}>
-                    <a
-                      className="btn btn-primary"
-                      href={r.ctaHref}
-                      target={r.external ? "_blank" : undefined}
-                      rel={r.external ? "noopener" : undefined}
-                      onClick={r.external ? undefined : onClose}
-                      style={{ width: "100%", justifyContent: "center" }}
-                    >
-                      {r.ctaLabel} <span className="arrow" aria-hidden="true">→</span>
-                    </a>
-                  </div>
+                  {r.ctaLabel && r.ctaHref && (
+                    <div style={{ borderTop: "1px solid var(--line)", paddingTop: 16 }}>
+                      <a
+                        className="btn btn-primary"
+                        href={r.ctaHref}
+                        target={r.external ? "_blank" : undefined}
+                        rel={r.external ? "noopener" : undefined}
+                        onClick={r.external ? undefined : onClose}
+                        style={{ width: "100%", justifyContent: "center" }}
+                      >
+                        {r.ctaLabel} <span className="arrow" aria-hidden="true">→</span>
+                      </a>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -547,6 +603,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
         <style>{`
           @media (max-width: 700px) {
             .result-grid { grid-template-columns: 1fr !important; }
+            .kl-ctas { grid-template-columns: 1fr !important; }
           }
         `}</style>
       </div>
