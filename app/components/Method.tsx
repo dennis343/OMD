@@ -33,7 +33,7 @@ const DIFFERENTIATORS = [
 
 export default function Method() {
   return (
-    <section id="methodik" aria-labelledby="method-heading" style={{ padding: "140px 0", borderBottom: "1px solid var(--line)" }}>
+    <section id="methodik" aria-labelledby="method-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="method-head">
           <div>

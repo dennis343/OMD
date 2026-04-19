@@ -1,7 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { BOOK_ONLINE_URL, BOOK_URL, WA_URL } from "@/app/lib/constants";
+
+const MICRO_COMMITMENTS = [
+  "Schön — wir sehen uns das gemeinsam an.",
+  "Starker Schritt. Weiter geht's.",
+  "Perfekt — wir sind fast da.",
+  "Klar, das passt. Noch ein Klick.",
+  "Gut gewählt. Wir bauen euch den Weg.",
+  "Stark — fundierte Entscheidung.",
+  "Passt. Nur noch ein Moment.",
+];
 
 type Answers = Record<string, string | string[]>;
 
@@ -297,6 +307,11 @@ export default function Selector({ open, onClose }: SelectorProps) {
   const [stepIdx, setStepIdx] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [finished, setFinished] = useState(false);
+  const [microMsg, setMicroMsg] = useState<string>("");
+  const [scrollHint, setScrollHint] = useState(false);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const microTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const microIdx = useRef(0);
 
   const activeSteps = useMemo(
     () => SELECTOR_STEPS.filter((s) => !s.when || s.when(answers)),
@@ -315,10 +330,38 @@ export default function Selector({ open, onClose }: SelectorProps) {
     };
   }, [open, onClose]);
 
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!open || !el) return;
+    el.scrollTop = 0;
+    const check = () => {
+      const overflow = el.scrollHeight - el.clientHeight > 8;
+      const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 12;
+      setScrollHint(overflow && !atBottom);
+    };
+    check();
+    el.addEventListener("scroll", check, { passive: true });
+    const ro = new ResizeObserver(check);
+    ro.observe(el);
+    return () => {
+      el.removeEventListener("scroll", check);
+      ro.disconnect();
+    };
+  }, [open, stepIdx, finished, answers]);
+
+  const showMicro = () => {
+    const msg = MICRO_COMMITMENTS[microIdx.current % MICRO_COMMITMENTS.length];
+    microIdx.current += 1;
+    setMicroMsg(msg);
+    if (microTimer.current) clearTimeout(microTimer.current);
+    microTimer.current = setTimeout(() => setMicroMsg(""), 1400);
+  };
+
   const reset = () => {
     setStepIdx(0);
     setAnswers({});
     setFinished(false);
+    microIdx.current = 0;
   };
 
   const advance = (a: Answers = answers) => {
@@ -337,10 +380,12 @@ export default function Selector({ open, onClose }: SelectorProps) {
       else if (step.max && cur.length >= step.max) next = [...cur.slice(1), val];
       else next = [...cur, val];
       setAnswers({ ...answers, [step.id]: next });
+      if (!has) showMicro();
     } else {
       const updated = { ...answers, [step.id]: val };
       setAnswers(updated);
-      setTimeout(() => advance(updated), 220);
+      showMicro();
+      setTimeout(() => advance(updated), 380);
     }
   };
 
@@ -356,18 +401,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
   return (
     <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: 200,
-        background: "rgba(10,8,6,0.82)",
-        backdropFilter: "blur(6px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-        animation: "fadeUp .3s ease both",
-      }}
+      className="sel-backdrop"
       onClick={onClose}
       role="presentation"
     >
@@ -376,20 +410,11 @@ export default function Selector({ open, onClose }: SelectorProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="selector-title"
-        style={{
-          background: "var(--bg)",
-          border: "1px solid var(--line-2)",
-          borderRadius: 8,
-          width: "min(920px, 100%)",
-          maxHeight: "90vh",
-          overflow: "auto",
-          padding: "40px 48px 48px",
-          position: "relative",
-        }}
+        className="sel-dialog"
       >
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 40 }}>
-          <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>Angebotsfinder</div>
+        <div className="sel-head">
+          <div className="sel-head-meta">
+            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Angebotsfinder</div>
             <div className="mono" style={{ marginTop: 4 }}>
               {finished ? "Empfehlung" : `Schritt ${stepIdx + 1} von ${activeSteps.length}`}
             </div>
@@ -398,113 +423,85 @@ export default function Selector({ open, onClose }: SelectorProps) {
             onClick={onClose}
             type="button"
             aria-label="Dialog schließen"
-            style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.18em", color: "var(--ink-3)", textTransform: "uppercase" }}
+            className="sel-close"
           >
-            schließen ×
+            ×
           </button>
         </div>
 
         {!finished && (
-          <div style={{ display: "flex", gap: 4, marginBottom: 40 }} aria-hidden="true">
+          <div className="sel-progress" aria-hidden="true">
             {activeSteps.map((_, i) => (
               <div
                 key={i}
-                style={{
-                  flex: 1,
-                  height: 2,
-                  background: i <= stepIdx ? "var(--brass)" : "var(--line-2)",
-                  transition: "background .3s",
-                }}
+                className={`sel-progress-bar ${i <= stepIdx ? "is-filled" : ""}`}
               />
             ))}
           </div>
         )}
 
-        {!finished && step && (
-          <div>
-            <h3 id="selector-title" className="serif" style={{ fontSize: 36, lineHeight: 1.08, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
-              {step.question}
-            </h3>
-            {step.hint && <p className="mono">{step.hint}</p>}
+        <div className="sel-body" ref={scrollRef}>
+          {!finished && step && (
+            <div>
+              <h3 id="selector-title" className="serif sel-q">
+                {step.question}
+              </h3>
+              {step.hint && <p className="mono sel-hint">{step.hint}</p>}
 
-            <div style={{ marginTop: 36, display: "flex", flexDirection: "column", gap: 8 }} role={step.multi ? "group" : "radiogroup"} aria-labelledby="selector-title">
-              {step.options.map((o) => {
-                const selected = step.multi
-                  ? ((answers[step.id] as string[] | undefined) || []).includes(o.val)
-                  : answers[step.id] === o.val;
-                return (
-                  <button
-                    key={o.val}
-                    onClick={() => pick(o.val)}
-                    type="button"
-                    role={step.multi ? "checkbox" : "radio"}
-                    aria-checked={selected}
-                    style={{
-                      textAlign: "left",
-                      padding: "20px 24px",
-                      background: selected ? "var(--bg-3)" : "var(--bg-2)",
-                      border: `1px solid ${selected ? "var(--brass)" : "var(--line-2)"}`,
-                      borderRadius: 4,
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      transition: "all .15s",
-                    }}
-                  >
-                    <div>
-                      <div style={{ fontSize: 16, color: "var(--cream)", marginBottom: o.sub ? 4 : 0 }}>{o.label}</div>
-                      {o.sub && <div className="mono">{o.sub}</div>}
-                    </div>
-                    <div
-                      aria-hidden="true"
-                      style={{
-                        width: 18,
-                        height: 18,
-                        borderRadius: step.multi ? 3 : 50,
-                        border: `1px solid ${selected ? "var(--brass)" : "var(--ink-4)"}`,
-                        background: selected ? "var(--brass)" : "transparent",
-                        transition: "all .15s",
-                      }}
-                    />
-                  </button>
-                );
-              })}
-            </div>
+              <div className="sel-options" role={step.multi ? "group" : "radiogroup"} aria-labelledby="selector-title">
+                {step.options.map((o) => {
+                  const selected = step.multi
+                    ? ((answers[step.id] as string[] | undefined) || []).includes(o.val)
+                    : answers[step.id] === o.val;
+                  return (
+                    <button
+                      key={o.val}
+                      onClick={() => pick(o.val)}
+                      type="button"
+                      role={step.multi ? "checkbox" : "radio"}
+                      aria-checked={selected}
+                      className={`sel-opt ${selected ? "is-selected" : ""}`}
+                    >
+                      <div className="sel-opt-text">
+                        <div className="sel-opt-label">{o.label}</div>
+                        {o.sub && <div className="mono sel-opt-sub">{o.sub}</div>}
+                      </div>
+                      <div
+                        aria-hidden="true"
+                        className={`sel-opt-dot ${step.multi ? "is-square" : ""} ${selected ? "is-selected" : ""}`}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
 
-            <div style={{ marginTop: 40, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <button
-                onClick={back}
-                disabled={stepIdx === 0}
-                type="button"
-                style={{
-                  fontFamily: "var(--mono)",
-                  fontSize: 11,
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  color: stepIdx === 0 ? "var(--ink-4)" : "var(--ink-2)",
-                  cursor: stepIdx === 0 ? "default" : "pointer",
-                }}
-              >
-                ← zurück
-              </button>
-              {step.multi && (
+              <div className="sel-actions">
                 <button
-                  className="btn btn-primary"
-                  onClick={() => advance()}
+                  onClick={back}
+                  disabled={stepIdx === 0}
                   type="button"
-                  disabled={!((answers[step.id] as string[] | undefined) || []).length}
-                  style={{ opacity: ((answers[step.id] as string[] | undefined) || []).length ? 1 : 0.4 }}
+                  className="sel-back"
                 >
-                  Weiter <span className="arrow" aria-hidden="true">→</span>
+                  ← zurück
                 </button>
-              )}
+                {step.multi && (
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => advance()}
+                    type="button"
+                    disabled={!((answers[step.id] as string[] | undefined) || []).length}
+                    style={{ opacity: ((answers[step.id] as string[] | undefined) || []).length ? 1 : 0.4 }}
+                  >
+                    Weiter <span className="arrow" aria-hidden="true">→</span>
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
         {finished && isVorOrt && (
           <div>
-            <h3 id="selector-title" className="serif" style={{ fontSize: 32, lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
+            <h3 id="selector-title" className="serif sel-result-h">
               Das passt zu eurem Thema:
             </h3>
             <p className="mono">
@@ -578,12 +575,12 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
         {finished && !isVorOrt && (
           <div>
-            <h3 id="selector-title" className="serif" style={{ fontSize: 32, lineHeight: 1.1, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
+            <h3 id="selector-title" className="serif sel-result-h">
               Für euch passt am besten:
             </h3>
             <p className="mono">Eure Empfehlung — direkt weitergehen.</p>
 
-            <div style={{ marginTop: 28, display: "grid", gridTemplateColumns: results.length > 1 ? "1fr 1fr" : "1fr", gap: 16 }} className="result-grid">
+            <div className={`result-grid ${results.length > 1 ? "is-two" : ""}`}>
               {results.map((r, i) => (
                 <div
                   key={r.title}
@@ -638,16 +635,280 @@ export default function Selector({ open, onClose }: SelectorProps) {
               ))}
             </div>
 
-            <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
+            <div style={{ marginTop: 24, display: "flex", justifyContent: "center" }}>
               <button className="btn btn-ghost" onClick={reset} type="button">Nochmal starten</button>
             </div>
           </div>
         )}
+        </div>
+
+        <div className={`sel-scroll-hint ${scrollHint ? "is-visible" : ""}`} aria-hidden="true">
+          <span>scrollen</span>
+          <span className="sel-scroll-arrow">↓</span>
+        </div>
+
+        <div className={`sel-toast ${microMsg ? "is-visible" : ""}`} role="status" aria-live="polite">
+          <span className="sel-toast-dot" aria-hidden="true">✓</span>
+          <span>{microMsg}</span>
+        </div>
 
         <style>{`
-          @media (max-width: 700px) {
-            .result-grid { grid-template-columns: 1fr !important; }
-            .kl-ctas { grid-template-columns: 1fr !important; }
+          .sel-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: rgba(10,8,6,0.82);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 0;
+            animation: fadeUp .3s ease both;
+          }
+          .sel-dialog {
+            background: var(--bg);
+            border-top: 1px solid var(--line-2);
+            border-radius: 14px 14px 0 0;
+            width: 100%;
+            max-width: 920px;
+            height: 100dvh;
+            max-height: 100dvh;
+            padding: 14px 18px 18px;
+            padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+            padding-top: calc(14px + env(safe-area-inset-top, 0px));
+            position: relative;
+            display: flex;
+            flex-direction: column;
+          }
+          .sel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            flex-shrink: 0;
+          }
+          .sel-head-meta { min-width: 0; }
+          .sel-close {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--bg-2);
+            color: var(--ink-2);
+            font-size: 22px;
+            line-height: 1;
+            display: grid; place-items: center;
+            flex-shrink: 0;
+            transition: background .15s, color .15s;
+          }
+          .sel-close:hover { background: var(--bg-3); color: var(--cream); }
+
+          .sel-progress {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 18px;
+            flex-shrink: 0;
+          }
+          .sel-progress-bar {
+            flex: 1;
+            height: 2px;
+            background: var(--line-2);
+            transition: background .3s;
+          }
+          .sel-progress-bar.is-filled { background: var(--omd-yellow); }
+
+          .sel-body {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            padding-right: 2px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--line-2) transparent;
+          }
+          .sel-body::-webkit-scrollbar { width: 4px; }
+          .sel-body::-webkit-scrollbar-thumb { background: var(--line-2); border-radius: 2px; }
+
+          .sel-q {
+            font-size: 22px;
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            font-weight: 360;
+            margin-bottom: 8px;
+          }
+          .sel-hint { font-size: 10px; line-height: 1.4; }
+
+          .sel-options {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+          }
+          .sel-opt {
+            text-align: left;
+            padding: 12px 14px;
+            background: var(--bg-2);
+            border: 1px solid var(--line-2);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            transition: background .15s, border-color .15s, transform .1s;
+            width: 100%;
+          }
+          .sel-opt:active { transform: scale(0.995); }
+          .sel-opt.is-selected {
+            background: var(--bg-3);
+            border-color: var(--omd-yellow);
+          }
+          .sel-opt-text { min-width: 0; flex: 1; }
+          .sel-opt-label {
+            font-size: 14.5px;
+            color: var(--cream);
+            line-height: 1.25;
+            margin-bottom: 2px;
+          }
+          .sel-opt-sub {
+            font-size: 9.5px;
+            letter-spacing: 0.1em;
+            line-height: 1.35;
+            white-space: normal;
+          }
+          .sel-opt-dot {
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            border: 1px solid var(--ink-4);
+            background: transparent;
+            flex-shrink: 0;
+            transition: all .15s;
+          }
+          .sel-opt-dot.is-square { border-radius: 4px; }
+          .sel-opt-dot.is-selected {
+            border-color: var(--omd-yellow);
+            background: var(--omd-yellow);
+          }
+
+          .sel-actions {
+            margin-top: 22px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+          }
+          .sel-back {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-2);
+            padding: 8px 0;
+          }
+          .sel-back:disabled { color: var(--ink-4); cursor: default; }
+
+          .sel-scroll-hint {
+            position: absolute;
+            right: 14px;
+            bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: color-mix(in oklab, var(--bg) 85%, transparent);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid var(--line-2);
+            border-radius: 999px;
+            padding: 5px 10px;
+            font-family: var(--mono);
+            font-size: 9.5px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--omd-yellow);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(4px);
+            transition: opacity .25s, transform .25s;
+          }
+          .sel-scroll-hint.is-visible { opacity: 1; transform: translateY(0); }
+          .sel-scroll-arrow {
+            font-size: 12px;
+            animation: selBounce 1.6s ease-in-out infinite;
+            color: var(--omd-yellow);
+          }
+          @keyframes selBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(2px); }
+          }
+
+          .sel-toast {
+            position: absolute;
+            left: 50%;
+            top: 14px;
+            transform: translate(-50%, -14px);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-3);
+            border: 1px solid var(--omd-yellow);
+            color: var(--cream);
+            padding: 8px 14px 8px 10px;
+            border-radius: 999px;
+            font-family: var(--serif);
+            font-size: 13px;
+            font-style: italic;
+            letter-spacing: -0.005em;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .2s, transform .25s;
+            max-width: calc(100% - 28px);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            z-index: 4;
+          }
+          .sel-toast.is-visible {
+            opacity: 1;
+            transform: translate(-50%, 0);
+          }
+          .sel-toast-dot {
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: var(--omd-yellow);
+            color: var(--bg);
+            font-size: 11px;
+            line-height: 1;
+            display: grid; place-items: center;
+            flex-shrink: 0;
+          }
+
+          .result-grid { margin-top: 22px; display: grid; grid-template-columns: 1fr; gap: 12px; }
+          .kl-ctas { grid-template-columns: 1fr !important; }
+          .sel-result-h { font-size: 22px; line-height: 1.15; letter-spacing: -0.018em; font-weight: 360; margin-bottom: 8px; }
+          @media (min-width: 640px) { .sel-result-h { font-size: 28px; } }
+          @media (min-width: 900px) { .sel-result-h { font-size: 32px; } }
+
+          @media (min-width: 640px) {
+            .sel-backdrop { align-items: center; padding: 20px; }
+            .sel-dialog {
+              height: auto;
+              max-height: 90vh;
+              border-radius: 12px;
+              border: 1px solid var(--line-2);
+              padding: 28px 32px 32px;
+            }
+            .sel-q { font-size: 28px; }
+            .sel-hint { font-size: 11px; }
+            .sel-opt { padding: 16px 20px; }
+            .sel-opt-label { font-size: 15.5px; }
+            .sel-opt-sub { font-size: 10.5px; }
+          }
+          @media (min-width: 900px) {
+            .sel-dialog { padding: 36px 44px 40px; }
+            .sel-q { font-size: 34px; }
+            .kl-ctas { grid-template-columns: 1fr 1fr !important; }
+            .result-grid.is-two { grid-template-columns: 1fr 1fr; gap: 16px; }
           }
         `}</style>
       </div>

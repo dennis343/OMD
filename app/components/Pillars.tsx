@@ -50,7 +50,7 @@ const PILLARS: Pillar[] = [
 
 export default function Pillars() {
   return (
-    <section id="saeulen" aria-labelledby="pillars-heading" style={{ padding: "120px 0", borderBottom: "1px solid var(--line)" }}>
+    <section id="saeulen" aria-labelledby="pillars-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, marginBottom: 88 }} className="pillars-intro">
           <div>
@@ -141,9 +141,12 @@ export default function Pillars() {
 
       <style>{`
         @media (max-width: 900px) {
-          .pillars-intro { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .pillars-intro { grid-template-columns: 1fr !important; gap: 20px !important; margin-bottom: 48px !important; }
           .pillars-grid { grid-template-columns: 1fr !important; }
-          .pillars-grid > article { border-left: none !important; border-bottom: 1px solid var(--line-2); min-height: auto !important; }
+          .pillars-grid > article { border-left: none !important; border-bottom: 1px solid var(--line-2); min-height: auto !important; padding: 32px 24px 28px !important; }
+        }
+        @media (max-width: 380px) {
+          .pillars-grid > article { padding: 28px 18px 24px !important; }
         }
       `}</style>
     </section>
