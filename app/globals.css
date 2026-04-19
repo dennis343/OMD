@@ -24,6 +24,11 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 html, body {
   background: var(--bg);
   color: var(--ink);
@@ -34,6 +39,9 @@ html, body {
 }
 
 body { overflow-x: hidden; }
+
+section[id] { scroll-margin-top: 72px; }
+@media (min-width: 1024px) { section[id] { scroll-margin-top: 80px; } }
 
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
@@ -81,10 +89,13 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 18px;
 }
+@media (min-width: 380px)  { .shell { padding: 0 20px; } }
 @media (min-width: 640px)  { .shell { padding: 0 32px; } }
+@media (min-width: 768px)  { .shell { padding: 0 40px; } }
 @media (min-width: 1024px) { .shell { padding: 0 56px; } }
+@media (min-width: 1440px) { .shell { padding: 0 64px; } }
 
 /* ---------- Header — mobile first ---------- */
 .nav {
@@ -96,9 +107,10 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 }
 .nav-inner {
   display: flex; align-items: center; justify-content: space-between;
-  height: 62px;
-  gap: 12px;
+  height: 58px;
+  gap: 10px;
 }
+@media (min-width: 380px)  { .nav-inner { height: 62px; gap: 12px; } }
 @media (min-width: 1024px) { .nav-inner { height: 68px; } }
 
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
@@ -126,8 +138,27 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 }
 
 .nav-links { display: none; gap: 28px; align-items: center; }
-.nav-links a { font-size: 13.5px; color: var(--ink-2); transition: color .2s; }
+.nav-links a {
+  position: relative;
+  font-size: 13.5px; color: var(--ink-2);
+  transition: color .2s;
+  padding: 4px 0;
+}
 .nav-links a:hover { color: var(--cream); }
+.nav-links a.is-active { color: var(--omd-yellow); }
+.nav-links a.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 2px;
+  background: var(--omd-yellow);
+  border-radius: 1px;
+  animation: navSpyIn .25s ease both;
+}
+@keyframes navSpyIn {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
 @media (min-width: 1024px) { .nav-links { display: flex; gap: 28px; } }
 @media (min-width: 1200px) { .nav-links { gap: 36px; } }
 
@@ -216,6 +247,8 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   opacity: 0.6;
 }
 .mobile-links a:active { color: var(--brass); padding-left: 8px; }
+.mobile-links a.is-active { color: var(--omd-yellow); }
+.mobile-links a.is-active::after { color: var(--omd-yellow); opacity: 1; content: "●"; }
 
 .mobile-cta-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
 .mobile-contact { border-top: 1px solid var(--line); padding-top: 24px; }
@@ -314,8 +347,10 @@ section { position: relative; }
 @keyframes blink { 50% { opacity: 0; } }
 .cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--brass); margin-left: 6px; vertical-align: -2px; animation: blink 1s step-end infinite; }
 
-.sec-pad { padding: 72px 0; }
-@media (min-width: 640px)  { .sec-pad { padding: 96px 0; } }
+.sec-pad { padding: 56px 0; }
+@media (min-width: 380px)  { .sec-pad { padding: 64px 0; } }
+@media (min-width: 640px)  { .sec-pad { padding: 88px 0; } }
+@media (min-width: 768px)  { .sec-pad { padding: 96px 0; } }
 @media (min-width: 1024px) { .sec-pad { padding: 120px 0; } }
 @media (min-width: 1280px) { .sec-pad { padding: 140px 0; } }
 

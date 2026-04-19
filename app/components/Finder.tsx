@@ -49,7 +49,8 @@ export default function Finder({ onOpenSelector }: FinderProps) {
     <section
       id="finder"
       aria-labelledby="finder-heading"
-      style={{ padding: "140px 0", background: "var(--bg-2)", borderBottom: "1px solid var(--line)" }}
+      className="sec-pad"
+      style={{ background: "var(--bg-2)", borderBottom: "1px solid var(--line)" }}
     >
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, marginBottom: 72 }} className="finder-head">
@@ -115,8 +116,9 @@ export default function Finder({ onOpenSelector }: FinderProps) {
       <style>{`
         .finder-card:hover { transform: translateY(-2px); border-color: var(--brass) !important; }
         @media (max-width: 900px) {
-          .finder-head { grid-template-columns: 1fr !important; gap: 24px !important; }
-          .finder-grid { grid-template-columns: 1fr !important; }
+          .finder-head { grid-template-columns: 1fr !important; gap: 20px !important; margin-bottom: 48px !important; }
+          .finder-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .finder-card { padding: 28px 24px 24px !important; min-height: auto !important; }
         }
       `}</style>
     </section>

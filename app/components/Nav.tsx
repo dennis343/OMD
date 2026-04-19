@@ -6,22 +6,53 @@ import { BOOK_URL, EMAIL_HREF, PHONE_HREF } from "@/app/lib/constants";
 type NavProps = { onOpenSelector: () => void };
 
 const LINKS = [
-  { href: "#vor-ort", label: "Vor Ort" },
-  { href: "#anywhere", label: "Online" },
-  { href: "#pro", label: "Pro & Business" },
-  { href: "#jenny", label: "Über uns" },
-  { href: "#stimmen", label: "Stimmen" },
-  { href: "#kontakt", label: "Kontakt" },
+  { href: "#vor-ort", id: "vor-ort", label: "Vor Ort" },
+  { href: "#anywhere", id: "anywhere", label: "Online" },
+  { href: "#pro", id: "pro", label: "Pro & Business" },
+  { href: "#jenny", id: "jenny", label: "Über uns" },
+  { href: "#stimmen", id: "stimmen", label: "Stimmen" },
+  { href: "#kontakt", id: "kontakt", label: "Kontakt" },
 ];
+
+const SPY_IDS = LINKS.map((l) => l.id);
 
 export default function Nav({ onOpenSelector }: NavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = SPY_IDS
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
+    if (!sections.length) return;
+
+    const visibility = new Map<string, number>();
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          visibility.set(e.target.id, e.isIntersecting ? e.intersectionRatio : 0);
+        }
+        let topId = "";
+        let topRatio = 0;
+        for (const [id, ratio] of visibility) {
+          if (ratio > topRatio) {
+            topRatio = ratio;
+            topId = id;
+          }
+        }
+        if (topRatio > 0) setActiveId(topId);
+      },
+      { rootMargin: "-35% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+    );
+    sections.forEach((s) => io.observe(s));
+    return () => io.disconnect();
   }, []);
 
   useEffect(() => {
@@ -54,7 +85,14 @@ export default function Nav({ onOpenSelector }: NavProps) {
 
           <div className="nav-links">
             {LINKS.map((l) => (
-              <a key={l.href} href={l.href}>{l.label}</a>
+              <a
+                key={l.href}
+                href={l.href}
+                className={activeId === l.id ? "is-active" : ""}
+                aria-current={activeId === l.id ? "true" : undefined}
+              >
+                {l.label}
+              </a>
             ))}
           </div>
 
@@ -91,7 +129,14 @@ export default function Nav({ onOpenSelector }: NavProps) {
           <ul className="mobile-links">
             {LINKS.map((l) => (
               <li key={l.href}>
-                <a href={l.href} onClick={close}>{l.label}</a>
+                <a
+                  href={l.href}
+                  onClick={close}
+                  className={activeId === l.id ? "is-active" : ""}
+                  aria-current={activeId === l.id ? "true" : undefined}
+                >
+                  {l.label}
+                </a>
               </li>
             ))}
           </ul>

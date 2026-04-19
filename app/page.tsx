@@ -16,6 +16,7 @@ import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import Selector from "./components/Selector";
+import StickyHelp from "./components/StickyHelp";
 
 export default function Home() {
   const [selectorOpen, setSelectorOpen] = useState(false);
@@ -41,6 +42,7 @@ export default function Home() {
       </main>
       <Footer />
       <Selector open={selectorOpen} onClose={closeSelector} />
+      <StickyHelp onOpenSelector={openSelector} selectorOpen={selectorOpen} />
     </>
   );
 }
