@@ -3,7 +3,7 @@ const TESTIMONIALS = [
     quote:
       "Nach sechs Wochen ist unser Luis das erste Mal an einem Hund vorbeigegangen, ohne dass ich Angst hatte. Jenny arbeitet ruhig, klar, und wir verstehen endlich, was wir tun.",
     who: "Katrin & Luis",
-    what: "Programm „Reizoffen & führbar“ · 24/7",
+    what: "Programm „Reizoffen & führbar“ · Online",
     img: "https://picsum.photos/seed/testi-1/600/600",
   },
   {
@@ -84,12 +84,12 @@ export default function Proof() {
 
         <div className="proof-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>Stimmen · Ergebnisse</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Stimmen · Ergebnisse</div>
           </div>
           <h2 id="proof-heading" className="serif proof-h">
-            Was Halter und Schulen
+            Nicht unsere Worte.
             <br />
-            <span style={{ color: "var(--ink-3)" }}>nach der Arbeit mit uns sagen.</span>
+            <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}>Eure Ergebnisse.</em>
           </h2>
         </div>
 

@@ -27,7 +27,7 @@ const PATHS: Path[] = [
     num: "B",
     label: "Ich brauche flexible Hilfe — egal wo ich wohne",
     desc: "Ihr wollt Premium-Begleitung, aber ohne Anfahrt oder Termindruck.",
-    route: "Säule 24/7",
+    route: "Säule Online",
     routeDesc: "Signaturprogramm, Videoanalyse, Club oder Sprints.",
     accent: "var(--brass)",
     href: "#anywhere",
@@ -54,14 +54,15 @@ export default function Finder({ onOpenSelector }: FinderProps) {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, marginBottom: 72 }} className="finder-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>Angebotsfinder</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Angebotsfinder</div>
             <div className="mono" style={{ marginTop: 8 }}>Drei Wege · Eine Entscheidung</div>
           </div>
           <div>
             <h2 id="finder-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340, marginBottom: 24 }}>
-              Nicht sicher, was zu euch passt?
+              Der erste Schritt ist immer
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> der schwerste.</em>
               <br />
-              <em style={{ color: "var(--brass)", fontStyle: "italic" }}>Das ist normal.</em>
+              <span style={{ color: "var(--ink-3)" }}>Wir nehmen ihn euch ab.</span>
             </h2>
             <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: "56ch", fontFamily: "var(--serif)", fontWeight: 300 }}>
               Wählt den Einstieg, der gerade am besten auf eure Situation passt. Den Rest klären wir zusammen.

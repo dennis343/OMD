@@ -104,16 +104,18 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
       <div className="shell">
         <div className="any-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 20 }}>Säule 02 · 24/7</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 20 }}>Säule 02 · Online</div>
             <h2 id="anywhere-heading" className="serif any-h">
-              Premium-Hundetraining,
+              Dieselbe Methodik.
               <br />
-              <span style={{ color: "var(--ink-3)" }}>das nicht an einen Ort gebunden ist.</span>
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}>Ohne Anfahrt.</em>
+              <br />
+              <span style={{ color: "var(--ink-3)" }}>Für reizoffene Hunde in ganz DACH.</span>
             </h2>
             <p className="any-intro">
-              Für Menschen, die klare Hilfe wollen — auch wenn sie nicht in Mülheim wohnen,
-              wenig Zeit haben oder flexibel lernen möchten. Das gesamte digitale System:
-              Programm, Analyse, Membership und Intensivformate.
+              Ihr wohnt nicht in Mülheim — und trotzdem soll euer Hund endlich in Führung
+              kommen. Programm, Videoanalyse, Membership: klare Struktur, per Video begleitet,
+              im Tempo eures Alltags.
             </p>
           </div>
           <button className="btn btn-ghost" onClick={onOpenSelector} type="button">

@@ -13,11 +13,11 @@ export default function Jenny() {
       <div className="shell">
         <div className="jenny-grid">
           <div>
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>Über uns · Hinter dem System</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 24 }}>Über uns · Hinter dem System</div>
             <h2 id="jenny-heading" className="serif jenny-head">
-              Jenny hat Hunde gelernt —
+              Jenny versteht Hunde —
               <br />
-              und <em style={{ color: "var(--brass)" }}>Menschen führen</em> schon vorher.
+              weil sie <em style={{ color: "var(--omd-yellow)" }}>Menschen führt</em>.
             </h2>
 
             <p className="jenny-intro">
@@ -57,9 +57,9 @@ export default function Jenny() {
         </div>
 
         <figure className="big-quote">
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Warum das wichtig ist</div>
+          <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 16 }}>Warum das wichtig ist</div>
           <blockquote className="serif">
-            „Wir haben im Durchschnitt <em style={{ color: "var(--brass)" }}>13 Jahre</em> mit unseren Hunden.
+            „Wir haben im Durchschnitt <em style={{ color: "var(--omd-yellow)" }}>13 Jahre</em> mit unseren Hunden.
             Es wäre doch schön, wenn jeder einzelne Tag zählt — und mit einem guten Gefühl gelebt wird.“
           </blockquote>
           <figcaption className="mono" style={{ marginTop: 20 }}>— Jennifer Bakir</figcaption>
@@ -67,7 +67,7 @@ export default function Jenny() {
 
         <div className="nala-block">
           <div className="nala-text">
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Nala & Zuri</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 16 }}>Nala & Zuri</div>
             <h3 className="serif nala-head">
               Zwei Charakterhunde —
               <br />
@@ -90,7 +90,7 @@ export default function Jenny() {
             <p className="nala-p">
               Der Schlüssel dafür ist <em style={{ color: "var(--brass)", fontStyle: "italic" }}>klare Kommunikation</em>.
               Mit den Hunden. Mit den Haltern. Mit anderen Schulen. Dieses Prinzip zieht sich durch alles, was wir tun —
-              vor Ort, 24/7 und im Pro-Bereich.
+              vor Ort, online und im Pro-Bereich.
             </p>
 
             <div className="nala-links mono">

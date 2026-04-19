@@ -242,14 +242,17 @@ export default function Offers(_props: OffersProps = {}) {
       <div className="shell">
         <div className="local-head">
           <div>
-            <div className="mono" style={{ color: "var(--cream)", marginBottom: 16 }}>Säule 01 · Vor Ort</div>
+            <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 16 }}>Säule 01 · Vor Ort</div>
             <h2 id="offers-heading" className="serif local-h2">
-              Persönliches Hundetraining
+              Training, das im
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> Alltag </em>
+              sitzt.
               <br />
-              <span style={{ color: "var(--ink-3)" }}>in Mülheim und Umgebung.</span>
+              <span style={{ color: "var(--ink-3)" }}>In Mülheim und Umgebung.</span>
             </h2>
             <p className="local-lead">
-              Für Menschen, die direkte Begleitung möchten, ihren Hund im echten Alltag besser führen wollen und einen strukturierten Weg suchen.
+              Direkte Begleitung an echten Orten — Stadt, Park, Zuhause. Damit euer Hund
+              nicht nur auf dem Trainingsplatz führbar ist, sondern dort, wo es zählt.
             </p>
           </div>
           <a className="btn btn-ghost" href={GRUPPEN_URL} target="_blank" rel="noopener">

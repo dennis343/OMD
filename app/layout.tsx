@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
 const SITE_URL = "https://oooh-my-dog.de";
 const TITLE = "oooh my dog! — Premium-Hundetraining aus Mülheim · Vor Ort, Online (DACH) & für Profis";
 const DESCRIPTION =
-  "Premium-Hundetraining mit System aus Mülheim an der Ruhr. Lokal im Ruhrgebiet (Vor Ort), digital im gesamten deutschsprachigen Raum (Online, 24/7) sowie Pro & Business für Hundeschulen. Klare Methodik von Jennifer Bakir — ohne aversive Werkzeuge.";
+  "Premium-Hundetraining mit System aus Mülheim an der Ruhr. Lokal im Ruhrgebiet (Vor Ort), digital im gesamten deutschsprachigen Raum (Online, DACH) sowie Pro & Business für Hundeschulen. Klare Methodik von Jennifer Bakir — ohne aversive Werkzeuge.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -158,12 +158,12 @@ const localBusinessJsonLd = {
     name: "Angebote · oooh my dog!",
     itemListElement: [
       { "@type": "Offer", name: "Kennenlern-Einzelcoaching · Vor Ort", category: "Vor Ort · Mülheim" },
-      { "@type": "Offer", name: "Kennenlern-Einzelcoaching · Online", category: "24/7 · DACH", price: "49", priceCurrency: "EUR" },
+      { "@type": "Offer", name: "Kennenlern-Einzelcoaching · Online", category: "Online · DACH", price: "49", priceCurrency: "EUR" },
       { "@type": "Offer", name: "Basisgruppen · Orientierung & Führung", category: "Vor Ort" },
       { "@type": "Offer", name: "Exklusivgruppen · Jagdkontrolle / Anti-Giftköder", category: "Vor Ort · Premium" },
-      { "@type": "Offer", name: "Signaturprogramm · Reizoffen & führbar", category: "24/7 · Online" },
-      { "@type": "Offer", name: "Videoanalyse & Voice-Beratung", category: "24/7 · Online" },
-      { "@type": "Offer", name: "oooh my dog! Club · Membership", category: "24/7 · Online" },
+      { "@type": "Offer", name: "Signaturprogramm · Reizoffen & führbar", category: "Online · DACH" },
+      { "@type": "Offer", name: "Videoanalyse & Voice-Beratung", category: "Online · DACH" },
+      { "@type": "Offer", name: "oooh my dog! Club · Membership", category: "Online · DACH" },
       { "@type": "Offer", name: "OMD Pro Case Lab", category: "Pro & Business" },
       { "@type": "Offer", name: "Premium Hundeschule System", category: "Pro & Business" },
     ],
@@ -229,7 +229,7 @@ const faqJsonLd = {
       name: "Wir wohnen nicht in Mülheim — kommt ihr für uns überhaupt infrage?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Ja. Die Säule 24/7 ist genau dafür gebaut. Ob Videoanalyse, Signaturprogramm oder oooh my dog! Club — ihr bekommt dieselbe Methodik digital im gesamten deutschsprachigen Raum (DACH), ohne Anfahrt.",
+        text: "Ja. Die Säule Online ist genau dafür gebaut. Ob Videoanalyse, Signaturprogramm oder oooh my dog! Club — ihr bekommt dieselbe Methodik digital im gesamten deutschsprachigen Raum (DACH), ohne Anfahrt.",
       },
     },
     {
@@ -273,7 +273,7 @@ const breadcrumbJsonLd = {
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Start", item: `${SITE_URL}/` },
     { "@type": "ListItem", position: 2, name: "Vor Ort · Mülheim", item: `${SITE_URL}/#vor-ort` },
-    { "@type": "ListItem", position: 3, name: "24/7 · Online DACH", item: `${SITE_URL}/#anywhere` },
+    { "@type": "ListItem", position: 3, name: "Online · DACH", item: `${SITE_URL}/#anywhere` },
     { "@type": "ListItem", position: 4, name: "Pro & Business", item: `${SITE_URL}/#pro` },
   ],
 };

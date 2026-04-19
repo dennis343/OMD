@@ -210,7 +210,7 @@ const RESULT_MAP: Record<string, Result> = {
   },
   "online-kennenlern": {
     title: "Kennenlern-Einzel · Online",
-    tag: "Einstieg · 24/7",
+    tag: "Einstieg · Online",
     desc: "30-Minuten-Zoomtermin mit Anamnesebogen, Videoanalyse von 3–5 Alltagsszenen, strategischer Trainingsplanung und schriftlicher Nachbereitung. 49 €. Von überall aus.",
     ctaLabel: "Online-Kennenlern für 49 € buchen",
     ctaHref: BOOK_ONLINE_URL,
@@ -218,21 +218,21 @@ const RESULT_MAP: Record<string, Result> = {
   },
   signatur: {
     title: "Signaturprogramm",
-    tag: "Programm · 24/7",
+    tag: "Programm · Online",
     desc: "8–10 Wochen Premium-Programm für reizoffene, unsichere oder schnell überforderte Hunde. Intake, Videoanalyse, Kernmodule, Live-Call pro Woche, Homework-Reviews.",
     ctaLabel: "Zum Signaturprogramm",
     ctaHref: "#anywhere",
   },
   videoanalyse: {
     title: "Videoanalyse Pro",
-    tag: "Asynchron · 24/7",
+    tag: "Asynchron · Online",
     desc: "Ihr sendet Alltagsszenen, füllt eine strukturierte Anamnese aus und erhaltet eine priorisierte Analyse plus Trainingsplan. Einmalige fundierte Einschätzung.",
     ctaLabel: "Zur Videoanalyse Pro",
     ctaHref: "#anywhere",
   },
   club: {
     title: "oooh my dog! Club",
-    tag: "Membership · 24/7",
+    tag: "Membership · Online",
     desc: "Regelmäßige Live-Sessions, Themenbibliothek, Q&A, Monatsfokus, Community. Planbare Begleitung statt jedes Mal neu buchen.",
     ctaLabel: "Zum Club",
     ctaHref: "#anywhere",

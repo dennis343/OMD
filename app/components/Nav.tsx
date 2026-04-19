@@ -7,7 +7,7 @@ type NavProps = { onOpenSelector: () => void };
 
 const LINKS = [
   { href: "#vor-ort", label: "Vor Ort" },
-  { href: "#anywhere", label: "24/7" },
+  { href: "#anywhere", label: "Online" },
   { href: "#pro", label: "Pro & Business" },
   { href: "#jenny", label: "Über uns" },
   { href: "#stimmen", label: "Stimmen" },

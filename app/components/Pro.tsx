@@ -67,8 +67,10 @@ export default function Pro() {
           </div>
           <div>
             <h2 id="pro-heading" className="serif pro-h2">
-              Für alle, die nicht „irgendwas mit Hunden“ machen wollen —
-              <span style={{ color: "var(--ink-3)" }}> sondern Struktur, Qualität und Premium-Niveau aufbauen.</span>
+              Für Profis, die
+              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> System </em>
+              über Stundendruck stellen.
+              <span style={{ color: "var(--ink-3)" }}> Struktur, Qualität, Premium-Niveau.</span>
             </h2>
             <p className="pro-lead">
               Wir arbeiten mit Hundeschulen und ambitionierten Profis, die geschickt wachsen
