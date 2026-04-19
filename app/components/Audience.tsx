@@ -23,7 +23,7 @@ export default function Audience() {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="aud-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Selbstcheck</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>Selbstcheck</div>
             <div className="mono" style={{ marginTop: 8 }}>Passt das zu euch?</div>
           </div>
           <div>

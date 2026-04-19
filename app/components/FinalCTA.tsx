@@ -11,7 +11,7 @@ export default function FinalCTA({ onOpenSelector }: FinalCTAProps) {
       style={{ background: "var(--bg-2)", position: "relative", overflow: "hidden" }}
     >
       <div className="shell" style={{ position: "relative", zIndex: 2 }}>
-        <div className="mono" style={{ color: "var(--brass)", marginBottom: 28 }}>§ Nächster Schritt</div>
+        <div className="mono" style={{ color: "var(--brass)", marginBottom: 28 }}>Nächster Schritt</div>
         <h2 id="kontakt-heading" className="serif final-h">
           Finden wir heraus,
           <br />

@@ -13,7 +13,7 @@ export default function Jenny() {
       <div className="shell">
         <div className="jenny-grid">
           <div>
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>§ Über uns · Hinter dem System</div>
+            <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>Über uns · Hinter dem System</div>
             <h2 id="jenny-heading" className="serif jenny-head">
               Jenny hat Hunde gelernt —
               <br />
@@ -57,7 +57,7 @@ export default function Jenny() {
         </div>
 
         <figure className="big-quote">
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>§ Warum das wichtig ist</div>
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Warum das wichtig ist</div>
           <blockquote className="serif">
             „Wir haben im Durchschnitt <em style={{ color: "var(--brass)" }}>13 Jahre</em> mit unseren Hunden.
             Es wäre doch schön, wenn jeder einzelne Tag zählt — und mit einem guten Gefühl gelebt wird.“
@@ -67,7 +67,7 @@ export default function Jenny() {
 
         <div className="nala-block">
           <div className="nala-text">
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>§ Nala & Sury</div>
+            <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Nala & Sury</div>
             <h3 className="serif nala-head">
               Zwei belgische Schäferhunde —
               <br />

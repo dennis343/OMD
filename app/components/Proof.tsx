@@ -35,7 +35,7 @@ export default function Proof() {
     <section id="stimmen" aria-labelledby="proof-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
         <div style={{ marginBottom: 56, paddingBottom: 28, borderBottom: "1px solid var(--line)" }}>
-          <div className="mono" style={{ marginBottom: 18, color: "var(--brass)" }}>§ Presse · Erwähnungen</div>
+          <div className="mono" style={{ marginBottom: 18, color: "var(--brass)" }}>Presse · Erwähnungen</div>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "baseline" }}>
             {PRESS.map((p) => (
               <span key={p} className="serif" style={{ fontSize: "clamp(16px, 2.2vw, 22px)", color: "var(--ink-3)", fontStyle: "italic", fontWeight: 340 }}>
@@ -47,7 +47,7 @@ export default function Proof() {
 
         <div className="proof-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Stimmen · Ergebnisse</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>Stimmen · Ergebnisse</div>
           </div>
           <h2 id="proof-heading" className="serif proof-h">
             Was Halter und Schulen
@@ -75,7 +75,7 @@ export default function Proof() {
         </div>
 
         <div style={{ marginTop: 64 }}>
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>§ Case Studies · Vorher / Nachher</div>
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>Case Studies · Vorher / Nachher</div>
           <div className="cases-wrap">
             {CASES.map((c) => (
               <div key={c.tag} className="case-row">
@@ -95,7 +95,7 @@ export default function Proof() {
         </div>
 
         <div style={{ marginTop: 56 }}>
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>§ Videoausschnitt · OMD in Arbeit</div>
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Videoausschnitt · OMD in Arbeit</div>
           <div className="tile proof-video">
             <img src="https://picsum.photos/seed/omd-showreel/1600/900" alt="OMD Showreel" loading="lazy" />
             <div className="play-btn">
@@ -106,7 +106,7 @@ export default function Proof() {
         </div>
 
         <div className="proof-disclaimer">
-          <div className="mono" style={{ color: "var(--ink-4)", marginBottom: 10 }}>§ Hinweis zu Ergebnissen</div>
+          <div className="mono" style={{ color: "var(--ink-4)", marginBottom: 10 }}>Hinweis zu Ergebnissen</div>
           <p>
             Alle dargestellten Ergebnisse, Testimonials und Case Studies sind <em style={{ fontStyle: "italic" }}>exemplarisch</em>
             {" "}und nicht automatisch 1:1 auf jeden Hund und jede Halter-Konstellation übertragbar.

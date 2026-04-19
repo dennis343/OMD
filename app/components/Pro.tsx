@@ -62,7 +62,7 @@ export default function Pro() {
       <div className="shell">
         <div className="pro-head">
           <div>
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>§ Säule 03 · Pro & Business</div>
+            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>Säule 03 · Pro & Business</div>
             <div className="label" style={{ color: "var(--ink-3)" }}>Hundeschulen · Trainer:innen · Fachkunden</div>
           </div>
           <div>
@@ -84,7 +84,7 @@ export default function Pro() {
             <span className="tile-caption">Jenny · Pro-Beratung</span>
           </div>
           <div>
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>§ Warum Jenny die richtige Ansprechpartnerin ist</div>
+            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>Warum Jenny die richtige Ansprechpartnerin ist</div>
             <h3 className="serif why-h">
               Wer andere Hundeschulen beraten will,
               <br />
@@ -145,7 +145,7 @@ export default function Pro() {
 
         <div className="refs-block">
           <div style={{ marginBottom: 32 }}>
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 12 }}>§ Referenzen · Schulen, mit denen wir arbeiten</div>
+            <div className="mono" style={{ color: "var(--moss)", marginBottom: 12 }}>Referenzen · Schulen, mit denen wir arbeiten</div>
             <h3 className="serif refs-head">Keine Behauptungen, sondern Zusammenarbeit.</h3>
           </div>
           <div className="refs-grid">
@@ -163,7 +163,7 @@ export default function Pro() {
           </div>
 
           <div className="ref-video">
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>§ Videoausschnitt · Pro Case Lab in Aktion</div>
+            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>Videoausschnitt · Pro Case Lab in Aktion</div>
             <div className="tile ref-video-tile">
               <img src="https://picsum.photos/seed/pro-video/1600/900" alt="Pro Case Lab · Videoausschnitt" loading="lazy" />
               <div className="play-btn">

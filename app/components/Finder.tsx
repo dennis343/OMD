@@ -54,7 +54,7 @@ export default function Finder({ onOpenSelector }: FinderProps) {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, marginBottom: 72 }} className="finder-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Angebotsfinder</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>Angebotsfinder</div>
             <div className="mono" style={{ marginTop: 8 }}>Drei Wege · Eine Entscheidung</div>
           </div>
           <div>
