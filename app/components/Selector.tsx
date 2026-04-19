@@ -122,8 +122,10 @@ function recommend(answers: Answers): string[] {
   }
 
   if (depth === "einstieg") {
-    if (format === "local") return ["local-kennenlern", "videoanalyse"];
-    return ["videoanalyse", "messenger-beratung"];
+    if (format === "local") return ["local-kennenlern", "online-kennenlern"];
+    if (format === "digital") return ["online-kennenlern", "videoanalyse"];
+    if (format === "egal") return ["online-kennenlern", "local-kennenlern"];
+    return ["online-kennenlern", "videoanalyse"];
   }
   if (depth === "programm") {
     if (intense) return ["signatur", "videoanalyse"];
@@ -154,9 +156,14 @@ const RESULT_MAP: Record<string, Result> = {
     desc: "Regelmäßige Live-Sessions, Themenbibliothek, Q&A, Monatsfokus, Community. Planbare Begleitung statt jedes Mal neu buchen.",
   },
   "local-kennenlern": {
-    title: "Kennenlern-Coaching",
+    title: "Kennenlern-Coaching · Mülheim",
     tag: "Einstieg · Vor Ort",
-    desc: "Der strukturierte Einstieg für neue Teams. Ersteinschätzung, nächste Schritte, ein sinnvoller Trainingsweg — statt Rätselraten.",
+    desc: "Der strukturierte Einstieg für neue Teams direkt am Hundeplatz. Ersteinschätzung, nächste Schritte, ein sinnvoller Trainingsweg — statt Rätselraten.",
+  },
+  "online-kennenlern": {
+    title: "Kennenlern-Coaching · Online",
+    tag: "Einstieg · 24/7",
+    desc: "30-Minuten-Zoomtermin mit Anamnesebogen, Videoanalyse von 3–5 Alltagsszenen, strategischer Trainingsplanung und schriftlicher Nachbereitung. 49 €. Von überall aus.",
   },
   "local-einzel": {
     title: "Einzelcoaching vor Ort",
