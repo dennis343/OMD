@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { BOOK_ONLINE_URL, BOOK_URL } from "@/app/lib/constants";
+import { BOOK_ONLINE_URL, BOOK_URL, WA_URL } from "@/app/lib/constants";
 
 type Answers = Record<string, string | string[]>;
 
@@ -25,7 +25,19 @@ const SELECTOR_STEPS: Step[] = [
     options: [
       { val: "vor-ort", label: "Vor Ort in Mülheim", sub: "Gruppenstunden, Einzelcoaching, Kennenlern-Stunde" },
       { val: "online", label: "Online im gesamten DACH-Raum", sub: "Videoanalyse, Online-Kennenlern, Programme" },
+      { val: "paket", label: "Premium-Paket buchen", sub: "Welpe · Alltag · Traveller — kuratierte Bundles" },
       { val: "pro", label: "Hundeschule oder Trainer:in", sub: "Fallsupervision, Premium-System, Berufswechsel" },
+    ],
+  },
+  {
+    id: "paket_kind",
+    when: (a) => a.track === "paket",
+    question: "Welches Paket passt zu eurer Situation?",
+    hint: "Drei kuratierte Premium-Bundles — alle inklusive Begrüßung, Willkommensbox, WhatsApp-Support.",
+    options: [
+      { val: "welpen", label: "Welpen-Premium-Paket", sub: "1× Kennenlern · 6× Basisgruppen · 2× Einzel · 3× Talks" },
+      { val: "leichtigkeit", label: "Leichtigkeit im Alltag-Paket", sub: "25 Einheiten Basisgruppen · 2× Talks" },
+      { val: "traveller", label: "Traveller Intensivpaket", sub: "3× Online-Einzel · 4× Einzel (Mülheim) · 2× Talks" },
     ],
   },
   {
@@ -58,7 +70,7 @@ const SELECTOR_STEPS: Step[] = [
       { val: "einschaetzung", label: "Einmalige fundierte Einschätzung", sub: "Videoanalyse Pro · asynchron" },
       { val: "programm", label: "Strukturierter Weg (8–10 Wochen)", sub: "Signaturprogramm · reizoffen, unsicher, intensiv" },
       { val: "laufend", label: "Laufende Begleitung (Membership)", sub: "oooh my dog! Club" },
-      { val: "messenger", label: "Hilfe per Messenger im Alltag", sub: "Messengerberatung · schriftlich + Videofeedback" },
+      { val: "messenger", label: "Videoanalyse & Voice-Beratung", sub: "Kontingent · Videosequenzen + Voicenachrichten einreichen" },
     ],
   },
   {
@@ -89,6 +101,14 @@ const TOPIC_TO_COURSE: Record<string, string> = {
 
 function recommend(answers: Answers): string[] {
   const track = answers.track as string | undefined;
+
+  if (track === "paket") {
+    const k = answers.paket_kind as string | undefined;
+    if (k === "welpen") return ["paket-welpen"];
+    if (k === "leichtigkeit") return ["paket-leichtigkeit"];
+    if (k === "traveller") return ["paket-traveller"];
+    return ["paket-welpen", "paket-leichtigkeit", "paket-traveller"];
+  }
 
   if (track === "pro") {
     if (answers.pro_goal === "faelle") return ["case-lab", "premium-system"];
@@ -218,10 +238,10 @@ const RESULT_MAP: Record<string, Result> = {
     ctaHref: "#anywhere",
   },
   "messenger-beratung": {
-    title: "Messengerberatung",
-    tag: "Messenger · 24/7",
-    desc: "Beratung im Tempo eures Alltags. Ihr schickt Fragen und Videos direkt ein und erhaltet schriftliche Einordnungen plus Videofeedback — ohne Termindruck.",
-    ctaLabel: "Zur Messengerberatung",
+    title: "Videoanalyse & Voice-Beratung",
+    tag: "Asynchron · Kontingent",
+    desc: "Premium-Beratung im Tempo eures Alltags: Ihr bucht vorab ein Kontingent und reicht über den gesamten Zeitraum Videosequenzen und Sprachnachrichten ein. Wir antworten mit strukturierten Videoanalysen und Voice-Messages — kein Termindruck, keine Anfahrt.",
+    ctaLabel: "Zur Videoanalyse & Voice-Beratung",
     ctaHref: "#anywhere",
   },
   "case-lab": {
@@ -244,6 +264,30 @@ const RESULT_MAP: Record<string, Result> = {
     desc: "Ehrliche Orientierung für Menschen, die beruflich in den Hundebereich wollen. Einordnung, Qualitätsmaßstäbe, saubere Entscheidungshilfe.",
     ctaLabel: "Zum Realitätscheck",
     ctaHref: "#pro",
+  },
+  "paket-welpen": {
+    title: "Welpen-Premium-Paket",
+    tag: "Premium-Paket · Welpe",
+    desc: "Der saubere Start ins Hundeleben — mit System. Inhalte: 1× Kennenlern-Einzel, 6× freie Basisgruppen-Teilnahme, 2× Einzeltraining am Wunschort, 3× oooh my dog! Talks. Inklusive: Begrüßung, Willkommensbox, klare Trainingsstruktur, Hausaufgaben, WhatsApp-Support, flexible Terminbuchung.",
+    ctaLabel: "Welpen-Premium-Paket anfragen",
+    ctaHref: WA_URL,
+    external: true,
+  },
+  "paket-leichtigkeit": {
+    title: "Leichtigkeit im Alltag-Paket",
+    tag: "Premium-Paket · Alltag",
+    desc: "Alltag, der wieder leicht wird — durch Wiederholung und Routine. Inhalte: 25 Einheiten Basisgruppen, 2× oooh my dog! Talks. Inklusive: Begrüßung, Willkommensbox, klare Trainingsstruktur, Hausaufgaben, WhatsApp-Support, flexible Terminbuchung.",
+    ctaLabel: "Leichtigkeit-Paket anfragen",
+    ctaHref: WA_URL,
+    external: true,
+  },
+  "paket-traveller": {
+    title: "Traveller Intensivpaket",
+    tag: "Premium-Paket · Intensiv",
+    desc: "Intensives Premium-Training, das auf Distanz funktioniert. Inhalte: 3× Online-Einzel, 4× Einzeltraining (Mülheim), 2× oooh my dog! Talks. Inklusive: Begrüßung, Willkommensbox, klare Trainingsstruktur, Hausaufgaben, WhatsApp-Support, flexible Terminbuchung.",
+    ctaLabel: "Traveller-Paket anfragen",
+    ctaHref: WA_URL,
+    external: true,
   },
 };
 
@@ -345,7 +389,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 40 }}>
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Angebotsfinder</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>Angebotsfinder</div>
             <div className="mono" style={{ marginTop: 4 }}>
               {finished ? "Empfehlung" : `Schritt ${stepIdx + 1} von ${activeSteps.length}`}
             </div>

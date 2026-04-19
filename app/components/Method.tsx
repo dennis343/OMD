@@ -37,7 +37,7 @@ export default function Method() {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="method-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Differenzierung</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>Differenzierung</div>
             <div className="mono" style={{ marginTop: 8 }}>Sechs Gründe</div>
           </div>
           <div>

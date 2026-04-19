@@ -45,7 +45,7 @@ export default function FAQ() {
       <div className="shell">
         <div className="faq-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ FAQ</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>FAQ</div>
             <div className="mono" style={{ marginTop: 8 }}>Häufige Fragen</div>
           </div>
           <div>

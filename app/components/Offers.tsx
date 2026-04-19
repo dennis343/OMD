@@ -53,21 +53,22 @@ const KENNENLERN: Entry[] = [
 ];
 
 const INDIVIDUAL: Entry = {
-  tag: "Individuell",
+  tag: "VIP · 1:1 Exklusiv",
   title: "Einzelcoaching am Ort des Geschehens",
-  sub: "Wenn euer Thema individuell, komplex oder alltagsnah ist",
-  desc: "Maßgeschneidertes Training direkt dort, wo die Herausforderung entsteht — Stadt, Park, Zuhause oder unterwegs. Wir arbeiten 1:1 in eurem echten Alltag, damit Lösungen sofort umsetzbar sind.",
-  forWho: "Ihr habt ein konkretes, alltagsnahes Thema und wollt einen Profi-Blick auf eure Situation — nicht im Gruppenformat.",
+  sub: "Trainerin exklusiv reserviert · Nur für euch · Ort eurer Wahl",
+  desc: "VIP-Setting im echten Sinn: Eure Trainerin ist in dieser Zeit ausschließlich für euch und euren Hund da — keine geteilte Aufmerksamkeit, keine Gruppe, kein Wartemodus. Wir arbeiten 1:1 dort, wo die Herausforderung tatsächlich entsteht: Stadt, Park, Zuhause, Spazierroute, Hundebegegnung.",
+  forWho: "Ihr wollt höchste Aufmerksamkeit, individuelle Analyse und konkrete Lösungen für euer Thema — exklusiv und ohne Gruppendynamik.",
   nutzen:
-    "Ihr arbeitet genau an eurem Thema, im Tempo eures Hundes, ohne Rücksicht auf Gruppendynamik — und nehmt konkrete Handlungsanweisungen für den Alltag mit.",
+    "Volle Konzentration auf euren Hund und eure Situation. Ihr nehmt einen klaren Handlungsplan mit, der genau zu eurem Alltag passt — und arbeitet im Tempo eures Hundes, nicht der Gruppe.",
   expect: [
+    "Trainerin exklusiv für euch reserviert",
     "Individuelle Analyse im relevanten Kontext",
     "Direkte Umsetzung am Ort des Geschehens",
     "Klare Aufgaben für den Alltag",
   ],
-  cta: "Einzelcoaching per WhatsApp anfragen",
+  cta: "VIP-Einzelcoaching per WhatsApp anfragen",
   ctaHref: WA_URL,
-  accent: "var(--cream)",
+  accent: "var(--brass)",
 };
 
 type Tour = {
@@ -101,12 +102,12 @@ const TOUR: Tour = {
   img: "https://picsum.photos/seed/omd-tour/1600/900",
 };
 
-type ClusterItem = { name: string; desc: string; mehrwert: string };
-type Cluster = { name: string; title: string; nutzen: string; items: ClusterItem[] };
+type GroupItem = { name: string; desc: string; mehrwert: string };
+type Group = { name: string; title: string; nutzen: string; items: GroupItem[] };
 
-const CLUSTERS: Cluster[] = [
+const BASIS_GROUPS: Group[] = [
   {
-    name: "Cluster A · Basisgruppen",
+    name: "Basisgruppen · Block 1",
     title: "Orientierung & Führung",
     nutzen: "Hier lernt ihr, wie Führung wirklich funktioniert — ohne Druck, aber mit Klarheit. Wer dieses Fundament hat, spart sich später Frust, Eskalationen und endloses Üben am Symptom.",
     items: [
@@ -128,7 +129,7 @@ const CLUSTERS: Cluster[] = [
     ],
   },
   {
-    name: "Cluster B · Basisgruppen",
+    name: "Basisgruppen · Block 2",
     title: "Soziales Lernen & Zusammenarbeit",
     nutzen: "Hier wird aus Reaktion Kooperation — zwischen Hund, Halter und Umwelt. Ideal für Teams, die nicht nur „funktionieren“, sondern gemeinsam denken wollen.",
     items: [
@@ -149,27 +150,89 @@ const CLUSTERS: Cluster[] = [
       },
     ],
   },
+];
+
+const EXKLUSIV_GROUP: Group = {
+  name: "Exklusivgruppen · Premium",
+  title: "Exklusive Spezialthemen für Fortgeschrittene",
+  nutzen: "Kleine, geschlossene Exklusivgruppen mit hohem Anspruch und konkreten Themen. Für Teams, die saubere Basics mitbringen und gezielt an den Punkten arbeiten wollen, die im Alltag wirklich Sicherheit kosten.",
+  items: [
+    {
+      name: "Basics Exklusiv",
+      desc: "Exklusive Vertiefung der Grundlagen in kleiner Runde — Bindung, Aufmerksamkeit, Impulskontrolle, sauberes Markersystem. Für Teams, die mit Anspruch und Tiefe arbeiten wollen.",
+      mehrwert: "Trainingsqualität, die in normalen Gruppen so nicht möglich ist: viel Feedback, individuelle Korrektur, ein echter Schritt im Niveau.",
+    },
+    {
+      name: "Anti-Giftköder Exklusiv",
+      desc: "Strukturiertes, exklusives Anti-Giftköder-Training mit echtem Aufbau — vom Markersignal über Distanzarbeit bis zur sauberen Generalisierung im Alltag. Kein „einmal Tabu üben“, sondern verlässlich abrufbar.",
+      mehrwert: "Ihr nehmt die Sorge „was, wenn er etwas frisst“ aus eurem Alltag — und gewinnt Sicherheit auf jedem Spaziergang, auch dort, wo unbekannte Reize liegen.",
+    },
+    {
+      name: "Jagdkontrolle Exklusiv",
+      desc: "Exklusive Arbeit am echten Jagdverhalten — Rückruf unter starken Reizen, Impulskontrolle, alternative Verhaltensketten. Für Hunde, die jagen wollen, und Halter, die wieder Freilauf wagen möchten.",
+      mehrwert: "Freilauf wird wieder möglich — ohne dass ihr euren Hund permanent an der Leine halten müsst. Ihr lernt, ihn zu führen, statt ihn zurückzuhalten.",
+    },
+  ],
+};
+
+type Paket = {
+  name: string;
+  tag: string;
+  headline: string;
+  desc: string;
+  inhalte: string[];
+  cta: string;
+  accent: string;
+};
+
+const PAKET_INKLUSIV = [
+  "Persönliche Begrüßung",
+  "Willkommensbox",
+  "Klare Trainingsstruktur",
+  "Hausaufgaben mit Anleitung",
+  "WhatsApp-Support",
+  "Flexible Terminbuchung",
+];
+
+const PAKETE: Paket[] = [
   {
-    name: "Cluster C · Exklusivgruppen",
-    title: "Spezialthemen für Fortgeschrittene",
-    nutzen: "Kleine Gruppen, hoher Anspruch, konkrete Themen. Für Teams, die saubere Basics mitbringen — und gezielt an den Punkten arbeiten wollen, die im Alltag wirklich Sicherheit kosten.",
-    items: [
-      {
-        name: "Basics (Exklusiv)",
-        desc: "Vertiefte Grundlagenarbeit in kleiner Runde — Bindung, Aufmerksamkeit, Impulskontrolle, sauberes Markersystem. Für Teams, die mit Anspruch und Tiefe arbeiten wollen.",
-        mehrwert: "Ihr bekommt Trainingsqualität, die in normalen Gruppen so nicht möglich ist: viel Feedback, individuelle Korrektur, ein echter Schritt im Niveau.",
-      },
-      {
-        name: "Anti-Giftköder",
-        desc: "Strukturiertes Anti-Giftköder-Training mit echtem Aufbau — vom Markersignal über Distanzarbeit bis zur sauberen Generalisierung im Alltag. Kein „einmal Tabu üben“, sondern verlässlich abrufbar.",
-        mehrwert: "Ihr nehmt die Sorge „was, wenn er etwas frisst“ aus eurem Alltag — und gewinnt Sicherheit auf jedem Spaziergang, auch dort, wo unbekannte Reize liegen.",
-      },
-      {
-        name: "Jagdkontrolle",
-        desc: "Arbeit am echten Jagdverhalten — Rückruf unter starken Reizen, Impulskontrolle, alternative Verhaltensketten. Für Hunde, die jagen wollen, und Halter, die wieder Freilauf wagen möchten.",
-        mehrwert: "Freilauf wird wieder möglich — ohne dass ihr euren Hund permanent an der Leine halten müsst, um sicher zu sein. Ihr lernt, ihn zu führen, statt ihn zurückzuhalten.",
-      },
+    name: "Welpen-Premium-Paket",
+    tag: "Welpe · Premium-Start",
+    headline: "Der saubere Start ins Hundeleben — mit System.",
+    desc: "Das vollständige Paket für Welpenhalter, die von Anfang an richtig aufstellen wollen. Kennenlern-Einzel, freie Basisgruppen-Teilnahmen, Einzelstunden am Wunschort und Talks — alles aufeinander abgestimmt.",
+    inhalte: [
+      "1× Kennenlern-Einzel",
+      "6× freie Basisgruppen-Teilnahme",
+      "2× Einzeltraining am Wunschort",
+      "3× oooh my dog! Talks",
     ],
+    cta: "Welpen-Premium-Paket anfragen",
+    accent: "var(--brass)",
+  },
+  {
+    name: "Leichtigkeit im Alltag-Paket",
+    tag: "Alltag · Konstanz",
+    headline: "Alltag, der wieder leicht wird — durch Wiederholung und Routine.",
+    desc: "Für Teams, die kontinuierlich an ihren Themen arbeiten wollen. 25 Einheiten Basisgruppen plus zwei Talks geben euch die Frequenz, in der echte Veränderung entsteht.",
+    inhalte: [
+      "25 Einheiten Basisgruppen",
+      "2× oooh my dog! Talks",
+    ],
+    cta: "Leichtigkeit-Paket anfragen",
+    accent: "var(--cream)",
+  },
+  {
+    name: "Traveller Intensivpaket",
+    tag: "Intensiv · DACH",
+    headline: "Intensives Premium-Training, das auf Distanz funktioniert.",
+    desc: "Für Halter, die nicht in Mülheim wohnen und trotzdem die Kombination aus persönlicher Vor-Ort-Arbeit und engmaschiger Online-Begleitung wollen. Drei Online-Einzel, vier Einzelstunden in Mülheim und zwei Talks.",
+    inhalte: [
+      "3× Online-Einzel",
+      "4× Einzeltraining (Mülheim)",
+      "2× oooh my dog! Talks",
+    ],
+    cta: "Traveller-Paket anfragen",
+    accent: "var(--moss)",
   },
 ];
 
@@ -179,7 +242,7 @@ export default function Offers(_props: OffersProps = {}) {
       <div className="shell">
         <div className="local-head">
           <div>
-            <div className="mono" style={{ color: "var(--cream)", marginBottom: 16 }}>§ Säule 01 · Vor Ort</div>
+            <div className="mono" style={{ color: "var(--cream)", marginBottom: 16 }}>Säule 01 · Vor Ort</div>
             <h2 id="offers-heading" className="serif local-h2">
               Persönliches Hundetraining
               <br />
@@ -200,7 +263,7 @@ export default function Offers(_props: OffersProps = {}) {
         </div>
 
         <div className="kennenlern-head">
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>§ Einstieg · Zwei Wege</div>
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>Einstieg · Zwei Wege</div>
           <h3 className="serif kennenlern-h">So beginnt die Zusammenarbeit mit uns.</h3>
           <p className="kennenlern-lead">
             Bevor ihr in einer Gruppe oder Einzelstunde startet, sehen wir euch einmal sauber an. Persönlich am Hundeplatz — oder per Videoanalyse von überall aus.
@@ -310,30 +373,30 @@ export default function Offers(_props: OffersProps = {}) {
           </div>
         </article>
 
-        <div className="cluster-head">
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>§ Gruppen & Alltagsthemen</div>
-          <h3 className="serif cluster-h">Sortiert nach Wirkung — nicht nach Kursliste.</h3>
-          <p className="cluster-lead">
+        <div className="group-head">
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>Basisgruppen · Sortiert nach Wirkung</div>
+          <h3 className="serif group-h">Sortiert nach Wirkung — nicht nach Kursliste.</h3>
+          <p className="group-lead">
             Jede Gruppe hat ein klares Ziel und einen konkreten Nutzen für euren Alltag. Ihr bucht nicht „eine Stunde“, sondern eine Veränderung.
           </p>
         </div>
 
-        <div className="cluster-grid">
-          {CLUSTERS.map((c) => (
-            <div key={c.name} className="cluster-card">
+        <div className="group-grid">
+          {BASIS_GROUPS.map((c) => (
+            <div key={c.name} className="group-card">
               <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>{c.name}</div>
-              <h4 className="serif cluster-title">{c.title}</h4>
-              <p className="cluster-nutzen">
+              <h4 className="serif group-title">{c.title}</h4>
+              <p className="group-nutzen">
                 <em style={{ color: "var(--ink-3)", fontStyle: "italic" }}>Nutzen:</em> {c.nutzen}
               </p>
-              <ul className="cluster-list">
+              <ul className="group-list">
                 {c.items.map((it) => (
-                  <li key={it.name} className="cluster-item">
-                    <div className="cluster-item-head">
-                      <span className="serif cluster-item-name">{it.name}</span>
+                  <li key={it.name} className="group-item">
+                    <div className="group-item-head">
+                      <span className="serif group-item-name">{it.name}</span>
                     </div>
-                    <div className="cluster-item-desc">{it.desc}</div>
-                    <div className="cluster-item-mehrwert">
+                    <div className="group-item-desc">{it.desc}</div>
+                    <div className="group-item-mehrwert">
                       <span style={{ color: "var(--brass)" }}>+ Mehrwert:</span> {it.mehrwert}
                     </div>
                   </li>
@@ -343,9 +406,83 @@ export default function Offers(_props: OffersProps = {}) {
           ))}
         </div>
 
+        <div className="exklusiv-block">
+          <div className="exklusiv-badge">EXKLUSIV · PREMIUM</div>
+          <div className="exklusiv-head">
+            <div className="mono" style={{ color: "var(--brass)", marginBottom: 12, letterSpacing: "0.2em" }}>{EXKLUSIV_GROUP.name}</div>
+            <h3 className="serif exklusiv-h">{EXKLUSIV_GROUP.title}</h3>
+            <p className="exklusiv-nutzen">
+              <em style={{ color: "var(--brass)", fontStyle: "italic" }}>Exklusiv-Nutzen:</em> {EXKLUSIV_GROUP.nutzen}
+            </p>
+          </div>
+          <ul className="exklusiv-list">
+            {EXKLUSIV_GROUP.items.map((it) => (
+              <li key={it.name} className="exklusiv-item">
+                <div className="exklusiv-item-head">
+                  <span className="serif exklusiv-item-name">{it.name}</span>
+                  <span className="exklusiv-item-flag mono">EXKLUSIV</span>
+                </div>
+                <div className="exklusiv-item-desc">{it.desc}</div>
+                <div className="exklusiv-item-mehrwert">
+                  <span style={{ color: "var(--brass)" }}>+ Mehrwert:</span> {it.mehrwert}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         <div className="rule-row" style={{ marginTop: 32 }}>
-          <span>§ Hinweis</span>
-          <span style={{ flex: 1 }}>Jede Gruppe startet mit einem Kennenlern-Einzel — damit wir euch passend zuordnen können.</span>
+          <span>Hinweis</span>
+          <span style={{ flex: 1 }}>
+            Jede Gruppe startet mit einem{" "}
+            <a href={BOOK_URL} target="_blank" rel="noopener" style={{ color: "var(--brass)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+              Kennenlern-Einzel
+            </a>{" "}
+            — damit wir euch passend zuordnen können.
+          </span>
+        </div>
+
+        <div className="pakete-head">
+          <div className="mono" style={{ color: "var(--brass)", marginBottom: 12 }}>Pakete · Premium-Bundles</div>
+          <h3 className="serif pakete-h">
+            Drei besondere Pakete — <span style={{ color: "var(--ink-3)" }}>für die wichtigsten Lebenslagen.</span>
+          </h3>
+          <p className="pakete-lead">
+            Sorgfältig kuratierte Bundles aus Einzeltraining, Gruppen und Talks. Aufeinander abgestimmt, mit fester Struktur und persönlicher Begleitung.
+          </p>
+        </div>
+
+        <div className="paket-grid">
+          {PAKETE.map((p) => (
+            <article key={p.name} className="paket-card">
+              <div className="paket-tag mono" style={{ color: p.accent }}>{p.tag}</div>
+              <h4 className="serif paket-title">{p.name}</h4>
+              <div className="paket-headline serif">{p.headline}</div>
+              <p className="paket-desc">{p.desc}</p>
+
+              <div className="paket-block">
+                <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>→ Inhalte</div>
+                <ul className="paket-list">
+                  {p.inhalte.map((it) => (
+                    <li key={it}><span style={{ color: p.accent }} aria-hidden="true">+</span> {it}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="paket-block">
+                <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>→ Inklusiv-Leistungen</div>
+                <ul className="paket-inklusiv">
+                  {PAKET_INKLUSIV.map((it) => (
+                    <li key={it}>· {it}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <a className="btn btn-primary paket-cta" href={WA_URL} target="_blank" rel="noopener">
+                {p.cta} <span className="arrow" aria-hidden="true">→</span>
+              </a>
+            </article>
+          ))}
         </div>
       </div>
 
@@ -387,20 +524,67 @@ export default function Offers(_props: OffersProps = {}) {
         .tour-list li { padding: 9px 0; font-size: 13.5px; color: var(--ink-2); display: flex; gap: 10px; border-bottom: 1px solid var(--line); }
         .tour-list li:last-child { border-bottom: none; }
 
-        .cluster-head { margin-bottom: 24px; }
-        .cluster-h { font-size: clamp(24px, 3.8vw, 44px); letter-spacing: -0.02em; font-weight: 360; max-width: 22ch; margin-bottom: 16px; }
-        .cluster-lead { font-size: 15px; line-height: 1.55; color: var(--ink-2); max-width: 56ch; font-family: var(--serif); font-weight: 300; }
+        .group-head { margin-bottom: 24px; }
+        .group-h { font-size: clamp(24px, 3.8vw, 44px); letter-spacing: -0.02em; font-weight: 360; max-width: 22ch; margin-bottom: 16px; }
+        .group-lead { font-size: 15px; line-height: 1.55; color: var(--ink-2); max-width: 56ch; font-family: var(--serif); font-weight: 300; }
 
-        .cluster-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-        .cluster-card { border: 1px solid var(--line-2); background: var(--bg-2); padding: 26px 22px; display: flex; flex-direction: column; }
-        .cluster-title { font-size: 22px; letter-spacing: -0.015em; font-weight: 400; margin-bottom: 12px; line-height: 1.15; }
-        .cluster-nutzen { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
-        .cluster-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-        .cluster-item { padding: 12px 0; border-bottom: 1px solid var(--line); }
-        .cluster-item:last-child { border-bottom: none; padding-bottom: 0; }
-        .cluster-item-name { font-size: 16px; color: var(--cream); display: inline-block; margin-bottom: 4px; }
-        .cluster-item-desc { font-size: 13px; line-height: 1.5; color: var(--ink-3); margin-bottom: 8px; }
-        .cluster-item-mehrwert { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+        .group-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .group-card { border: 1px solid var(--line-2); background: var(--bg-2); padding: 26px 22px; display: flex; flex-direction: column; }
+        .group-title { font-size: 22px; letter-spacing: -0.015em; font-weight: 400; margin-bottom: 12px; line-height: 1.15; }
+        .group-nutzen { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+        .group-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+        .group-item { padding: 12px 0; border-bottom: 1px solid var(--line); }
+        .group-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .group-item-name { font-size: 16px; color: var(--cream); display: inline-block; margin-bottom: 4px; }
+        .group-item-desc { font-size: 13px; line-height: 1.5; color: var(--ink-3); margin-bottom: 8px; }
+        .group-item-mehrwert { font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+
+        .exklusiv-block {
+          margin-top: 56px;
+          background: var(--bg-3);
+          border: 1px solid var(--brass);
+          padding: 44px 28px 36px;
+          position: relative;
+          box-shadow: 0 0 0 1px var(--brass) inset, 0 24px 60px -30px rgba(0,0,0,0.6);
+        }
+        .exklusiv-badge {
+          position: absolute; top: -12px; left: 28px;
+          background: var(--brass); color: var(--bg);
+          font-family: var(--mono); font-size: 11px;
+          letter-spacing: 0.22em; padding: 4px 14px;
+          font-weight: 600;
+        }
+        .exklusiv-head { margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--brass); }
+        .exklusiv-h { font-size: clamp(26px, 4.2vw, 48px); letter-spacing: -0.022em; font-weight: 360; line-height: 1.05; max-width: 22ch; margin-bottom: 18px; color: var(--cream); }
+        .exklusiv-nutzen { font-size: 15px; line-height: 1.55; color: var(--ink-2); max-width: 64ch; font-family: var(--serif); font-weight: 300; }
+
+        .exklusiv-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 28px; }
+        .exklusiv-item { padding: 22px 0; border-bottom: 1px solid var(--brass); }
+        .exklusiv-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .exklusiv-item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+        .exklusiv-item-name { font-size: 22px; color: var(--cream); letter-spacing: -0.015em; font-weight: 380; }
+        .exklusiv-item-flag { font-size: 10px; color: var(--brass); letter-spacing: 0.22em; border: 1px solid var(--brass); padding: 2px 8px; }
+        .exklusiv-item-desc { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin-bottom: 10px; max-width: 72ch; }
+        .exklusiv-item-mehrwert { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); max-width: 72ch; }
+
+        .pakete-head { margin-top: 80px; margin-bottom: 28px; }
+        .pakete-h { font-size: clamp(28px, 5vw, 56px); letter-spacing: -0.025em; font-weight: 340; line-height: 1.04; max-width: 24ch; margin-bottom: 16px; }
+        .pakete-lead { font-size: 15px; line-height: 1.55; color: var(--ink-2); max-width: 60ch; font-family: var(--serif); font-weight: 300; }
+
+        .paket-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .paket-card { background: var(--bg-2); border: 1px solid var(--line-2); padding: 32px 26px 28px; display: flex; flex-direction: column; position: relative; }
+        .paket-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--brass); }
+        .paket-tag { font-size: 11px; letter-spacing: 0.18em; margin-bottom: 18px; }
+        .paket-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 380; line-height: 1.1; margin-bottom: 10px; color: var(--cream); }
+        .paket-headline { font-size: 16px; font-style: italic; color: var(--ink-3); margin-bottom: 18px; line-height: 1.35; }
+        .paket-desc { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin-bottom: 22px; }
+        .paket-block { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 16px; }
+        .paket-list { list-style: none; }
+        .paket-list li { padding: 7px 0; font-size: 13.5px; color: var(--cream); display: flex; gap: 10px; border-bottom: 1px solid var(--line); }
+        .paket-list li:last-child { border-bottom: none; }
+        .paket-inklusiv { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+        .paket-inklusiv li { font-size: 12px; color: var(--ink-3); line-height: 1.4; }
+        .paket-cta { margin-top: auto; align-self: flex-start; }
 
         @media (min-width: 640px) {
           .local-banner { height: 320px; }
@@ -413,8 +597,12 @@ export default function Offers(_props: OffersProps = {}) {
           .individual-cols .entry-block { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 0; }
           .entry-card { padding: 40px 36px 36px; }
           .entry-card.is-large { padding: 44px 44px 40px; }
-          .cluster-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-          .cluster-card { padding: 32px 28px 28px; }
+          .group-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+          .group-card { padding: 32px 28px 28px; }
+          .exklusiv-block { padding: 56px 56px 48px; }
+          .exklusiv-list { grid-template-columns: 1fr; }
+          .paket-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+          .paket-card { padding: 36px 32px 32px; }
         }
         @media (min-width: 700px) {
           .tour-block { padding: 44px 36px 40px; gap: 40px; grid-template-columns: 1fr 1.2fr; }

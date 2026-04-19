@@ -78,16 +78,16 @@ const OFFERS: Offer[] = [
   },
   {
     num: "06",
-    title: "Messengerberatung",
-    sub: "Messenger · Laufend",
-    desc: "Beratung im Tempo eures Alltags — über Messenger. Ihr schickt Fragen, Videos und kurze Szenen direkt ein und erhaltet schriftliche Einordnungen, Sprachnachrichten und Videofeedback. Kein Termindruck, kein Anfahrtsweg — dafür schnelle Antworten genau dann, wenn die Situation gerade noch frisch ist.",
+    title: "Videoanalyse & Voice-Beratung",
+    sub: "Asynchron · Kontingent-basiert",
+    desc: "Unsere asynchrone Premium-Beratung für Menschen, die laufend dranbleiben wollen — ohne Termin-Pingpong. Ihr bucht vorab ein Kontingent und reicht über euren gesamten Buchungszeitraum Videosequenzen und Sprachnachrichten ein. Wir antworten mit strukturierten Videoanalysen, Voice-Messages und konkreten Handlungsschritten — im Rhythmus eures Alltags.",
     expect: [
-      "Direkte Kommunikation per Messenger",
-      "Videoanalyse einzelner Alltagsszenen",
-      "Festes Antwortfenster pro Werktag",
+      "Kontingent vorab buchen (Wochen oder Monate)",
+      "Videosequenzen & Sprachnachrichten einreichen",
+      "Antwort per Videoanalyse und Voice-Message",
     ],
-    nutzen: "Ihr bekommt Hilfe genau dann, wenn ihr sie braucht — ohne auf den nächsten Termin zu warten.",
-    cta: "Messengerberatung anfragen",
+    nutzen: "Echte 1:1-Begleitung ohne Kalenderdruck — ihr bekommt Profi-Antworten genau dann, wenn die Situation frisch ist.",
+    cta: "Kontingent anfragen",
     href: WA_URL,
     img: "https://picsum.photos/seed/omd-messenger/1000/700",
   },
@@ -104,7 +104,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
       <div className="shell">
         <div className="any-head">
           <div>
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 20 }}>§ Säule 02 · 24/7</div>
+            <div className="mono" style={{ color: "var(--brass)", marginBottom: 20 }}>Säule 02 · 24/7</div>
             <h2 id="anywhere-heading" className="serif any-h">
               Premium-Hundetraining,
               <br />
@@ -143,7 +143,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
               <p>{SIGNATURE.outcome}</p>
             </div>
 
-            <div className="mono" style={{ color: "var(--brass)", margin: "28px 0 12px" }}>§ Was drin ist</div>
+            <div className="mono" style={{ color: "var(--brass)", margin: "28px 0 12px" }}>Was drin ist</div>
             <ul className="signature-inc">
               {SIGNATURE.includes.map((it, j) => (
                 <li key={it}>
@@ -186,7 +186,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
                   ))}
                 </ul>
                 <div className="any-nutzen">
-                  <div className="mono" style={{ color: "var(--brass)", marginBottom: 6 }}>§ Konkreter Nutzen</div>
+                  <div className="mono" style={{ color: "var(--brass)", marginBottom: 6 }}>Konkreter Nutzen</div>
                   <div>{o.nutzen}</div>
                 </div>
                 <a className="btn-link mono" href={o.href} target="_blank" rel="noopener">{o.cta} →</a>

@@ -54,7 +54,7 @@ export default function Pillars() {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, marginBottom: 88 }} className="pillars-intro">
           <div>
-            <div className="mono" style={{ color: "var(--brass)" }}>§ Die drei Wege</div>
+            <div className="mono" style={{ color: "var(--brass)" }}>Die drei Wege</div>
             <div className="mono" style={{ marginTop: 8 }}>Drei Säulen · Ein System</div>
           </div>
           <div>
