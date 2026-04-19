@@ -67,9 +67,9 @@ export default function Jenny() {
 
         <div className="nala-block">
           <div className="nala-text">
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Nala & Sury</div>
+            <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Nala & Zuri</div>
             <h3 className="serif nala-head">
-              Zwei belgische Schäferhunde —
+              Zwei Charakterhunde —
               <br />
               <span style={{ color: "var(--ink-3)" }}>und der Grund, warum dieses System so klar ist.</span>
             </h3>
@@ -77,14 +77,15 @@ export default function Jenny() {
             <p className="nala-p">
               <strong style={{ color: "var(--cream)", fontWeight: 400 }}>Nala</strong> war mein erster eigener
               belgischer Schäferhund — reizoffen, hoch aufmerksam, auf Leistung gezüchtet. Heute teile ich
-              mein Leben mit ihr und mit <strong style={{ color: "var(--cream)", fontWeight: 400 }}>Sury</strong>,
-              meinem jüngsten Hund, gleiche Rasse, gleiche Genetik, gleicher Typ.
+              mein Leben mit ihr und mit <strong style={{ color: "var(--cream)", fontWeight: 400 }}>Zuri</strong>,
+              meinem jüngsten Hund — einem X-Herder (holländischer Schäferhund). Kein zweiter Malinois, aber
+              ein vergleichbar forderndes Kaliber: eigener Charakter, eigene Stärken, eigene Baustellen.
             </p>
             <p className="nala-p">
               Beide sind keine Anfängerhunde. Sie sind ehrlich, anspruchsvoll und lassen sich nichts erzählen.
               Und trotzdem sind sie heute voll familientauglich, verträglich, alltagstauglich — Zugpferde
-              im positivsten Sinne. Nicht, weil sie es „geworden sind“. Sondern weil wir systematisch
-              mit ihnen gearbeitet haben.
+              im positivsten Sinne. Nicht, weil sie es „geworden sind". Sondern weil wir systematisch
+              mit ihnen gearbeitet haben — mit Respekt vor den Unterschieden, nicht dagegen.
             </p>
             <p className="nala-p">
               Der Schlüssel dafür ist <em style={{ color: "var(--brass)", fontStyle: "italic" }}>klare Kommunikation</em>.
@@ -93,17 +94,17 @@ export default function Jenny() {
             </p>
 
             <div className="nala-links mono">
-              <a href={INSTAGRAM_URL} target="_blank" rel="noopener">→ Nala & Sury auf Instagram</a>
+              <a href={INSTAGRAM_URL} target="_blank" rel="noopener">→ Nala & Zuri auf Instagram</a>
             </div>
           </div>
           <div className="nala-images">
             <div className="tile">
-              <img src="https://picsum.photos/seed/omd-nala/900/1100" alt="Nala · belgischer Schäferhund" loading="lazy" />
+              <img src="https://picsum.photos/seed/omd-nala/900/1100" alt="Nala · belgischer Schäferhund (Malinois)" loading="lazy" />
               <span className="tile-caption">Nala · Belgischer Schäferhund</span>
             </div>
             <div className="tile">
-              <img src="https://picsum.photos/seed/omd-sury/900/1100" alt="Sury · belgischer Schäferhund" loading="lazy" />
-              <span className="tile-caption">Sury · Belgischer Schäferhund</span>
+              <img src="https://picsum.photos/seed/omd-zuri/900/1100" alt="Zuri · X-Herder (holländischer Schäferhund)" loading="lazy" />
+              <span className="tile-caption">Zuri · X-Herder</span>
             </div>
           </div>
         </div>
@@ -122,8 +123,15 @@ export default function Jenny() {
           .jenny-work-img { height: 220px; }
           .jenny-quote-card { background: var(--bg-3); border: 1px solid var(--line-2); padding: 14px 18px; font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--ink-2); max-width: 280px; transform: rotate(-2deg); }
 
-          .big-quote { margin-top: 80px; padding-top: 64px; border-top: 1px solid var(--line-2); max-width: 24ch; }
-          .big-quote blockquote { font-size: clamp(28px, 5vw, 52px); line-height: 1.15; letter-spacing: -0.018em; font-weight: 340; color: var(--cream); }
+          .big-quote { margin-top: 80px; padding-top: 64px; border-top: 1px solid var(--line-2); max-width: none; }
+          .big-quote blockquote { font-size: clamp(26px, 4.4vw, 52px); line-height: 1.18; letter-spacing: -0.018em; font-weight: 340; color: var(--cream); max-width: 22ch; }
+          @media (min-width: 900px) {
+            .big-quote { padding-top: 80px; margin-top: 120px; }
+            .big-quote blockquote { max-width: 24ch; font-size: clamp(36px, 5vw, 64px); }
+          }
+          @media (min-width: 1280px) {
+            .big-quote blockquote { max-width: 26ch; font-size: clamp(42px, 4.8vw, 72px); }
+          }
 
           .nala-block { margin-top: 80px; padding-top: 64px; border-top: 1px solid var(--line-2); display: grid; grid-template-columns: 1fr; gap: 40px; }
           .nala-head { font-size: clamp(28px, 5vw, 54px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; margin-bottom: 28px; }

@@ -14,6 +14,8 @@
   --moss: #8a9173;
   --rust: #a8533a;
   --cream: #f3ead9;
+  --omd-yellow: #E4FF00;
+  --omd-yellow-soft: color-mix(in oklab, #E4FF00 85%, #16130f);
 
   --serif: var(--font-serif), "Times New Roman", serif;
   --sans: var(--font-sans), "Helvetica Neue", system-ui, sans-serif;
@@ -99,7 +101,13 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 }
 @media (min-width: 1024px) { .nav-inner { height: 68px; } }
 
-.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.brand-logo {
+  height: 30px; width: auto;
+  flex-shrink: 0;
+  display: block;
+}
+@media (min-width: 1024px) { .brand-logo { height: 36px; } }
 .brand-mark {
   width: 34px; height: 34px;
   flex-shrink: 0;

@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: "Unser Hund ist reizoffen, unsicher oder schnell überfordert. Ist das bei euch richtig?",
-    a: "Das ist unser Schwerpunkt. Wir arbeiten ruhig, klar und systematisch — und bewusst ohne aversive Werkzeuge, auch bei anspruchsvollen Fällen. Jenny lebt selbst mit zwei belgischen Schäferhunden; das ist kein theoretisches Training.",
+    a: "Das ist unser Schwerpunkt. Wir arbeiten ruhig, klar und systematisch — und bewusst ohne aversive Werkzeuge, auch bei anspruchsvollen Fällen. Jenny lebt selbst mit zwei Charakterhunden (Malinois und X-Herder); das ist kein theoretisches Training.",
   },
   {
     q: "Was ist der sinnvollste erste Schritt?",
