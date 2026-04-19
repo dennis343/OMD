@@ -44,8 +44,8 @@ export default function Nav({ onOpenSelector }: NavProps) {
     <>
       <nav className="nav" style={scrolled ? { boxShadow: "0 1px 0 rgba(255,255,255,0.02)" } : undefined} aria-label="Hauptnavigation">
         <div className="shell nav-inner">
-          <a href="#top" className="brand" onClick={close} aria-label="oooh my dog — zur Startseite">
-            <span className="brand-mark" aria-hidden="true">ö</span>
+          <a href="#top" className="brand" onClick={close} aria-label="oooh my dog! — zur Startseite">
+            <img src="/logo.svg" alt="" aria-hidden="true" className="brand-logo" width={56} height={34} />
             <div>
               <div className="brand-name">oooh my dog!</div>
               <div className="brand-sub">Hundetraining mit System</div>

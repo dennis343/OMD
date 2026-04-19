@@ -30,7 +30,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
           <h1 id="hero-headline" className="serif hero-headline">
             Hundetraining
             <br />
-            mit <em style={{ fontStyle: "italic", color: "var(--brass)" }}>System.</em>
+            mit <em style={{ fontStyle: "italic", color: "var(--omd-yellow)" }}>System.</em>
             <br />
             Vor Ort, 24/7 und für Profis.
           </h1>

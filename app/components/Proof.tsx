@@ -34,6 +34,43 @@ export default function Proof() {
   return (
     <section id="stimmen" aria-labelledby="proof-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
+        <div className="google-reviews" itemScope itemType="https://schema.org/LocalBusiness">
+          <meta itemProp="name" content="oooh my dog! Hundetraining" />
+          <div className="google-reviews-inner" itemProp="aggregateRating" itemScope itemType="https://schema.org/AggregateRating">
+            <div className="google-score">
+              <div className="google-score-num serif">
+                <span itemProp="ratingValue">5,0</span>
+                <span className="google-score-max">/ 5</span>
+              </div>
+              <div className="google-stars" aria-hidden="true">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <div className="mono google-score-caption">
+                aus <span itemProp="reviewCount">48</span>+ Google-Bewertungen
+                <meta itemProp="bestRating" content="5" />
+                <meta itemProp="worstRating" content="1" />
+              </div>
+            </div>
+            <div className="google-text">
+              <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 10, letterSpacing: "0.2em" }}>
+                Bewertet auf Google
+              </div>
+              <p className="serif google-lead">
+                „Systematisch, ehrlich, wirksam." — was unsere Kund:innen auf Google schreiben, hören wir
+                auch vor Ort und online immer wieder.
+              </p>
+              <a
+                className="btn btn-primary google-cta"
+                href="https://www.google.com/search?q=oooh+my+dog+hundetraining+m%C3%BClheim"
+                target="_blank"
+                rel="noopener"
+              >
+                Alle Google-Bewertungen lesen <span className="arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <div style={{ marginBottom: 56, paddingBottom: 28, borderBottom: "1px solid var(--line)" }}>
           <div className="mono" style={{ marginBottom: 18, color: "var(--brass)" }}>Presse · Erwähnungen</div>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "baseline" }}>
@@ -118,6 +155,34 @@ export default function Proof() {
       </div>
 
       <style>{`
+        .google-reviews {
+          margin-bottom: 56px;
+          padding: 28px 24px;
+          background: var(--bg-2);
+          border: 1px solid var(--line-2);
+          border-left: 3px solid var(--omd-yellow);
+          position: relative;
+        }
+        .google-reviews-inner {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 28px;
+          align-items: center;
+        }
+        .google-score { display: flex; flex-direction: column; gap: 10px; }
+        .google-score-num { font-size: 56px; line-height: 1; letter-spacing: -0.03em; color: var(--cream); font-weight: 340; display: flex; align-items: baseline; gap: 8px; }
+        .google-score-max { font-size: 18px; color: var(--ink-3); font-style: italic; }
+        .google-stars { font-size: 24px; color: var(--omd-yellow); letter-spacing: 3px; line-height: 1; }
+        .google-score-caption { color: var(--ink-3); }
+        .google-lead { font-size: 18px; line-height: 1.5; color: var(--cream); font-weight: 340; margin-bottom: 20px; max-width: 50ch; }
+        .google-cta { background: var(--omd-yellow); color: #0a0a0a; }
+        .google-cta:hover { background: var(--omd-yellow-soft); }
+        @media (min-width: 700px) {
+          .google-reviews { padding: 36px 36px; }
+          .google-reviews-inner { grid-template-columns: auto 1fr; gap: 56px; }
+          .google-score-num { font-size: 72px; }
+        }
+
         .proof-head { margin-bottom: 48px; display: grid; grid-template-columns: 1fr; gap: 16px; }
         .proof-h { font-size: clamp(28px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; }
 
