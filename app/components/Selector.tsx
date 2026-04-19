@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL } from "@/app/lib/constants";
 
 type Answers = Record<string, string | string[]>;
 
@@ -18,182 +19,253 @@ type Step = {
 
 const SELECTOR_STEPS: Step[] = [
   {
-    id: "who",
-    question: "Wer sucht hier nach einer Lösung?",
-    hint: "Damit wir in der richtigen Säule starten.",
+    id: "track",
+    question: "Was passt zu euch?",
+    hint: "Einmal klicken — wir zeigen euch direkt die passenden Angebote.",
     options: [
-      { val: "halter", label: "Ich bin Hundehalter:in", sub: "Für mich und meinen Hund" },
-      { val: "schule", label: "Ich führe eine Hundeschule", sub: "Oder bin selbstständige:r Trainer:in" },
-      { val: "wechsel", label: "Ich will beruflich in Richtung Hund", sub: "Realitätscheck vor Ausbildung" },
+      { val: "vor-ort", label: "Vor Ort in Mülheim", sub: "Gruppenstunden, Einzelcoaching, Kennenlern-Stunde" },
+      { val: "online", label: "Online im gesamten DACH-Raum", sub: "Videoanalyse, Online-Kennenlern, Programme" },
+      { val: "pro", label: "Hundeschule oder Trainer:in", sub: "Fallsupervision, Premium-System, Berufswechsel" },
     ],
   },
   {
     id: "topic",
-    when: (a) => a.who === "halter",
-    question: "Was beschäftigt euch gerade am meisten?",
-    hint: "Mehrfach möglich — wählt bis zu zwei.",
-    multi: true,
-    max: 2,
+    when: (a) => a.track === "vor-ort",
+    question: "Was ist euer wichtigstes Thema?",
+    hint: "Wählt das Thema, das euch am meisten beschäftigt.",
     options: [
-      { val: "reizoffen", label: "Reizoffenheit, Leinenaggression, Pöbeln" },
-      { val: "unsicher", label: "Unsicherheit, Ängstlichkeit, Rückzug" },
-      { val: "energie", label: "Viel Energie, schwer abschaltbar" },
-      { val: "jagd", label: "Jagdverhalten, wenig Rückruf" },
-      { val: "alltag", label: "Alltag: Stadt, Restaurant, Besuch" },
-      { val: "basis", label: "Saubere Basis von Anfang an" },
+      { val: "orientierung", label: "Orientierung — ich brauche erst Klarheit", sub: "Profi-Blick auf Situation + passender Weg" },
+      { val: "basis", label: "Basis & Junghund", sub: "Signalkontrolle, saubere Grundlagen" },
+      { val: "fuehrung", label: "Führung & Grenzen im Alltag", sub: "Lenken und Grenzen setzen" },
+      { val: "freilauf", label: "Freilauf & Rückruf", sub: "Unsichtbare Leine" },
+      { val: "sozial", label: "Sozialkontakt & Hundebegegnung", sub: "Begegnungen ruhig und kalkulierbar" },
+      { val: "praezision", label: "Präzision & Longieren", sub: "Distanzarbeit, Körpersprache" },
+      { val: "bh", label: "Begleithundeprüfung", sub: "Prüfungsvorbereitung, alltagsnah" },
+      { val: "giftkoeder", label: "Anti-Giftköder & Alltagssicherheit", sub: "Zuverlässig abrufbar, keine Hoffnung" },
+      { val: "jagd", label: "Jagdverhalten & Jagdkontrolle", sub: "Rückruf unter echten Reizen" },
+      { val: "komplex", label: "Komplex oder eskaliert — 1:1 nötig", sub: "Einzelcoaching am Ort des Geschehens" },
     ],
   },
   {
-    id: "format",
-    when: (a) => a.who === "halter",
-    question: "Wie wollt ihr arbeiten?",
-    hint: "",
+    id: "digital",
+    when: (a) => a.track === "online",
+    question: "Wie wollt ihr online arbeiten?",
+    hint: "Alles digital — ortsunabhängig im gesamten DACH-Raum.",
     options: [
-      { val: "local", label: "Vor Ort in Mülheim", sub: "Einzel, Gruppe, Einzelcoaching" },
-      { val: "tour", label: "Vor Ort, aber nicht in Mülheim", sub: "DACH-Tour · ca. 3× pro Jahr · Warteliste" },
-      { val: "digital", label: "24/7 · Digital im gesamten DACH", sub: "Video, Live-Calls, asynchron" },
-      { val: "egal", label: "Beides ist möglich", sub: "Entscheidung erst beim Erstgespräch" },
+      { val: "einstieg", label: "Orientierung — 30 Min Zoom + Videoanalyse", sub: "Online-Kennenlern · 49 €" },
+      { val: "einschaetzung", label: "Einmalige fundierte Einschätzung", sub: "Videoanalyse Pro · asynchron" },
+      { val: "programm", label: "Strukturierter Weg (8–10 Wochen)", sub: "Signaturprogramm · reizoffen, unsicher, intensiv" },
+      { val: "laufend", label: "Laufende Begleitung (Membership)", sub: "oooh my dog! Club" },
+      { val: "messenger", label: "Hilfe per Messenger im Alltag", sub: "Messengerberatung · schriftlich + Videofeedback" },
     ],
   },
   {
-    id: "depth",
-    when: (a) => a.who === "halter",
-    question: "Wie tief wollt ihr einsteigen?",
+    id: "pro_goal",
+    when: (a) => a.track === "pro",
+    question: "Woran arbeitet ihr?",
     hint: "",
     options: [
-      { val: "einstieg", label: "Erst mal Orientierung", sub: "Einzelstunde oder Videoanalyse" },
-      { val: "messenger", label: "Laufende Hilfe per Messenger", sub: "Schriftlich + Videofeedback im Alltag" },
-      { val: "programm", label: "Strukturierter Weg", sub: "8–10 Wochen, begleitet" },
-      { val: "begleitung", label: "Laufende Begleitung", sub: "Membership, Monatsfokus" },
-    ],
-  },
-  {
-    id: "school_goal",
-    when: (a) => a.who === "schule",
-    question: "Woran arbeitet ihr gerade?",
-    hint: "",
-    options: [
-      { val: "faelle", label: "Schwierige Fälle sicher führen", sub: "Supervision, Methodik" },
-      { val: "system", label: "Das Schul-System verbessern", sub: "Angebote, Onboarding, Didaktik" },
-      { val: "premium", label: "Premium positionieren", sub: "Preise, Kundenführung, Qualität" },
-    ],
-  },
-  {
-    id: "wechsel_phase",
-    when: (a) => a.who === "wechsel",
-    question: "Wo stehst du gerade?",
-    hint: "",
-    options: [
-      { val: "idee", label: "Idee — aber viele Fragen", sub: "Passt das überhaupt zu mir?" },
-      { val: "plan", label: "Ich plane konkret", sub: "Nächste 6–12 Monate" },
-      { val: "start", label: "Ich starte bald", sub: "§11-Weg, Sachkunde, Business" },
+      { val: "faelle", label: "Schwierige Fälle sicher führen", sub: "Fallsupervision, Methodik" },
+      { val: "system", label: "Premium-System aufbauen", sub: "Angebote, Preise, Kundenführung" },
+      { val: "wechsel", label: "Beruflicher Wechsel in Richtung Hund", sub: "§11, Sachkunde, Realitätscheck" },
     ],
   },
 ];
 
 function recommend(answers: Answers): string[] {
-  const w = answers.who as string | undefined;
+  const track = answers.track as string | undefined;
 
-  if (w === "schule") {
-    if (answers.school_goal === "faelle") return ["case-lab", "premium-system"];
-    if (answers.school_goal === "system") return ["premium-system", "case-lab"];
+  if (track === "pro") {
+    if (answers.pro_goal === "faelle") return ["case-lab", "premium-system"];
+    if (answers.pro_goal === "system") return ["premium-system", "case-lab"];
+    if (answers.pro_goal === "wechsel") return ["berufswechsel-check", "premium-system"];
     return ["premium-system", "case-lab"];
   }
 
-  if (w === "wechsel") {
-    return ["berufswechsel-check", "premium-system"];
-  }
-
-  const topics = (answers.topic as string[] | undefined) || [];
-  const intense = topics.includes("reizoffen") || topics.includes("unsicher") || topics.includes("energie");
-  const format = answers.format as string | undefined;
-  const depth = answers.depth as string | undefined;
-
-  if (depth === "messenger") {
-    if (format === "local") return ["messenger-beratung", "local-kennenlern"];
-    if (format === "tour") return ["messenger-beratung", "tour-termine"];
-    return ["messenger-beratung", "videoanalyse"];
-  }
-
-  if (format === "tour") {
-    if (depth === "programm") return ["tour-termine", "signatur"];
-    if (depth === "begleitung") return ["tour-termine", "club"];
-    return ["tour-termine", "videoanalyse"];
-  }
-
-  if (depth === "einstieg") {
-    if (format === "local") return ["local-kennenlern", "online-kennenlern"];
-    if (format === "digital") return ["online-kennenlern", "videoanalyse"];
-    if (format === "egal") return ["online-kennenlern", "local-kennenlern"];
+  if (track === "online") {
+    const d = answers.digital as string | undefined;
+    if (d === "einstieg") return ["online-kennenlern", "videoanalyse"];
+    if (d === "einschaetzung") return ["videoanalyse", "online-kennenlern"];
+    if (d === "programm") return ["signatur", "online-kennenlern"];
+    if (d === "laufend") return ["club", "signatur"];
+    if (d === "messenger") return ["messenger-beratung", "videoanalyse"];
     return ["online-kennenlern", "videoanalyse"];
   }
-  if (depth === "programm") {
-    if (intense) return ["signatur", "videoanalyse"];
-    return format === "local" ? ["local-einzel", "signatur"] : ["signatur", "club"];
+
+  const topic = answers.topic as string | undefined;
+  const kennenlern = "local-kennenlern";
+  switch (topic) {
+    case "orientierung":
+      return [kennenlern, "gruppen-uebersicht"];
+    case "basis":
+      return ["gruppe-signalkontrolle", kennenlern];
+    case "fuehrung":
+      return ["gruppe-lenken", kennenlern];
+    case "freilauf":
+      return ["gruppe-unsichtbare-leine", kennenlern];
+    case "sozial":
+      return ["gruppe-sozialkontakt", kennenlern];
+    case "praezision":
+      return ["gruppe-longieren", kennenlern];
+    case "bh":
+      return ["gruppe-begleithunde", kennenlern];
+    case "giftkoeder":
+      return ["gruppe-giftkoeder", kennenlern];
+    case "jagd":
+      return ["gruppe-jagdkontrolle", kennenlern];
+    case "komplex":
+      return ["einzelcoaching", kennenlern];
+    default:
+      return [kennenlern, "gruppen-uebersicht"];
   }
-  if (depth === "begleitung") {
-    return ["club", "messenger-beratung"];
-  }
-  return ["videoanalyse", "signatur"];
 }
 
-type Result = { title: string; tag: string; desc: string };
+type Result = { title: string; tag: string; desc: string; ctaLabel: string; ctaHref: string; external?: boolean };
 
 const RESULT_MAP: Record<string, Result> = {
+  "local-kennenlern": {
+    title: "Kennenlern-Einzel · Mülheim",
+    tag: "Einstieg · Vor Ort",
+    desc: "Der strukturierte Einstieg für neue Teams direkt am Hundeplatz. Ersteinschätzung, nächste Schritte, sinnvoller Trainingsweg — statt Rätselraten. Jede Gruppe startet damit.",
+    ctaLabel: "Termin am Platz buchen",
+    ctaHref: BOOK_URL,
+    external: true,
+  },
+  "online-kennenlern": {
+    title: "Kennenlern-Einzel · Online",
+    tag: "Einstieg · 24/7",
+    desc: "30-Minuten-Zoomtermin mit Anamnesebogen, Videoanalyse von 3–5 Alltagsszenen, strategischer Trainingsplanung und schriftlicher Nachbereitung. 49 €. Von überall aus.",
+    ctaLabel: "Online-Kennenlern für 49 € buchen",
+    ctaHref: BOOK_ONLINE_URL,
+    external: true,
+  },
+  "gruppen-uebersicht": {
+    title: "Gruppenstunden-Übersicht",
+    tag: "Vor Ort · Mülheim",
+    desc: "Alle Basis- und Exklusivgruppen auf einen Blick: Signalkontrolle, Lenken & Grenzen, Unsichtbare Leine, Sozialkontakt, Longieren, Begleithunde, Anti-Giftköder, Jagdkontrolle.",
+    ctaLabel: "Gruppenstunden ansehen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-signalkontrolle": {
+    title: "Signalkontrolle (Basisgruppe)",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Saubere, wirksame Signale für die Situationen, die im Alltag zählen — Sitz, Platz, Bleib, Rückruf, Stopp. Nicht im Wohnzimmer, sondern dort, wo es darauf ankommt.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-lenken": {
+    title: "Lenken & Grenzen setzen (Basisgruppe)",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Klare, faire Führung ohne Härte. Ihr lernt, Räume zu eröffnen, Grenzen sauber zu kommunizieren und euren Hund durch komplexe Situationen zu lenken.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-unsichtbare-leine": {
+    title: "Unsichtbare Leine (Basisgruppe)",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Freilaufarbeit auf hohem Niveau: orientiertes Mitlaufen, sauberer Rückruf, freiwilliges Mitdenken. Die Verbindung, die hält — auch ohne physische Leine.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-sozialkontakt": {
+    title: "Sozialkontakt (Basisgruppe)",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Strukturierte, gut moderierte Hundebegegnungen für unsichere, überschwängliche oder pöbelige Hunde. Ihr lernt zu lesen, einzuordnen und passend zu reagieren — statt zu hoffen.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-longieren": {
+    title: "Longieren (Basisgruppe)",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Präzise Distanzarbeit über Körpersprache. Ihr lernt, euren Hund auf Entfernung zu lenken, fokussiert zu halten und feinabgestimmt zu führen.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-begleithunde": {
+    title: "Begleithunde (Basisgruppe)",
+    tag: "Basisgruppe · Vor Ort",
+    desc: "Vorbereitung auf die Begleithundeprüfung — alltagsnah, fair und mit echtem Trainingsnutzen. Auch ohne Prüfungsambition ein hervorragendes Programm für saubere Grundlagen.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-giftkoeder": {
+    title: "Anti-Giftköder (Exklusivgruppe)",
+    tag: "Exklusivgruppe · Vor Ort",
+    desc: "Strukturiertes Anti-Giftköder-Training mit echtem Aufbau — vom Markersignal über Distanzarbeit bis zur sauberen Generalisierung im Alltag. Kein „einmal Tabu üben“, sondern verlässlich abrufbar.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  "gruppe-jagdkontrolle": {
+    title: "Jagdkontrolle (Exklusivgruppe)",
+    tag: "Exklusivgruppe · Vor Ort",
+    desc: "Arbeit am echten Jagdverhalten — Rückruf unter starken Reizen, Impulskontrolle, alternative Verhaltensketten. Freilauf wird wieder möglich.",
+    ctaLabel: "Gruppe ansehen & buchen",
+    ctaHref: GRUPPEN_URL,
+    external: true,
+  },
+  einzelcoaching: {
+    title: "Einzelcoaching am Ort des Geschehens",
+    tag: "Individuell · Vor Ort",
+    desc: "Maßgeschneidertes 1:1-Training direkt dort, wo die Herausforderung entsteht — Stadt, Park, Zuhause oder unterwegs. Für komplexe, alltagsnahe Themen.",
+    ctaLabel: "Einzelcoaching anfragen",
+    ctaHref: "#kontakt",
+  },
   signatur: {
-    title: "Reizoffen & führbar",
-    tag: "Signaturprogramm · 24/7",
+    title: "Signaturprogramm",
+    tag: "Programm · 24/7",
     desc: "8–10 Wochen Premium-Programm für reizoffene, unsichere oder schnell überforderte Hunde. Intake, Videoanalyse, Kernmodule, Live-Call pro Woche, Homework-Reviews.",
+    ctaLabel: "Zum Signaturprogramm",
+    ctaHref: "#anywhere",
   },
   videoanalyse: {
     title: "Videoanalyse Pro",
     tag: "Asynchron · 24/7",
-    desc: "Ihr sendet Alltagsszenen, füllt eine strukturierte Anamnese aus und erhaltet eine priorisierte Analyse plus Trainingsplan.",
+    desc: "Ihr sendet Alltagsszenen, füllt eine strukturierte Anamnese aus und erhaltet eine priorisierte Analyse plus Trainingsplan. Einmalige fundierte Einschätzung.",
+    ctaLabel: "Zur Videoanalyse Pro",
+    ctaHref: "#anywhere",
   },
   club: {
     title: "oooh my dog! Club",
     tag: "Membership · 24/7",
     desc: "Regelmäßige Live-Sessions, Themenbibliothek, Q&A, Monatsfokus, Community. Planbare Begleitung statt jedes Mal neu buchen.",
-  },
-  "local-kennenlern": {
-    title: "Kennenlern-Coaching · Mülheim",
-    tag: "Einstieg · Vor Ort",
-    desc: "Der strukturierte Einstieg für neue Teams direkt am Hundeplatz. Ersteinschätzung, nächste Schritte, ein sinnvoller Trainingsweg — statt Rätselraten.",
-  },
-  "online-kennenlern": {
-    title: "Kennenlern-Coaching · Online",
-    tag: "Einstieg · 24/7",
-    desc: "30-Minuten-Zoomtermin mit Anamnesebogen, Videoanalyse von 3–5 Alltagsszenen, strategischer Trainingsplanung und schriftlicher Nachbereitung. 49 €. Von überall aus.",
-  },
-  "local-einzel": {
-    title: "Einzelcoaching vor Ort",
-    tag: "Individuell · Vor Ort",
-    desc: "Für Themen, die direkt im echten Umfeld bearbeitet werden sollten. Individuelle Analyse, direkte Umsetzung, klare Aufgaben.",
-  },
-  "tour-termine": {
-    title: "Tour-Termine in der DACH-Region",
-    tag: "Auf Tour · Vor Ort",
-    desc: "Ca. 3× pro Jahr besuche ich ausgewählte Regionen für strukturierte Trainings vor Ort. Begrenzte Plätze über die Warteliste — digital begleitet, persönlich angestoßen.",
+    ctaLabel: "Zum Club",
+    ctaHref: "#anywhere",
   },
   "messenger-beratung": {
     title: "Messengerberatung",
     tag: "Messenger · 24/7",
     desc: "Beratung im Tempo eures Alltags. Ihr schickt Fragen und Videos direkt ein und erhaltet schriftliche Einordnungen plus Videofeedback — ohne Termindruck.",
+    ctaLabel: "Zur Messengerberatung",
+    ctaHref: "#anywhere",
   },
   "case-lab": {
     title: "OMD Pro Case Lab",
     tag: "Fallsupervision · Pro & Business",
     desc: "Fallsupervision und strategische Begleitung für Hundeschulen mit anspruchsvollen Fällen. Mehr Sicherheit, bessere Kundenführung.",
+    ctaLabel: "Zum Case Lab",
+    ctaHref: "#pro",
   },
   "premium-system": {
     title: "Premium Hundeschule System",
     tag: "Strategie · Pro & Business",
     desc: "Strategie, Struktur und skalierbare Angebotslogik für Hundeschulen. Angebotsarchitektur, Kurslogik und Premium-Positionierung.",
+    ctaLabel: "Zum Premium-System",
+    ctaHref: "#pro",
   },
   "berufswechsel-check": {
     title: "Berufswechsel Hund · Realitätscheck",
     tag: "Orientierung · Pro & Business",
     desc: "Ehrliche Orientierung für Menschen, die beruflich in den Hundebereich wollen. Einordnung, Qualitätsmaßstäbe, saubere Entscheidungshilfe.",
+    ctaLabel: "Zum Realitätscheck",
+    ctaHref: "#pro",
   },
 };
 
@@ -409,9 +481,9 @@ export default function Selector({ open, onClose }: SelectorProps) {
         {finished && (
           <div>
             <h3 id="selector-title" className="serif" style={{ fontSize: 36, lineHeight: 1.08, letterSpacing: "-0.02em", fontWeight: 360, marginBottom: 12 }}>
-              Für euch passen wir am besten:
+              Für euch passt am besten:
             </h3>
-            <p className="mono">Zwei Empfehlungen, geordnet nach Passung</p>
+            <p className="mono">Zwei Empfehlungen, geordnet nach Passung — direkt buchbar.</p>
 
             <div style={{ marginTop: 32, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }} className="result-grid">
               {results.map((r, i) => (
@@ -423,6 +495,8 @@ export default function Selector({ open, onClose }: SelectorProps) {
                     border: `1px solid ${i === 0 ? "var(--brass)" : "var(--line-2)"}`,
                     borderRadius: 4,
                     position: "relative",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
                 >
                   {i === 0 && (
@@ -444,21 +518,27 @@ export default function Selector({ open, onClose }: SelectorProps) {
                     </div>
                   )}
                   <div className="mono" style={{ marginBottom: 10 }}>{r.tag}</div>
-                  <h4 className="serif" style={{ fontSize: 26, letterSpacing: "-0.02em", fontWeight: 400, marginBottom: 12 }}>
+                  <h4 className="serif" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 400, marginBottom: 12, lineHeight: 1.15 }}>
                     {r.title}
                   </h4>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 20 }}>{r.desc}</p>
+                  <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 20, flex: 1 }}>{r.desc}</p>
                   <div style={{ borderTop: "1px solid var(--line)", paddingTop: 16 }}>
-                    <a className="btn-link mono" href="#kontakt" onClick={onClose}>Mehr erfahren →</a>
+                    <a
+                      className="btn btn-primary"
+                      href={r.ctaHref}
+                      target={r.external ? "_blank" : undefined}
+                      rel={r.external ? "noopener" : undefined}
+                      onClick={r.external ? undefined : onClose}
+                      style={{ width: "100%", justifyContent: "center" }}
+                    >
+                      {r.ctaLabel} <span className="arrow" aria-hidden="true">→</span>
+                    </a>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div style={{ marginTop: 36, display: "flex", gap: 12, flexWrap: "wrap" }}>
-              <a className="btn btn-primary" href="#kontakt" onClick={onClose}>
-                Erstgespräch anfragen <span className="arrow" aria-hidden="true">→</span>
-              </a>
+            <div style={{ marginTop: 28, display: "flex", justifyContent: "center" }}>
               <button className="btn btn-ghost" onClick={reset} type="button">Nochmal starten</button>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import { BOOK_ONLINE_URL, BOOK_URL, WA_URL } from "@/app/lib/constants";
+import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL, WA_URL } from "@/app/lib/constants";
 
 type OffersProps = { onOpenSelector?: () => void };
 
@@ -189,8 +189,8 @@ export default function Offers(_props: OffersProps = {}) {
               Für Menschen, die direkte Begleitung möchten, ihren Hund im echten Alltag besser führen wollen und einen strukturierten Weg suchen.
             </p>
           </div>
-          <a className="btn btn-ghost" href={WA_URL} target="_blank" rel="noopener">
-            Per WhatsApp melden <span className="arrow" aria-hidden="true">→</span>
+          <a className="btn btn-ghost" href={GRUPPEN_URL} target="_blank" rel="noopener">
+            Gruppenstunden ansehen <span className="arrow" aria-hidden="true">→</span>
           </a>
         </div>
 
