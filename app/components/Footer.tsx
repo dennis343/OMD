@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
           {COLS.map((c) => (
             <nav key={c.h} aria-label={c.h}>
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 18 }}>{c.h}</div>
+              <div className="eyebrow" style={{ marginBottom: 18 }}>{c.h}</div>
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
                 {c.items.map(([label, href]) => (
                   <li key={label}>
@@ -98,7 +98,7 @@ export default function Footer() {
         </div>
 
         <div className="foot-bottom">
-          <span className="mono">© 2026 oooh my dog! · Jennifer Bakir <span style={{ color: "var(--brass)" }}>+</span> Team</span>
+          <span className="mono">© 2026 oooh my dog! · Jennifer Bakir <span style={{ color: "var(--accent-ink)", fontWeight: 700 }}>+</span> Team</span>
           <div className="foot-legal">
             <button className="mono" onClick={() => setLegal("impressum")} type="button">Impressum</button>
             <button className="mono" onClick={() => setLegal("datenschutz")} type="button">Datenschutz</button>

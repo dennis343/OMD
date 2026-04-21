@@ -11,11 +11,11 @@ export default function FinalCTA({ onOpenSelector }: FinalCTAProps) {
       style={{ position: "relative", overflow: "hidden", borderTop: "2px solid var(--omd-yellow)" }}
     >
       <div className="shell" style={{ position: "relative", zIndex: 2 }}>
-        <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 28 }}>Nächster Schritt</div>
+        <div className="eyebrow" style={{ marginBottom: 30 }}>Nächster Schritt</div>
         <h2 id="kontakt-heading" className="serif final-h">
           Euer Hund wartet nicht.
           <br />
-          <em style={{ color: "var(--omd-yellow)" }}>Fangen wir an.</em>
+          <em className="hl-yellow">Fangen wir an.</em>
         </h2>
         <p className="final-p">
           Ob ihr lokal, digital oder als Profi bei uns richtig seid — ein kurzes Gespräch bringt

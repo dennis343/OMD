@@ -22,7 +22,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
     >
       <div className="shell">
         <div className="hero-meta">
-          <span className="mono" style={{ color: "var(--omd-yellow)" }}>Vor Ort · Online · Pro & Business</span>
+          <span className="eyebrow">Vor Ort · Online · Pro & Business</span>
           <span className="mono">Mülheim · Ruhrgebiet · DACH</span>
         </div>
 
@@ -30,7 +30,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
           <h1 id="hero-headline" className="serif hero-headline">
             Reizoffene Hunde.
             <br />
-            <em style={{ fontStyle: "italic", color: "var(--omd-yellow)" }}>Klar geführt.</em>
+            <em className="hl-yellow" style={{ fontStyle: "italic" }}>Klar geführt.</em>
             <br />
             Für ein echtes Miteinander.
           </h1>
@@ -58,7 +58,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
         <ul className="trust-strip" aria-label="Vertrauenssignale">
           {TRUST.map((t) => (
             <li key={t} className="trust-item">
-              <span style={{ color: "var(--brass)" }} aria-hidden="true">+</span> {t}
+              <span className="accent-ink" aria-hidden="true" style={{ fontWeight: 700 }}>+</span> {t}
             </li>
           ))}
         </ul>

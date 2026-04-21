@@ -63,13 +63,13 @@ export default function Pro() {
       <div className="shell">
         <div className="pro-head">
           <div>
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>Säule 03 · Pro & Business</div>
+            <div className="eyebrow" style={{ marginBottom: 18 }}>Säule 03 · Pro & Business</div>
             <div className="label" style={{ color: "var(--ink-3)" }}>Hundeschulen · Trainer:innen · Fachkunden</div>
           </div>
           <div>
             <h2 id="pro-heading" className="serif pro-h2">
               Für Profis, die
-              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> System </em>
+              <em className="hl-yellow" style={{ fontStyle: "italic" }}> System </em>
               über Stundendruck stellen.
               <span style={{ color: "var(--ink-3)" }}> Struktur, Qualität, Premium-Niveau.</span>
             </h2>
@@ -87,7 +87,7 @@ export default function Pro() {
             <span className="tile-caption">Jenny · Pro-Beratung</span>
           </div>
           <div>
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>Warum Jenny die richtige Ansprechpartnerin ist</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 16 }}>Warum Jenny die richtige Ansprechpartnerin ist</div>
             <h3 className="serif why-h">
               Wer andere Hundeschulen beraten will,
               <br />
@@ -131,25 +131,25 @@ export default function Pro() {
               </div>
 
               <div className="pro-block">
-                <div className="mono" style={{ color: "var(--moss)", marginBottom: 6 }}>→ Für wen</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 6 }}>→ Für wen</div>
                 <p className="pro-p">{m.forWho}</p>
               </div>
 
               <div className="pro-block">
-                <div className="mono" style={{ color: "var(--moss)", marginBottom: 6 }}>→ Konkreter Nutzen für euch</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 6 }}>→ Konkreter Nutzen für euch</div>
                 <p className="pro-p" style={{ color: "var(--cream)" }}>{m.nutzen}</p>
               </div>
 
               <div className="pro-block" style={{ flex: 1 }}>
-                <div className="mono" style={{ color: "var(--moss)", marginBottom: 8 }}>→ Was drin ist</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Was drin ist</div>
                 <ul className="pro-list">
                   {m.includes.map((it) => (
-                    <li key={it}><span style={{ color: "var(--moss)" }} aria-hidden="true">+</span> {it}</li>
+                    <li key={it}><span style={{ color: "var(--accent-ink)" }} aria-hidden="true">+</span> {it}</li>
                   ))}
                 </ul>
               </div>
 
-              <a className="btn-link" href={WA_URL} target="_blank" rel="noopener" style={{ color: "var(--moss)" }}>
+              <a className="btn-link" href={WA_URL} target="_blank" rel="noopener" style={{ color: "var(--accent-ink)" }}>
                 {m.cta} →
               </a>
             </article>
@@ -158,7 +158,7 @@ export default function Pro() {
 
         <div className="refs-block">
           <div style={{ marginBottom: 32 }}>
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 12 }}>Referenzen · Schulen, mit denen wir arbeiten</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Referenzen · Schulen, mit denen wir arbeiten</div>
             <h3 className="serif refs-head">Keine Behauptungen, sondern Zusammenarbeit.</h3>
           </div>
           <div className="refs-grid">
@@ -176,7 +176,7 @@ export default function Pro() {
           </div>
 
           <div className="ref-video">
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 16 }}>Videoausschnitt · Pro Case Lab in Aktion</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 16 }}>Videoausschnitt · Pro Case Lab in Aktion</div>
             <div className="tile ref-video-tile">
               <img src="https://picsum.photos/seed/pro-video/1600/900" alt="Pro Case Lab · Videoausschnitt" loading="lazy" />
               <div className="play-btn">
@@ -189,7 +189,7 @@ export default function Pro() {
 
         <div className="pro-foot">
           <div className="pro-foot-quote">
-            <div className="mono" style={{ color: "var(--moss)", marginBottom: 10 }}>→ Einstieg in Pro & Business</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>→ Einstieg in Pro & Business</div>
             <p className="serif">
               Kurzes Erstgespräch, ehrliche Diagnose: Wo steht ihr, und welches Modul trägt jetzt den größten Hebel?
             </p>
@@ -210,7 +210,7 @@ export default function Pro() {
         .why-h { font-size: clamp(24px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 340; margin-bottom: 28px; }
         .why-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .why-cell { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
-        .why-n { color: var(--moss); font-style: italic; font-size: 22px; font-weight: 300; }
+        .why-n { color: var(--accent-ink); font-style: italic; font-size: 22px; font-weight: 500; }
         .why-t { font-size: 18px; letter-spacing: -0.015em; color: var(--cream); margin-bottom: 6px; }
         .why-d { font-size: 14px; line-height: 1.55; color: var(--ink-2); }
 
@@ -219,7 +219,7 @@ export default function Pro() {
         .pro-card.is-featured { background: var(--bg-2); }
         .pro-badge { position: absolute; top: -1px; right: 20px; background: var(--omd-yellow); color: #07071A; padding: 4px 12px; border-radius: 0 0 6px 6px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
         .pro-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
-        .pro-n { font-size: 32px; font-style: italic; color: var(--moss); font-weight: 300; }
+        .pro-n { font-size: 32px; font-style: italic; color: var(--accent-ink); font-weight: 500; }
         .pro-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 380; margin-bottom: 20px; line-height: 1.08; }
         .pro-block { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 16px; }
         .pro-p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }

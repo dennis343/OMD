@@ -52,7 +52,7 @@ export default function Proof() {
               </div>
             </div>
             <div className="google-text">
-              <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 10, letterSpacing: "0.2em" }}>
+              <div className="eyebrow" style={{ marginBottom: 12, letterSpacing: "0.2em" }}>
                 Bewertet auf Google
               </div>
               <p className="serif google-lead">
@@ -72,7 +72,7 @@ export default function Proof() {
         </div>
 
         <div style={{ marginBottom: 56, paddingBottom: 28, borderBottom: "1px solid var(--line)" }}>
-          <div className="mono" style={{ marginBottom: 18, color: "var(--brass)" }}>Presse · Erwähnungen</div>
+          <div className="mono" style={{ marginBottom: 18, color: "var(--accent-ink)" }}>Presse · Erwähnungen</div>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "baseline" }}>
             {PRESS.map((p) => (
               <span key={p} className="serif" style={{ fontSize: "clamp(16px, 2.2vw, 22px)", color: "var(--ink-3)", fontStyle: "italic", fontWeight: 340 }}>
@@ -84,12 +84,12 @@ export default function Proof() {
 
         <div className="proof-head">
           <div>
-            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Stimmen · Ergebnisse</div>
+            <div className="eyebrow">Stimmen · Ergebnisse</div>
           </div>
           <h2 id="proof-heading" className="serif proof-h">
             Nicht unsere Worte.
             <br />
-            <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}>Eure Ergebnisse.</em>
+            <em className="hl-yellow" style={{ fontStyle: "italic" }}>Eure Ergebnisse.</em>
           </h2>
         </div>
 
@@ -100,7 +100,7 @@ export default function Proof() {
                 <img src={t.img} alt={t.who} loading="lazy" />
               </div>
               <div className="testi-content">
-                <div className="serif" aria-hidden="true" style={{ fontSize: 44, color: "var(--brass)", lineHeight: 0.5, marginBottom: 16 }}>„</div>
+                <div className="serif" aria-hidden="true" style={{ fontSize: 44, color: "var(--accent-ink)", lineHeight: 0.5, marginBottom: 16 }}>„</div>
                 <blockquote className="serif testi-quote">{t.quote}</blockquote>
                 <figcaption style={{ borderTop: "1px solid var(--line)", paddingTop: 14, marginTop: 18 }}>
                   <div style={{ fontSize: 14, color: "var(--ink-2)" }}>{t.who}</div>
@@ -112,7 +112,7 @@ export default function Proof() {
         </div>
 
         <div style={{ marginTop: 64 }}>
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>Case Studies · Vorher / Nachher</div>
+          <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 24 }}>Case Studies · Vorher / Nachher</div>
           <div className="cases-wrap">
             {CASES.map((c) => (
               <div key={c.tag} className="case-row">
@@ -123,7 +123,7 @@ export default function Proof() {
                 </div>
                 <div className="case-dauer mono">{c.dauer}</div>
                 <div className="case-after">
-                  <div className="mono" style={{ color: "var(--brass)", marginBottom: 4 }}>Nachher</div>
+                  <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 4 }}>Nachher</div>
                   <div className="serif" style={{ fontStyle: "italic", color: "var(--cream)" }}>→ {c.after}</div>
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function Proof() {
         </div>
 
         <div style={{ marginTop: 56 }}>
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 16 }}>Videoausschnitt · OMD in Arbeit</div>
+          <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 16 }}>Videoausschnitt · OMD in Arbeit</div>
           <div className="tile proof-video">
             <img src="https://picsum.photos/seed/omd-showreel/1600/900" alt="OMD Showreel" loading="lazy" />
             <div className="play-btn">
@@ -194,7 +194,7 @@ export default function Proof() {
 
         .cases-wrap { background: var(--line-2); border: 1px solid var(--line-2); display: grid; gap: 2px; }
         .case-row { display: grid; grid-template-columns: 1fr; background: var(--bg); padding: 22px 24px; gap: 14px; }
-        .case-tag { color: var(--brass); }
+        .case-tag { color: var(--accent-ink); font-weight: 700; }
         .case-before, .case-after { font-size: 14px; color: var(--ink-3); line-height: 1.45; }
         .case-dauer { color: var(--ink-4); }
 

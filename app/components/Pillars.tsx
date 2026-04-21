@@ -54,13 +54,13 @@ export default function Pillars() {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64, marginBottom: 88 }} className="pillars-intro">
           <div>
-            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Die drei Wege</div>
-            <div className="mono" style={{ marginTop: 8 }}>Drei Säulen · Ein System</div>
+            <div className="eyebrow">Die drei Wege</div>
+            <div className="mono" style={{ marginTop: 12 }}>Drei Säulen · Ein System</div>
           </div>
           <div>
             <h2 id="pillars-heading" className="serif" style={{ fontSize: "clamp(36px, 5vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340 }}>
               Drei klare Wege —
-              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> ein System.</em>
+              <em className="hl-yellow" style={{ fontStyle: "italic" }}> ein System.</em>
               <span style={{ color: "var(--ink-3)" }}> Je nachdem, wo ihr steht und was euer Hund braucht.</span>
             </h2>
           </div>
@@ -102,7 +102,7 @@ export default function Pillars() {
               )}
 
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 40 }}>
-                <span className="serif" style={{ fontSize: 48, fontStyle: "italic", color: p.accent, fontWeight: 300 }}>{p.num}</span>
+                <span className="serif" style={{ fontSize: 48, fontStyle: "italic", color: p.featured ? "var(--accent-ink)" : p.accent, fontWeight: 400 }}>{p.num}</span>
                 <span className="mono">{p.tag}</span>
               </div>
 
@@ -128,12 +128,12 @@ export default function Pillars() {
                     }}
                   >
                     <span>{it}</span>
-                    <span style={{ color: p.accent, fontFamily: "var(--mono)", fontSize: 11 }} aria-hidden="true">→</span>
+                    <span style={{ color: p.featured ? "var(--accent-ink)" : p.accent, fontFamily: "var(--mono)", fontSize: 11, fontWeight: 700 }} aria-hidden="true">→</span>
                   </li>
                 ))}
               </ul>
 
-              <a href={p.href} className="btn-link mono" style={{ color: p.accent }}>
+              <a href={p.href} className="btn-link mono" style={{ color: p.featured ? "var(--accent-ink)" : p.accent }}>
                 {p.cta} →
               </a>
             </article>
