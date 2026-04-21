@@ -122,7 +122,7 @@ export default function ConsentManager({ gtmId, fbPixelId }: Props) {
     <div role="dialog" aria-modal="false" aria-label="Cookie-Einstellungen" className="consent-banner">
       <div className="consent-inner">
         <div className="consent-text">
-          <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 8 }}>Cookies &amp; Tracking</div>
+          <div className="eyebrow" style={{ marginBottom: 10 }}>Cookies &amp; Tracking</div>
           <p>
             Wir nutzen Cookies für eine bessere Website-Erfahrung sowie optionale Statistik- und Marketing-Tools.
             Nur mit eurer Zustimmung werden Google Tag Manager und Facebook-Pixel geladen. Details in der
@@ -154,7 +154,8 @@ export default function ConsentManager({ gtmId, fbPixelId }: Props) {
         }
         .consent-inner { display: grid; gap: 16px; }
         .consent-text p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); max-width: 68ch; }
-        .consent-text a { color: var(--omd-yellow); text-decoration: underline; text-underline-offset: 3px; }
+        .consent-text a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--omd-yellow); text-underline-offset: 3px; text-decoration-thickness: 2px; font-weight: 500; }
+        .consent-text a:hover { text-decoration-color: var(--ink); }
         .consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }
         .consent-btn-accept { background: var(--omd-yellow); color: #0a0a0a; }
         .consent-btn-accept:hover { background: var(--omd-yellow); filter: brightness(0.92); }

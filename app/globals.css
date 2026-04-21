@@ -23,6 +23,11 @@
   --secondary: #C6C6C6;
   --omd-yellow: #E4FF00;
   --omd-yellow-soft: color-mix(in oklab, #E4FF00 85%, #F7F7F7);
+  /* accent-ink is the READABLE representation of the yellow primary:
+     on light sections it resolves to dark ink (so text is legible),
+     on dark sections it resolves to bright yellow (the iconic brand colour).
+     Decorative yellow elements (dots, bars, buttons, highlighter strips) always use --omd-yellow. */
+  --accent-ink: #07071A;
 
   /* Manrope everywhere — the old `.serif` class stays for compatibility but now renders Manrope with tight tracking */
   --serif: var(--font-sans), "Manrope", system-ui, sans-serif;
@@ -43,6 +48,7 @@
   --line: rgba(247, 247, 247, 0.08);
   --line-2: rgba(247, 247, 247, 0.18);
   --cream: #F7F7F7;
+  --accent-ink: #E4FF00;
   background: var(--bg);
   color: var(--ink);
 }
@@ -110,6 +116,55 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 /* `.serif` kept as a class name for backwards compatibility — now renders Manrope tight/bold for headline use. */
 .serif { font-family: var(--sans); font-weight: 600; letter-spacing: -0.025em; font-feature-settings: "ss01", "cv11"; }
 .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
+
+/* Yellow highlighter behind readable dark text — used for italic emphasis in headlines on LIGHT sections.
+   Inside .theme-dark the highlighter is suppressed and we fall back to bright-yellow text (keeps the iconic dark look). */
+.hl-yellow {
+  color: var(--ink);
+  background-image: linear-gradient(180deg, transparent 62%, var(--omd-yellow) 62%, var(--omd-yellow) 94%, transparent 94%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.theme-dark .hl-yellow {
+  color: var(--omd-yellow);
+  background-image: none;
+  padding: 0;
+}
+
+/* Eyebrow label variant — readable dark ink + yellow dash marker on light sections;
+   on dark sections it reverts to bright-yellow mono text (the current look). */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 3px;
+  background: var(--omd-yellow);
+  flex-shrink: 0;
+  border-radius: 2px;
+}
+.theme-dark .eyebrow {
+  color: var(--omd-yellow);
+  font-weight: 500;
+}
+.theme-dark .eyebrow::before { display: none; }
+
+/* Subtle accent text — uses readable ink on light, yellow on dark. For inline tokens
+   like numerals ("01", "02") and prefixes ("+ Mehrwert:"). */
+.accent-ink { color: var(--accent-ink); }
 .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
 
 /* ---------- Layout — mobile first ---------- */
@@ -171,14 +226,18 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   position: relative;
   font-size: 13.5px; color: var(--ink-2);
   transition: color .2s;
-  padding: 4px 0;
+  padding: 4px 2px;
+  font-weight: 500;
 }
-.nav-links a:hover { color: var(--cream); }
-.nav-links a.is-active { color: var(--omd-yellow); }
+.nav-links a:hover { color: var(--ink); }
+.nav-links a.is-active {
+  color: var(--ink);
+  font-weight: 600;
+}
 .nav-links a.is-active::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; bottom: -6px;
+  left: 0; right: 0; bottom: -8px;
   height: 2px;
   background: var(--omd-yellow);
   border-radius: 1px;
@@ -195,13 +254,15 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   background: var(--omd-yellow);
   color: #07071A;
   border: 1px solid var(--omd-yellow);
-  padding: 9px 18px; border-radius: 999px;
+  padding: 10px 20px;
+  min-height: 40px;
+  border-radius: 999px;
   font-size: 13px; letter-spacing: 0.02em;
   font-weight: 600;
-  transition: all .2s;
+  transition: background .2s, border-color .2s, transform .15s, box-shadow .2s;
   white-space: nowrap;
 }
-.nav-cta:hover { background: #c7e000; border-color: #c7e000; }
+.nav-cta:hover { background: #c7e000; border-color: #c7e000; transform: translateY(-1px); box-shadow: 0 6px 20px -8px rgba(228, 255, 0, 0.5); }
 .nav-cta-desktop { display: none; }
 @media (min-width: 1024px) { .nav-cta-desktop { display: inline-flex; } }
 
@@ -277,8 +338,12 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   font-weight: 500;
   opacity: 0.7;
 }
-.mobile-links a:active { color: var(--omd-yellow); padding-left: 8px; }
-.mobile-links a.is-active { color: var(--omd-yellow); }
+.mobile-links a:active { color: var(--ink); padding-left: 8px; background: color-mix(in oklab, var(--omd-yellow) 14%, transparent); }
+.mobile-links a.is-active {
+  color: var(--ink);
+  padding-left: 14px;
+  box-shadow: inset 3px 0 0 var(--omd-yellow);
+}
 .mobile-links a.is-active::after { color: var(--omd-yellow); opacity: 1; content: "●"; }
 
 .mobile-cta-group { display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px; }
@@ -288,13 +353,16 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 13px 20px;
+  min-height: 44px;
   border-radius: 999px;
   font-size: 14px; letter-spacing: 0.005em;
-  transition: all .2s;
+  font-weight: 500;
+  transition: background .2s, color .2s, border-color .2s, transform .15s;
   cursor: pointer;
   white-space: nowrap;
 }
-@media (min-width: 640px) { .btn { padding: 14px 22px; } }
+@media (min-width: 640px) { .btn { padding: 14px 22px; font-size: 14.5px; } }
+@media (min-width: 1024px) { .btn { padding: 15px 24px; font-size: 15px; } }
 .btn-primary { background: var(--omd-yellow); color: #07071A; font-weight: 600; }
 .btn-primary:hover { background: #c7e000; transform: translateY(-1px); }
 .btn-secondary { background: var(--cream); color: var(--bg); font-weight: 500; }
@@ -439,20 +507,28 @@ section { position: relative; }
 }
 
 /* ---------- Training Slider (auto-run infinite marquee) ---------- */
+/* The outer wrapper clips (overflow:hidden) so the track can never escape its card.
+   The track is absolutely positioned so its width doesn't force the parent to grow.
+   Edge fade via mask-image softens the clipping edge. */
 .training-slider {
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
   background: var(--bg-2);
   border: 1px solid var(--line);
   border-radius: 8px;
-  mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  contain: layout paint;
 }
 .training-slider-track {
+  position: absolute;
+  top: 8px;
+  left: 0;
   display: flex;
-  gap: 12px;
-  width: max-content;
-  padding: 10px;
+  gap: 10px;
+  padding: 0 8px;
   animation: tsScroll linear infinite;
   will-change: transform;
 }
@@ -474,7 +550,8 @@ section { position: relative; }
   position: absolute; left: 10px; bottom: 8px; z-index: 2;
   font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em;
   text-transform: uppercase; color: #F7F7F7;
-  text-shadow: 0 1px 8px rgba(7,7,26,0.55);
+  text-shadow: 0 1px 8px rgba(7,7,26,0.75);
+  font-weight: 600;
 }
 @keyframes tsScroll {
   from { transform: translateX(0); }

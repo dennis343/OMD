@@ -243,10 +243,10 @@ export default function Offers(_props: OffersProps = {}) {
       <div className="shell">
         <div className="local-head">
           <div>
-            <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 16 }}>Säule 01 · Vor Ort</div>
+            <div className="eyebrow" style={{ marginBottom: 18 }}>Säule 01 · Vor Ort</div>
             <h2 id="offers-heading" className="serif local-h2">
               Training, das im
-              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> Alltag </em>
+              <em className="hl-yellow" style={{ fontStyle: "italic" }}> Alltag </em>
               sitzt.
               <br />
               <span style={{ color: "var(--ink-3)" }}>In Mülheim und Umgebung.</span>
@@ -267,7 +267,7 @@ export default function Offers(_props: OffersProps = {}) {
         </div>
 
         <div className="kennenlern-head">
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>Einstieg · Zwei Wege</div>
+          <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>Einstieg · Zwei Wege</div>
           <h3 className="serif kennenlern-h">So beginnt die Zusammenarbeit mit uns.</h3>
           <p className="kennenlern-lead">
             Bevor ihr in einer Gruppe oder Einzelstunde startet, sehen wir euch einmal sauber an. Persönlich am Hundeplatz — oder per Videoanalyse von überall aus.
@@ -294,20 +294,20 @@ export default function Offers(_props: OffersProps = {}) {
               <p className="entry-desc">{e.desc}</p>
 
               <div className="entry-block">
-                <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Gut für euch, wenn</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Gut für euch, wenn</div>
                 <p className="entry-p">{e.forWho}</p>
               </div>
 
               <div className="entry-block">
-                <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Konkreter Nutzen</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Konkreter Nutzen</div>
                 <p className="entry-p" style={{ color: "var(--cream)" }}>{e.nutzen}</p>
               </div>
 
               <div className="entry-block" style={{ flex: 1 }}>
-                <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>→ Was ihr erwarten könnt</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>→ Was ihr erwarten könnt</div>
                 <ul className="entry-list">
                   {e.expect.map((it) => (
-                    <li key={it}><span style={{ color: e.accent }} aria-hidden="true">+</span> {it}</li>
+                    <li key={it}><span style={{ color: "var(--accent-ink)", fontWeight: 700 }} aria-hidden="true">+</span> {it}</li>
                   ))}
                 </ul>
               </div>
@@ -338,20 +338,20 @@ export default function Offers(_props: OffersProps = {}) {
 
           <div className="individual-cols">
             <div className="entry-block">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Gut für euch, wenn</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Gut für euch, wenn</div>
               <p className="entry-p">{INDIVIDUAL.forWho}</p>
             </div>
 
             <div className="entry-block">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Konkreter Nutzen</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Konkreter Nutzen</div>
               <p className="entry-p" style={{ color: "var(--cream)" }}>{INDIVIDUAL.nutzen}</p>
             </div>
 
             <div className="entry-block">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>→ Was ihr erwarten könnt</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>→ Was ihr erwarten könnt</div>
               <ul className="entry-list">
                 {INDIVIDUAL.expect.map((it) => (
-                  <li key={it}><span style={{ color: INDIVIDUAL.accent }} aria-hidden="true">+</span> {it}</li>
+                  <li key={it}><span style={{ color: "var(--accent-ink)", fontWeight: 700 }} aria-hidden="true">+</span> {it}</li>
                 ))}
               </ul>
             </div>
@@ -376,18 +376,18 @@ export default function Offers(_props: OffersProps = {}) {
             <p className="tour-desc">{TOUR.desc}</p>
 
             <div className="tour-row">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Gut für euch, wenn</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Gut für euch, wenn</div>
               <p>{TOUR.forWho}</p>
             </div>
             <div className="tour-row">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Konkreter Nutzen</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Konkreter Nutzen</div>
               <p style={{ color: "var(--cream)" }}>{TOUR.nutzen}</p>
             </div>
 
-            <div className="mono" style={{ color: "var(--brass)", margin: "24px 0 10px" }}>→ Was ihr erwarten könnt</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", margin: "24px 0 10px" }}>→ Was ihr erwarten könnt</div>
             <ul className="tour-list">
               {TOUR.expect.map((it) => (
-                <li key={it}><span style={{ color: "var(--brass)" }} aria-hidden="true">+</span> {it}</li>
+                <li key={it}><span style={{ color: "var(--accent-ink)" }} aria-hidden="true">+</span> {it}</li>
               ))}
             </ul>
 
@@ -398,7 +398,7 @@ export default function Offers(_props: OffersProps = {}) {
         </article>
 
         <div className="group-head">
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>Basisgruppen · Sortiert nach Wirkung</div>
+          <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>Basisgruppen · Sortiert nach Wirkung</div>
           <h3 className="serif group-h">Sortiert nach Wirkung — nicht nach Kursliste.</h3>
           <p className="group-lead">
             Jede Gruppe hat ein klares Ziel und einen konkreten Nutzen für euren Alltag. Ihr bucht nicht „eine Stunde“, sondern eine Veränderung.
@@ -408,7 +408,7 @@ export default function Offers(_props: OffersProps = {}) {
         <div className="group-grid">
           {BASIS_GROUPS.map((c) => (
             <div key={c.name} className="group-card">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>{c.name}</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>{c.name}</div>
               <h4 className="serif group-title">{c.title}</h4>
               <p className="group-nutzen">
                 <em style={{ color: "var(--ink-3)", fontStyle: "italic" }}>Nutzen:</em> {c.nutzen}
@@ -440,10 +440,10 @@ export default function Offers(_props: OffersProps = {}) {
         <div className="exklusiv-block">
           <div className="exklusiv-badge">EXKLUSIV · PREMIUM</div>
           <div className="exklusiv-head">
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 12, letterSpacing: "0.2em" }}>{EXKLUSIV_GROUP.name}</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12, letterSpacing: "0.2em" }}>{EXKLUSIV_GROUP.name}</div>
             <h3 className="serif exklusiv-h">{EXKLUSIV_GROUP.title}</h3>
             <p className="exklusiv-nutzen">
-              <em style={{ color: "var(--brass)", fontStyle: "italic" }}>Exklusiv-Nutzen:</em> {EXKLUSIV_GROUP.nutzen}
+              <em style={{ color: "var(--accent-ink)", fontStyle: "italic" }}>Exklusiv-Nutzen:</em> {EXKLUSIV_GROUP.nutzen}
             </p>
           </div>
           <ul className="exklusiv-list">
@@ -464,7 +464,7 @@ export default function Offers(_props: OffersProps = {}) {
                 </div>
                 <div className="exklusiv-item-desc">{it.desc}</div>
                 <div className="exklusiv-item-mehrwert">
-                  <span style={{ color: "var(--omd-yellow)", fontWeight: 600 }}>+ Mehrwert:</span> {it.mehrwert}
+                  <span style={{ color: "var(--accent-ink)", fontWeight: 700 }}>+ Mehrwert:</span> {it.mehrwert}
                 </div>
               </li>
             ))}
@@ -475,7 +475,7 @@ export default function Offers(_props: OffersProps = {}) {
           <span>Hinweis</span>
           <span style={{ flex: 1 }}>
             Jede Gruppe startet mit einem{" "}
-            <a href={BOOK_URL} target="_blank" rel="noopener" style={{ color: "var(--brass)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
+            <a href={BOOK_URL} target="_blank" rel="noopener" style={{ color: "var(--accent-ink)", textDecoration: "underline", textUnderlineOffset: "3px" }}>
               Kennenlern-Einzel
             </a>{" "}
             — damit wir euch passend zuordnen können.
@@ -483,7 +483,7 @@ export default function Offers(_props: OffersProps = {}) {
         </div>
 
         <div className="pakete-head">
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 12 }}>Pakete · Premium-Bundles</div>
+          <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Pakete · Premium-Bundles</div>
           <h3 className="serif pakete-h">
             Drei besondere Pakete — <span style={{ color: "var(--ink-3)" }}>für die wichtigsten Lebenslagen.</span>
           </h3>
@@ -512,16 +512,16 @@ export default function Offers(_props: OffersProps = {}) {
               <p className="paket-desc">{p.desc}</p>
 
               <div className="paket-block">
-                <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>→ Inhalte</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>→ Inhalte</div>
                 <ul className="paket-list">
                   {p.inhalte.map((it) => (
-                    <li key={it}><span style={{ color: p.accent }} aria-hidden="true">+</span> {it}</li>
+                    <li key={it}><span style={{ color: p.accent === "var(--brass)" ? "var(--accent-ink)" : p.accent, fontWeight: 700 }} aria-hidden="true">+</span> {it}</li>
                   ))}
                 </ul>
               </div>
 
               <div className="paket-block">
-                <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>→ Inklusiv-Leistungen</div>
+                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>→ Inklusiv-Leistungen</div>
                 <ul className="paket-inklusiv">
                   {PAKET_INKLUSIV.map((it) => (
                     <li key={it}>· {it}</li>
@@ -614,7 +614,7 @@ export default function Offers(_props: OffersProps = {}) {
         .exklusiv-item:last-child { border-bottom: none; padding-bottom: 0; }
         .exklusiv-item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
         .exklusiv-item-name { font-size: 22px; color: var(--cream); letter-spacing: -0.015em; font-weight: 380; }
-        .exklusiv-item-flag { font-size: 10px; color: var(--brass); letter-spacing: 0.22em; border: 1px solid var(--brass); padding: 2px 8px; }
+        .exklusiv-item-flag { font-size: 10px; color: var(--accent-ink); letter-spacing: 0.22em; border: 1px solid var(--brass); padding: 2px 8px; font-weight: 700; }
         .exklusiv-item-desc { font-size: 14px; line-height: 1.55; color: var(--ink-2); margin-bottom: 10px; max-width: 72ch; }
         .exklusiv-item-mehrwert { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); max-width: 72ch; }
 

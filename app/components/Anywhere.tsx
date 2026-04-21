@@ -105,11 +105,11 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
       <div className="shell">
         <div className="any-head">
           <div>
-            <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 20 }}>Säule 02 · Online</div>
+            <div className="eyebrow" style={{ marginBottom: 22 }}>Säule 02 · Online</div>
             <h2 id="anywhere-heading" className="serif any-h">
               Dieselbe Methodik.
               <br />
-              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}>Ohne Anfahrt.</em>
+              <em className="hl-yellow" style={{ fontStyle: "italic" }}>Ohne Anfahrt.</em>
               <br />
               <span style={{ color: "var(--ink-3)" }}>Für reizoffene Hunde in ganz DACH.</span>
             </h2>
@@ -138,19 +138,19 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
             <p className="signature-desc">{SIGNATURE.desc}</p>
 
             <div className="signature-box">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Situation jetzt</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Situation jetzt</div>
               <p>{SIGNATURE.situation}</p>
             </div>
             <div className="signature-box">
-              <div className="mono" style={{ color: "var(--brass)", marginBottom: 8 }}>→ Veränderung danach</div>
+              <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 8 }}>→ Veränderung danach</div>
               <p>{SIGNATURE.outcome}</p>
             </div>
 
-            <div className="mono" style={{ color: "var(--brass)", margin: "28px 0 12px" }}>Was drin ist</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", margin: "28px 0 12px" }}>Was drin ist</div>
             <ul className="signature-inc">
               {SIGNATURE.includes.map((it, j) => (
                 <li key={it}>
-                  <span className="serif" style={{ color: "var(--brass)", fontStyle: "italic", fontSize: 16 }}>0{j + 1}</span>
+                  <span className="serif" style={{ color: "var(--accent-ink)", fontStyle: "italic", fontSize: 16 }}>0{j + 1}</span>
                   <span>{it}</span>
                 </li>
               ))}
@@ -179,7 +179,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
               </div>
               <div className="any-card-body">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 16 }}>
-                  <span className="serif" style={{ fontSize: 32, fontStyle: "italic", color: "var(--brass)", fontWeight: 300 }}>{o.num}</span>
+                  <span className="serif" style={{ fontSize: 32, fontStyle: "italic", color: "var(--accent-ink)", fontWeight: 300 }}>{o.num}</span>
                   <span className="mono">{o.sub}</span>
                 </div>
                 <h3 className="serif" style={{ fontSize: 28, letterSpacing: "-0.022em", fontWeight: 380, marginBottom: 12, lineHeight: 1.05 }}>
@@ -189,13 +189,13 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
                 <ul className="any-list">
                   {o.expect.map((it) => (
                     <li key={it}>
-                      <span style={{ color: "var(--brass)" }} aria-hidden="true">+</span>
+                      <span style={{ color: "var(--accent-ink)" }} aria-hidden="true">+</span>
                       <span>{it}</span>
                     </li>
                   ))}
                 </ul>
                 <div className="any-nutzen">
-                  <div className="mono" style={{ color: "var(--brass)", marginBottom: 6 }}>Konkreter Nutzen</div>
+                  <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 6 }}>Konkreter Nutzen</div>
                   <div>{o.nutzen}</div>
                 </div>
                 <a className="btn-link mono" href={o.href} target="_blank" rel="noopener">{o.cta} →</a>

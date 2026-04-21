@@ -6,8 +6,11 @@ type Props = {
   seed: string;
   slides?: Slide[];
   labels?: string[];
+  /** Desktop height (≥900 px). Mobile/tablet scale down automatically. */
   height?: number;
+  /** Desktop slide width (≥900 px). Mobile/tablet scale down automatically. */
   slideWidth?: number;
+  /** Seconds per slide — total animation duration ≈ slides × speed. */
   speed?: number;
   reverse?: boolean;
   ariaLabel?: string;
@@ -17,8 +20,8 @@ export default function TrainingSlider({
   seed,
   slides,
   labels,
-  height = 180,
-  slideWidth = 260,
+  height = 160,
+  slideWidth = 220,
   speed = 6,
   reverse = false,
   ariaLabel = "Trainingseinblicke",
@@ -41,13 +44,20 @@ export default function TrainingSlider({
 
   if (!items.length) return null;
 
+  // Duplicate once for seamless loop (translateX −50%).
   const loop = [...items, ...items];
   const duration = Math.max(18, items.length * speed);
+
+  // CSS variables drive the responsive sizing. Each breakpoint scales down.
+  const cssVars = {
+    ["--ts-h" as string]: `${height}px`,
+    ["--ts-w" as string]: `${slideWidth}px`,
+  } as React.CSSProperties;
 
   return (
     <div
       className="training-slider"
-      style={{ height }}
+      style={{ ...cssVars, height: "var(--ts-h)" }}
       role="region"
       aria-label={ariaLabel}
     >
@@ -62,7 +72,10 @@ export default function TrainingSlider({
           <div
             key={i}
             className="training-slider-slide"
-            style={{ width: slideWidth, height: height - 20 }}
+            style={{
+              width: "var(--ts-w)",
+              height: "calc(var(--ts-h) - 16px)",
+            }}
             aria-hidden={i >= items.length ? "true" : undefined}
           >
             {s.src ? (
@@ -72,6 +85,21 @@ export default function TrainingSlider({
           </div>
         ))}
       </div>
+
+      <style>{`
+        @media (max-width: 639px) {
+          .training-slider {
+            --ts-h: calc(var(--ts-h, 160px) * 0.78);
+            --ts-w: calc(var(--ts-w, 220px) * 0.68);
+          }
+        }
+        @media (min-width: 640px) and (max-width: 899px) {
+          .training-slider {
+            --ts-h: calc(var(--ts-h, 160px) * 0.88);
+            --ts-w: calc(var(--ts-w, 220px) * 0.82);
+          }
+        }
+      `}</style>
     </div>
   );
 }

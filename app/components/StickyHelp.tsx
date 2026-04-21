@@ -146,8 +146,19 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
           font-size: 9.5px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: var(--omd-yellow);
+          color: var(--ink);
+          font-weight: 700;
           margin-bottom: 3px;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .sticky-help-eyebrow::before {
+          content: "";
+          display: inline-block;
+          width: 14px; height: 2px;
+          background: var(--omd-yellow);
+          border-radius: 2px;
         }
         .sticky-help-label {
           font-family: var(--serif);
@@ -161,8 +172,9 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
         }
         .sticky-help-arrow {
           flex-shrink: 0;
-          font-family: var(--serif);
-          color: var(--omd-yellow);
+          font-family: var(--sans);
+          color: var(--ink);
+          font-weight: 700;
           font-size: 18px;
           transition: transform .2s;
         }

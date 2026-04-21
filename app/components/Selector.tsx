@@ -414,7 +414,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
       >
         <div className="sel-head">
           <div className="sel-head-meta">
-            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Angebotsfinder</div>
+            <div className="eyebrow">Angebotsfinder</div>
             <div className="mono" style={{ marginTop: 4 }}>
               {finished ? "Empfehlung" : `Schritt ${stepIdx + 1} von ${activeSteps.length}`}
             </div>
@@ -526,7 +526,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
                   <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: r.ziel ? 12 : 0 }}>{r.desc}</p>
                   {r.ziel && (
                     <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--cream)", borderTop: "1px solid var(--line)", paddingTop: 10 }}>
-                      <span style={{ color: "var(--brass)", fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", marginRight: 8 }}>Ziel</span>
+                      <span style={{ color: "var(--accent-ink)", fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", marginRight: 8, fontWeight: 700 }}>Ziel</span>
                       {r.ziel}
                     </div>
                   )}

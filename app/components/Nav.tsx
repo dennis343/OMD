@@ -125,7 +125,7 @@ export default function Nav({ onOpenSelector }: NavProps) {
         aria-hidden={!menuOpen}
       >
         <div className="mobile-menu-inner" onClick={(e) => e.stopPropagation()}>
-          <div className="mono" style={{ color: "var(--brass)", marginBottom: 24 }}>Navigation</div>
+          <div className="eyebrow" style={{ marginBottom: 24 }}>Navigation</div>
           <ul className="mobile-links">
             {LINKS.map((l) => (
               <li key={l.href}>
@@ -166,7 +166,7 @@ export default function Nav({ onOpenSelector }: NavProps) {
           </div>
 
           <div className="mobile-contact">
-            <div className="mono" style={{ color: "var(--brass)", marginBottom: 10 }}>Direkt</div>
+            <div className="eyebrow" style={{ marginBottom: 12 }}>Direkt</div>
             <a href={PHONE_HREF} style={{ display: "block", fontSize: 15, color: "var(--ink-2)", marginBottom: 6 }}>
               0171 / 345 795 9
             </a>

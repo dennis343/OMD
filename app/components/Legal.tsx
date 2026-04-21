@@ -67,12 +67,14 @@ export default function LegalModal({ open, onClose, kind }: LegalModalProps) {
           color: var(--ink-3); cursor: pointer;
           padding: 4px 8px;
         }
-        .legal-close:hover { color: var(--brass); }
+        .legal-close:hover { color: var(--ink); }
         .legal-modal h2 { font-family: var(--serif); font-weight: 340; font-size: clamp(26px, 4vw, 42px); letter-spacing: -0.022em; line-height: 1.08; margin-bottom: 28px; }
-        .legal-modal h3 { font-family: var(--mono); color: var(--brass); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin: 28px 0 10px; }
+        .legal-modal h3 { font-family: var(--mono); color: var(--ink); font-weight: 700; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin: 28px 0 10px; padding-left: 26px; position: relative; }
+        .legal-modal h3::before { content: ""; position: absolute; left: 0; top: 50%; width: 18px; height: 2px; background: var(--omd-yellow); transform: translateY(-50%); border-radius: 2px; }
         .legal-modal p, .legal-modal ul, .legal-modal li { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 8px; }
         .legal-modal ul { list-style: none; padding-left: 0; }
-        .legal-modal a { color: var(--brass); }
+        .legal-modal a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--omd-yellow); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+        .legal-modal a:hover { text-decoration-color: var(--ink); }
         @media (min-width: 700px) {
           .legal-modal { padding: 56px 48px 48px; }
         }
@@ -84,7 +86,7 @@ export default function LegalModal({ open, onClose, kind }: LegalModalProps) {
 function Impressum({ titleId }: { titleId: string }) {
   return (
     <>
-      <div className="mono" style={{ color: "var(--brass)", marginBottom: 14 }}>§ Rechtliches</div>
+      <div className="eyebrow" style={{ marginBottom: 16 }}>§ Rechtliches</div>
       <h2 id={titleId} className="serif">Impressum</h2>
 
       <h3>Angaben gemäß § 5 TMG</h3>
@@ -132,7 +134,7 @@ function Impressum({ titleId }: { titleId: string }) {
 function Datenschutz({ titleId }: { titleId: string }) {
   return (
     <>
-      <div className="mono" style={{ color: "var(--brass)", marginBottom: 14 }}>§ Rechtliches</div>
+      <div className="eyebrow" style={{ marginBottom: 16 }}>§ Rechtliches</div>
       <h2 id={titleId} className="serif">Datenschutz­erklärung</h2>
 
       <h3>1. Verantwortlicher</h3>

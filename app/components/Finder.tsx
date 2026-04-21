@@ -55,13 +55,13 @@ export default function Finder({ onOpenSelector }: FinderProps) {
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, marginBottom: 72 }} className="finder-head">
           <div>
-            <div className="mono" style={{ color: "var(--omd-yellow)" }}>Angebotsfinder</div>
-            <div className="mono" style={{ marginTop: 8 }}>Drei Wege · Eine Entscheidung</div>
+            <div className="eyebrow">Angebotsfinder</div>
+            <div className="mono" style={{ marginTop: 12 }}>Drei Wege · Eine Entscheidung</div>
           </div>
           <div>
             <h2 id="finder-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340, marginBottom: 24 }}>
               Der erste Schritt ist immer
-              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> der schwerste.</em>
+              <em className="hl-yellow" style={{ fontStyle: "italic" }}> der schwerste.</em>
               <br />
               <span style={{ color: "var(--ink-3)" }}>Wir nehmen ihn euch ab.</span>
             </h2>
@@ -89,7 +89,7 @@ export default function Finder({ onOpenSelector }: FinderProps) {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 32 }}>
-                <span className="serif" style={{ fontSize: 40, fontStyle: "italic", color: p.accent, fontWeight: 300 }}>{p.num}</span>
+                <span className="serif" style={{ fontSize: 40, fontStyle: "italic", color: p.featured ? "var(--accent-ink)" : p.accent, fontWeight: 400 }}>{p.num}</span>
                 <span className="mono">Weg</span>
               </div>
               <h3 className="serif" style={{ fontSize: 24, letterSpacing: "-0.018em", fontWeight: 400, lineHeight: 1.12, marginBottom: 16 }}>
@@ -97,7 +97,7 @@ export default function Finder({ onOpenSelector }: FinderProps) {
               </h3>
               <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 28, flex: 1 }}>{p.desc}</p>
               <div style={{ borderTop: "1px solid var(--line)", paddingTop: 18 }}>
-                <div className="mono" style={{ color: p.accent, marginBottom: 6 }}>→ Empfehlung</div>
+                <div className="mono" style={{ color: p.featured ? "var(--accent-ink)" : p.accent, marginBottom: 6, fontWeight: 600 }}>→ Empfehlung</div>
                 <div style={{ fontSize: 16, color: "var(--cream)", fontFamily: "var(--serif)", marginBottom: 4 }}>{p.route}</div>
                 <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--ink-3)" }}>{p.routeDesc}</div>
               </div>

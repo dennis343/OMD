@@ -45,13 +45,13 @@ export default function FAQ() {
       <div className="shell">
         <div className="faq-head">
           <div>
-            <div className="mono" style={{ color: "var(--omd-yellow)" }}>FAQ</div>
-            <div className="mono" style={{ marginTop: 8 }}>Häufige Fragen</div>
+            <div className="eyebrow">FAQ</div>
+            <div className="mono" style={{ marginTop: 12 }}>Häufige Fragen</div>
           </div>
           <div>
             <h2 id="faq-heading" className="serif" style={{ fontSize: "clamp(30px, 5vw, 62px)", lineHeight: 1.04, letterSpacing: "-0.02em", fontWeight: 340 }}>
               Ehrliche Antworten
-              <em style={{ color: "var(--omd-yellow)", fontStyle: "italic" }}> vor </em>
+              <em className="hl-yellow" style={{ fontStyle: "italic" }}> vor </em>
               der Buchung.
             </h2>
           </div>
@@ -89,7 +89,7 @@ export default function FAQ() {
                       fontFamily: "var(--serif)",
                       fontSize: 26,
                       fontStyle: "italic",
-                      color: "var(--brass)",
+                      color: "var(--accent-ink)",
                       transform: active ? "rotate(45deg)" : "none",
                       transition: "transform .25s",
                       minWidth: 24,
