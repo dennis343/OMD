@@ -410,7 +410,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="selector-title"
-        className="sel-dialog"
+        className="sel-dialog theme-dark"
       >
         <div className="sel-head">
           <div className="sel-head-meta">
@@ -534,19 +534,21 @@ export default function Selector({ open, onClose }: SelectorProps) {
               ))}
             </div>
 
-            <div style={{ marginTop: 28, padding: "28px 28px 24px", background: "var(--bg-3)", border: "1px solid var(--brass)", borderRadius: 4, position: "relative" }}>
+            <div style={{ marginTop: 28, padding: "28px 28px 24px", background: "var(--bg-3)", border: "1px solid var(--omd-yellow)", borderRadius: 6, position: "relative" }}>
               <div
                 style={{
                   position: "absolute",
                   top: -10,
                   left: 24,
-                  background: "var(--brass)",
-                  color: "var(--bg)",
+                  background: "var(--omd-yellow)",
+                  color: "#07071A",
                   fontFamily: "var(--mono)",
                   fontSize: 10,
+                  fontWeight: 600,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  padding: "3px 10px",
+                  padding: "4px 12px",
+                  borderRadius: 999,
                 }}
               >
                 Dein Einstieg
@@ -600,13 +602,15 @@ export default function Selector({ open, onClose }: SelectorProps) {
                         position: "absolute",
                         top: -10,
                         left: 24,
-                        background: "var(--brass)",
-                        color: "var(--bg)",
+                        background: "var(--omd-yellow)",
+                        color: "#07071A",
                         fontFamily: "var(--mono)",
                         fontSize: 10,
+                        fontWeight: 600,
                         letterSpacing: "0.16em",
                         textTransform: "uppercase",
-                        padding: "3px 10px",
+                        padding: "4px 12px",
+                        borderRadius: 999,
                       }}
                     >
                       Beste Passung
@@ -876,8 +880,9 @@ export default function Selector({ open, onClose }: SelectorProps) {
             width: 18px; height: 18px;
             border-radius: 50%;
             background: var(--omd-yellow);
-            color: var(--bg);
+            color: #07071A;
             font-size: 11px;
+            font-weight: 700;
             line-height: 1;
             display: grid; place-items: center;
             flex-shrink: 0;

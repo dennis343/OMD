@@ -51,7 +51,7 @@ export default function Footer() {
   const [legal, setLegal] = useState<LegalKind>(null);
 
   return (
-    <footer style={{ background: "var(--bg)", borderTop: "1px solid var(--line)", padding: "72px 0 40px" }}>
+    <footer className="theme-dark" style={{ background: "var(--bg)", borderTop: "2px solid var(--omd-yellow)", padding: "72px 0 40px" }}>
       <div className="shell">
         <div className="foot-grid">
           <div className="foot-brand">

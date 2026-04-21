@@ -1,19 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import ConsentManager from "./components/ConsentManager";
 
-const fraunces = Fraunces({
+const manrope = Manrope({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
-  display: "swap",
-});
-
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -105,12 +97,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#16130f",
+  themeColor: "#F7F7F7",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
-  colorScheme: "dark",
+  colorScheme: "light",
 };
 
 const localBusinessJsonLd = {
@@ -303,7 +295,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const fbPixelId = process.env.OMD_FB_PIXEL_ID || "";
 
   return (
-    <html lang="de" className={`${fraunces.variable} ${interTight.variable} ${jetbrainsMono.variable}`}>
+    <html lang="de" className={`${manrope.variable} ${jetbrainsMono.variable}`}>
       <body>
         <a href="#main" className="skip-link">Zum Inhalt springen</a>
         {children}

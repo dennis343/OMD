@@ -18,8 +18,8 @@ export default function Audience() {
     <section
       id="zielgruppe"
       aria-labelledby="audience-heading"
-      className="sec-pad"
-      style={{ background: "var(--bg-2)", borderBottom: "1px solid var(--line)" }}
+      className="sec-pad theme-dark"
+      style={{ borderBottom: "2px solid var(--omd-yellow)" }}
     >
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="aud-head">
