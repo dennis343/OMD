@@ -7,8 +7,8 @@ export default function FinalCTA({ onOpenSelector }: FinalCTAProps) {
     <section
       id="kontakt"
       aria-labelledby="kontakt-heading"
-      className="sec-pad"
-      style={{ background: "var(--bg-2)", position: "relative", overflow: "hidden" }}
+      className="sec-pad theme-dark"
+      style={{ position: "relative", overflow: "hidden", borderTop: "2px solid var(--omd-yellow)" }}
     >
       <div className="shell" style={{ position: "relative", zIndex: 2 }}>
         <div className="mono" style={{ color: "var(--omd-yellow)", marginBottom: 28 }}>Nächster Schritt</div>

@@ -1,4 +1,5 @@
 import { BOOK_URL, WA_URL } from "@/app/lib/constants";
+import TrainingSlider from "./TrainingSlider";
 
 type AnywhereProps = { onOpenSelector: () => void };
 
@@ -98,8 +99,8 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
     <section
       id="anywhere"
       aria-labelledby="anywhere-heading"
-      className="sec-pad"
-      style={{ background: "var(--bg-2)", borderBottom: "1px solid var(--line)" }}
+      className="sec-pad theme-dark"
+      style={{ borderBottom: "2px solid var(--omd-yellow)" }}
     >
       <div className="shell">
         <div className="any-head">
@@ -165,10 +166,16 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
         </article>
 
         <div className="any-grid">
-          {OFFERS.map((o) => (
+          {OFFERS.map((o, idx) => (
             <article key={o.num} className="any-card">
-              <div className="any-card-img tile">
-                <img src={o.img} alt={o.title} loading="lazy" />
+              <div className="any-card-img">
+                <TrainingSlider
+                  seed={`online-${o.title}`}
+                  labels={o.expect.slice(0, 5)}
+                  height={180}
+                  slideWidth={220}
+                  reverse={idx % 2 === 1}
+                />
               </div>
               <div className="any-card-body">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 16 }}>
@@ -203,7 +210,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           .any-intro { margin-top: 24px; font-size: 16px; line-height: 1.55; color: var(--ink-2); max-width: 60ch; font-family: var(--serif); font-weight: 300; }
 
           .signature-block { background: var(--bg-3); border: 1px solid var(--brass); padding: 36px 24px 32px; margin-bottom: 28px; position: relative; display: grid; grid-template-columns: 1fr; gap: 28px; }
-          .signature-tag { position: absolute; top: -10px; left: 24px; background: var(--brass); color: var(--bg); font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 3px 10px; }
+          .signature-tag { position: absolute; top: -10px; left: 24px; background: var(--omd-yellow); color: #07071A; font-weight: 600; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; }
           .signature-img { height: 220px; }
           .signature-h { font-size: clamp(32px, 5vw, 58px); letter-spacing: -0.028em; line-height: 0.98; font-weight: 340; margin-bottom: 20px; }
           .signature-desc { font-size: 16px; line-height: 1.55; color: var(--ink-2); max-width: 52ch; margin-bottom: 24px; }

@@ -1,25 +1,50 @@
-/* ============ OMD Homepage — mobile-first, editorial dark premium ============ */
+/* ============ OMD Homepage — CI redesign: light-first, yellow primary, Manrope ============ */
 :root {
-  --bg: #16130f;
-  --bg-2: #1d1915;
-  --bg-3: #25201b;
-  --ink: #f3ead9;
-  --ink-2: #e0d4bc;
-  --ink-3: #a89c84;
-  --ink-4: #6b6151;
-  --line: #2e2820;
-  --line-2: #3a3328;
-  --brass: #c2925e;
-  --brass-2: #a4774a;
-  --moss: #8a9173;
-  --rust: #E4FF00;
-  --cream: #f3ead9;
-  --omd-yellow: #E4FF00;
-  --omd-yellow-soft: color-mix(in oklab, #E4FF00 85%, #16130f);
+  /* LIGHT (default) — based on #F7F7F7 / #07071A / #E4FF00 / #C6C6C6 */
+  --bg: #F7F7F7;
+  --bg-2: #FFFFFF;
+  --bg-3: #EFEFEF;
+  --ink: #07071A;
+  --ink-2: #1a1a28;
+  --ink-3: #5a5a66;
+  --ink-4: #8a8a94;
+  --line: rgba(7, 7, 26, 0.08);
+  --line-2: rgba(7, 7, 26, 0.16);
 
-  --serif: var(--font-serif), "Times New Roman", serif;
-  --sans: var(--font-sans), "Helvetica Neue", system-ui, sans-serif;
+  /* brass was the warm primary accent — in the new CI everything primary is yellow */
+  --brass: #E4FF00;
+  --brass-2: #c7e000;
+  /* moss was the green tertiary accent — in the new CI it becomes secondary grey */
+  --moss: #C6C6C6;
+  --rust: #E4FF00;
+  /* cream was the "bright on dark" text color — now it becomes the contrasting ink so
+     .btn-primary { background: var(--cream); color: var(--bg); } auto-inverts per theme */
+  --cream: #07071A;
+  --secondary: #C6C6C6;
+  --omd-yellow: #E4FF00;
+  --omd-yellow-soft: color-mix(in oklab, #E4FF00 85%, #F7F7F7);
+
+  /* Manrope everywhere — the old `.serif` class stays for compatibility but now renders Manrope with tight tracking */
+  --serif: var(--font-sans), "Manrope", system-ui, sans-serif;
+  --sans: var(--font-sans), "Manrope", system-ui, sans-serif;
   --mono: var(--font-mono), ui-monospace, monospace;
+}
+
+/* DARK theme — applied per-section with `className="theme-dark"`.
+   All children that read var(--bg), var(--ink-2), var(--line) etc. auto-flip. */
+.theme-dark {
+  --bg: #07071A;
+  --bg-2: #0f0f24;
+  --bg-3: #171730;
+  --ink: #F7F7F7;
+  --ink-2: #e6e6ec;
+  --ink-3: #a0a0b0;
+  --ink-4: #66667a;
+  --line: rgba(247, 247, 247, 0.08);
+  --line-2: rgba(247, 247, 247, 0.18);
+  --cream: #F7F7F7;
+  background: var(--bg);
+  color: var(--ink);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,6 +59,7 @@ html, body {
   color: var(--ink);
   font-family: var(--sans);
   font-feature-settings: "ss01", "cv11";
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -47,7 +73,7 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 img { max-width: 100%; display: block; }
 
-::selection { background: var(--brass); color: var(--bg); }
+::selection { background: var(--omd-yellow); color: var(--ink); }
 
 /* ---------- Accessibility ---------- */
 .skip-link {
@@ -58,14 +84,15 @@ img { max-width: 100%; display: block; }
   position: fixed; left: 16px; top: 16px;
   width: auto; height: auto;
   z-index: 300;
-  background: var(--brass); color: var(--bg);
+  background: var(--omd-yellow); color: #07071A;
   padding: 12px 18px; border-radius: 999px;
   font-family: var(--mono); font-size: 12px;
   letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 600;
 }
 
 :focus-visible {
-  outline: 2px solid var(--brass);
+  outline: 2px solid var(--omd-yellow);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -80,7 +107,8 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 }
 
 /* ---------- Type utilities ---------- */
-.serif { font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em; font-optical-sizing: auto; font-variation-settings: "SOFT" 30, "WONK" 0; }
+/* `.serif` kept as a class name for backwards compatibility — now renders Manrope tight/bold for headline use. */
+.serif { font-family: var(--sans); font-weight: 600; letter-spacing: -0.025em; font-feature-settings: "ss01", "cv11"; }
 .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
 .label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-3); }
 
@@ -123,16 +151,17 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 .brand-mark {
   width: 34px; height: 34px;
   flex-shrink: 0;
-  border: 1px solid var(--brass);
+  border: 1.5px solid var(--ink);
   border-radius: 50%;
   display: grid; place-items: center;
-  font-family: var(--serif); font-size: 17px; color: var(--brass);
-  font-style: italic;
+  font-family: var(--sans); font-size: 17px; color: var(--ink);
+  font-weight: 700;
+  background: var(--omd-yellow);
 }
 .brand-name { font-family: var(--serif); font-size: 16px; letter-spacing: -0.01em; line-height: 1.1; }
 .brand-sub { font-family: var(--mono); font-size: 9px; color: var(--ink-3); letter-spacing: 0.16em; text-transform: uppercase; }
 @media (min-width: 1024px) {
-  .brand-mark { width: 36px; height: 36px; font-size: 18px; }
+  .brand-mark { width: 36px; height: 36px; font-size: 19px; }
   .brand-name { font-size: 18px; }
   .brand-sub { font-size: 10px; letter-spacing: 0.18em; }
 }
@@ -163,14 +192,16 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 @media (min-width: 1200px) { .nav-links { gap: 36px; } }
 
 .nav-cta {
-  border: 1px solid var(--brass);
-  color: var(--brass);
+  background: var(--omd-yellow);
+  color: #07071A;
+  border: 1px solid var(--omd-yellow);
   padding: 9px 18px; border-radius: 999px;
   font-size: 13px; letter-spacing: 0.02em;
+  font-weight: 600;
   transition: all .2s;
   white-space: nowrap;
 }
-.nav-cta:hover { background: var(--brass); color: var(--bg); }
+.nav-cta:hover { background: #c7e000; border-color: #c7e000; }
 .nav-cta-desktop { display: none; }
 @media (min-width: 1024px) { .nav-cta-desktop { display: inline-flex; } }
 
@@ -202,7 +233,7 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 .mobile-menu {
   position: fixed; inset: 0;
   z-index: 100;
-  background: rgba(10, 8, 6, 0.85);
+  background: color-mix(in oklab, var(--ink) 75%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   opacity: 0;
@@ -241,12 +272,12 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 }
 .mobile-links a::after {
   content: "→";
-  font-family: var(--serif);
-  color: var(--brass);
-  font-style: italic;
-  opacity: 0.6;
+  font-family: var(--sans);
+  color: var(--ink-3);
+  font-weight: 500;
+  opacity: 0.7;
 }
-.mobile-links a:active { color: var(--brass); padding-left: 8px; }
+.mobile-links a:active { color: var(--omd-yellow); padding-left: 8px; }
 .mobile-links a.is-active { color: var(--omd-yellow); }
 .mobile-links a.is-active::after { color: var(--omd-yellow); opacity: 1; content: "●"; }
 
@@ -264,12 +295,14 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   white-space: nowrap;
 }
 @media (min-width: 640px) { .btn { padding: 14px 22px; } }
-.btn-primary { background: var(--cream); color: var(--bg); }
-.btn-primary:hover { background: var(--brass); }
+.btn-primary { background: var(--omd-yellow); color: #07071A; font-weight: 600; }
+.btn-primary:hover { background: #c7e000; transform: translateY(-1px); }
+.btn-secondary { background: var(--cream); color: var(--bg); font-weight: 500; }
+.btn-secondary:hover { background: var(--ink-2); }
 .btn-ghost { border: 1px solid var(--line-2); color: var(--ink-2); }
-.btn-ghost:hover { border-color: var(--brass); color: var(--cream); }
-.btn-link { color: var(--brass); padding: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
-.btn-link:hover { color: var(--cream); }
+.btn-ghost:hover { border-color: var(--omd-yellow); color: var(--ink); background: color-mix(in oklab, var(--omd-yellow) 12%, transparent); }
+.btn-link { color: var(--ink); padding: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; border-bottom: 1px solid var(--omd-yellow); padding-bottom: 2px; }
+.btn-link:hover { color: var(--ink-2); border-bottom-color: var(--ink); }
 
 .arrow { display: inline-block; transition: transform .2s; }
 .btn:hover .arrow { transform: translateX(3px); }
@@ -279,8 +312,8 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   position: relative;
   background:
     repeating-linear-gradient(135deg,
-      rgba(243,234,217,0.04) 0 12px,
-      rgba(243,234,217,0.07) 12px 24px),
+      color-mix(in oklab, var(--ink) 5%, transparent) 0 12px,
+      color-mix(in oklab, var(--ink) 8%, transparent) 12px 24px),
     var(--bg-2);
   border: 1px solid var(--line);
   display: flex; align-items: flex-end; justify-content: flex-start;
@@ -292,7 +325,7 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 .ph::before {
   content: "";
   position: absolute; inset: 14px;
-  border: 1px dashed rgba(194, 146, 94, 0.25);
+  border: 1px dashed color-mix(in oklab, var(--omd-yellow) 40%, transparent);
   pointer-events: none;
 }
 
@@ -301,23 +334,23 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   overflow: hidden;
   background: var(--bg-2);
   border: 1px solid var(--line);
+  border-radius: 6px;
 }
 .tile img {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  filter: saturate(0.88) contrast(1.02);
 }
 .tile::after {
   content: "";
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(22,19,15,0) 40%, rgba(22,19,15,0.55) 100%);
+  background: linear-gradient(180deg, transparent 40%, color-mix(in oklab, #07071A 55%, transparent) 100%);
   pointer-events: none;
 }
 .tile-caption {
   position: absolute; left: 14px; bottom: 12px; z-index: 2;
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--ink-2);
+  color: #F7F7F7;
 }
 
 section { position: relative; }
@@ -331,7 +364,7 @@ section { position: relative; }
   letter-spacing: 0.14em; text-transform: uppercase;
   flex-wrap: wrap;
 }
-.rule-row span:first-child { color: var(--brass); }
+.rule-row span:first-child { color: var(--ink); font-weight: 600; }
 
 /* ---------- Animations ---------- */
 @keyframes fadeUp {
@@ -345,7 +378,7 @@ section { position: relative; }
 .fade-up { animation: fadeUp .8s ease both; }
 
 @keyframes blink { 50% { opacity: 0; } }
-.cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--brass); margin-left: 6px; vertical-align: -2px; animation: blink 1s step-end infinite; }
+.cursor { display: inline-block; width: 2px; height: 0.85em; background: var(--omd-yellow); margin-left: 6px; vertical-align: -2px; animation: blink 1s step-end infinite; }
 
 .sec-pad { padding: 56px 0; }
 @media (min-width: 380px)  { .sec-pad { padding: 64px 0; } }
@@ -362,4 +395,101 @@ section { position: relative; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ---------- Yellow divider (between sections) ---------- */
+.divider-yellow {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--omd-yellow);
+  border: 0;
+  margin: 0;
+}
+.divider-yellow-soft {
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: color-mix(in oklab, var(--omd-yellow) 60%, transparent);
+  border: 0;
+  margin: 0;
+}
+
+/* ---------- Pill tag (Manrope-style grey pill from screenshots) ---------- */
+.pill-tag {
+  display: inline-flex; align-items: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--secondary);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.pill-tag.is-primary {
+  background: var(--omd-yellow);
+  color: #07071A;
+}
+.pill-tag.is-outline {
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--line-2);
+}
+
+/* ---------- Training Slider (auto-run infinite marquee) ---------- */
+.training-slider {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+}
+.training-slider-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  padding: 10px;
+  animation: tsScroll linear infinite;
+  will-change: transform;
+}
+.training-slider:hover .training-slider-track,
+.training-slider:focus-within .training-slider-track { animation-play-state: paused; }
+.training-slider-slide {
+  flex: 0 0 auto;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--bg-3);
+  position: relative;
+}
+.training-slider-slide img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.training-slider-slide .ts-label {
+  position: absolute; left: 10px; bottom: 8px; z-index: 2;
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: #F7F7F7;
+  text-shadow: 0 1px 8px rgba(7,7,26,0.55);
+}
+@keyframes tsScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .training-slider-track { animation: none; }
+}
+
+/* ---------- Premium edge accents ---------- */
+.edge-top-yellow { position: relative; }
+.edge-top-yellow::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--omd-yellow);
+  pointer-events: none;
 }

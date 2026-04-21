@@ -1,4 +1,5 @@
 import { WA_URL } from "@/app/lib/constants";
+import TrainingSlider from "./TrainingSlider";
 
 type Module = {
   n: string;
@@ -108,7 +109,7 @@ export default function Pro() {
         </div>
 
         <div className="pro-grid">
-          {MODULES.map((m) => (
+          {MODULES.map((m, idx) => (
             <article key={m.n} className={`pro-card ${m.featured ? "is-featured" : ""}`}>
               {m.featured && <div className="pro-badge">Hebel</div>}
 
@@ -118,6 +119,16 @@ export default function Pro() {
               </div>
 
               <h3 className="serif pro-title">{m.name}</h3>
+
+              <div style={{ margin: "8px 0 16px" }}>
+                <TrainingSlider
+                  seed={`pro-${m.name}`}
+                  labels={m.includes.slice(0, 4)}
+                  height={130}
+                  slideWidth={200}
+                  reverse={idx % 2 === 1}
+                />
+              </div>
 
               <div className="pro-block">
                 <div className="mono" style={{ color: "var(--moss)", marginBottom: 6 }}>→ Für wen</div>
@@ -206,7 +217,7 @@ export default function Pro() {
         .pro-grid { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line-2); }
         .pro-card { padding: 32px 24px 28px; border-bottom: 1px solid var(--line-2); display: flex; flex-direction: column; background: transparent; position: relative; }
         .pro-card.is-featured { background: var(--bg-2); }
-        .pro-badge { position: absolute; top: -1px; right: 20px; background: var(--moss); color: var(--bg); padding: 4px 10px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; }
+        .pro-badge { position: absolute; top: -1px; right: 20px; background: var(--omd-yellow); color: #07071A; padding: 4px 12px; border-radius: 0 0 6px 6px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
         .pro-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
         .pro-n { font-size: 32px; font-style: italic; color: var(--moss); font-weight: 300; }
         .pro-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 380; margin-bottom: 20px; line-height: 1.08; }

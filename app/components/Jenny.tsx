@@ -9,7 +9,7 @@ const CV: [string, string][] = [
 
 export default function Jenny() {
   return (
-    <section id="jenny" aria-labelledby="jenny-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
+    <section id="jenny" aria-labelledby="jenny-heading" className="sec-pad theme-dark" style={{ borderBottom: "2px solid var(--omd-yellow)" }}>
       <div className="shell">
         <div className="jenny-grid">
           <div>

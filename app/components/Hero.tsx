@@ -17,8 +17,8 @@ export default function Hero({ onOpenSelector }: HeroProps) {
     <section
       id="top"
       aria-labelledby="hero-headline"
-      style={{ paddingTop: 48, paddingBottom: 64, borderBottom: "1px solid var(--line)" }}
-      className="hero-section"
+      style={{ paddingTop: 48, paddingBottom: 64, borderBottom: "2px solid var(--omd-yellow)" }}
+      className="hero-section theme-dark"
     >
       <div className="shell">
         <div className="hero-meta">

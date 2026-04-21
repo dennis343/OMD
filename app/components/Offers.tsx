@@ -1,4 +1,5 @@
 import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL, WA_URL } from "@/app/lib/constants";
+import TrainingSlider from "./TrainingSlider";
 
 type OffersProps = { onOpenSelector?: () => void };
 
@@ -280,6 +281,16 @@ export default function Offers(_props: OffersProps = {}) {
 
               <h3 className="serif entry-title" style={{ fontSize: 32 }}>{e.title}</h3>
               <div className="entry-sub">{e.sub}</div>
+
+              <div style={{ margin: "10px 0 18px" }}>
+                <TrainingSlider
+                  seed={`kennenlern-${e.tag}`}
+                  labels={["Anamnese", "Platz-Check", "Alltag", "Führung", "Plan"]}
+                  height={150}
+                  slideWidth={200}
+                />
+              </div>
+
               <p className="entry-desc">{e.desc}</p>
 
               <div className="entry-block">
@@ -313,6 +324,16 @@ export default function Offers(_props: OffersProps = {}) {
 
           <h3 className="serif entry-title" style={{ fontSize: 26 }}>{INDIVIDUAL.title}</h3>
           <div className="entry-sub">{INDIVIDUAL.sub}</div>
+
+          <div style={{ margin: "8px 0 18px" }}>
+            <TrainingSlider
+              seed="vip-einzel"
+              labels={["Stadt", "Park", "Zuhause", "Spazierroute", "Begegnung", "Freilauf"]}
+              height={160}
+              slideWidth={220}
+            />
+          </div>
+
           <p className="entry-desc">{INDIVIDUAL.desc}</p>
 
           <div className="individual-cols">
@@ -396,11 +417,18 @@ export default function Offers(_props: OffersProps = {}) {
                 {c.items.map((it) => (
                   <li key={it.name} className="group-item">
                     <div className="group-item-head">
-                      <span className="serif group-item-name">{it.name}</span>
+                      <span className="pill-tag">{it.name}</span>
                     </div>
+                    <TrainingSlider
+                      seed={`basis-${it.name}`}
+                      labels={["Basis", "Aufbau", "Alltag", "Check"]}
+                      height={120}
+                      slideWidth={170}
+                      speed={5}
+                    />
                     <div className="group-item-desc">{it.desc}</div>
                     <div className="group-item-mehrwert">
-                      <span style={{ color: "var(--brass)" }}>+ Mehrwert:</span> {it.mehrwert}
+                      <span style={{ color: "var(--ink)", fontWeight: 600 }}>+ Mehrwert:</span> {it.mehrwert}
                     </div>
                   </li>
                 ))}
@@ -419,15 +447,24 @@ export default function Offers(_props: OffersProps = {}) {
             </p>
           </div>
           <ul className="exklusiv-list">
-            {EXKLUSIV_GROUP.items.map((it) => (
+            {EXKLUSIV_GROUP.items.map((it, i) => (
               <li key={it.name} className="exklusiv-item">
                 <div className="exklusiv-item-head">
                   <span className="serif exklusiv-item-name">{it.name}</span>
                   <span className="exklusiv-item-flag mono">EXKLUSIV</span>
                 </div>
+                <div style={{ margin: "8px 0 14px" }}>
+                  <TrainingSlider
+                    seed={`exklusiv-${it.name}`}
+                    labels={["Analyse", "Aufbau", "Distanz", "Reiz", "Generalisierung", "Alltag"]}
+                    height={150}
+                    slideWidth={220}
+                    reverse={i % 2 === 1}
+                  />
+                </div>
                 <div className="exklusiv-item-desc">{it.desc}</div>
                 <div className="exklusiv-item-mehrwert">
-                  <span style={{ color: "var(--brass)" }}>+ Mehrwert:</span> {it.mehrwert}
+                  <span style={{ color: "var(--omd-yellow)", fontWeight: 600 }}>+ Mehrwert:</span> {it.mehrwert}
                 </div>
               </li>
             ))}
@@ -456,11 +493,22 @@ export default function Offers(_props: OffersProps = {}) {
         </div>
 
         <div className="paket-grid">
-          {PAKETE.map((p) => (
+          {PAKETE.map((p, i) => (
             <article key={p.name} className="paket-card">
-              <div className="paket-tag mono" style={{ color: p.accent }}>{p.tag}</div>
+              <div className="paket-tag mono" style={{ color: "var(--ink)" }}>{p.tag}</div>
               <h4 className="serif paket-title">{p.name}</h4>
               <div className="paket-headline serif">{p.headline}</div>
+
+              <div style={{ margin: "6px 0 16px" }}>
+                <TrainingSlider
+                  seed={`paket-${p.name}`}
+                  labels={p.inhalte.map((it) => it.replace(/^\d+×\s*/, ""))}
+                  height={130}
+                  slideWidth={190}
+                  reverse={i === 1}
+                />
+              </div>
+
               <p className="paket-desc">{p.desc}</p>
 
               <div className="paket-block">
@@ -505,7 +553,7 @@ export default function Offers(_props: OffersProps = {}) {
         .individual-cols { display: grid; grid-template-columns: 1fr; gap: 0; }
         .entry-card { background: var(--bg-2); border: 1px solid var(--line-2); padding: 30px 24px 28px; position: relative; display: flex; flex-direction: column; }
         .entry-card.is-large { background: var(--bg-3); border-color: var(--brass); padding: 36px 28px 32px; }
-        .entry-badge { position: absolute; top: -10px; left: 22px; color: var(--bg); font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 3px 10px; }
+        .entry-badge { position: absolute; top: -10px; left: 22px; color: #07071A; font-weight: 600; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; }
         .entry-title { letter-spacing: -0.025em; line-height: 1.04; font-weight: 360; margin-bottom: 8px; }
         .entry-sub { font-size: 13.5px; color: var(--ink-3); font-style: italic; font-family: var(--serif); margin-bottom: 18px; }
         .entry-desc { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-bottom: 22px; }
@@ -517,7 +565,7 @@ export default function Offers(_props: OffersProps = {}) {
         .entry-card .btn { margin-top: 24px; align-self: flex-start; }
 
         .tour-block { background: var(--bg-3); border: 1px solid var(--cream); padding: 36px 24px 32px; margin-bottom: 56px; position: relative; display: grid; grid-template-columns: 1fr; gap: 28px; }
-        .tour-tag { position: absolute; top: -10px; left: 24px; background: var(--cream); color: var(--bg); font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 3px 10px; }
+        .tour-tag { position: absolute; top: -10px; left: 24px; background: var(--omd-yellow); color: #07071A; font-weight: 600; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; }
         .tour-img { height: 220px; }
         .tour-h { font-size: clamp(28px, 4.4vw, 48px); letter-spacing: -0.025em; line-height: 1.02; font-weight: 360; margin-bottom: 18px; }
         .tour-desc { font-size: 15.5px; line-height: 1.55; color: var(--ink-2); max-width: 56ch; margin-bottom: 22px; }
@@ -552,7 +600,7 @@ export default function Offers(_props: OffersProps = {}) {
         }
         .exklusiv-badge {
           position: absolute; top: -12px; left: 28px;
-          background: var(--brass); color: var(--bg);
+          background: var(--omd-yellow); color: #07071A;
           font-family: var(--mono); font-size: 11px;
           letter-spacing: 0.22em; padding: 4px 14px;
           font-weight: 600;
