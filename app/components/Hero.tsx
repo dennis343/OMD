@@ -91,10 +91,11 @@ export default function Hero({ onOpenSelector }: HeroProps) {
       <style>{`
         .hero-meta { display: flex; flex-direction: column; gap: 6px; margin-bottom: 40px; }
         .hero-headline { font-size: clamp(40px, 9vw, 140px); line-height: 0.96; letter-spacing: -0.035em; font-weight: 340; max-width: 16ch; }
-        .hero-sub { font-size: 17px; line-height: 1.5; color: var(--ink-2); max-width: 52ch; font-family: var(--serif); font-weight: 300; }
+        .hero-sub { font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; font-family: var(--serif); font-weight: 400; }
+        @media (min-width: 1024px) { .hero-sub { font-size: 19px; line-height: 1.55; } }
         .hero-bottom { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: end; }
         .trust-strip { margin-top: 48px; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); list-style: none; }
-        .trust-item { padding: 16px 14px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); display: flex; align-items: center; gap: 10px; }
+        .trust-item { padding: 18px 14px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; display: flex; align-items: center; gap: 10px; }
         .trust-item:nth-child(2n) { border-right: none; }
         .trust-strip > .trust-item:nth-last-child(-n+2) { border-bottom: none; }
 

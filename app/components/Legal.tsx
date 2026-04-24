@@ -62,16 +62,21 @@ export default function LegalModal({ open, onClose, kind }: LegalModalProps) {
           animation: fadeUp .25s ease both;
         }
         .legal-close {
-          position: absolute; top: 16px; right: 20px;
+          position: absolute; top: 12px; right: 14px;
           background: none; border: none;
-          color: var(--ink-3); cursor: pointer;
-          padding: 4px 8px;
+          color: var(--ink-2); cursor: pointer;
+          padding: 10px 14px;
+          min-height: 44px;
+          font-size: 13px;
+          font-weight: 600;
+          display: inline-flex;
+          align-items: center;
         }
         .legal-close:hover { color: var(--ink); }
-        .legal-modal h2 { font-family: var(--serif); font-weight: 340; font-size: clamp(26px, 4vw, 42px); letter-spacing: -0.022em; line-height: 1.08; margin-bottom: 28px; }
-        .legal-modal h3 { font-family: var(--mono); color: var(--ink); font-weight: 700; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin: 28px 0 10px; padding-left: 26px; position: relative; }
+        .legal-modal h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 4.2vw, 44px); letter-spacing: -0.022em; line-height: 1.1; margin-bottom: 28px; }
+        .legal-modal h3 { font-family: var(--mono); color: var(--ink); font-weight: 700; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; margin: 32px 0 12px; padding-left: 26px; position: relative; }
         .legal-modal h3::before { content: ""; position: absolute; left: 0; top: 50%; width: 18px; height: 2px; background: var(--omd-yellow); transform: translateY(-50%); border-radius: 2px; }
-        .legal-modal p, .legal-modal ul, .legal-modal li { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); margin-bottom: 8px; }
+        .legal-modal p, .legal-modal ul, .legal-modal li { font-size: 15.5px; line-height: 1.7; color: var(--ink-2); margin-bottom: 10px; }
         .legal-modal ul { list-style: none; padding-left: 0; }
         .legal-modal a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--omd-yellow); text-underline-offset: 3px; text-decoration-thickness: 2px; }
         .legal-modal a:hover { text-decoration-color: var(--ink); }

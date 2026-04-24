@@ -179,13 +179,13 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
               </div>
               <div className="any-card-body">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 16 }}>
-                  <span className="serif" style={{ fontSize: 32, fontStyle: "italic", color: "var(--accent-ink)", fontWeight: 300 }}>{o.num}</span>
+                  <span className="serif" style={{ fontSize: 32, fontStyle: "italic", color: "var(--accent-ink)", fontWeight: 500 }}>{o.num}</span>
                   <span className="mono">{o.sub}</span>
                 </div>
                 <h3 className="serif" style={{ fontSize: 28, letterSpacing: "-0.022em", fontWeight: 380, marginBottom: 12, lineHeight: 1.05 }}>
                   {o.title}
                 </h3>
-                <p style={{ fontSize: 14.5, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 18 }}>{o.desc}</p>
+                <p style={{ fontSize: 15.5, lineHeight: 1.65, color: "var(--ink-2)", marginBottom: 18 }}>{o.desc}</p>
                 <ul className="any-list">
                   {o.expect.map((it) => (
                     <li key={it}>
@@ -207,18 +207,19 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
         <style>{`
           .any-head { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
           .any-h { font-size: clamp(34px, 6vw, 84px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 340; max-width: 18ch; }
-          .any-intro { margin-top: 24px; font-size: 16px; line-height: 1.55; color: var(--ink-2); max-width: 60ch; font-family: var(--serif); font-weight: 300; }
+          .any-intro { margin-top: 24px; font-size: 17px; line-height: 1.65; color: var(--ink-2); max-width: 60ch; font-family: var(--serif); font-weight: 400; }
+          @media (min-width: 1024px) { .any-intro { font-size: 18px; } }
 
           .signature-block { background: var(--bg-3); border: 1px solid var(--brass); padding: 36px 24px 32px; margin-bottom: 28px; position: relative; display: grid; grid-template-columns: 1fr; gap: 28px; }
-          .signature-tag { position: absolute; top: -10px; left: 24px; background: var(--omd-yellow); color: #07071A; font-weight: 600; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; }
+          .signature-tag { position: absolute; top: -12px; left: 24px; background: var(--omd-yellow); color: #07071A; font-weight: 700; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; }
           .signature-img { height: 220px; }
           .signature-h { font-size: clamp(32px, 5vw, 58px); letter-spacing: -0.028em; line-height: 0.98; font-weight: 340; margin-bottom: 20px; }
-          .signature-desc { font-size: 16px; line-height: 1.55; color: var(--ink-2); max-width: 52ch; margin-bottom: 24px; }
+          .signature-desc { font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; margin-bottom: 24px; }
           .signature-box { border-top: 1px solid var(--line); padding-top: 16px; margin-bottom: 16px; }
-          .signature-box p { font-size: 14.5px; line-height: 1.55; color: var(--ink-2); }
+          .signature-box p { font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }
 
           .signature-inc { list-style: none; }
-          .signature-inc li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--ink-2); display: flex; gap: 14px; }
+          .signature-inc li { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.5; color: var(--ink-2); display: flex; gap: 14px; }
 
           .any-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
           .any-card { background: var(--bg); border: 1px solid var(--line-2); display: flex; flex-direction: column; transition: border-color .2s; overflow: hidden; }
@@ -226,8 +227,8 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           .any-card-img { height: 180px; }
           .any-card-body { padding: 28px 24px 24px; display: flex; flex-direction: column; flex: 1; }
           .any-list { list-style: none; border-top: 1px solid var(--line); margin-bottom: 18px; }
-          .any-list li { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13px; color: var(--ink-2); display: flex; gap: 10px; }
-          .any-nutzen { background: var(--bg-2); border-left: 2px solid var(--brass); padding: 14px 16px; margin-bottom: 18px; font-size: 14px; line-height: 1.5; color: var(--cream); }
+          .any-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); display: flex; gap: 10px; }
+          .any-nutzen { background: var(--bg-2); border-left: 2px solid var(--brass); padding: 16px 18px; margin-bottom: 18px; font-size: 15px; line-height: 1.55; color: var(--cream); }
 
           @media (min-width: 700px) {
             .signature-block { padding: 44px 36px 40px; gap: 40px; grid-template-columns: 1fr 1.2fr; }

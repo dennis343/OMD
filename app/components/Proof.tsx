@@ -190,18 +190,18 @@ export default function Proof() {
         .testi-card { background: var(--bg-2); border: 1px solid var(--line-2); display: flex; flex-direction: column; overflow: hidden; margin: 0; }
         .testi-img { height: 200px; }
         .testi-content { padding: 28px 24px 24px; display: flex; flex-direction: column; flex: 1; }
-        .testi-quote { font-size: 17px; line-height: 1.45; font-weight: 340; color: var(--cream); flex: 1; margin: 0; }
+        .testi-quote { font-size: 17.5px; line-height: 1.55; font-weight: 400; color: var(--cream); flex: 1; margin: 0; }
 
         .cases-wrap { background: var(--line-2); border: 1px solid var(--line-2); display: grid; gap: 2px; }
         .case-row { display: grid; grid-template-columns: 1fr; background: var(--bg); padding: 22px 24px; gap: 14px; }
         .case-tag { color: var(--accent-ink); font-weight: 700; }
-        .case-before, .case-after { font-size: 14px; color: var(--ink-3); line-height: 1.45; }
-        .case-dauer { color: var(--ink-4); }
+        .case-before, .case-after { font-size: 15px; color: var(--ink-2); line-height: 1.55; }
+        .case-dauer { color: var(--ink-2); font-weight: 500; }
 
         .proof-video { height: 240px; position: relative; }
 
         .proof-disclaimer { margin-top: 56px; padding: 24px 24px; border: 1px solid var(--line); background: var(--bg-2); max-width: 72ch; }
-        .proof-disclaimer p { font-size: 13.5px; line-height: 1.6; color: var(--ink-3); }
+        .proof-disclaimer p { font-size: 14.5px; line-height: 1.7; color: var(--ink-2); }
 
         @media (min-width: 700px) {
           .testi-grid { grid-template-columns: 1fr 1fr; }

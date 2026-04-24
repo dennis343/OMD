@@ -88,12 +88,12 @@ export default function Pillars() {
                     right: 24,
                     background: "var(--omd-yellow)",
                     color: "#07071A",
-                    padding: "4px 12px",
+                    padding: "6px 14px",
                     borderRadius: "0 0 6px 6px",
                     fontFamily: "var(--mono)",
-                    fontSize: 10,
-                    fontWeight: 600,
-                    letterSpacing: "0.15em",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: "0.14em",
                     textTransform: "uppercase",
                   }}
                 >
@@ -106,29 +106,31 @@ export default function Pillars() {
                 <span className="mono">{p.tag}</span>
               </div>
 
-              <h3 className="serif" style={{ fontSize: 42, letterSpacing: "-0.02em", fontWeight: 380, marginBottom: 14 }}>{p.name}</h3>
-              <div style={{ fontSize: 14, fontStyle: "italic", fontFamily: "var(--serif)", color: "var(--ink-3)", marginBottom: 22 }}>
+              <h3 className="serif" style={{ fontSize: 42, letterSpacing: "-0.02em", fontWeight: 500, marginBottom: 14 }}>{p.name}</h3>
+              <div style={{ fontSize: 15, fontStyle: "italic", fontFamily: "var(--serif)", color: "var(--ink-2)", marginBottom: 22, lineHeight: 1.45 }}>
                 {p.headline}
               </div>
 
-              <p style={{ fontSize: 15.5, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 28 }}>{p.desc}</p>
+              <p style={{ fontSize: 16, lineHeight: 1.65, color: "var(--ink-2)", marginBottom: 28 }}>{p.desc}</p>
 
               <ul style={{ listStyle: "none", borderTop: "1px solid var(--line)", marginBottom: 24, flex: 1 }}>
                 {p.items.map((it) => (
                   <li
                     key={it}
                     style={{
-                      padding: "12px 0",
+                      padding: "14px 0",
                       borderBottom: "1px solid var(--line)",
-                      fontSize: 13.5,
+                      fontSize: 15,
+                      lineHeight: 1.45,
                       color: "var(--ink-2)",
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
+                      gap: 12,
                     }}
                   >
                     <span>{it}</span>
-                    <span style={{ color: p.featured ? "var(--accent-ink)" : p.accent, fontFamily: "var(--mono)", fontSize: 11, fontWeight: 700 }} aria-hidden="true">→</span>
+                    <span style={{ color: p.featured ? "var(--accent-ink)" : p.accent, fontFamily: "var(--mono)", fontSize: 13, fontWeight: 700, flexShrink: 0 }} aria-hidden="true">→</span>
                   </li>
                 ))}
               </ul>

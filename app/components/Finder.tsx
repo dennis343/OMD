@@ -65,7 +65,7 @@ export default function Finder({ onOpenSelector }: FinderProps) {
               <br />
               <span style={{ color: "var(--ink-3)" }}>Wir nehmen ihn euch ab.</span>
             </h2>
-            <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: "56ch", fontFamily: "var(--serif)", fontWeight: 300 }}>
+            <p style={{ fontSize: 18, lineHeight: 1.65, color: "var(--ink-2)", maxWidth: "56ch", fontFamily: "var(--serif)", fontWeight: 400 }}>
               Wählt den Einstieg, der gerade am besten auf eure Situation passt. Den Rest klären wir zusammen.
             </p>
           </div>
@@ -95,11 +95,11 @@ export default function Finder({ onOpenSelector }: FinderProps) {
               <h3 className="serif" style={{ fontSize: 24, letterSpacing: "-0.018em", fontWeight: 400, lineHeight: 1.12, marginBottom: 16 }}>
                 {p.label}
               </h3>
-              <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 28, flex: 1 }}>{p.desc}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 28, flex: 1 }}>{p.desc}</p>
               <div style={{ borderTop: "1px solid var(--line)", paddingTop: 18 }}>
-                <div className="mono" style={{ color: p.featured ? "var(--accent-ink)" : p.accent, marginBottom: 6, fontWeight: 600 }}>→ Empfehlung</div>
-                <div style={{ fontSize: 16, color: "var(--cream)", fontFamily: "var(--serif)", marginBottom: 4 }}>{p.route}</div>
-                <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--ink-3)" }}>{p.routeDesc}</div>
+                <div className="mono" style={{ color: p.featured ? "var(--accent-ink)" : p.accent, marginBottom: 8, fontWeight: 700 }}>→ Empfehlung</div>
+                <div style={{ fontSize: 17, color: "var(--cream)", fontFamily: "var(--serif)", fontWeight: 500, marginBottom: 6 }}>{p.route}</div>
+                <div style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)" }}>{p.routeDesc}</div>
               </div>
             </a>
           ))}
