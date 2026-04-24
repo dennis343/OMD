@@ -523,10 +523,10 @@ export default function Selector({ open, onClose }: SelectorProps) {
                   <h4 className="serif" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 400, marginBottom: 10, lineHeight: 1.2 }}>
                     {r.title}
                   </h4>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: r.ziel ? 12 : 0 }}>{r.desc}</p>
+                  <p style={{ fontSize: 15, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: r.ziel ? 14 : 0 }}>{r.desc}</p>
                   {r.ziel && (
-                    <div style={{ fontSize: 13, lineHeight: 1.5, color: "var(--cream)", borderTop: "1px solid var(--line)", paddingTop: 10 }}>
-                      <span style={{ color: "var(--accent-ink)", fontFamily: "var(--mono)", fontSize: 10, letterSpacing: "0.16em", textTransform: "uppercase", marginRight: 8, fontWeight: 700 }}>Ziel</span>
+                    <div style={{ fontSize: 14.5, lineHeight: 1.55, color: "var(--cream)", borderTop: "1px solid var(--line)", paddingTop: 12 }}>
+                      <span style={{ color: "var(--accent-ink)", fontFamily: "var(--mono)", fontSize: 11.5, letterSpacing: "0.14em", textTransform: "uppercase", marginRight: 10, fontWeight: 700 }}>Ziel</span>
                       {r.ziel}
                     </div>
                   )}
@@ -543,11 +543,11 @@ export default function Selector({ open, onClose }: SelectorProps) {
                   background: "var(--omd-yellow)",
                   color: "#07071A",
                   fontFamily: "var(--mono)",
-                  fontSize: 10,
-                  fontWeight: 600,
-                  letterSpacing: "0.16em",
+                  fontSize: 11.5,
+                  fontWeight: 700,
+                  letterSpacing: "0.14em",
                   textTransform: "uppercase",
-                  padding: "4px 12px",
+                  padding: "6px 14px",
                   borderRadius: 999,
                 }}
               >
@@ -556,7 +556,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
               <h4 className="serif" style={{ fontSize: 24, letterSpacing: "-0.02em", fontWeight: 400, marginBottom: 10, lineHeight: 1.2 }}>
                 Kennenlern-Einzel — der strukturierte Start.
               </h4>
-              <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 20 }}>
+              <p style={{ fontSize: 15, lineHeight: 1.65, color: "var(--ink-2)", marginBottom: 20 }}>
                 Jede Gruppe startet mit einem Kennenlern-Einzel. Wir sehen euch einmal sauber an, ordnen eure Themen ein und zeigen euch den sinnvollsten Weg — am Hundeplatz in Mülheim oder online per Videoanalyse.
               </p>
               <div className="kl-ctas" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
@@ -605,11 +605,11 @@ export default function Selector({ open, onClose }: SelectorProps) {
                         background: "var(--omd-yellow)",
                         color: "#07071A",
                         fontFamily: "var(--mono)",
-                        fontSize: 10,
-                        fontWeight: 600,
-                        letterSpacing: "0.16em",
+                        fontSize: 11.5,
+                        fontWeight: 700,
+                        letterSpacing: "0.14em",
                         textTransform: "uppercase",
-                        padding: "4px 12px",
+                        padding: "6px 14px",
                         borderRadius: 999,
                       }}
                     >
@@ -734,12 +734,12 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
           .sel-q {
             font-size: 22px;
-            line-height: 1.15;
+            line-height: 1.2;
             letter-spacing: -0.015em;
-            font-weight: 360;
-            margin-bottom: 8px;
+            font-weight: 500;
+            margin-bottom: 10px;
           }
-          .sel-hint { font-size: 10px; line-height: 1.4; }
+          .sel-hint { font-size: 11.5px; line-height: 1.5; }
 
           .sel-options {
             margin-top: 18px;
@@ -749,7 +749,8 @@ export default function Selector({ open, onClose }: SelectorProps) {
           }
           .sel-opt {
             text-align: left;
-            padding: 12px 14px;
+            padding: 14px 16px;
+            min-height: 56px;
             background: var(--bg-2);
             border: 1px solid var(--line-2);
             border-radius: 8px;
@@ -767,15 +768,16 @@ export default function Selector({ open, onClose }: SelectorProps) {
           }
           .sel-opt-text { min-width: 0; flex: 1; }
           .sel-opt-label {
-            font-size: 14.5px;
+            font-size: 15.5px;
             color: var(--cream);
-            line-height: 1.25;
-            margin-bottom: 2px;
+            font-weight: 500;
+            line-height: 1.3;
+            margin-bottom: 4px;
           }
           .sel-opt-sub {
-            font-size: 9.5px;
-            letter-spacing: 0.1em;
-            line-height: 1.35;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            line-height: 1.4;
             white-space: normal;
           }
           .sel-opt-dot {
@@ -803,11 +805,15 @@ export default function Selector({ open, onClose }: SelectorProps) {
           }
           .sel-back {
             font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 0.16em;
+            font-size: 12px;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             color: var(--ink-2);
-            padding: 8px 0;
+            font-weight: 600;
+            padding: 10px 4px;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
           }
           .sel-back:disabled { color: var(--ink-4); cursor: default; }
 
@@ -825,9 +831,10 @@ export default function Selector({ open, onClose }: SelectorProps) {
             border-radius: 999px;
             padding: 5px 10px;
             font-family: var(--mono);
-            font-size: 9.5px;
-            letter-spacing: 0.14em;
+            font-size: 11px;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
+            font-weight: 600;
             color: var(--omd-yellow);
             opacity: 0;
             pointer-events: none;
@@ -890,7 +897,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
           .result-grid { margin-top: 22px; display: grid; grid-template-columns: 1fr; gap: 12px; }
           .kl-ctas { grid-template-columns: 1fr !important; }
-          .sel-result-h { font-size: 22px; line-height: 1.15; letter-spacing: -0.018em; font-weight: 360; margin-bottom: 8px; }
+          .sel-result-h { font-size: 22px; line-height: 1.2; letter-spacing: -0.018em; font-weight: 500; margin-bottom: 10px; }
           @media (min-width: 640px) { .sel-result-h { font-size: 28px; } }
           @media (min-width: 900px) { .sel-result-h { font-size: 32px; } }
 

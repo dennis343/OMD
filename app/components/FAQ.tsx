@@ -71,7 +71,8 @@ export default function FAQ() {
                   onClick={() => setOpen(active ? -1 : i)}
                   style={{
                     width: "100%",
-                    padding: "22px 0",
+                    padding: "24px 0",
+                    minHeight: 64,
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "center",
@@ -107,8 +108,8 @@ export default function FAQ() {
                     aria-labelledby={buttonId}
                     style={{
                       padding: "0 0 28px 0",
-                      fontSize: 15.5,
-                      lineHeight: 1.6,
+                      fontSize: 16.5,
+                      lineHeight: 1.7,
                       color: "var(--ink-2)",
                       maxWidth: "72ch",
                       animation: "fadeUp .25s ease both",
@@ -125,10 +126,10 @@ export default function FAQ() {
 
       <style>{`
         .faq-head { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 48px; }
-        .faq-q { font-size: 18px; letter-spacing: -0.012em; font-weight: 400; line-height: 1.3; }
+        .faq-q { font-size: 18px; letter-spacing: -0.012em; font-weight: 500; line-height: 1.35; }
         @media (min-width: 900px) {
           .faq-head { grid-template-columns: 1fr 2fr; gap: 80px; margin-bottom: 64px; }
-          .faq-q { font-size: 22px; line-height: 1.25; }
+          .faq-q { font-size: 22px; line-height: 1.3; }
         }
       `}</style>
     </section>

@@ -46,7 +46,7 @@ export default function Method() {
               <em className="hl-yellow" style={{ fontStyle: "italic" }}> Didaktik </em>
               statt Dressur.
             </h2>
-            <p style={{ fontSize: 17, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: "58ch", fontFamily: "var(--serif)", fontWeight: 300 }}>
+            <p style={{ fontSize: 18, lineHeight: 1.65, color: "var(--ink-2)", maxWidth: "58ch", fontFamily: "var(--serif)", fontWeight: 400 }}>
               Wir verzichten auf aversive Methoden — auch bei anspruchsvollen Fällen.
               Nicht aus Ideologie, sondern weil Training, das auf Druck basiert,
               unter Druck zusammenbricht. Das ist kein weiches Training. Es ist präzises.

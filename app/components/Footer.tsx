@@ -86,7 +86,7 @@ export default function Footer() {
                       href={href}
                       target={href.startsWith("http") ? "_blank" : undefined}
                       rel={href.startsWith("http") ? "noopener" : undefined}
-                      style={{ fontSize: 13.5, color: "var(--ink-2)" }}
+                      style={{ fontSize: 14.5, lineHeight: 1.5, color: "var(--ink-2)", display: "inline-block", padding: "4px 0" }}
                     >
                       {label}
                     </a>
@@ -112,15 +112,15 @@ export default function Footer() {
       <style>{`
         .foot-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
         .foot-brand { max-width: 46ch; }
-        .foot-about { margin-top: 24px; font-size: 14px; line-height: 1.55; color: var(--ink-3); max-width: 38ch; }
-        .foot-contact { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
-        .foot-contact a { color: var(--ink-2); }
+        .foot-about { margin-top: 24px; font-size: 15px; line-height: 1.6; color: var(--ink-2); max-width: 38ch; }
+        .foot-contact { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .foot-contact a { color: var(--ink-2); padding: 4px 0; display: inline-block; }
         .foot-contact a:hover { color: var(--brass); }
-        .foot-bottom { border-top: 1px solid var(--line); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .foot-bottom { border-top: 1px solid var(--line); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .foot-legal { display: flex; gap: 20px; }
-        .foot-legal button { background: none; border: none; cursor: pointer; color: var(--ink-3); padding: 0; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; }
+        .foot-legal button { background: none; border: none; cursor: pointer; color: var(--ink-2); padding: 8px 0; min-height: 44px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
         .foot-legal button:hover { color: var(--brass); }
-        .foot-tagline { margin-top: 16px; color: var(--ink-4); font-size: 10.5px; }
+        .foot-tagline { margin-top: 16px; color: var(--ink-2); font-size: 12px; }
         @media (min-width: 700px) {
           .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
         }

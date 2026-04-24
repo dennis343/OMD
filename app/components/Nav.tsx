@@ -167,10 +167,10 @@ export default function Nav({ onOpenSelector }: NavProps) {
 
           <div className="mobile-contact">
             <div className="eyebrow" style={{ marginBottom: 12 }}>Direkt</div>
-            <a href={PHONE_HREF} style={{ display: "block", fontSize: 15, color: "var(--ink-2)", marginBottom: 6 }}>
+            <a href={PHONE_HREF} style={{ display: "block", fontSize: 17, color: "var(--ink-2)", marginBottom: 8, padding: "10px 0", minHeight: 44, fontWeight: 500 }}>
               0171 / 345 795 9
             </a>
-            <a href={EMAIL_HREF} style={{ display: "block", fontSize: 15, color: "var(--ink-2)" }}>
+            <a href={EMAIL_HREF} style={{ display: "block", fontSize: 17, color: "var(--ink-2)", padding: "10px 0", minHeight: 44, fontWeight: 500 }}>
               hallo@oooh-my-dog.de
             </a>
           </div>

@@ -153,7 +153,7 @@ export default function ConsentManager({ gtmId, fbPixelId }: Props) {
           margin: 0 auto;
         }
         .consent-inner { display: grid; gap: 16px; }
-        .consent-text p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); max-width: 68ch; }
+        .consent-text p { font-size: 14.5px; line-height: 1.65; color: var(--ink-2); max-width: 68ch; }
         .consent-text a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--omd-yellow); text-underline-offset: 3px; text-decoration-thickness: 2px; font-weight: 500; }
         .consent-text a:hover { text-decoration-color: var(--ink); }
         .consent-actions { display: flex; gap: 10px; flex-wrap: wrap; }

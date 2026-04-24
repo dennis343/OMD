@@ -39,7 +39,7 @@ export default function Audience() {
         <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: 32 }} className="aud-grid">
           <div style={{ background: "var(--bg)", border: "1px solid var(--line-2)", padding: "40px 44px" }}>
             <div className="eyebrow" style={{ marginBottom: 26 }}>+ Gut für euch</div>
-            <p style={{ fontSize: 18, lineHeight: 1.5, fontFamily: "var(--serif)", fontWeight: 340, color: "var(--ink-2)", marginBottom: 28 }}>
+            <p style={{ fontSize: 19, lineHeight: 1.55, fontFamily: "var(--serif)", fontWeight: 500, color: "var(--ink-2)", marginBottom: 28 }}>
               oooh my dog! ist besonders passend für Menschen, die:
             </p>
             <ul style={{ listStyle: "none", borderTop: "1px solid var(--line)" }}>
@@ -51,8 +51,8 @@ export default function Audience() {
                     borderBottom: "1px solid var(--line)",
                     display: "flex",
                     gap: 20,
-                    fontSize: 15.5,
-                    lineHeight: 1.5,
+                    fontSize: 16,
+                    lineHeight: 1.6,
                     color: "var(--ink-2)",
                   }}
                 >
@@ -67,7 +67,7 @@ export default function Audience() {
 
           <div style={{ background: "transparent", border: "1px solid var(--line-2)", padding: "40px 36px" }}>
             <div className="mono" style={{ color: "var(--rust)", marginBottom: 24 }}>− Weniger passend</div>
-            <p style={{ fontSize: 16, lineHeight: 1.55, color: "var(--ink-3)", marginBottom: 28, fontFamily: "var(--serif)", fontWeight: 300, fontStyle: "italic" }}>
+            <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 28, fontFamily: "var(--serif)", fontWeight: 400, fontStyle: "italic" }}>
               Nicht ideal, wenn ihr sucht nach:
             </p>
             <ul style={{ listStyle: "none" }}>
@@ -77,19 +77,19 @@ export default function Audience() {
                   style={{
                     padding: "14px 0",
                     borderBottom: i < NEGATIVES.length - 1 ? "1px solid var(--line)" : "none",
-                    fontSize: 14.5,
-                    lineHeight: 1.5,
-                    color: "var(--ink-3)",
+                    fontSize: 15.5,
+                    lineHeight: 1.6,
+                    color: "var(--ink-2)",
                     display: "flex",
                     gap: 14,
                   }}
                 >
-                  <span style={{ color: "var(--rust)", fontFamily: "var(--mono)", fontSize: 11, minWidth: 18 }} aria-hidden="true">×</span>
+                  <span style={{ color: "var(--rust)", fontFamily: "var(--mono)", fontSize: 14, fontWeight: 700, minWidth: 18 }} aria-hidden="true">×</span>
                   <span>{n}</span>
                 </li>
               ))}
             </ul>
-            <p style={{ marginTop: 32, fontSize: 13, lineHeight: 1.55, color: "var(--ink-4)", fontFamily: "var(--mono)", letterSpacing: "0.02em" }}>
+            <p style={{ marginTop: 32, fontSize: 14, lineHeight: 1.6, color: "var(--ink-2)", fontFamily: "var(--mono)", letterSpacing: "0.01em", fontWeight: 500 }}>
               Das ist keine Wertung, sondern eine klare Einordnung — damit ihr keine Zeit verliert.
             </p>
           </div>

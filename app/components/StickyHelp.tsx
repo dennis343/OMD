@@ -100,7 +100,7 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
           background: var(--bg);
           border: 1px solid var(--line-2);
           border-radius: 999px;
-          padding: 6px 6px 6px 14px;
+          padding: 8px 8px 8px 16px;
           box-shadow: 0 10px 32px rgba(0,0,0,0.32);
           transform: translateY(calc(100% + 32px));
           opacity: 0;
@@ -117,7 +117,8 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
           display: flex;
           align-items: center;
           gap: 12px;
-          padding: 8px 6px 8px 2px;
+          padding: 10px 6px 10px 2px;
+          min-height: 44px;
           background: transparent;
           color: var(--cream);
           min-width: 0;
@@ -143,12 +144,12 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
         }
         .sticky-help-eyebrow {
           font-family: var(--mono);
-          font-size: 9.5px;
-          letter-spacing: 0.16em;
+          font-size: 10.5px;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--ink);
           font-weight: 700;
-          margin-bottom: 3px;
+          margin-bottom: 4px;
           display: inline-flex;
           align-items: center;
           gap: 8px;
@@ -162,8 +163,8 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
         }
         .sticky-help-label {
           font-family: var(--serif);
-          font-size: 14px;
-          font-weight: 400;
+          font-size: 15px;
+          font-weight: 500;
           letter-spacing: -0.01em;
           color: var(--cream);
           white-space: nowrap;
@@ -183,12 +184,13 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
         }
         .sticky-help-close {
           flex-shrink: 0;
-          width: 36px; height: 36px;
+          width: 44px; height: 44px;
           border-radius: 50%;
           background: var(--bg-2);
-          color: var(--ink-3);
-          font-size: 20px;
+          color: var(--ink-2);
+          font-size: 22px;
           line-height: 1;
+          font-weight: 500;
           display: grid; place-items: center;
           transition: color .15s, background .15s;
         }
@@ -202,8 +204,8 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
             max-width: 380px;
             padding: 8px 8px 8px 18px;
           }
-          .sticky-help-label { font-size: 15px; }
-          .sticky-help-eyebrow { font-size: 10px; }
+          .sticky-help-label { font-size: 16px; }
+          .sticky-help-eyebrow { font-size: 11px; }
         }
       `}</style>
     </>

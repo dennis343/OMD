@@ -203,7 +203,8 @@ export default function Pro() {
       <style>{`
         .pro-head { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 56px; }
         .pro-h2 { font-size: clamp(28px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; }
-        .pro-lead { font-size: 16px; line-height: 1.55; color: var(--ink-2); margin-top: 22px; max-width: 58ch; font-family: var(--serif); font-weight: 300; }
+        .pro-lead { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin-top: 22px; max-width: 58ch; font-family: var(--serif); font-weight: 400; }
+        @media (min-width: 1024px) { .pro-lead { font-size: 18px; } }
 
         .why-jenny { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 64px; background: var(--bg-2); border: 1px solid var(--line-2); padding: 28px; }
         .why-jenny-img { height: 260px; }
@@ -211,20 +212,20 @@ export default function Pro() {
         .why-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .why-cell { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
         .why-n { color: var(--accent-ink); font-style: italic; font-size: 22px; font-weight: 500; }
-        .why-t { font-size: 18px; letter-spacing: -0.015em; color: var(--cream); margin-bottom: 6px; }
-        .why-d { font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+        .why-t { font-size: 18.5px; letter-spacing: -0.015em; color: var(--cream); font-weight: 500; margin-bottom: 8px; }
+        .why-d { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
 
         .pro-grid { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line-2); }
         .pro-card { padding: 32px 24px 28px; border-bottom: 1px solid var(--line-2); display: flex; flex-direction: column; background: transparent; position: relative; }
         .pro-card.is-featured { background: var(--bg-2); }
-        .pro-badge { position: absolute; top: -1px; right: 20px; background: var(--omd-yellow); color: #07071A; padding: 4px 12px; border-radius: 0 0 6px 6px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
+        .pro-badge { position: absolute; top: -1px; right: 20px; background: var(--omd-yellow); color: #07071A; padding: 6px 14px; border-radius: 0 0 6px 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
         .pro-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
-        .pro-n { font-size: 32px; font-style: italic; color: var(--accent-ink); font-weight: 500; }
-        .pro-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 380; margin-bottom: 20px; line-height: 1.08; }
+        .pro-n { font-size: 32px; font-style: italic; color: var(--accent-ink); font-weight: 600; }
+        .pro-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 500; margin-bottom: 20px; line-height: 1.08; }
         .pro-block { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 16px; }
-        .pro-p { font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
+        .pro-p { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
         .pro-list { list-style: none; }
-        .pro-list li { font-size: 13px; color: var(--ink-2); padding: 5px 0; display: flex; gap: 10px; }
+        .pro-list li { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); padding: 7px 0; display: flex; gap: 10px; }
 
         .refs-block { margin-top: 64px; padding-top: 56px; border-top: 1px solid var(--line-2); }
         .refs-head { font-size: clamp(24px, 3.6vw, 40px); letter-spacing: -0.02em; font-weight: 340; max-width: 24ch; }
