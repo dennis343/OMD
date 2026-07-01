@@ -867,7 +867,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
             border-radius: 999px;
             font-family: var(--serif);
             font-size: 13px;
-            font-style: italic;
+            font-weight: 600;
             letter-spacing: -0.005em;
             box-shadow: 0 8px 24px rgba(0,0,0,0.35);
             opacity: 0;

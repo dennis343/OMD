@@ -69,7 +69,7 @@ export default function Pro() {
           <div>
             <h2 id="pro-heading" className="serif pro-h2">
               Für Profis, die
-              <em className="hl-yellow" style={{ fontStyle: "italic" }}> System </em>
+              <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}> System </em>
               über Stundendruck stellen.
               <span style={{ color: "var(--ink-3)" }}> Struktur, Qualität, Premium-Niveau.</span>
             </h2>
@@ -202,16 +202,16 @@ export default function Pro() {
 
       <style>{`
         .pro-head { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 56px; }
-        .pro-h2 { font-size: clamp(28px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; }
+        .pro-h2 { font-size: clamp(28px, 5vw, 62px); line-height: 1.08; letter-spacing: -0.018em; font-weight: 600; }
         .pro-lead { font-size: 17px; line-height: 1.65; color: var(--ink-2); margin-top: 22px; max-width: 58ch; font-family: var(--serif); font-weight: 400; }
         @media (min-width: 1024px) { .pro-lead { font-size: 18px; } }
 
         .why-jenny { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 64px; background: var(--bg-2); border: 1px solid var(--line-2); padding: 28px; }
         .why-jenny-img { height: 260px; }
-        .why-h { font-size: clamp(24px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 340; margin-bottom: 28px; }
+        .why-h { font-size: clamp(24px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.016em; font-weight: 600; margin-bottom: 28px; }
         .why-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .why-cell { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
-        .why-n { color: var(--accent-ink); font-style: italic; font-size: 22px; font-weight: 500; }
+        .why-n { color: var(--accent-ink); font-size: 22px; font-weight: 700; }
         .why-t { font-size: 18.5px; letter-spacing: -0.015em; color: var(--cream); font-weight: 500; margin-bottom: 8px; }
         .why-d { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
 
@@ -220,7 +220,7 @@ export default function Pro() {
         .pro-card.is-featured { background: var(--bg-2); }
         .pro-badge { position: absolute; top: -1px; right: 20px; background: var(--omd-yellow); color: #07071A; padding: 6px 14px; border-radius: 0 0 6px 6px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
         .pro-card-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
-        .pro-n { font-size: 32px; font-style: italic; color: var(--accent-ink); font-weight: 600; }
+        .pro-n { font-size: 32px; color: var(--accent-ink); font-weight: 700; }
         .pro-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 500; margin-bottom: 20px; line-height: 1.08; }
         .pro-block { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 16px; }
         .pro-p { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
@@ -228,7 +228,7 @@ export default function Pro() {
         .pro-list li { font-size: 14.5px; line-height: 1.5; color: var(--ink-2); padding: 7px 0; display: flex; gap: 10px; }
 
         .refs-block { margin-top: 64px; padding-top: 56px; border-top: 1px solid var(--line-2); }
-        .refs-head { font-size: clamp(24px, 3.6vw, 40px); letter-spacing: -0.02em; font-weight: 340; max-width: 24ch; }
+        .refs-head { font-size: clamp(24px, 3.6vw, 40px); letter-spacing: -0.016em; font-weight: 600; max-width: 24ch; }
         .refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .ref-img { aspect-ratio: 1 / 1; }
         .ref-video { margin-top: 48px; }
@@ -238,7 +238,7 @@ export default function Pro() {
 
         .pro-foot { margin-top: 48px; display: grid; grid-template-columns: 1fr; gap: 20px; align-items: center; }
         .pro-foot-quote { border: 1px solid var(--line-2); padding: 28px 28px; background: var(--bg-2); }
-        .pro-foot-quote p { font-size: 18px; line-height: 1.4; font-weight: 360; font-style: italic; color: var(--ink-2); max-width: 52ch; }
+        .pro-foot-quote p { font-size: 18px; line-height: 1.5; font-weight: 500; color: var(--ink-2); max-width: 52ch; }
 
         @media (min-width: 700px) {
           .why-grid { grid-template-columns: 1fr 1fr; gap: 20px 28px; }

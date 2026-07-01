@@ -38,11 +38,11 @@ export default function FinalCTA({ onOpenSelector }: FinalCTAProps) {
       <div className="serif final-deco" aria-hidden="true">omd.</div>
 
       <style>{`
-        .final-h { font-size: clamp(44px, 8vw, 132px); line-height: 0.92; letter-spacing: -0.035em; font-weight: 340; max-width: 16ch; margin-bottom: 28px; }
+        .final-h { font-size: clamp(44px, 8vw, 132px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 600; max-width: 16ch; margin-bottom: 28px; }
         .final-p { font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; font-family: var(--serif); font-weight: 400; margin-bottom: 40px; }
         .final-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
         .final-ctas .btn { font-size: 14px; padding: 15px 20px; }
-        .final-deco { position: absolute; right: -40px; bottom: -40px; z-index: 1; font-size: clamp(140px, 28vw, 460px); line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--line-2); font-style: italic; font-weight: 300; pointer-events: none; }
+        .final-deco { position: absolute; right: -40px; bottom: -40px; z-index: 1; font-size: clamp(140px, 28vw, 460px); line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--line-2); font-weight: 700; pointer-events: none; }
         @media (min-width: 700px) {
           .final-p { font-size: 19px; }
           .final-ctas .btn { font-size: 15px; padding: 18px 26px; }

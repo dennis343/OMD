@@ -246,7 +246,7 @@ export default function Offers(_props: OffersProps = {}) {
             <div className="eyebrow" style={{ marginBottom: 18 }}>Säule 01 · Vor Ort</div>
             <h2 id="offers-heading" className="serif local-h2">
               Training, das im
-              <em className="hl-yellow" style={{ fontStyle: "italic" }}> Alltag </em>
+              <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}> Alltag </em>
               sitzt.
               <br />
               <span style={{ color: "var(--ink-3)" }}>In Mülheim und Umgebung.</span>
@@ -411,7 +411,7 @@ export default function Offers(_props: OffersProps = {}) {
               <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>{c.name}</div>
               <h4 className="serif group-title">{c.title}</h4>
               <p className="group-nutzen">
-                <em style={{ color: "var(--ink-3)", fontStyle: "italic" }}>Nutzen:</em> {c.nutzen}
+                <em style={{ color: "var(--ink-2)", fontStyle: "normal", fontWeight: 700 }}>Nutzen:</em> {c.nutzen}
               </p>
               <ul className="group-list">
                 {c.items.map((it) => (
@@ -443,7 +443,7 @@ export default function Offers(_props: OffersProps = {}) {
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12, letterSpacing: "0.2em" }}>{EXKLUSIV_GROUP.name}</div>
             <h3 className="serif exklusiv-h">{EXKLUSIV_GROUP.title}</h3>
             <p className="exklusiv-nutzen">
-              <em style={{ color: "var(--accent-ink)", fontStyle: "italic" }}>Exklusiv-Nutzen:</em> {EXKLUSIV_GROUP.nutzen}
+              <em style={{ color: "var(--accent-ink)", fontStyle: "normal", fontWeight: 700 }}>Exklusiv-Nutzen:</em> {EXKLUSIV_GROUP.nutzen}
             </p>
           </div>
           <ul className="exklusiv-list">
@@ -539,14 +539,14 @@ export default function Offers(_props: OffersProps = {}) {
 
       <style>{`
         .local-head { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: flex-end; margin-bottom: 40px; }
-        .local-h2 { font-size: clamp(32px, 6.5vw, 76px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 340; max-width: 16ch; }
+        .local-h2 { font-size: clamp(32px, 6.5vw, 76px); line-height: 1.03; letter-spacing: -0.025em; font-weight: 600; max-width: 16ch; }
         .local-lead { margin-top: 20px; font-size: 17px; line-height: 1.65; color: var(--ink-2); max-width: 56ch; font-family: var(--serif); font-weight: 400; }
         @media (min-width: 1024px) { .local-lead { font-size: 18px; } }
 
         .local-banner { height: 220px; margin-bottom: 48px; }
 
         .kennenlern-head { margin-bottom: 24px; }
-        .kennenlern-h { font-size: clamp(24px, 3.8vw, 40px); letter-spacing: -0.02em; font-weight: 360; max-width: 22ch; margin-bottom: 14px; }
+        .kennenlern-h { font-size: clamp(24px, 3.8vw, 40px); letter-spacing: -0.018em; font-weight: 600; max-width: 22ch; margin-bottom: 14px; }
         .kennenlern-lead { font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 60ch; font-family: var(--serif); font-weight: 400; }
 
         .kennenlern-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 18px; }
@@ -556,7 +556,7 @@ export default function Offers(_props: OffersProps = {}) {
         .entry-card.is-large { background: var(--bg-3); border-color: var(--brass); padding: 36px 28px 32px; }
         .entry-badge { position: absolute; top: -12px; left: 22px; color: #07071A; font-weight: 700; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; }
         .entry-title { letter-spacing: -0.025em; line-height: 1.04; font-weight: 400; margin-bottom: 8px; }
-        .entry-sub { font-size: 14.5px; color: var(--ink-2); font-style: italic; font-family: var(--serif); margin-bottom: 18px; }
+        .entry-sub { font-size: 14.5px; color: var(--ink-2); font-weight: 500; font-family: var(--serif); margin-bottom: 18px; }
         .entry-desc { font-size: 15.5px; line-height: 1.65; color: var(--ink-2); margin-bottom: 22px; }
         .entry-block { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 14px; }
         .entry-p { font-size: 15px; line-height: 1.6; color: var(--ink-2); }
@@ -577,7 +577,7 @@ export default function Offers(_props: OffersProps = {}) {
         .tour-list li:last-child { border-bottom: none; }
 
         .group-head { margin-bottom: 24px; }
-        .group-h { font-size: clamp(24px, 3.8vw, 44px); letter-spacing: -0.02em; font-weight: 360; max-width: 22ch; margin-bottom: 16px; }
+        .group-h { font-size: clamp(24px, 3.8vw, 44px); letter-spacing: -0.018em; font-weight: 600; max-width: 22ch; margin-bottom: 16px; }
         .group-lead { font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 56ch; font-family: var(--serif); font-weight: 400; }
 
         .group-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -620,7 +620,7 @@ export default function Offers(_props: OffersProps = {}) {
         .exklusiv-item-mehrwert { font-size: 15px; line-height: 1.6; color: var(--ink-2); max-width: 72ch; }
 
         .pakete-head { margin-top: 80px; margin-bottom: 28px; }
-        .pakete-h { font-size: clamp(28px, 5vw, 56px); letter-spacing: -0.025em; font-weight: 340; line-height: 1.04; max-width: 24ch; margin-bottom: 16px; }
+        .pakete-h { font-size: clamp(28px, 5vw, 56px); letter-spacing: -0.02em; font-weight: 600; line-height: 1.08; max-width: 24ch; margin-bottom: 16px; }
         .pakete-lead { font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 60ch; font-family: var(--serif); font-weight: 400; }
 
         .paket-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -628,7 +628,7 @@ export default function Offers(_props: OffersProps = {}) {
         .paket-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--brass); }
         .paket-tag { font-size: 12px; letter-spacing: 0.14em; margin-bottom: 18px; }
         .paket-title { font-size: 26px; letter-spacing: -0.02em; font-weight: 500; line-height: 1.1; margin-bottom: 10px; color: var(--cream); }
-        .paket-headline { font-size: 16.5px; font-style: italic; color: var(--ink-2); margin-bottom: 18px; line-height: 1.4; }
+        .paket-headline { font-size: 16.5px; font-weight: 500; color: var(--ink-2); margin-bottom: 18px; line-height: 1.4; }
         .paket-desc { font-size: 15px; line-height: 1.65; color: var(--ink-2); margin-bottom: 22px; }
         .paket-block { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 16px; }
         .paket-list { list-style: none; }

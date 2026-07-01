@@ -30,7 +30,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
           <h1 id="hero-headline" className="serif hero-headline">
             Reizoffene Hunde.
             <br />
-            <em className="hl-yellow" style={{ fontStyle: "italic" }}>Klar geführt.</em>
+            <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}>Klar geführt.</em>
             <br />
             Für ein echtes Miteinander.
           </h1>
@@ -90,7 +90,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
 
       <style>{`
         .hero-meta { display: flex; flex-direction: column; gap: 6px; margin-bottom: 40px; }
-        .hero-headline { font-size: clamp(40px, 9vw, 140px); line-height: 0.96; letter-spacing: -0.035em; font-weight: 340; max-width: 16ch; }
+        .hero-headline { font-size: clamp(40px, 9vw, 140px); line-height: 1.0; letter-spacing: -0.03em; font-weight: 600; max-width: 16ch; }
         .hero-sub { font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; font-family: var(--serif); font-weight: 400; }
         @media (min-width: 1024px) { .hero-sub { font-size: 19px; line-height: 1.55; } }
         .hero-bottom { display: grid; grid-template-columns: 1fr; gap: 28px; align-items: end; }

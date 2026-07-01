@@ -75,7 +75,7 @@ export default function Proof() {
           <div className="mono" style={{ marginBottom: 18, color: "var(--accent-ink)" }}>Presse · Erwähnungen</div>
           <div style={{ display: "flex", gap: 24, flexWrap: "wrap", alignItems: "baseline" }}>
             {PRESS.map((p) => (
-              <span key={p} className="serif" style={{ fontSize: "clamp(16px, 2.2vw, 22px)", color: "var(--ink-3)", fontStyle: "italic", fontWeight: 340 }}>
+              <span key={p} className="serif" style={{ fontSize: "clamp(16px, 2.2vw, 22px)", color: "var(--ink-2)", fontWeight: 500 }}>
                 {p}
               </span>
             ))}
@@ -89,7 +89,7 @@ export default function Proof() {
           <h2 id="proof-heading" className="serif proof-h">
             Nicht unsere Worte.
             <br />
-            <em className="hl-yellow" style={{ fontStyle: "italic" }}>Eure Ergebnisse.</em>
+            <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}>Eure Ergebnisse.</em>
           </h2>
         </div>
 
@@ -124,7 +124,7 @@ export default function Proof() {
                 <div className="case-dauer mono">{c.dauer}</div>
                 <div className="case-after">
                   <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 4 }}>Nachher</div>
-                  <div className="serif" style={{ fontStyle: "italic", color: "var(--cream)" }}>→ {c.after}</div>
+                  <div className="serif" style={{ fontWeight: 500, color: "var(--cream)" }}>→ {c.after}</div>
                 </div>
               </div>
             ))}
@@ -145,7 +145,7 @@ export default function Proof() {
         <div className="proof-disclaimer">
           <div className="mono" style={{ color: "var(--ink-4)", marginBottom: 10 }}>Hinweis zu Ergebnissen</div>
           <p>
-            Alle dargestellten Ergebnisse, Testimonials und Case Studies sind <em style={{ fontStyle: "italic" }}>exemplarisch</em>
+            Alle dargestellten Ergebnisse, Testimonials und Case Studies sind <em style={{ fontStyle: "normal", fontWeight: 700 }}>exemplarisch</em>
             {" "}und nicht automatisch 1:1 auf jeden Hund und jede Halter-Konstellation übertragbar.
             Es ist jedoch sehr wahrscheinlich, dass ein vergleichbarer Erfolg eintritt, wenn ihr konsequent
             nach dem System und den Anleitungen arbeitet. Training ist Zusammenarbeit — Ergebnisse entstehen durch
@@ -170,11 +170,11 @@ export default function Proof() {
           align-items: center;
         }
         .google-score { display: flex; flex-direction: column; gap: 10px; }
-        .google-score-num { font-size: 56px; line-height: 1; letter-spacing: -0.03em; color: var(--cream); font-weight: 340; display: flex; align-items: baseline; gap: 8px; }
-        .google-score-max { font-size: 18px; color: var(--ink-3); font-style: italic; }
+        .google-score-num { font-size: 56px; line-height: 1; letter-spacing: -0.03em; color: var(--cream); font-weight: 700; display: flex; align-items: baseline; gap: 8px; }
+        .google-score-max { font-size: 18px; color: var(--ink-2); font-weight: 500; }
         .google-stars { font-size: 24px; color: var(--omd-yellow); letter-spacing: 3px; line-height: 1; }
         .google-score-caption { color: var(--ink-3); }
-        .google-lead { font-size: 18px; line-height: 1.5; color: var(--cream); font-weight: 340; margin-bottom: 20px; max-width: 50ch; }
+        .google-lead { font-size: 18px; line-height: 1.55; color: var(--cream); font-weight: 500; margin-bottom: 20px; max-width: 50ch; }
         .google-cta { background: var(--omd-yellow); color: #0a0a0a; }
         .google-cta:hover { background: var(--omd-yellow-soft); }
         @media (min-width: 700px) {
@@ -184,7 +184,7 @@ export default function Proof() {
         }
 
         .proof-head { margin-bottom: 48px; display: grid; grid-template-columns: 1fr; gap: 16px; }
-        .proof-h { font-size: clamp(28px, 5vw, 62px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; }
+        .proof-h { font-size: clamp(28px, 5vw, 62px); line-height: 1.08; letter-spacing: -0.018em; font-weight: 600; }
 
         .testi-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
         .testi-card { background: var(--bg-2); border: 1px solid var(--line-2); display: flex; flex-direction: column; overflow: hidden; margin: 0; }

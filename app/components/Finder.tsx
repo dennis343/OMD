@@ -59,9 +59,9 @@ export default function Finder({ onOpenSelector }: FinderProps) {
             <div className="mono" style={{ marginTop: 12 }}>Drei Wege · Eine Entscheidung</div>
           </div>
           <div>
-            <h2 id="finder-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340, marginBottom: 24 }}>
+            <h2 id="finder-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.06, letterSpacing: "-0.02em", fontWeight: 600, marginBottom: 24 }}>
               Der erste Schritt ist immer
-              <em className="hl-yellow" style={{ fontStyle: "italic" }}> der schwerste.</em>
+              <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}> der schwerste.</em>
               <br />
               <span style={{ color: "var(--ink-3)" }}>Wir nehmen ihn euch ab.</span>
             </h2>
@@ -89,7 +89,7 @@ export default function Finder({ onOpenSelector }: FinderProps) {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 32 }}>
-                <span className="serif" style={{ fontSize: 40, fontStyle: "italic", color: p.featured ? "var(--accent-ink)" : p.accent, fontWeight: 400 }}>{p.num}</span>
+                <span className="serif" style={{ fontSize: 40, color: p.featured ? "var(--accent-ink)" : p.accent, fontWeight: 600 }}>{p.num}</span>
                 <span className="mono">Weg</span>
               </div>
               <h3 className="serif" style={{ fontSize: 24, letterSpacing: "-0.018em", fontWeight: 400, lineHeight: 1.12, marginBottom: 16 }}>

@@ -88,7 +88,7 @@ export default function Jenny() {
               mit ihnen gearbeitet haben — mit Respekt vor den Unterschieden, nicht dagegen.
             </p>
             <p className="nala-p">
-              Der Schlüssel dafür ist <em style={{ color: "var(--accent-ink)", fontStyle: "italic" }}>klare Kommunikation</em>.
+              Der Schlüssel dafür ist <em style={{ color: "var(--accent-ink)", fontStyle: "normal", fontWeight: 700 }}>klare Kommunikation</em>.
               Mit den Hunden. Mit den Haltern. Mit anderen Schulen. Dieses Prinzip zieht sich durch alles, was wir tun —
               vor Ort, online und im Pro-Bereich.
             </p>
@@ -111,7 +111,7 @@ export default function Jenny() {
 
         <style>{`
           .jenny-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
-          .jenny-head { font-size: clamp(32px, 7vw, 76px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 340; margin-bottom: 24px; }
+          .jenny-head { font-size: clamp(32px, 7vw, 76px); line-height: 1.04; letter-spacing: -0.025em; font-weight: 600; margin-bottom: 24px; }
           .jenny-intro { font-size: 18px; line-height: 1.65; color: var(--ink-2); margin-bottom: 20px; max-width: 52ch; font-family: var(--serif); font-weight: 400; }
           .jenny-cv { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 28px; border-top: 1px solid var(--line-2); }
           .jenny-cv-cell { padding: 20px 16px 20px 0; border-bottom: 1px solid var(--line-2); }
@@ -121,10 +121,10 @@ export default function Jenny() {
           .jenny-images { position: relative; display: grid; gap: 12px; min-height: 420px; }
           .jenny-main-img { height: 360px; }
           .jenny-work-img { height: 220px; }
-          .jenny-quote-card { background: var(--bg-3); border: 1px solid var(--line-2); padding: 14px 18px; font-family: var(--serif); font-size: 15px; font-style: italic; color: var(--ink-2); max-width: 280px; transform: rotate(-2deg); }
+          .jenny-quote-card { background: var(--bg-3); border: 1px solid var(--line-2); padding: 14px 18px; font-family: var(--serif); font-size: 15px; font-weight: 500; color: var(--ink-2); max-width: 280px; transform: rotate(-2deg); }
 
           .big-quote { margin-top: 80px; padding-top: 64px; border-top: 1px solid var(--line-2); max-width: none; }
-          .big-quote blockquote { font-size: clamp(26px, 4.4vw, 52px); line-height: 1.18; letter-spacing: -0.018em; font-weight: 340; color: var(--cream); max-width: 22ch; }
+          .big-quote blockquote { font-size: clamp(26px, 4.4vw, 52px); line-height: 1.22; letter-spacing: -0.015em; font-weight: 500; color: var(--cream); max-width: 22ch; }
           @media (min-width: 900px) {
             .big-quote { padding-top: 80px; margin-top: 120px; }
             .big-quote blockquote { max-width: 24ch; font-size: clamp(36px, 5vw, 64px); }
@@ -134,7 +134,7 @@ export default function Jenny() {
           }
 
           .nala-block { margin-top: 80px; padding-top: 64px; border-top: 1px solid var(--line-2); display: grid; grid-template-columns: 1fr; gap: 40px; }
-          .nala-head { font-size: clamp(28px, 5vw, 54px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; margin-bottom: 28px; }
+          .nala-head { font-size: clamp(28px, 5vw, 54px); line-height: 1.08; letter-spacing: -0.018em; font-weight: 600; margin-bottom: 28px; }
           .nala-p { font-size: 16px; line-height: 1.6; color: var(--ink-2); margin-bottom: 18px; max-width: 58ch; }
           .nala-links { margin-top: 24px; }
           .nala-links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--omd-yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
