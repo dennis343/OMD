@@ -160,7 +160,7 @@ export default function Proof() {
           padding: 28px 24px;
           background: var(--bg-2);
           border: 1px solid var(--line-2);
-          border-left: 3px solid var(--omd-yellow);
+          border-top: 2px solid var(--omd-yellow);
           position: relative;
         }
         .google-reviews-inner {
