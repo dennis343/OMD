@@ -114,12 +114,12 @@ export default function Footer() {
         .foot-brand { max-width: 46ch; }
         .foot-about { margin-top: 24px; font-size: 15px; line-height: 1.6; color: var(--ink-2); max-width: 38ch; }
         .foot-contact { margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-        .foot-contact a { color: var(--ink-2); padding: 4px 0; display: inline-block; }
-        .foot-contact a:hover { color: var(--brass); }
+        .foot-contact a { color: var(--ink-2); padding: 4px 0; display: inline-block; box-shadow: 0 1px 0 0 transparent; transition: color .15s, box-shadow .15s; }
+        .foot-contact a:hover { color: var(--ink); box-shadow: 0 1px 0 0 var(--omd-yellow); }
         .foot-bottom { border-top: 1px solid var(--line); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .foot-legal { display: flex; gap: 20px; }
-        .foot-legal button { background: none; border: none; cursor: pointer; color: var(--ink-2); padding: 8px 0; min-height: 44px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
-        .foot-legal button:hover { color: var(--brass); }
+        .foot-legal button { background: none; border: none; cursor: pointer; color: var(--ink-2); padding: 8px 0; min-height: 44px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; box-shadow: 0 1px 0 0 transparent; transition: color .15s, box-shadow .15s; }
+        .foot-legal button:hover { color: var(--ink); box-shadow: 0 1px 0 0 var(--omd-yellow); }
         .foot-tagline { margin-top: 16px; color: var(--ink-2); font-size: 12px; }
         @media (min-width: 700px) {
           .foot-grid { grid-template-columns: 1fr 1fr; gap: 40px; }

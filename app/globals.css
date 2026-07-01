@@ -16,17 +16,15 @@
   --brass-2: #c7e000;
   /* moss was the green tertiary accent — in the new CI it becomes secondary grey */
   --moss: #C6C6C6;
-  --rust: #E4FF00;
   /* cream was the "bright on dark" text color — now it becomes the contrasting ink so
      .btn-primary { background: var(--cream); color: var(--bg); } auto-inverts per theme */
   --cream: #07071A;
   --secondary: #C6C6C6;
   --omd-yellow: #E4FF00;
   --omd-yellow-soft: color-mix(in oklab, #E4FF00 85%, #F7F7F7);
-  /* accent-ink is the READABLE representation of the yellow primary:
-     on light sections it resolves to dark ink (so text is legible),
-     on dark sections it resolves to bright yellow (the iconic brand colour).
-     Decorative yellow elements (dots, bars, buttons, highlighter strips) always use --omd-yellow. */
+  /* accent-ink is the emphasis-text colour: always the readable ink/cream tone
+     for the current theme — never yellow. Yellow is reserved as a decorative
+     jewel colour (backgrounds, borders, underlines, dots) via --omd-yellow. */
   --accent-ink: #07071A;
 
   /* Manrope everywhere — the old `.serif` class stays for compatibility but now renders Manrope with tight tracking */
@@ -48,7 +46,7 @@
   --line: rgba(247, 247, 247, 0.08);
   --line-2: rgba(247, 247, 247, 0.18);
   --cream: #F7F7F7;
-  --accent-ink: #E4FF00;
+  --accent-ink: #F7F7F7;
   background: var(--bg);
   color: var(--ink);
 }
@@ -123,8 +121,10 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 .serif { font-family: var(--sans); font-weight: 600; letter-spacing: -0.025em; font-feature-settings: "ss01", "cv11"; }
 .mono { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); font-weight: 500; }
 
-/* Yellow highlighter behind readable dark text — used for italic emphasis in headlines on LIGHT sections.
-   Inside .theme-dark the highlighter is suppressed and we fall back to bright-yellow text (keeps the iconic dark look). */
+/* Yellow highlighter — a jewel colour, never a text colour. On LIGHT sections it sits as a
+   gradient stripe BEHIND dark ink text (like a highlighter pen). On DARK sections a stripe
+   behind light text would kill contrast, so it becomes a bold yellow underline instead.
+   Text stays --ink (auto-flips ink/cream per theme) in both cases — never yellow. */
 .hl-yellow {
   color: var(--ink);
   background-image: linear-gradient(180deg, transparent 62%, var(--omd-yellow) 62%, var(--omd-yellow) 94%, transparent 94%);
@@ -135,13 +135,13 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   box-decoration-break: clone;
 }
 .theme-dark .hl-yellow {
-  color: var(--omd-yellow);
   background-image: none;
-  padding: 0;
+  padding: 0 0.02em;
+  box-shadow: 0 -3px 0 var(--omd-yellow) inset;
 }
 
-/* Eyebrow label variant — readable dark ink + yellow dash marker on light sections;
-   on dark sections it reverts to bright-yellow mono text (the current look). */
+/* Eyebrow label — readable ink/cream text + a yellow dash marker, identical treatment on
+   both themes since --ink auto-flips. Yellow never touches the text itself. */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -162,14 +162,9 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   flex-shrink: 0;
   border-radius: 2px;
 }
-.theme-dark .eyebrow {
-  color: var(--omd-yellow);
-  font-weight: 500;
-}
-.theme-dark .eyebrow::before { display: none; }
 
-/* Subtle accent text — uses readable ink on light, yellow on dark. For inline tokens
-   like numerals ("01", "02") and prefixes ("+ Mehrwert:"). */
+/* Subtle accent text — the readable ink/cream tone for the current theme. For inline tokens
+   like numerals ("01", "02") and prefixes ("+ Mehrwert:"). Never yellow. */
 .accent-ink { color: var(--accent-ink); }
 .label { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); font-weight: 500; }
 
@@ -203,19 +198,13 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
 @media (min-width: 1024px) { .nav-inner { height: 68px; } }
 
 .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
-.brand-logo {
-  height: 30px; width: auto;
-  flex-shrink: 0;
-  display: block;
-}
-@media (min-width: 1024px) { .brand-logo { height: 36px; } }
 .brand-mark {
   width: 34px; height: 34px;
   flex-shrink: 0;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid #07071A;
   border-radius: 50%;
   display: grid; place-items: center;
-  font-family: var(--sans); font-size: 17px; color: var(--ink);
+  font-family: var(--sans); font-size: 17px; color: #07071A;
   font-weight: 700;
   background: var(--omd-yellow);
 }

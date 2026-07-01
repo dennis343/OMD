@@ -835,7 +835,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
             letter-spacing: 0.12em;
             text-transform: uppercase;
             font-weight: 600;
-            color: var(--omd-yellow);
+            color: var(--cream);
             opacity: 0;
             pointer-events: none;
             transform: translateY(4px);
