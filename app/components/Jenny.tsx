@@ -137,7 +137,8 @@ export default function Jenny() {
           .nala-head { font-size: clamp(28px, 5vw, 54px); line-height: 1.04; letter-spacing: -0.022em; font-weight: 340; margin-bottom: 28px; }
           .nala-p { font-size: 16px; line-height: 1.6; color: var(--ink-2); margin-bottom: 18px; max-width: 58ch; }
           .nala-links { margin-top: 24px; }
-          .nala-links a { color: var(--brass); }
+          .nala-links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--omd-yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+          .nala-links a:hover { text-decoration-color: var(--ink); }
           .nala-images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
           .nala-images .tile { height: 260px; }
 

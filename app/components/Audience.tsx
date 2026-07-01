@@ -66,7 +66,7 @@ export default function Audience() {
           </div>
 
           <div style={{ background: "transparent", border: "1px solid var(--line-2)", padding: "40px 36px" }}>
-            <div className="mono" style={{ color: "var(--rust)", marginBottom: 24 }}>− Weniger passend</div>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 24 }}>− Weniger passend</div>
             <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 28, fontFamily: "var(--serif)", fontWeight: 400, fontStyle: "italic" }}>
               Nicht ideal, wenn ihr sucht nach:
             </p>
@@ -84,7 +84,7 @@ export default function Audience() {
                     gap: 14,
                   }}
                 >
-                  <span style={{ color: "var(--rust)", fontFamily: "var(--mono)", fontSize: 14, fontWeight: 700, minWidth: 18 }} aria-hidden="true">×</span>
+                  <span style={{ color: "var(--accent-ink)", fontFamily: "var(--mono)", fontSize: 14, fontWeight: 700, minWidth: 18 }} aria-hidden="true">×</span>
                   <span>{n}</span>
                 </li>
               ))}
