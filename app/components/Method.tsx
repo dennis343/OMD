@@ -41,9 +41,9 @@ export default function Method() {
             <div className="mono" style={{ marginTop: 12 }}>Sechs Prinzipien</div>
           </div>
           <div>
-            <h2 id="method-heading" className="serif" style={{ fontSize: "clamp(34px, 4.8vw, 62px)", lineHeight: 1.04, letterSpacing: "-0.022em", fontWeight: 340, marginBottom: 28 }}>
+            <h2 id="method-heading" className="serif" style={{ fontSize: "clamp(34px, 4.8vw, 62px)", lineHeight: 1.08, letterSpacing: "-0.018em", fontWeight: 600, marginBottom: 28 }}>
               Präzision statt Druck.
-              <em className="hl-yellow" style={{ fontStyle: "italic" }}> Didaktik </em>
+              <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}> Didaktik </em>
               statt Dressur.
             </h2>
             <p style={{ fontSize: 18, lineHeight: 1.65, color: "var(--ink-2)", maxWidth: "58ch", fontFamily: "var(--serif)", fontWeight: 400 }}>
@@ -78,10 +78,10 @@ export default function Method() {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 22 }}>
-                <span className="serif accent-ink" style={{ fontSize: 28, fontStyle: "italic", fontWeight: 400 }}>{d.n}.</span>
+                <span className="serif accent-ink" style={{ fontSize: 28, fontWeight: 700 }}>{d.n}.</span>
                 <span className="mono">Prinzip</span>
               </div>
-              <h3 className="serif" style={{ fontSize: 24, letterSpacing: "-0.018em", fontWeight: 380, marginBottom: 14 }}>
+              <h3 className="serif" style={{ fontSize: 24, letterSpacing: "-0.015em", fontWeight: 600, marginBottom: 14 }}>
                 {d.title}
               </h3>
               <p style={{ fontSize: 14.5, lineHeight: 1.6, color: "var(--ink-2)" }}>{d.desc}</p>

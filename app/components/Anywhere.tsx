@@ -109,7 +109,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
             <h2 id="anywhere-heading" className="serif any-h">
               Dieselbe Methodik.
               <br />
-              <em className="hl-yellow" style={{ fontStyle: "italic" }}>Ohne Anfahrt.</em>
+              <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}>Ohne Anfahrt.</em>
               <br />
               <span style={{ color: "var(--ink-3)" }}>Für reizoffene Hunde in ganz DACH.</span>
             </h2>
@@ -150,7 +150,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
             <ul className="signature-inc">
               {SIGNATURE.includes.map((it, j) => (
                 <li key={it}>
-                  <span className="serif" style={{ color: "var(--accent-ink)", fontStyle: "italic", fontSize: 16 }}>0{j + 1}</span>
+                  <span className="serif" style={{ color: "var(--accent-ink)", fontWeight: 700, fontSize: 16 }}>0{j + 1}</span>
                   <span>{it}</span>
                 </li>
               ))}
@@ -179,10 +179,10 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
               </div>
               <div className="any-card-body">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 16 }}>
-                  <span className="serif" style={{ fontSize: 32, fontStyle: "italic", color: "var(--accent-ink)", fontWeight: 500 }}>{o.num}</span>
+                  <span className="serif" style={{ fontSize: 32, color: "var(--accent-ink)", fontWeight: 700 }}>{o.num}</span>
                   <span className="mono">{o.sub}</span>
                 </div>
-                <h3 className="serif" style={{ fontSize: 28, letterSpacing: "-0.022em", fontWeight: 380, marginBottom: 12, lineHeight: 1.05 }}>
+                <h3 className="serif" style={{ fontSize: 28, letterSpacing: "-0.018em", fontWeight: 600, marginBottom: 12, lineHeight: 1.1 }}>
                   {o.title}
                 </h3>
                 <p style={{ fontSize: 15.5, lineHeight: 1.65, color: "var(--ink-2)", marginBottom: 18 }}>{o.desc}</p>
@@ -206,14 +206,14 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
 
         <style>{`
           .any-head { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
-          .any-h { font-size: clamp(34px, 6vw, 84px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 340; max-width: 18ch; }
+          .any-h { font-size: clamp(34px, 6vw, 84px); line-height: 1.02; letter-spacing: -0.025em; font-weight: 600; max-width: 18ch; }
           .any-intro { margin-top: 24px; font-size: 17px; line-height: 1.65; color: var(--ink-2); max-width: 60ch; font-family: var(--serif); font-weight: 400; }
           @media (min-width: 1024px) { .any-intro { font-size: 18px; } }
 
           .signature-block { background: var(--bg-3); border: 1px solid var(--brass); padding: 36px 24px 32px; margin-bottom: 28px; position: relative; display: grid; grid-template-columns: 1fr; gap: 28px; }
           .signature-tag { position: absolute; top: -12px; left: 24px; background: var(--omd-yellow); color: #07071A; font-weight: 700; font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 14px; border-radius: 999px; }
           .signature-img { height: 220px; }
-          .signature-h { font-size: clamp(32px, 5vw, 58px); letter-spacing: -0.028em; line-height: 0.98; font-weight: 340; margin-bottom: 20px; }
+          .signature-h { font-size: clamp(32px, 5vw, 58px); letter-spacing: -0.022em; line-height: 1.04; font-weight: 600; margin-bottom: 20px; }
           .signature-desc { font-size: 17px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; margin-bottom: 24px; }
           .signature-box { border-top: 1px solid var(--line); padding-top: 16px; margin-bottom: 16px; }
           .signature-box p { font-size: 15.5px; line-height: 1.6; color: var(--ink-2); }

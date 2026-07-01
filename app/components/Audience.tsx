@@ -28,9 +28,9 @@ export default function Audience() {
             <div className="mono" style={{ marginTop: 12 }}>Passt das zu euch?</div>
           </div>
           <div>
-            <h2 id="audience-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.02, letterSpacing: "-0.025em", fontWeight: 340 }}>
+            <h2 id="audience-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.06, letterSpacing: "-0.02em", fontWeight: 600 }}>
               Für Menschen, die ihren Hund
-              <em className="hl-yellow" style={{ fontStyle: "italic" }}> verstehen </em>
+              <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}> verstehen </em>
               wollen — nicht nur beschäftigen.
             </h2>
           </div>
@@ -56,7 +56,7 @@ export default function Audience() {
                     color: "var(--ink-2)",
                   }}
                 >
-                  <span className="serif" style={{ color: "var(--accent-ink)", fontStyle: "italic", fontSize: 18, minWidth: 28, fontWeight: 600 }}>
+                  <span className="serif" style={{ color: "var(--accent-ink)", fontSize: 18, minWidth: 28, fontWeight: 700 }}>
                     0{i + 1}
                   </span>
                   <span>{p}</span>
@@ -67,7 +67,7 @@ export default function Audience() {
 
           <div style={{ background: "transparent", border: "1px solid var(--line-2)", padding: "40px 36px" }}>
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 24 }}>− Weniger passend</div>
-            <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 28, fontFamily: "var(--serif)", fontWeight: 400, fontStyle: "italic" }}>
+            <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 28, fontFamily: "var(--serif)", fontWeight: 500 }}>
               Nicht ideal, wenn ihr sucht nach:
             </p>
             <ul style={{ listStyle: "none" }}>

@@ -844,10 +844,10 @@ export default function Selector({ open, onClose }: SelectorProps) {
           .sel-scroll-hint.is-visible { opacity: 1; transform: translateY(0); }
           .sel-scroll-arrow {
             font-size: 12px;
-            animation: selBounce 1.6s ease-in-out infinite;
+            animation: selNudge 1.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
             color: var(--omd-yellow);
           }
-          @keyframes selBounce {
+          @keyframes selNudge {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(2px); }
           }
@@ -867,7 +867,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
             border-radius: 999px;
             font-family: var(--serif);
             font-size: 13px;
-            font-style: italic;
+            font-weight: 600;
             letter-spacing: -0.005em;
             box-shadow: 0 8px 24px rgba(0,0,0,0.35);
             opacity: 0;
