@@ -25,11 +25,11 @@ export default function Audience({ onOpenSelector }: AudienceProps) {
     >
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="aud-head">
-          <div>
+          <div data-fx="left">
             <div className="eyebrow">Ehrliche Einordnung</div>
             <div className="mono" style={{ marginTop: 12 }}>Passt das zu euch?</div>
           </div>
-          <div>
+          <div data-fx>
             <h2 id="audience-heading" className="serif" style={{ fontSize: "clamp(36px, 5.2vw, 68px)", lineHeight: 1.06, letterSpacing: "-0.02em", fontWeight: 600 }}>
               Wir sind bewusst
               <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}> nicht für jeden</em>.
@@ -44,7 +44,7 @@ export default function Audience({ onOpenSelector }: AudienceProps) {
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", gap: 32 }} className="aud-grid">
-          <div style={{ background: "var(--bg)", border: "1px solid var(--line-2)", padding: "40px 44px" }}>
+          <div data-fx style={{ background: "var(--bg)", border: "1px solid var(--line-2)", padding: "40px 44px" }}>
             <div className="eyebrow" style={{ marginBottom: 26 }}>+ Gut für euch</div>
             <p style={{ fontSize: 19, lineHeight: 1.55, fontFamily: "var(--serif)", fontWeight: 500, color: "var(--ink-2)", marginBottom: 28 }}>
               oooh my dog! ist besonders passend für Menschen, die:
@@ -72,7 +72,7 @@ export default function Audience({ onOpenSelector }: AudienceProps) {
             </ul>
           </div>
 
-          <div style={{ background: "transparent", border: "1px solid var(--line-2)", padding: "40px 36px" }}>
+          <div data-fx style={{ ["--fx-d" as string]: "150ms", background: "transparent", border: "1px solid var(--line-2)", padding: "40px 36px" }}>
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 24 }}>− Weniger passend</div>
             <p style={{ fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 28, fontFamily: "var(--serif)", fontWeight: 500 }}>
               Nicht ideal, wenn ihr sucht nach:
@@ -102,7 +102,7 @@ export default function Audience({ onOpenSelector }: AudienceProps) {
           </div>
         </div>
 
-        <div className="aud-cta">
+        <div className="aud-cta" data-fx="zoom">
           <p className="serif aud-cta-q">Unsicher, wo ihr steht?</p>
           <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "flex-start" }}>
             <button className="btn btn-primary" onClick={onOpenSelector} type="button">

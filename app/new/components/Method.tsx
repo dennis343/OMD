@@ -36,11 +36,11 @@ export default function Method() {
     <section id="methodik" aria-labelledby="method-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
       <div className="shell">
         <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 80, marginBottom: 72 }} className="method-head">
-          <div>
+          <div data-fx="left">
             <div className="eyebrow">Das System</div>
             <div className="mono" style={{ marginTop: 12 }}>Sechs Prinzipien</div>
           </div>
-          <div>
+          <div data-fx>
             <h2 id="method-heading" className="serif" style={{ fontSize: "clamp(34px, 4.8vw, 62px)", lineHeight: 1.08, letterSpacing: "-0.018em", fontWeight: 600, marginBottom: 28 }}>
               Präzision statt Druck.
               <em className="hl-yellow" style={{ fontStyle: "normal", fontWeight: 700 }}> Didaktik </em>
@@ -66,10 +66,12 @@ export default function Method() {
           }}
           className="diff-grid"
         >
-          {DIFFERENTIATORS.map((d) => (
+          {DIFFERENTIATORS.map((d, i) => (
             <article
               key={d.n}
+              data-fx
               style={{
+                ["--fx-d" as string]: `${(i % 3) * 120}ms`,
                 padding: "36px 32px 40px",
                 borderRight: "1px solid var(--line-2)",
                 borderBottom: "1px solid var(--line-2)",
