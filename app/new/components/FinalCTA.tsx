@@ -1,0 +1,53 @@
+import { BOOK_URL, WA_URL } from "@/app/lib/constants";
+
+type FinalCTAProps = { onOpenSelector: () => void };
+
+export default function FinalCTA({ onOpenSelector }: FinalCTAProps) {
+  return (
+    <section
+      id="kontakt"
+      aria-labelledby="kontakt-heading"
+      className="sec-pad theme-dark"
+      style={{ position: "relative", overflow: "hidden", borderTop: "2px solid var(--omd-yellow)" }}
+    >
+      <div className="shell" style={{ position: "relative", zIndex: 2 }}>
+        <div className="eyebrow" style={{ marginBottom: 30 }}>Nächster Schritt</div>
+        <h2 id="kontakt-heading" className="serif final-h">
+          Euer Hund wartet nicht.
+          <br />
+          <em className="hl-yellow">Fangen wir an.</em>
+        </h2>
+        <p className="final-p">
+          Ob vor Ort, online oder als Hundeschule: Drei Fragen genügen, und ihr wisst,
+          ob wir zueinander passen — und welcher Weg für euch der richtige ist.
+        </p>
+        <div className="final-ctas">
+          <button className="btn btn-primary" onClick={onOpenSelector} type="button">
+            Passen wir zueinander? <span className="arrow" aria-hidden="true">→</span>
+          </button>
+          <a className="btn btn-ghost" href={BOOK_URL} target="_blank" rel="noopener">
+            Kennenlern-Coaching buchen →
+          </a>
+          <a className="btn btn-ghost" href={WA_URL} target="_blank" rel="noopener">
+            WhatsApp an Jenny →
+          </a>
+          <a className="btn btn-ghost" href="#pro">Für Hundeschulen →</a>
+        </div>
+      </div>
+
+      <div className="serif final-deco" aria-hidden="true">omd.</div>
+
+      <style>{`
+        .final-h { font-size: clamp(44px, 8vw, 132px); line-height: 0.98; letter-spacing: -0.03em; font-weight: 600; max-width: 16ch; margin-bottom: 28px; }
+        .final-p { font-size: 18px; line-height: 1.6; color: var(--ink-2); max-width: 52ch; font-family: var(--serif); font-weight: 400; margin-bottom: 40px; }
+        .final-ctas { display: flex; gap: 10px; flex-wrap: wrap; }
+        .final-ctas .btn { font-size: 14px; padding: 15px 20px; }
+        .final-deco { position: absolute; right: -40px; bottom: -40px; z-index: 1; font-size: clamp(140px, 28vw, 460px); line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--line-2); font-weight: 700; pointer-events: none; }
+        @media (min-width: 700px) {
+          .final-p { font-size: 19px; }
+          .final-ctas .btn { font-size: 15px; padding: 18px 26px; }
+        }
+      `}</style>
+    </section>
+  );
+}
