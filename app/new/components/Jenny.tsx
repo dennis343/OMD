@@ -5,7 +5,13 @@ const CV: [string, string][] = [
   ["Führung", "13 Jahre · Kommunikationsbranche"],
   ["Didaktik", "Studium Erwachsenenbildung"],
   ["Training", "1 400+ begleitete Hunde"],
-  ["Methode", "Ohne aversive Werkzeuge"],
+  ["Methode", "0 % aversive Methoden — auch bei schweren Fällen"],
+  ["Zertifizierung", "§ 11 TSchG-zertifizierte Hundetrainerin & Verhaltensberaterin"],
+  ["Zulassung", "§ 6 LHundG NRW · behördlich — auch Listenhunde & gefährliche Hunde"],
+  ["Weiterbildung", "In Ausbildung zur zertifizierten Verhaltensberaterin für Hunde"],
+  ["Amt", "Vorstand · Verein für Deutsche Schäferhunde (SV), OG Mülheim/Ruhr"],
+  ["Medien", "WDR-Interviewpartnerin"],
+  ["Szene", "Initiatorin & Moderatorin · Ruhrpott-Hundemesse"],
 ];
 
 export default function Jenny() {
@@ -77,10 +83,10 @@ export default function Jenny() {
 
             <p className="nala-p">
               <strong style={{ color: "var(--cream)", fontWeight: 400 }}>Nala</strong> war mein erster eigener
-              belgischer Schäferhund — reizoffen, hoch aufmerksam, auf Leistung gezüchtet. Heute teile ich
-              mein Leben mit ihr und mit <strong style={{ color: "var(--cream)", fontWeight: 400 }}>Zuri</strong>,
-              meinem jüngsten Hund — einem X-Herder (holländischer Schäferhund). Kein zweiter Malinois, aber
-              ein vergleichbar forderndes Kaliber: eigener Charakter, eigene Stärken, eigene Baustellen.
+              Malinois — aus einer KNPV-Leistungslinie: reizoffen, hoch aufmerksam, auf Leistung gezüchtet.
+              Heute teile ich mein Leben mit ihr und mit <strong style={{ color: "var(--cream)", fontWeight: 400 }}>Zuri</strong>,
+              meinem jüngsten Hund — einem X-Herder (holländischer Schäferhund) aus behördlicher Beschlagnahmung.
+              Kein zweiter Malinois, aber ein vergleichbar forderndes Kaliber: eigener Charakter, eigene Stärken, eigene Baustellen.
             </p>
             <p className="nala-p">
               Beide sind keine Anfängerhunde. Sie sind ehrlich, anspruchsvoll und lassen sich nichts erzählen.
@@ -100,12 +106,12 @@ export default function Jenny() {
           </div>
           <div className="nala-images">
             <div className="tile" data-fx="zoom">
-              <img src={IMG.nala} alt="Nala · belgischer Schäferhund (Malinois)" loading="lazy" decoding="async" />
-              <span className="tile-caption">Nala · Belgischer Schäferhund</span>
+              <img src={IMG.nala} alt="Nala · Malinois aus KNPV-Leistungslinie" loading="lazy" decoding="async" />
+              <span className="tile-caption">Nala · Malinois · KNPV-Leistungslinie</span>
             </div>
             <div className="tile" data-fx="zoom" style={{ ["--fx-d" as string]: "150ms" }}>
-              <img src={IMG.zuri} alt="Zuri · X-Herder (holländischer Schäferhund)" loading="lazy" decoding="async" />
-              <span className="tile-caption">Zuri · X-Herder</span>
+              <img src={IMG.zuri} alt="Zuri · X-Herder aus behördlicher Beschlagnahmung" loading="lazy" decoding="async" />
+              <span className="tile-caption">Zuri · X-Herder · aus behördlicher Beschlagnahmung</span>
             </div>
           </div>
         </div>

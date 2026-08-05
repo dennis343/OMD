@@ -1,4 +1,5 @@
-import { BOOK_URL, WA_URL } from "@/app/lib/constants";
+import { BOOK_ONLINE_URL, BOOK_URL, WA_URL } from "@/app/lib/constants";
+import { ANYWHERE_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
 
 type AnywhereProps = { onOpenSelector: () => void };
@@ -17,8 +18,54 @@ const SIGNATURE = {
     "Alltagstaugliche Umsetzung",
     "Enge, aber effiziente Begleitung",
   ],
-  img: "https://picsum.photos/seed/omd-signature/1200/900",
+  img: ANYWHERE_IMG.signature,
 };
+
+const KENNENLERN_ARGUMENTS = [
+  {
+    t: "Wir sehen euren Hund online mehr.",
+    d: "Auf einem fremden Platz zeigt euer Hund nicht sein Alltagsverhalten. Per Video sehen wir ihn zuhause, auf eurer Route, in genau der Situation, die euch belastet.",
+  },
+  {
+    t: "Training findet ohnehin in eurem Alltag statt.",
+    d: "Der Trainingsort ist nicht unsere Anlage — es ist eure Straße, euer Wohnzimmer, euer Feldweg.",
+  },
+  {
+    t: "Ihr startet diese Woche — nicht in sechs.",
+    d: "Vor-Ort-Kennenlern-Termine sind bewusst limitiert und regelmäßig ausgebucht. Online gibt es keine Warteliste, keine Anfahrt, kein Termin-Jonglieren.",
+  },
+  {
+    t: "Dieselbe Trainerin, dasselbe System.",
+    d: "Kein Junior-Team, kein Katalogvideo: Jenny analysiert eure Situation persönlich. Der Kanal ändert sich — die Qualität nicht.",
+  },
+  {
+    t: "Ihr bekommt etwas in die Hand.",
+    d: "Nach dem Kennenlern haltet ihr euren Trainingsweg schriftlich in den Händen: Auswertung der Videoanalyse, priorisierte erste Schritte, klare Empfehlung.",
+  },
+  {
+    t: "49 € sind die Eintrittskarte, kein Rabatt.",
+    d: "Niedrige Hürte, volle Leistung. Die Analyse ist dieselbe wie bei jedem unserer Kunden.",
+  },
+];
+
+const STANDARDS = [
+  {
+    t: "Kein Fließband.",
+    d: "Keine tausend Kunden gleichzeitig. Plätze sind limitiert, weil jedes Feedback von echten Trainer:innen nach einem dokumentierten Standard kommt — mit Jennys Review.",
+  },
+  {
+    t: "Keine versteckten Preise.",
+    d: "Alle Preise stehen auf dieser Seite. Kein „Analysegespräch“, in dem euch ein vierstelliger Preis überraschend verkauft wird. Keine Zusatzkosten mitten im Programm.",
+  },
+  {
+    t: "Kein Generika-Feedback.",
+    d: "Wenn es wirklich schwierig wird — Aggression, Angst, Listenhunde — braucht es keine Video-Bibliothek, sondern eine Verhaltensberaterin mit behördlicher Zulassung. Genau dafür ist oooh my dog! gebaut.",
+  },
+  {
+    t: "Ehrlich über Grenzen.",
+    d: "Was online lösbar ist, lösen wir online. Was einen Vor-Ort-Termin braucht, sagen wir euch direkt — und bieten ihn an: in Mülheim oder auf DACH-Tour. Das ist keine Wertung, sondern eine klare Einordnung.",
+  },
+];
 
 type Offer = {
   num: string;
@@ -29,7 +76,6 @@ type Offer = {
   nutzen: string;
   cta: string;
   href: string;
-  img: string;
 };
 
 const OFFERS: Offer[] = [
@@ -42,18 +88,16 @@ const OFFERS: Offer[] = [
     nutzen: "Ihr wisst nach wenigen Tagen, woran wir arbeiten — ohne Anfahrt, ohne Terminfenster.",
     cta: "Videoanalyse anfragen",
     href: WA_URL,
-    img: "https://picsum.photos/seed/omd-video/1000/700",
   },
   {
     num: "03",
     title: "oooh my dog! Club",
-    sub: "Membership · Monatlich",
+    sub: "Membership · 55 €/Monat",
     desc: "Dranbleiben, vertiefen, Sicherheit gewinnen. Regelmäßige Live-Impulse, thematische Vertiefungen, Raum für Fragen, Community und Kontinuität — statt bei jedem Thema neu zu starten.",
     expect: ["Monatliche Themenschwerpunkte", "Wiederkehrende Live-Sessions", "Fokus auf Transfer und Dranbleiben"],
-    nutzen: "Keine Einzelstunden-Spirale mehr — stattdessen Kontinuität zum monatlichen Festpreis.",
+    nutzen: "Keine Einzelstunden-Spirale mehr — stattdessen Kontinuität zum monatlichen Festpreis von 55 €.",
     cta: "Club entdecken",
     href: WA_URL,
-    img: "https://picsum.photos/seed/omd-club/1000/700",
   },
   {
     num: "04",
@@ -64,7 +108,6 @@ const OFFERS: Offer[] = [
     nutzen: "Ihr löst ein Alltagsthema sauber — ohne großes Programm zu starten.",
     cta: "Aktuelle Sprints ansehen",
     href: WA_URL,
-    img: "https://picsum.photos/seed/omd-sprint/1000/700",
   },
   {
     num: "05",
@@ -75,7 +118,6 @@ const OFFERS: Offer[] = [
     nutzen: "1:1-Klarheit in 60 Minuten — für den nächsten sauberen Schritt.",
     cta: "Termin anfragen",
     href: BOOK_URL,
-    img: "https://picsum.photos/seed/omd-sprech/1000/700",
   },
   {
     num: "06",
@@ -90,7 +132,20 @@ const OFFERS: Offer[] = [
     nutzen: "Echte 1:1-Begleitung ohne Kalenderdruck — ihr bekommt Profi-Antworten genau dann, wenn die Situation frisch ist.",
     cta: "Kontingent anfragen",
     href: WA_URL,
-    img: "https://picsum.photos/seed/omd-messenger/1000/700",
+  },
+  {
+    num: "07",
+    title: "Intensiv-Begleitung Exklusiv",
+    sub: "Exklusiv · Auf Anfrage",
+    desc: "Unser High-Ticket-Format für die härtesten Fälle und höchsten Ansprüche: 6–8 Wochen engmaschige asynchrone Begleitung mit täglichen bis wöchentlichen Video-Reviews — persönlich von Jenny.",
+    expect: [
+      "Tägliche bis wöchentliche Video-Reviews",
+      "Direkter Draht über den gesamten Zeitraum",
+      "Auch für schwere Fälle: Aggression, Angst, Listenhunde",
+    ],
+    nutzen: "Die engste Begleitung, die wir anbieten — das Kontingent ist bewusst klein. Konditionen und Start klären wir im persönlichen Gespräch.",
+    cta: "Verfügbarkeit anfragen",
+    href: WA_URL,
   },
 ];
 
@@ -117,6 +172,11 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
               Ihr wohnt nicht in Mülheim — und trotzdem soll euer Hund endlich in Führung
               kommen. Programm, Videoanalyse, Membership: klare Struktur, per Video begleitet,
               im Tempo eures Alltags.
+            </p>
+            <p className="any-intro" style={{ marginTop: 16, color: "var(--ink-3)" }}>
+              Ihr lebt nicht in Deutschland — aber ihr wollt auf Deutsch mit eurem Hund arbeiten?
+              Egal ob Spanien, Portugal oder Singapur: Videoanalyse und Online-Programm funktionieren
+              über jede Zeitzone hinweg. Euer Hund spricht keine Landessprache — ihr müsst es auch nicht.
             </p>
           </div>
           <button className="btn btn-ghost" onClick={onOpenSelector} type="button">
@@ -165,6 +225,65 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           </div>
         </article>
 
+        <article className="ok-block" aria-labelledby="ok-title">
+          <div className="signature-tag">Der beste Einstieg · 49 €</div>
+          <div className="ok-body">
+            <div className="mono" style={{ marginBottom: 14 }}>Online-Kennenlern · 30 Min Zoom + Videoanalyse</div>
+            <h3 id="ok-title" className="serif ok-h">
+              Der schnellste Weg in euer Training führt nicht nach Mülheim.
+              <span style={{ color: "var(--ink-3)" }}> Er führt durch eure Haustür.</span>
+            </h3>
+            <p className="signature-desc">
+              Online ist nicht die zweite Wahl. Für die meisten von euch ist es die bessere —
+              sechs Gründe, warum:
+            </p>
+
+            <div className="ok-grid">
+              {KENNENLERN_ARGUMENTS.map((a, i) => (
+                <div key={a.t} className="ok-cell">
+                  <span className="serif" style={{ color: "var(--accent-ink)", fontWeight: 700, fontSize: 18 }}>0{i + 1}</span>
+                  <div>
+                    <div className="serif ok-cell-t">{a.t}</div>
+                    <p className="ok-cell-d">{a.d}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 28 }}>
+              <a className="btn btn-primary" href={BOOK_ONLINE_URL} target="_blank" rel="noopener">
+                Online-Kennenlern für 49 € buchen <span className="arrow" aria-hidden="true">→</span>
+              </a>
+              <button className="btn btn-ghost" onClick={onOpenSelector} type="button">
+                Erst prüfen, ob wir zueinander passen
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <div className="standards-block" aria-labelledby="standards-title">
+          <div style={{ marginBottom: 36 }}>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Unsere Standards · Online</div>
+            <h3 id="standards-title" className="serif standards-h">
+              Kein Fließband. Keine versteckten Preise.
+              <span style={{ color: "var(--ink-3)" }}> Kein Generika-Feedback.</span>
+            </h3>
+          </div>
+          <div className="standards-grid">
+            {STANDARDS.map((s) => (
+              <div key={s.t} className="standards-cell">
+                <div className="serif standards-cell-t">{s.t}</div>
+                <p className="standards-cell-d">{s.d}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: 32 }}>
+            <button className="btn btn-ghost" onClick={onOpenSelector} type="button">
+              Passen wir zueinander? · 2 Minuten, 3 Fragen <span className="arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+
         <div className="any-grid">
           {OFFERS.map((o, idx) => (
             <article key={o.num} className="any-card">
@@ -204,6 +323,31 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           ))}
         </div>
 
+        <div className="app-block" aria-labelledby="app-title">
+          <div>
+            <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Begleitung im Alltag · Die oooh my dog! App</div>
+            <h3 id="app-title" className="serif app-h">Euer Training in der Tasche.</h3>
+            <p className="app-p">
+              Heimtierausweis, Impf-Ampel, Trainingstagebuch, Fortschritts-Matrix und Video-Upload
+              für eure Analysen — die App hält euren Trainingsalltag zwischen den Terminen zusammen.
+            </p>
+          </div>
+          <div className="app-tiers">
+            <div className="app-tier">
+              <div className="mono" style={{ marginBottom: 6 }}>Free</div>
+              <div className="serif app-tier-price">0 €</div>
+            </div>
+            <div className="app-tier">
+              <div className="mono" style={{ marginBottom: 6 }}>Motiviert</div>
+              <div className="serif app-tier-price">9,90 €<span className="app-tier-per">/Monat</span></div>
+            </div>
+            <div className="app-tier">
+              <div className="mono" style={{ marginBottom: 6 }}>Oooh My Dog</div>
+              <div className="serif app-tier-price">19,90 €<span className="app-tier-per">/Monat</span></div>
+            </div>
+          </div>
+        </div>
+
         <style>{`
           .any-head { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 48px; }
           .any-h { font-size: clamp(34px, 6vw, 84px); line-height: 1.02; letter-spacing: -0.025em; font-weight: 600; max-width: 18ch; }
@@ -221,6 +365,20 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           .signature-inc { list-style: none; }
           .signature-inc li { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 15px; line-height: 1.5; color: var(--ink-2); display: flex; gap: 14px; }
 
+          .ok-block { background: var(--bg-2); border: 1px solid var(--omd-yellow); padding: 40px 24px 32px; margin-bottom: 28px; position: relative; }
+          .ok-h { font-size: clamp(28px, 4.6vw, 52px); letter-spacing: -0.022em; line-height: 1.06; font-weight: 600; margin-bottom: 20px; max-width: 24ch; }
+          .ok-grid { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+          .ok-cell { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+          .ok-cell-t { font-size: 17.5px; letter-spacing: -0.012em; font-weight: 600; color: var(--cream); margin-bottom: 6px; line-height: 1.25; }
+          .ok-cell-d { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+
+          .standards-block { border-top: 1px solid var(--line-2); padding-top: 48px; margin-bottom: 56px; }
+          .standards-h { font-size: clamp(26px, 4.2vw, 46px); letter-spacing: -0.02em; line-height: 1.08; font-weight: 600; max-width: 26ch; }
+          .standards-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+          .standards-cell { background: var(--bg-2); border: 1px solid var(--line-2); border-left: 2px solid var(--brass); padding: 22px 22px 20px; }
+          .standards-cell-t { font-size: 19px; letter-spacing: -0.014em; font-weight: 600; color: var(--cream); margin-bottom: 8px; }
+          .standards-cell-d { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+
           .any-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
           .any-card { background: var(--bg); border: 1px solid var(--line-2); display: flex; flex-direction: column; transition: border-color .2s; overflow: hidden; }
           .any-card:hover { border-color: var(--brass); }
@@ -230,15 +388,29 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           .any-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); display: flex; gap: 10px; }
           .any-nutzen { background: var(--bg-2); border-left: 2px solid var(--brass); padding: 16px 18px; margin-bottom: 18px; font-size: 15px; line-height: 1.55; color: var(--cream); }
 
+          .app-block { margin-top: 56px; border-top: 1px solid var(--line-2); padding-top: 44px; display: grid; grid-template-columns: 1fr; gap: 28px; }
+          .app-h { font-size: clamp(24px, 3.8vw, 40px); letter-spacing: -0.018em; line-height: 1.1; font-weight: 600; margin-bottom: 14px; }
+          .app-p { font-size: 15.5px; line-height: 1.65; color: var(--ink-2); max-width: 56ch; }
+          .app-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+          .app-tier { background: var(--bg-2); border: 1px solid var(--line-2); padding: 18px 16px; }
+          .app-tier-price { font-size: 22px; font-weight: 600; color: var(--cream); letter-spacing: -0.015em; }
+          .app-tier-per { font-size: 13px; color: var(--ink-3); font-weight: 400; }
+
           @media (min-width: 700px) {
             .signature-block { padding: 44px 36px 40px; gap: 40px; grid-template-columns: 1fr 1.2fr; }
             .signature-img { height: 100%; min-height: 340px; }
+            .ok-block { padding: 48px 40px 40px; }
+            .ok-grid { grid-template-columns: 1fr 1fr; gap: 0 32px; }
+            .standards-grid { grid-template-columns: 1fr 1fr; }
             .any-grid { grid-template-columns: 1fr 1fr; }
             .any-card-img { height: 200px; }
+            .app-block { grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; }
           }
           @media (min-width: 1000px) {
             .any-head { grid-template-columns: 1fr auto; align-items: flex-end; gap: 48px; margin-bottom: 72px; }
             .signature-block { padding: 56px 56px 48px; gap: 56px; }
+            .ok-block { padding: 56px 56px 48px; }
+            .standards-grid { grid-template-columns: repeat(4, 1fr); }
           }
         `}</style>
       </div>

@@ -23,7 +23,7 @@ const TESTIMONIALS = [
   {
     quote:
       "Als Hundeschule haben wir mit dem Pro Case Lab einen ehrlichen Sparringspartner. Unser Team spricht heute die gleiche Sprache bei Problemfällen.",
-    who: "Clara, Hundeschule Nordwind",
+    who: "Clara, Inhaberin einer Hundeschule",
     what: "Pro & Business · Case Lab",
     img: IMG.testiYoung,
     alt: "Junger Hund im Porträt — konzentriert bei der Arbeit",
