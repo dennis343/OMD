@@ -17,6 +17,7 @@ import FinalCTA from "./components/FinalCTA";
 import Footer from "../components/Footer";
 import Selector from "../components/Selector";
 import StickyHelp from "./components/StickyHelp";
+import SubNav from "./components/SubNav";
 import { FxBoot } from "./components/Fx";
 
 export default function Home() {
@@ -28,6 +29,7 @@ export default function Home() {
     <>
       <FxBoot />
       <Nav onOpenSelector={openSelector} />
+      <SubNav />
       <main id="main">
         <Hero onOpenSelector={openSelector} />
         <Story />

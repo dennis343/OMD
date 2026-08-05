@@ -79,7 +79,7 @@ export default function Pro() {
           </div>
         </div>
 
-        <div className="why-jenny">
+        <div className="why-jenny" id="pro-jenny">
           <div className="why-jenny-img tile">
             <img src={PRO_IMG.jenny} alt="Jennifer Bakir bei der Pro-Beratung" loading="lazy" />
             <span className="tile-caption">Jenny · Pro-Beratung</span>
@@ -106,7 +106,7 @@ export default function Pro() {
           </div>
         </div>
 
-        <div className="pro-grid">
+        <div className="pro-grid" id="pro-module">
           {MODULES.map((m, idx) => (
             <article key={m.n} className={`pro-card ${m.featured ? "is-featured" : ""}`}>
               {m.featured && <div className="pro-badge">Hebel</div>}
@@ -154,7 +154,7 @@ export default function Pro() {
           ))}
         </div>
 
-        <div className="refs-block">
+        <div className="refs-block" id="pro-referenzen">
           <div style={{ marginBottom: 32 }}>
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Referenzen · Schulen, mit denen wir arbeiten</div>
             <h3 className="serif refs-head">Keine Behauptungen, sondern Zusammenarbeit.</h3>

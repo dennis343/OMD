@@ -273,7 +273,7 @@ export default function Offers(_props: OffersProps = {}) {
           <span className="tile-caption">Mülheim · Freifeld · Alltagsarbeit</span>
         </div>
 
-        <div className="kennenlern-head">
+        <div className="kennenlern-head" id="vor-ort-einstieg">
           <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>Einstieg · Zwei Wege</div>
           <h3 className="serif kennenlern-h">So beginnt die Zusammenarbeit mit uns.</h3>
           <p className="kennenlern-lead">
@@ -329,7 +329,7 @@ export default function Offers(_props: OffersProps = {}) {
           ))}
         </div>
 
-        <article className="entry-card individual-entry">
+        <article className="entry-card individual-entry" id="vor-ort-vip">
           <div className="entry-badge" style={{ background: INDIVIDUAL.accent }}>{INDIVIDUAL.tag}</div>
 
           <h3 className="serif entry-title" style={{ fontSize: 26 }}>{INDIVIDUAL.title}</h3>
@@ -372,7 +372,7 @@ export default function Offers(_props: OffersProps = {}) {
           </a>
         </article>
 
-        <article className="tour-block">
+        <article className="tour-block" id="vor-ort-tour">
           <div className="tour-tag">{TOUR.tag}</div>
 
           <div className="tour-img tile">
@@ -407,7 +407,7 @@ export default function Offers(_props: OffersProps = {}) {
           </div>
         </article>
 
-        <div className="group-head">
+        <div className="group-head" id="vor-ort-gruppen">
           <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>Basisgruppen · Sortiert nach Wirkung</div>
           <h3 className="serif group-h">Sortiert nach Wirkung — nicht nach Kursliste.</h3>
           <p className="group-lead">
@@ -447,7 +447,7 @@ export default function Offers(_props: OffersProps = {}) {
           ))}
         </div>
 
-        <div className="exklusiv-block">
+        <div className="exklusiv-block" id="vor-ort-exklusiv">
           <div className="exklusiv-badge">EXKLUSIV · PREMIUM</div>
           <div className="exklusiv-head">
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12, letterSpacing: "0.2em" }}>{EXKLUSIV_GROUP.name}</div>
@@ -492,7 +492,7 @@ export default function Offers(_props: OffersProps = {}) {
           </span>
         </div>
 
-        <div className="pakete-head">
+        <div className="pakete-head" id="vor-ort-pakete">
           <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Pakete · Premium-Bundles</div>
           <h3 className="serif pakete-h">
             Drei besondere Pakete — <span style={{ color: "var(--ink-3)" }}>für die wichtigsten Lebenslagen.</span>
