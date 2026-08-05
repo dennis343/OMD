@@ -20,6 +20,10 @@ const FAQS = [
     a: "Für die Analyse oft besser: Training findet ohnehin in eurem Alltag statt — eure Straße, euer Wohnzimmer, euer Feldweg. Genau dort sehen wir euren Hund per Video. Und wir sind ehrlich über Grenzen: Was online lösbar ist, lösen wir online. Was einen Vor-Ort-Termin braucht, sagen wir euch direkt — und bieten ihn an, in Mülheim oder auf DACH-Tour.",
   },
   {
+    q: "Funktioniert Videoanalyse, auch wenn ich im Ernstfall nicht filmen kann?",
+    a: "Ja — musst du auch nicht. Wie ein Hund reaktiv ist, wissen wir bereits; spannend ist, was davor und danach passiert. Filme das scheinbar Banale: die Minute vor der Begegnung, den Weg zur Tür, das Verhalten nach dem Spaziergang. Aus diesen vermeintlich unwichtigen Situationen schätzt Jenny das Verhalten ein — und interpretiert zuverlässig, wie dein Hund in der Reizsituation tickt.",
+  },
+  {
     q: "Warum kostet das Online-Kennenlern nur 49 €?",
     a: "49 € sind die Eintrittskarte, kein Rabatt. Niedrige Hürte, volle Leistung: Jenny analysiert eure Situation persönlich — die Analyse ist dieselbe wie bei jedem unserer Kunden. Ihr startet diese Woche, statt auf einen der regelmäßig ausgebuchten Vor-Ort-Termine zu warten.",
   },

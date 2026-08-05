@@ -29,75 +29,32 @@ type Step = {
 
 const SELECTOR_STEPS: Step[] = [
   {
-    id: "track",
-    question: "Was passt zu euch?",
+    id: "goal",
+    question: "Was wollt ihr verändern?",
     hint: "Einmal klicken — wir zeigen euch direkt den passenden Einstieg.",
     options: [
-      { val: "vor-ort", label: "Vor Ort in Mülheim", sub: "Gruppenstunden, Einzelcoaching, Kennenlern-Stunde" },
-      { val: "online", label: "Online im gesamten DACH-Raum", sub: "Videoanalyse, Online-Kennenlern, Programme" },
-      { val: "paket", label: "Premium-Paket buchen", sub: "Welpe · Alltag · Traveller — kuratierte Bundles" },
-      { val: "pro", label: "Hundeschule oder Trainer:in", sub: "Fallsupervision, Premium-System, Berufswechsel" },
+      { val: "begegnung", label: "Hundebegegnungen sollen endlich entspannt werden", sub: "Leinenreaktivität, Pöbeln, Anspannung" },
+      { val: "jagd", label: "Ich will die Jagd sicher unter Kontrolle", sub: "Jagdverhalten, Freilauf, Rückruf" },
+      { val: "aggression", label: "Aggression verstehen und sicher managen", sub: "Gegen Menschen oder Hunde, Ressourcen, Familie" },
+      { val: "ruhe", label: "Mein Hund ist ständig auf 180 — ich will Ruhe und Orientierung", sub: "Reizoffenheit, hohe Erregung" },
+      { val: "welpe", label: "Wir wollen von Anfang an alles richtig machen", sub: "Welpe oder Junghund, Vorbeugung" },
+      { val: "pro", label: "Ich arbeite selbst mit Hunden und will besser werden", sub: "Pro & Business · Hundeschulen, Trainer:innen" },
     ],
   },
   {
     id: "ort",
-    when: (a) => a.track === "vor-ort" || a.track === "online",
-    question: "Wo seid ihr zuhause — und wie schnell wollt ihr starten?",
+    when: (a) => !!a.goal && a.goal !== "pro",
+    question: "Seid ihr aus Mülheim oder dem Ruhrgebiet?",
     hint: "Damit wir euch den richtigen Einstieg zeigen — nicht irgendeinen.",
     options: [
-      { val: "muelheim", label: "Mülheim & Ruhrgebiet", sub: "Vor-Ort-Termine am Hundeplatz sind für uns machbar" },
-      { val: "dach", label: "Außerhalb — irgendwo im DACH-Raum", sub: "Online starten, DACH-Tour oder Mülheim-Besuch möglich" },
-      { val: "fern", label: "Ich lebe außerhalb von DACH", sub: "Auf Deutsch arbeiten — über jede Zeitzone hinweg" },
-      { val: "schnell", label: "Ort egal — so schnell wie möglich starten", sub: "Diese Woche statt in sechs" },
-    ],
-  },
-  {
-    id: "paket_kind",
-    when: (a) => a.track === "paket",
-    question: "Welches Paket passt zu eurer Situation?",
-    hint: "Drei kuratierte Premium-Bundles — alle inklusive Begrüßung, Willkommensbox, WhatsApp-Support.",
-    options: [
-      { val: "welpen", label: "Welpen-Premium-Paket", sub: "1× Kennenlern · 6× Basisgruppen · 2× Einzel · 3× Talks" },
-      { val: "leichtigkeit", label: "Leichtigkeit im Alltag-Paket", sub: "25 Einheiten Basisgruppen · 2× Talks" },
-      { val: "traveller", label: "Traveller Intensivpaket", sub: "3× Online-Einzel · 4× Einzel (Mülheim) · 2× Talks" },
-    ],
-  },
-  {
-    id: "topic",
-    when: (a) => a.track === "vor-ort" && a.ort === "muelheim",
-    question: "Was sind eure wichtigsten Themen?",
-    hint: "Mehrfachauswahl möglich — wählt bis zu drei Themen.",
-    multi: true,
-    max: 3,
-    options: [
-      { val: "orientierung", label: "Orientierung — ich brauche erst Klarheit", sub: "Profi-Blick auf Situation + passender Weg" },
-      { val: "basis", label: "Basis & Junghund", sub: "Signalkontrolle, saubere Grundlagen" },
-      { val: "fuehrung", label: "Führung & Grenzen im Alltag", sub: "Lenken und Grenzen setzen" },
-      { val: "freilauf", label: "Freilauf & Rückruf", sub: "Unsichtbare Leine" },
-      { val: "sozial", label: "Sozialkontakt & Hundebegegnung", sub: "Begegnungen ruhig und kalkulierbar" },
-      { val: "praezision", label: "Präzision & Longieren", sub: "Distanzarbeit, Körpersprache" },
-      { val: "bh", label: "Begleithundeprüfung", sub: "Prüfungsvorbereitung, alltagsnah" },
-      { val: "giftkoeder", label: "Anti-Giftköder & Alltagssicherheit", sub: "Zuverlässig abrufbar, keine Hoffnung" },
-      { val: "jagd", label: "Jagdverhalten & Jagdkontrolle", sub: "Rückruf unter echten Reizen" },
-      { val: "komplex", label: "Komplex oder eskaliert — 1:1 nötig", sub: "Einzelcoaching am Ort des Geschehens" },
-    ],
-  },
-  {
-    id: "digital",
-    when: (a) => a.track === "online" && a.ort !== "schnell",
-    question: "Wie wollt ihr online arbeiten?",
-    hint: "Alles digital — ortsunabhängig im gesamten DACH-Raum.",
-    options: [
-      { val: "einstieg", label: "Orientierung — 30 Min Zoom + Videoanalyse", sub: "Online-Kennenlern · 49 €" },
-      { val: "einschaetzung", label: "Einmalige fundierte Einschätzung", sub: "Videoanalyse Pro · asynchron" },
-      { val: "programm", label: "Strukturierter Weg (8–10 Wochen)", sub: "Signaturprogramm · reizoffen, unsicher, intensiv" },
-      { val: "laufend", label: "Laufende Begleitung (Membership)", sub: "oooh my dog! Club" },
-      { val: "messenger", label: "Videoanalyse & Voice-Beratung", sub: "Kontingent · Videosequenzen + Voicenachrichten einreichen" },
+      { val: "ja", label: "Ja — Mülheim & Ruhrgebiet ist erreichbar", sub: "Vor-Ort-Termine am Hundeplatz sind machbar" },
+      { val: "nein", label: "Nein — zu weit weg", sub: "Online starten, DACH-Tour oder Mülheim-Besuch möglich" },
+      { val: "online", label: "Wir wollen lieber online arbeiten", sub: "Diese Woche starten — von überall, zeitzonenunabhängig" },
     ],
   },
   {
     id: "pro_goal",
-    when: (a) => a.track === "pro",
+    when: (a) => a.goal === "pro",
     question: "Woran arbeitet ihr?",
     hint: "",
     options: [
@@ -108,60 +65,36 @@ const SELECTOR_STEPS: Step[] = [
   },
 ];
 
-const TOPIC_TO_COURSE: Record<string, string> = {
-  basis: "gruppe-signalkontrolle",
-  fuehrung: "gruppe-lenken",
-  freilauf: "gruppe-unsichtbare-leine",
-  sozial: "gruppe-sozialkontakt",
-  praezision: "gruppe-longieren",
-  bh: "gruppe-begleithunde",
-  giftkoeder: "gruppe-giftkoeder",
-  jagd: "gruppe-jagdkontrolle",
-  komplex: "einzelcoaching",
-  orientierung: "orientierung-note",
-};
-
 function recommend(answers: Answers): string[] {
-  const track = answers.track as string | undefined;
+  const goal = answers.goal as string | undefined;
+  const local = answers.ort === "ja";
 
-  if (track === "paket") {
-    const k = answers.paket_kind as string | undefined;
-    if (k === "welpen") return ["paket-welpen"];
-    if (k === "leichtigkeit") return ["paket-leichtigkeit"];
-    if (k === "traveller") return ["paket-traveller"];
-    return ["paket-welpen", "paket-leichtigkeit", "paket-traveller"];
-  }
-
-  if (track === "pro") {
+  if (goal === "pro") {
     if (answers.pro_goal === "faelle") return ["case-lab", "premium-system"];
     if (answers.pro_goal === "system") return ["premium-system", "case-lab"];
     if (answers.pro_goal === "wechsel") return ["berufswechsel-check", "premium-system"];
     return ["premium-system", "case-lab"];
   }
 
-  if (track === "online") {
-    if (answers.ort === "schnell") return ["online-kennenlern"];
-    const d = answers.digital as string | undefined;
-    if (d === "einstieg") return ["online-kennenlern"];
-    if (d === "einschaetzung") return ["videoanalyse"];
-    if (d === "programm") return ["signatur"];
-    if (d === "laufend") return ["club"];
-    if (d === "messenger") return ["messenger-beratung"];
-    return ["online-kennenlern"];
+  if (goal === "welpe") {
+    return local ? ["paket-welpen"] : ["online-kennenlern", "paket-welpen"];
   }
 
-  // Vor Ort gewählt, aber nicht aus der Region: Das Online-Kennenlern ist die
-  // ehrliche Empfehlung — wir wollen den Hund dort sehen, wo das Problem lebt.
-  if (answers.ort && answers.ort !== "muelheim") return ["online-kennenlern"];
-
-  const topics = (answers.topic as string[] | undefined) || [];
-  if (!topics.length) return ["orientierung-note"];
-  const keys: string[] = [];
-  for (const t of topics) {
-    const k = TOPIC_TO_COURSE[t];
-    if (k && !keys.includes(k)) keys.push(k);
+  if (local) {
+    if (goal === "begegnung") return ["gruppe-sozialkontakt"];
+    if (goal === "jagd") return ["gruppe-jagdkontrolle"];
+    if (goal === "aggression") return ["einzelcoaching"];
+    if (goal === "ruhe") return ["einzelcoaching"];
+    return ["orientierung-note"];
   }
-  return keys.length ? keys : ["orientierung-note"];
+
+  // Online-Route: die ehrliche Empfehlung, kein Trostpreis — wir sehen den
+  // Hund dort, wo das Problem lebt.
+  if (goal === "begegnung") return ["kurspaket", "signatur"];
+  if (goal === "jagd") return ["signatur", "sprint"];
+  if (goal === "aggression") return ["videoanalyse", "intensiv"];
+  if (goal === "ruhe") return ["signatur"];
+  return ["online-kennenlern"];
 }
 
 type Result = {
@@ -246,18 +179,45 @@ const RESULT_MAP: Record<string, Result> = {
     external: true,
   },
   signatur: {
-    title: "Signaturprogramm",
-    tag: "Programm · Online",
-    desc: "8–10 Wochen Premium-Programm für reizoffene, unsichere oder schnell überforderte Hunde. Intake, Videoanalyse, Kernmodule, Live-Call pro Woche, Homework-Reviews.",
+    title: "Signaturprogramm „Reizoffen & führbar“",
+    tag: "Programm · Online · 8 Wochen",
+    desc: "8 Wochen Premium-Programm für reizoffene, unsichere oder schnell überforderte Hunde. Intake, Videoanalyse, Kernmodule, Live-Call pro Woche, Homework-Reviews. Drei feste Starts pro Jahr: 15.02. · 15.05. · 15.10.",
+    rationale: "Weil Reizoffenheit ein System braucht, keine Tipps: acht Wochen strukturierter Aufbau mit Feedback auf eure realen Alltagssituationen.",
     ctaLabel: "Zum Signaturprogramm",
     ctaHref: "#anywhere",
   },
   videoanalyse: {
     title: "Videoanalyse Pro",
-    tag: "Asynchron · Online",
-    desc: "Ihr sendet Alltagsszenen, füllt eine strukturierte Anamnese aus und erhaltet eine priorisierte Analyse plus Trainingsplan. Einmalige fundierte Einschätzung.",
+    tag: "Asynchron · Online · 49 €",
+    desc: "Ihr sendet Alltagsszenen, füllt eine strukturierte Anamnese aus und erhaltet eine priorisierte Analyse plus Trainingsplan. Einmalige fundierte Einschätzung, 49 €.",
+    rationale: "Weil wir euren Hund dort sehen wollen, wo das Problem lebt — zuhause, auf eurer Route, im echten Alltag.",
     ctaLabel: "Zur Videoanalyse Pro",
     ctaHref: "#anywhere",
+  },
+  kurspaket: {
+    title: "28-Tage-Challenge: Leinenführigkeit",
+    tag: "Digitales Kurspaket · Ab 89 €",
+    desc: "Voraufgezeichneter Kurs mit begleitender Aufgabenserie per E-Mail und 2 Teilnahmen am oooh my dog! Talk. Struktur statt Zufall — gegen Ziehen und Pöbeln an der Leine.",
+    rationale: "Weil Begegnungen im Alltag trainiert werden, nicht auf dem Platz: 28 Tage, klare Aufgaben, euer Tempo.",
+    ctaLabel: "Zur 28-Tage-Challenge",
+    ctaHref: "#anywhere",
+  },
+  sprint: {
+    title: "Saisonale Sprints",
+    tag: "4 Wochen · Online",
+    desc: "Vier Wochen Fokus auf ein konkretes Thema — z. B. Jagdkontrolle oder Urlaubsvorbereitung. Aufgaben per E-Mail, wöchentliche Calls mit Nachbesprechung, OMD Club lite für die Sprint-Dauer.",
+    rationale: "Weil vorhersehbare Stressoren planbar sind: Wir bereiten euch vor, bevor die Saison zuschlägt.",
+    ctaLabel: "Zu den Sprints",
+    ctaHref: "#anywhere",
+  },
+  intensiv: {
+    title: "Intensiv-Begleitung Exklusiv",
+    tag: "Exklusiv · Auf Anfrage",
+    desc: "6–8 Wochen engmaschige asynchrone Begleitung mit täglichen bis wöchentlichen Video-Reviews — persönlich von Jenny. Für schwere Fälle: Aggression, Angst, Listenhunde.",
+    rationale: "Weil Aggression keine Video-Bibliothek braucht, sondern laufende professionelle Einordnung.",
+    ctaLabel: "Verfügbarkeit anfragen",
+    ctaHref: WA_URL,
+    external: true,
   },
   club: {
     title: "oooh my dog! Club",
@@ -414,9 +374,11 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
   if (!open) return null;
 
-  const track = answers.track as string | undefined;
   const results = finished ? recommend(answers).map((k) => RESULT_MAP[k]).filter(Boolean) : [];
-  const isVorOrt = finished && track === "vor-ort" && answers.ort === "muelheim";
+  const isVorOrt =
+    finished &&
+    answers.ort === "ja" &&
+    ["begegnung", "jagd", "aggression", "ruhe"].includes(answers.goal as string);
 
   return (
     <div

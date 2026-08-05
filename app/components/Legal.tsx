@@ -176,7 +176,7 @@ function Datenschutz({ titleId }: { titleId: string }) {
         Dritt­servern aufbauen. Eine Aktivierung erfolgt erst durch Klick auf den jeweiligen Link.
       </p>
 
-      <h3>6. Ihre Rechte</h3>
+      <h3>6. Deine Rechte</h3>
       <p>
         Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch
         (Art. 15–21 DSGVO). Beschwerderecht bei einer Aufsichtsbehörde. Anfragen an:

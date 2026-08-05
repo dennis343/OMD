@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { BOOK_ONLINE_URL, BOOK_URL, WA_URL } from "@/app/lib/constants";
 import { ANYWHERE_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
@@ -7,7 +8,7 @@ type AnywhereProps = { onOpenSelector: () => void };
 const SIGNATURE = {
   tag: "Signaturprogramm",
   title: "Reizoffen & führbar",
-  sub: "8–10 Wochen · Premium · Digital",
+  sub: "8 Wochen · 3 feste Starts pro Jahr · Premium · Digital",
   desc: "Das digitale Signaturprogramm für anspruchsvolle Hunde und überforderte Halter. Strukturierter Einstieg, klar gegliederte Lernmodule, Live-Elemente, Umsetzungsaufgaben und Feedback auf reale Alltagssituationen.",
   situation:
     "Ihr seid oft im Reagieren statt im Führen. Begegnungen, Reize oder Alltagssituationen kippen zu schnell. Ihr habt schon vieles gehört, aber keinen klaren Weg.",
@@ -59,7 +60,7 @@ const STANDARDS = [
   },
   {
     t: "Kein Generika-Feedback.",
-    d: "Wenn es wirklich schwierig wird — Aggression, Angst, Listenhunde — braucht es keine Video-Bibliothek, sondern eine Verhaltensberaterin mit behördlicher Zulassung. Genau dafür ist oooh my dog! gebaut.",
+    d: "Wenn es wirklich schwierig wird — Aggression, Angst, Listenhunde — braucht es keine Video-Bibliothek, sondern eine Trainerin mit behördlicher Zulassung nach § 6 LHundG NRW. Genau dafür ist oooh my dog! gebaut.",
   },
   {
     t: "Ehrlich über Grenzen.",
@@ -76,16 +77,20 @@ type Offer = {
   nutzen: string;
   cta: string;
   href: string;
+  einwand?: string;
+  bridge?: string;
 };
 
 const OFFERS: Offer[] = [
   {
     num: "02",
     title: "Videoanalyse Pro",
-    sub: "Einstieg · Asynchron",
+    sub: "Einstieg · Asynchron · 49 € einmalig",
     desc: "Schnelle, fundierte Hilfe ohne Terminchaos. Ihr sendet reale Alltagsszenen — wir liefern professionelle Analyse, Priorisierung und konkrete Handlungsempfehlungen.",
     expect: ["Professionelle Analyse", "Priorisierung der wichtigsten Hebel", "Konkrete Umsetzungsanleitung"],
     nutzen: "Ihr wisst nach wenigen Tagen, woran wir arbeiten — ohne Anfahrt, ohne Terminfenster.",
+    einwand: "Musst du auch nicht. Filme das scheinbar Banale: die Minute vor der Begegnung, den Weg zur Tür, das Verhalten nach dem Spaziergang. Genau daraus liest Jenny ab, was deinen Hund wirklich bewegt — und interpretiert zuverlässig, wie dein Hund in der Reizsituation tickt.",
+    bridge: "Der Club kostet nur 6 € mehr — und beinhaltet deutlich mehr.",
     cta: "Videoanalyse anfragen",
     href: WA_URL,
   },
@@ -93,34 +98,45 @@ const OFFERS: Offer[] = [
     num: "03",
     title: "oooh my dog! Club",
     sub: "Membership · 55 €/Monat",
-    desc: "Dranbleiben, vertiefen, Sicherheit gewinnen. Regelmäßige Live-Impulse, thematische Vertiefungen, Raum für Fragen, Community und Kontinuität — statt bei jedem Thema neu zu starten.",
-    expect: ["Monatliche Themenschwerpunkte", "Wiederkehrende Live-Sessions", "Fokus auf Transfer und Dranbleiben"],
+    desc: "Dein Trainingszentrum für die Hosentasche: Videoanalysen, direkter Austausch, der oooh my dog! Talk und das Clubmeeting. Dranbleiben, vertiefen, Sicherheit gewinnen — statt bei jedem Thema neu zu starten.",
+    expect: ["Videoanalysen & direkter Austausch", "oooh my dog! Talk & Clubmeeting", "Fokus auf Transfer und Dranbleiben"],
     nutzen: "Keine Einzelstunden-Spirale mehr — stattdessen Kontinuität zum monatlichen Festpreis von 55 €.",
+    einwand: "Musst du auch nicht. Wie ein Hund reaktiv ist, wissen wir bereits — spannend ist, was davor und danach passiert. Genau diese vermeintlich banalen Momente analysieren wir im Club laufend mit.",
     cta: "Club entdecken",
     href: WA_URL,
   },
   {
     num: "04",
-    title: "Saisonale Sprints",
-    sub: "Kurze Intensivformate",
-    desc: "Klarer Fokus auf ein konkretes Alltagsthema: Anti-Giftköder, Jagdkontrolle, Silvester, Urlaub & Restaurant, Hundebegegnungen oder Entspannt unterwegs.",
-    expect: ["Kurze Laufzeit, klarer Fokus", "Direkte Umsetzbarkeit", "Hoher Nutzwert bei geringem Zeitaufwand"],
-    nutzen: "Ihr löst ein Alltagsthema sauber — ohne großes Programm zu starten.",
-    cta: "Aktuelle Sprints ansehen",
+    title: "Digitale Live-Sessions",
+    sub: "Workshops & Seminare · Live",
+    desc: "Feste Themen, live — mit direkter Integration eurer Videos und Fragen: Ihr reicht vorab Situationen ein, Jenny analysiert sie in der Session. Themen: Leinenreaktivität · Jagdmotivation · Sozialverhalten unter Hunden · Kastration u. a. Integriert ist der oooh my dog! Talk — offenes Live-Format, 2× pro Monat.",
+    expect: ["Live-Workshops zu festen Themen", "Eure Videos & Fragen, in der Session analysiert", "oooh my dog! Talk · 2× pro Monat"],
+    nutzen: "Direkte Analyse eurer echten Situation im Live-Format — ohne Wartezeit auf einen 1:1-Termin.",
+    cta: "Termine anfragen",
     href: WA_URL,
   },
   {
     num: "05",
-    title: "Online-Coaching / Sprechstunde",
-    sub: "Flexibel · Direkt",
-    desc: "Flexible, direkte Hilfe zwischen Analyse, Programm und Club. Verhaltensberatung, Trainingsplanung und Feinschliff an Signalen — ohne Anfahrt.",
-    expect: ["Direkte 1:1-Zeit", "Konkrete Fragen, konkrete Antworten", "Kein großes Programm nötig"],
-    nutzen: "1:1-Klarheit in 60 Minuten — für den nächsten sauberen Schritt.",
-    cta: "Termin anfragen",
-    href: BOOK_URL,
+    title: "Digitale Kurspakete",
+    sub: "Voraufgezeichnet · Ab 89 €",
+    desc: "Voraufgezeichnete Kurse mit begleitender Aufgabenserie per E-Mail und 2 Teilnahmen am oooh my dog! Talk. Das erste Paket: „Deine 28-Tage-Challenge zur Leinenführigkeit“.",
+    expect: ["28-Tage-Challenge Leinenführigkeit", "Begleitende Aufgabenserie per E-Mail", "2× oooh my dog! Talk inklusive"],
+    nutzen: "Ihr trainiert geführt, wann es in euren Alltag passt. Weitere Challenges — Rückruf, Ruhe & Entspannung, Stadttraining — sind als Ausblick geplant.",
+    cta: "Kurspaket anfragen",
+    href: WA_URL,
   },
   {
     num: "06",
+    title: "Saisonale Sprints",
+    sub: "4 Wochen · Winter · Frühjahr · Herbst",
+    desc: "Vier Wochen Fokus auf ein konkretes Alltagsthema — von Urlaubsvorbereitung bis Feiertage & Silvester. Vorhersehbare Stressoren werden vorbereitet, bevor sie zuschlagen (siehe Entwicklungs-Modell oben).",
+    expect: ["Mehrere Aufgaben per E-Mail über 4 Wochen", "Wöchentliche Calls mit Nachbesprechung", "OMD Club lite (App + Videoanalyse) für die Sprint-Dauer"],
+    nutzen: "Ihr geht vorbereitet in die stressige Saison — statt sie hinterher aufzuarbeiten. Der jeweils nächste Sprint wird hier und per Newsletter angekündigt.",
+    cta: "Aktuellen Sprint ansehen",
+    href: WA_URL,
+  },
+  {
+    num: "07",
     title: "Videoanalyse & Voice-Beratung",
     sub: "Asynchron · Kontingent-basiert",
     desc: "Unsere asynchrone Premium-Beratung für Menschen, die laufend dranbleiben wollen — ohne Termin-Pingpong. Ihr bucht vorab ein Kontingent und reicht über euren gesamten Buchungszeitraum Videosequenzen und Sprachnachrichten ein. Wir antworten mit strukturierten Videoanalysen, Voice-Messages und konkreten Handlungsschritten — im Rhythmus eures Alltags.",
@@ -134,7 +150,7 @@ const OFFERS: Offer[] = [
     href: WA_URL,
   },
   {
-    num: "07",
+    num: "08",
     title: "Intensiv-Begleitung Exklusiv",
     sub: "Exklusiv · Auf Anfrage",
     desc: "Unser High-Ticket-Format für die härtesten Fälle und höchsten Ansprüche: 6–8 Wochen engmaschige asynchrone Begleitung mit täglichen bis wöchentlichen Video-Reviews — persönlich von Jenny.",
@@ -150,6 +166,23 @@ const OFFERS: Offer[] = [
 ];
 
 export default function Anywhere({ onOpenSelector }: AnywhereProps) {
+  // Kohorten-Logik: drei feste Jahres-Starts, nächster Termin clientseitig
+  // berechnet (keine Hydration-Differenz, SSR rendert ohne Datum).
+  const [nextStart, setNextStart] = useState<string | null>(null);
+  useEffect(() => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const candidates = [year, year + 1]
+      .flatMap((y) => [1, 4, 9].map((m) => new Date(y, m, 15)))
+      .sort((a, b) => a.getTime() - b.getTime());
+    const next = candidates.find((d) => d > now);
+    if (next) {
+      setNextStart(
+        next.toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" })
+      );
+    }
+  }, []);
+
   return (
     <section
       id="anywhere"
@@ -215,6 +248,13 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
                 </li>
               ))}
             </ul>
+
+            <div className="signature-cohort mono">
+              <div>Feste Jahres-Starts: 15.02. · 15.05. · 15.10.</div>
+              <div style={{ marginTop: 6, color: "var(--cream)" }}>
+                {nextStart ? `Nächster Start: ${nextStart}` : "Nächster Start: siehe Jahres-Starts"} — Plätze limitiert, Warteliste.
+              </div>
+            </div>
 
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
               <a className="btn btn-primary" href={WA_URL} target="_blank" rel="noopener">
@@ -317,6 +357,15 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
                   <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 6 }}>Konkreter Nutzen</div>
                   <div>{o.nutzen}</div>
                 </div>
+                {o.einwand && (
+                  <div className="any-einwand">
+                    <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 6 }}>„Im Ernstfall kann ich doch gar nicht filmen.“</div>
+                    <div>{o.einwand}</div>
+                  </div>
+                )}
+                {o.bridge && (
+                  <div className="mono any-bridge">{o.bridge}</div>
+                )}
                 <a className="btn-link mono" href={o.href} target="_blank" rel="noopener">{o.cta} →</a>
               </div>
             </article>
@@ -387,6 +436,9 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           .any-list { list-style: none; border-top: 1px solid var(--line); margin-bottom: 18px; }
           .any-list li { padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); display: flex; gap: 10px; }
           .any-nutzen { background: var(--bg-2); border-left: 2px solid var(--brass); padding: 16px 18px; margin-bottom: 18px; font-size: 15px; line-height: 1.55; color: var(--cream); }
+          .any-einwand { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 18px; font-size: 14px; line-height: 1.6; color: var(--ink-2); }
+          .any-bridge { color: var(--accent-ink); border: 1px solid var(--brass); border-radius: 999px; display: inline-block; padding: 8px 14px; margin-bottom: 18px; align-self: flex-start; }
+          .signature-cohort { border-top: 1px solid var(--line); margin-top: 20px; padding-top: 16px; color: var(--ink-2); }
 
           .app-block { margin-top: 56px; border-top: 1px solid var(--line-2); padding-top: 44px; display: grid; grid-template-columns: 1fr; gap: 28px; }
           .app-h { font-size: clamp(24px, 3.8vw, 40px); letter-spacing: -0.018em; line-height: 1.1; font-weight: 600; margin-bottom: 14px; }

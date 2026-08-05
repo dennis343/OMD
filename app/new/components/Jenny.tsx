@@ -6,7 +6,7 @@ const CV: [string, string][] = [
   ["Didaktik", "Studium Erwachsenenbildung"],
   ["Training", "1 400+ begleitete Hunde"],
   ["Methode", "0 % aversive Methoden — auch bei schweren Fällen"],
-  ["Zertifizierung", "§ 11 TSchG-zertifizierte Hundetrainerin & Verhaltensberaterin"],
+  ["Zertifizierung", "§ 11 TSchG-zertifizierte Hundetrainerin"],
   ["Zulassung", "§ 6 LHundG NRW · behördlich — auch Listenhunde & gefährliche Hunde"],
   ["Weiterbildung", "In Ausbildung zur zertifizierten Verhaltensberaterin für Hunde"],
   ["Amt", "Vorstand · Verein für Deutsche Schäferhunde (SV), OG Mülheim/Ruhr"],
@@ -100,6 +100,18 @@ export default function Jenny() {
               vor Ort, online und im Pro-Bereich.
             </p>
 
+            <div className="fun-facts">
+              <span className="fun-fact mono">Jenny ist 24/7 Hund.</span>
+              <span className="fun-fact mono">Jenny spricht fließend Mali.</span>
+            </div>
+            <p className="nala-p">
+              Die beiden sind kein Maskottchen — sie sind der Grund, warum diese Hundeschule so
+              arbeitet, wie sie arbeitet. Nala und Zuri prägen die Themen des Trainings und
+              unterstützen teilweise aktiv — etwa als ruhige Referenzhunde in Sozialkontakt- und
+              Begegnungs-Settings. Wer mit einem Malinois aus KNPV-Leistungszucht und einem X-Herder
+              aus behördlicher Beschlagnahmung lebt, redet nicht über Theorie.
+            </p>
+
             <div className="nala-links mono">
               <a href={INSTAGRAM_URL} target="_blank" rel="noopener">→ Nala & Zuri auf Instagram</a>
             </div>
@@ -144,6 +156,8 @@ export default function Jenny() {
           .nala-head { font-size: clamp(28px, 5vw, 54px); line-height: 1.08; letter-spacing: -0.018em; font-weight: 600; margin-bottom: 28px; }
           .nala-p { font-size: 16px; line-height: 1.6; color: var(--ink-2); margin-bottom: 18px; max-width: 58ch; }
           .nala-links { margin-top: 24px; }
+          .fun-facts { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 20px; }
+          .fun-fact { border: 1px solid var(--brass); border-radius: 999px; padding: 8px 14px; color: var(--accent-ink); }
           .nala-links a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--omd-yellow); text-decoration-thickness: 2px; text-underline-offset: 3px; }
           .nala-links a:hover { text-decoration-color: var(--ink); }
           .nala-images { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
