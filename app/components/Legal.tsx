@@ -105,7 +105,7 @@ function Impressum({ titleId }: { titleId: string }) {
 
       <h3>Kontakt</h3>
       <ul>
-        <li>Telefon: <a href="tel:+4917134579599">+49 171 3457959</a></li>
+        <li>Telefon: <a href="tel:+491713457959">+49 171 3457959</a></li>
         <li>E-Mail: <a href="mailto:hallo@oooh-my-dog.de">hallo@oooh-my-dog.de</a></li>
       </ul>
 

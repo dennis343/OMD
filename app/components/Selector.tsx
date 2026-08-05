@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { BOOK_ONLINE_URL, BOOK_URL, WA_URL } from "@/app/lib/constants";
+import { BOOK_ONLINE_URL, BOOK_URL, wa } from "@/app/lib/constants";
 
 const MICRO_COMMITMENTS = [
   "Schön — wir sehen uns das gemeinsam an.",
@@ -89,13 +89,26 @@ function recommend(answers: Answers): string[] {
   }
 
   // Online-Route: die ehrliche Empfehlung, kein Trostpreis — wir sehen den
-  // Hund dort, wo das Problem lebt.
-  if (goal === "begegnung") return ["kurspaket", "signatur"];
-  if (goal === "jagd") return ["signatur", "sprint"];
-  if (goal === "aggression") return ["videoanalyse", "intensiv"];
+  // Hund dort, wo das Problem lebt. Beste Passung zuerst.
+  if (goal === "begegnung") return ["signatur", "online-kennenlern"];
+  if (goal === "jagd") return ["signatur", "kurspaket"];
+  if (goal === "aggression") return ["videoanalyse", "signatur"];
   if (goal === "ruhe") return ["signatur"];
   return ["online-kennenlern"];
 }
+
+// Wegabhängige Begründungen („Warum diese Empfehlung") — überschreiben die
+// Standard-Rationale des Ergebnisses, Key: `${goal}|${resultKey}`.
+const RATIONALE_OVERRIDES: Record<string, string> = {
+  "begegnung|signatur":
+    "Weil eskalierende Begegnungen kein Übungsproblem sind, sondern ein Systemproblem: Acht Wochen strukturierter Aufbau mit Feedback auf eure realen Begegnungssituationen — statt Einzelübungen ohne Gesamtplan.",
+  "jagd|signatur":
+    "Weil Jagdkontrolle Sicherheit braucht, keine Tipps: Rückruf und Freilauf entstehen in einem achtwöchigen Aufbau mit Homework-Reviews — verbindlich statt nach Gefühl.",
+  "aggression|signatur":
+    "Die Analyse zeigt, was euer Hund braucht. Das Programm baut es auf: acht Wochen Struktur mit Live-Begleitung.",
+  "begegnung|online-kennenlern":
+    "Der schnellste Einstieg ohne Wartezeit: 30 Minuten Zoom plus Videoanalyse eurer Alltagsszenen — danach wisst ihr genau, welcher Weg eurer ist.",
+};
 
 type Result = {
   title: string;
@@ -180,11 +193,11 @@ const RESULT_MAP: Record<string, Result> = {
   },
   signatur: {
     title: "Signaturprogramm „Reizoffen & führbar“",
-    tag: "Programm · Online · 8 Wochen",
+    tag: "Programm · Online · 8 Wochen · 890 €",
     desc: "8 Wochen Premium-Programm für reizoffene, unsichere oder schnell überforderte Hunde. Intake, Videoanalyse, Kernmodule, Live-Call pro Woche, Homework-Reviews. Drei feste Starts pro Jahr: 15.02. · 15.05. · 15.10.",
     rationale: "Weil Reizoffenheit ein System braucht, keine Tipps: acht Wochen strukturierter Aufbau mit Feedback auf eure realen Alltagssituationen.",
     ctaLabel: "Zum Signaturprogramm",
-    ctaHref: "#anywhere",
+    ctaHref: "#angebot-signatur",
   },
   videoanalyse: {
     title: "Videoanalyse Pro",
@@ -192,46 +205,38 @@ const RESULT_MAP: Record<string, Result> = {
     desc: "Ihr sendet Alltagsszenen, füllt eine strukturierte Anamnese aus und erhaltet eine priorisierte Analyse plus Trainingsplan. Einmalige fundierte Einschätzung, 49 €.",
     rationale: "Weil wir euren Hund dort sehen wollen, wo das Problem lebt — zuhause, auf eurer Route, im echten Alltag.",
     ctaLabel: "Zur Videoanalyse Pro",
-    ctaHref: "#anywhere",
+    ctaHref: "#angebot-videoanalyse",
   },
   kurspaket: {
     title: "28-Tage-Challenge: Leinenführigkeit",
     tag: "Digitales Kurspaket · Ab 89 €",
-    desc: "Voraufgezeichneter Kurs mit begleitender Aufgabenserie per E-Mail und 2 Teilnahmen am oooh my dog! Talk. Struktur statt Zufall — gegen Ziehen und Pöbeln an der Leine.",
-    rationale: "Weil Begegnungen im Alltag trainiert werden, nicht auf dem Platz: 28 Tage, klare Aufgaben, euer Tempo.",
+    desc: "Voraufgezeichneter Kurs mit begleitender Aufgabenserie per E-Mail und 2 Teilnahmen am oooh my dog! Talk. Struktur statt Zufall — für sauberes Laufen an der Leine.",
     ctaLabel: "Zur 28-Tage-Challenge",
-    ctaHref: "#anywhere",
+    ctaHref: "#angebot-kurspakete",
   },
   sprint: {
     title: "Saisonale Sprints",
-    tag: "4 Wochen · Online",
+    tag: "4 Wochen · Online · 290 €",
     desc: "Vier Wochen Fokus auf ein konkretes Thema — z. B. Jagdkontrolle oder Urlaubsvorbereitung. Aufgaben per E-Mail, wöchentliche Calls mit Nachbesprechung, OMD Club lite für die Sprint-Dauer.",
     rationale: "Weil vorhersehbare Stressoren planbar sind: Wir bereiten euch vor, bevor die Saison zuschlägt.",
     ctaLabel: "Zu den Sprints",
-    ctaHref: "#anywhere",
+    ctaHref: "#angebot-sprints",
   },
   intensiv: {
     title: "Intensiv-Begleitung Exklusiv",
-    tag: "Exklusiv · Auf Anfrage",
+    tag: "Exklusiv · Ab 2.900 €",
     desc: "6–8 Wochen engmaschige asynchrone Begleitung mit täglichen bis wöchentlichen Video-Reviews — persönlich von Jenny. Für schwere Fälle: Aggression, Angst, Listenhunde.",
     rationale: "Weil Aggression keine Video-Bibliothek braucht, sondern laufende professionelle Einordnung.",
     ctaLabel: "Verfügbarkeit anfragen",
-    ctaHref: WA_URL,
+    ctaHref: wa("Hi Jenny, ich interessiere mich für die Intensiv-Begleitung Exklusiv (ab 2.900 €). Wann ist der nächste freie Platz?"),
     external: true,
   },
   club: {
     title: "oooh my dog! Club",
-    tag: "Membership · Online",
-    desc: "Regelmäßige Live-Sessions, Themenbibliothek, Q&A, Monatsfokus, Community. Planbare Begleitung statt jedes Mal neu buchen.",
+    tag: "Membership · Online · 55 €/Monat",
+    desc: "Dein Trainingszentrum für die Hosentasche: Videoanalysen, direkter Austausch, oooh my dog! Talk und Clubmeeting. Planbare Begleitung statt jedes Mal neu buchen.",
     ctaLabel: "Zum Club",
-    ctaHref: "#anywhere",
-  },
-  "messenger-beratung": {
-    title: "Videoanalyse & Voice-Beratung",
-    tag: "Asynchron · Kontingent",
-    desc: "Premium-Beratung im Tempo eures Alltags: Ihr bucht vorab ein Kontingent und reicht über den gesamten Zeitraum Videosequenzen und Sprachnachrichten ein. Wir antworten mit strukturierten Videoanalysen und Voice-Messages — kein Termindruck, keine Anfahrt.",
-    ctaLabel: "Zur Videoanalyse & Voice-Beratung",
-    ctaHref: "#anywhere",
+    ctaHref: "#angebot-club",
   },
   "case-lab": {
     title: "OMD Pro Case Lab",
@@ -259,7 +264,7 @@ const RESULT_MAP: Record<string, Result> = {
     tag: "Premium-Paket · Welpe",
     desc: "Der saubere Start ins Hundeleben — mit System. Inhalte: 1× Kennenlern-Einzel, 6× freie Basisgruppen-Teilnahme, 2× Einzeltraining am Wunschort, 3× oooh my dog! Talks. Inklusive: Begrüßung, Willkommensbox, klare Trainingsstruktur, Hausaufgaben, WhatsApp-Support, flexible Terminbuchung.",
     ctaLabel: "Welpen-Premium-Paket anfragen",
-    ctaHref: WA_URL,
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das Welpen-Premium-Paket. Unser Welpe: (Rasse, Alter)"),
     external: true,
   },
   "paket-leichtigkeit": {
@@ -267,7 +272,7 @@ const RESULT_MAP: Record<string, Result> = {
     tag: "Premium-Paket · Alltag",
     desc: "Alltag, der wieder leicht wird — durch Wiederholung und Routine. Inhalte: 25 Einheiten Basisgruppen, 2× oooh my dog! Talks. Inklusive: Begrüßung, Willkommensbox, klare Trainingsstruktur, Hausaufgaben, WhatsApp-Support, flexible Terminbuchung.",
     ctaLabel: "Leichtigkeit-Paket anfragen",
-    ctaHref: WA_URL,
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das Leichtigkeit-Paket. Unsere Situation kurz:"),
     external: true,
   },
   "paket-traveller": {
@@ -275,7 +280,7 @@ const RESULT_MAP: Record<string, Result> = {
     tag: "Premium-Paket · Intensiv",
     desc: "Intensives Premium-Training, das auf Distanz funktioniert. Inhalte: 3× Online-Einzel, 4× Einzeltraining (Mülheim), 2× oooh my dog! Talks. Inklusive: Begrüßung, Willkommensbox, klare Trainingsstruktur, Hausaufgaben, WhatsApp-Support, flexible Terminbuchung.",
     ctaLabel: "Traveller-Paket anfragen",
-    ctaHref: WA_URL,
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das Traveller-Paket. Unsere Situation kurz:"),
     external: true,
   },
 };
@@ -374,7 +379,15 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
   if (!open) return null;
 
-  const results = finished ? recommend(answers).map((k) => RESULT_MAP[k]).filter(Boolean) : [];
+  const results = finished
+    ? recommend(answers)
+        .map((k) => {
+          const r = RESULT_MAP[k];
+          if (!r) return r;
+          const override = RATIONALE_OVERRIDES[`${answers.goal}|${k}`];
+          return override ? { ...r, rationale: override } : r;
+        })
+        .filter(Boolean) : [];
   const isVorOrt =
     finished &&
     answers.ort === "ja" &&

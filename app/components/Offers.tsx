@@ -1,4 +1,4 @@
-import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL, WA_URL } from "@/app/lib/constants";
+import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL, wa } from "@/app/lib/constants";
 import { OFFERS_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
 
@@ -40,7 +40,7 @@ const KENNENLERN: Entry[] = [
   {
     tag: "Online · Videoanalyse",
     title: "Kennenlern-Einzelcoaching",
-    sub: "ONLINE & Videoanalyse · 30 Min · 49 €",
+    sub: "Nicht aus Mülheim — oder lieber sofort statt auf einen Platz-Termin warten? Derselbe Einstieg per Zoom: Online-Kennenlern, 49 €.",
     desc: "Hier beginnt eure Erfolgsgeschichte mit uns online: per Zoom und Videoanalyse von einem Ort eurer Wahl. Wir finden heraus, was ihr braucht — und legen gemeinsam das Fundament für alles Weitere.",
     forWho: "Ihr wohnt nicht in Mülheim, wollt flexibel starten — und seid bereit, vorab kurze Anamnese und 3–5 Alltagsvideos zu liefern (mind. 4 Tage vorher).",
     nutzen:
@@ -71,7 +71,7 @@ const INDIVIDUAL: Entry = {
     "Klare Aufgaben für den Alltag",
   ],
   cta: "VIP-Einzelcoaching per WhatsApp anfragen",
-  ctaHref: WA_URL,
+  ctaHref: wa("Hi Jenny, ich interessiere mich für das VIP-Einzelcoaching. Unser Anliegen kurz:"),
   accent: "var(--brass)",
 };
 
@@ -102,7 +102,7 @@ const TOUR: Tour = {
     "Vor-Ort-Slot plus digitale Vorbereitung & Nachbetreuung",
   ],
   cta: "Auf die Tour-Warteliste",
-  ctaHref: WA_URL,
+  ctaHref: wa("Hi Jenny, bitte setzt mich auf die Tour-Warteliste. Unsere Region:"),
   img: OFFERS_IMG.tour,
 };
 
@@ -186,6 +186,7 @@ type Paket = {
   desc: string;
   inhalte: string[];
   cta: string;
+  ctaHref: string;
   accent: string;
 };
 
@@ -211,6 +212,7 @@ const PAKETE: Paket[] = [
       "3× oooh my dog! Talks",
     ],
     cta: "Welpen-Premium-Paket anfragen",
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das Welpen-Premium-Paket. Unser Welpe: (Rasse, Alter)"),
     accent: "var(--brass)",
   },
   {
@@ -223,6 +225,7 @@ const PAKETE: Paket[] = [
       "2× oooh my dog! Talks",
     ],
     cta: "Leichtigkeit-Paket anfragen",
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das Leichtigkeit-Paket. Unsere Situation kurz:"),
     accent: "var(--cream)",
   },
   {
@@ -236,6 +239,7 @@ const PAKETE: Paket[] = [
       "2× oooh my dog! Talks",
     ],
     cta: "Traveller-Paket anfragen",
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das Traveller-Paket. Unsere Situation kurz:"),
     accent: "var(--moss)",
   },
 ];
@@ -535,7 +539,7 @@ export default function Offers(_props: OffersProps = {}) {
                 </ul>
               </div>
 
-              <a className="btn btn-primary paket-cta" href={WA_URL} target="_blank" rel="noopener">
+              <a className="btn btn-primary paket-cta" href={p.ctaHref} target="_blank" rel="noopener">
                 {p.cta} <span className="arrow" aria-hidden="true">→</span>
               </a>
             </article>

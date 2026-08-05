@@ -156,7 +156,6 @@ const localBusinessJsonLd = {
       { "@type": "Offer", name: "Basisgruppen · Orientierung & Führung", category: "Vor Ort" },
       { "@type": "Offer", name: "Exklusivgruppen · Jagdkontrolle / Anti-Giftköder", category: "Vor Ort · Premium" },
       { "@type": "Offer", name: "Signaturprogramm · Reizoffen & führbar", category: "Online · DACH" },
-      { "@type": "Offer", name: "Videoanalyse & Voice-Beratung", category: "Online · DACH" },
       { "@type": "Offer", name: "oooh my dog! Club · Membership", category: "Online · DACH" },
       { "@type": "Offer", name: "OMD Pro Case Lab", category: "Pro & Business" },
       { "@type": "Offer", name: "Premium Hundeschule System", category: "Pro & Business" },

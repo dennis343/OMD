@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BOOK_ONLINE_URL, BOOK_URL, WA_URL } from "@/app/lib/constants";
+import { BOOK_ONLINE_URL, BOOK_URL, wa } from "@/app/lib/constants";
 import { ANYWHERE_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
 
@@ -8,7 +8,7 @@ type AnywhereProps = { onOpenSelector: () => void };
 const SIGNATURE = {
   tag: "Signaturprogramm",
   title: "Reizoffen & führbar",
-  sub: "8 Wochen · 3 feste Starts pro Jahr · Premium · Digital",
+  sub: "8 Wochen · 3 feste Starts pro Jahr · 890 €",
   desc: "Das digitale Signaturprogramm für anspruchsvolle Hunde und überforderte Halter. Strukturierter Einstieg, klar gegliederte Lernmodule, Live-Elemente, Umsetzungsaufgaben und Feedback auf reale Alltagssituationen.",
   situation:
     "Ihr seid oft im Reagieren statt im Führen. Begegnungen, Reize oder Alltagssituationen kippen zu schnell. Ihr habt schon vieles gehört, aber keinen klaren Weg.",
@@ -18,6 +18,8 @@ const SIGNATURE = {
     "Verständliche Erklärungen statt bloßer Tipps",
     "Alltagstaugliche Umsetzung",
     "Enge, aber effiziente Begleitung",
+    // HINWEIS: App-Zugang nur ausspielen, wenn fachlich freigegeben (Rückfrage Dennis)
+    "Begleitender App-Zugang: Trainingstagebuch, Video-Upload und direkter Draht zwischen den Modulen",
   ],
   img: ANYWHERE_IMG.signature,
 };
@@ -69,6 +71,7 @@ const STANDARDS = [
 ];
 
 type Offer = {
+  id: string;
   num: string;
   title: string;
   sub: string;
@@ -83,6 +86,7 @@ type Offer = {
 
 const OFFERS: Offer[] = [
   {
+    id: "angebot-videoanalyse",
     num: "02",
     title: "Videoanalyse Pro",
     sub: "Einstieg · Asynchron · 49 € einmalig",
@@ -92,9 +96,10 @@ const OFFERS: Offer[] = [
     einwand: "Musst du auch nicht. Filme das scheinbar Banale: die Minute vor der Begegnung, den Weg zur Tür, das Verhalten nach dem Spaziergang. Genau daraus liest Jenny ab, was deinen Hund wirklich bewegt — und interpretiert zuverlässig, wie dein Hund in der Reizsituation tickt.",
     bridge: "Der Club kostet nur 6 € mehr — und beinhaltet deutlich mehr.",
     cta: "Videoanalyse anfragen",
-    href: WA_URL,
+    href: wa("Hi Jenny, ich interessiere mich für die Videoanalyse Pro (49 €). Unsere Situation kurz:"),
   },
   {
+    id: "angebot-club",
     num: "03",
     title: "oooh my dog! Club",
     sub: "Membership · 55 €/Monat",
@@ -103,19 +108,21 @@ const OFFERS: Offer[] = [
     nutzen: "Keine Einzelstunden-Spirale mehr — stattdessen Kontinuität zum monatlichen Festpreis von 55 €.",
     einwand: "Musst du auch nicht. Wie ein Hund reaktiv ist, wissen wir bereits — spannend ist, was davor und danach passiert. Genau diese vermeintlich banalen Momente analysieren wir im Club laufend mit.",
     cta: "Club entdecken",
-    href: WA_URL,
+    href: wa("Hi Jenny, ich möchte den oooh my dog! Club (55 €/Monat) kennenlernen. Unsere Situation kurz:"),
   },
   {
+    id: "angebot-live",
     num: "04",
     title: "Digitale Live-Sessions",
-    sub: "Workshops & Seminare · Live",
+    sub: "Workshops 49 € · Seminare 79 € · Live",
     desc: "Feste Themen, live — mit direkter Integration eurer Videos und Fragen: Ihr reicht vorab Situationen ein, Jenny analysiert sie in der Session. Themen: Leinenreaktivität · Jagdmotivation · Sozialverhalten unter Hunden · Kastration u. a. Integriert ist der oooh my dog! Talk — offenes Live-Format, 2× pro Monat.",
     expect: ["Live-Workshops zu festen Themen", "Eure Videos & Fragen, in der Session analysiert", "oooh my dog! Talk · 2× pro Monat"],
     nutzen: "Direkte Analyse eurer echten Situation im Live-Format — ohne Wartezeit auf einen 1:1-Termin.",
     cta: "Termine anfragen",
-    href: WA_URL,
+    href: wa("Hi Jenny, ich interessiere mich für die digitalen Live-Sessions bzw. den OMD Talk. Bitte schickt mir die aktuellen Termine."),
   },
   {
+    id: "angebot-kurspakete",
     num: "05",
     title: "Digitale Kurspakete",
     sub: "Voraufgezeichnet · Ab 89 €",
@@ -123,36 +130,24 @@ const OFFERS: Offer[] = [
     expect: ["28-Tage-Challenge Leinenführigkeit", "Begleitende Aufgabenserie per E-Mail", "2× oooh my dog! Talk inklusive"],
     nutzen: "Ihr trainiert geführt, wann es in euren Alltag passt. Weitere Challenges — Rückruf, Ruhe & Entspannung, Stadttraining — sind als Ausblick geplant.",
     cta: "Kurspaket anfragen",
-    href: WA_URL,
+    href: wa("Hi Jenny, ich interessiere mich für die 28-Tage-Challenge Leinenführigkeit (ab 89 €)."),
   },
   {
+    id: "angebot-sprints",
     num: "06",
     title: "Saisonale Sprints",
-    sub: "4 Wochen · Winter · Frühjahr · Herbst",
+    sub: "4 Wochen · 290 € · Winter · Frühjahr · Herbst",
     desc: "Vier Wochen Fokus auf ein konkretes Alltagsthema — von Urlaubsvorbereitung bis Feiertage & Silvester. Vorhersehbare Stressoren werden vorbereitet, bevor sie zuschlagen (siehe Entwicklungs-Modell oben).",
-    expect: ["Mehrere Aufgaben per E-Mail über 4 Wochen", "Wöchentliche Calls mit Nachbesprechung", "OMD Club lite (App + Videoanalyse) für die Sprint-Dauer"],
+    expect: ["Mehrere Aufgaben per E-Mail über 4 Wochen", "Wöchentliche Calls mit Nachbesprechung", "OMD Club lite (läuft über die App) für die Sprint-Dauer"],
     nutzen: "Ihr geht vorbereitet in die stressige Saison — statt sie hinterher aufzuarbeiten. Der jeweils nächste Sprint wird hier und per Newsletter angekündigt.",
     cta: "Aktuellen Sprint ansehen",
-    href: WA_URL,
+    href: wa("Hi Jenny, ich möchte Infos zum aktuellen Saison-Sprint (4 Wochen, 290 €)."),
   },
   {
+    id: "angebot-intensiv",
     num: "07",
-    title: "Videoanalyse & Voice-Beratung",
-    sub: "Asynchron · Kontingent-basiert",
-    desc: "Unsere asynchrone Premium-Beratung für Menschen, die laufend dranbleiben wollen — ohne Termin-Pingpong. Ihr bucht vorab ein Kontingent und reicht über euren gesamten Buchungszeitraum Videosequenzen und Sprachnachrichten ein. Wir antworten mit strukturierten Videoanalysen, Voice-Messages und konkreten Handlungsschritten — im Rhythmus eures Alltags.",
-    expect: [
-      "Kontingent vorab buchen (Wochen oder Monate)",
-      "Videosequenzen & Sprachnachrichten einreichen",
-      "Antwort per Videoanalyse und Voice-Message",
-    ],
-    nutzen: "Echte 1:1-Begleitung ohne Kalenderdruck — ihr bekommt Profi-Antworten genau dann, wenn die Situation frisch ist.",
-    cta: "Kontingent anfragen",
-    href: WA_URL,
-  },
-  {
-    num: "08",
     title: "Intensiv-Begleitung Exklusiv",
-    sub: "Exklusiv · Auf Anfrage",
+    sub: "Exklusiv · Ab 2.900 €",
     desc: "Unser High-Ticket-Format für die härtesten Fälle und höchsten Ansprüche: 6–8 Wochen engmaschige asynchrone Begleitung mit täglichen bis wöchentlichen Video-Reviews — persönlich von Jenny.",
     expect: [
       "Tägliche bis wöchentliche Video-Reviews",
@@ -161,7 +156,7 @@ const OFFERS: Offer[] = [
     ],
     nutzen: "Die engste Begleitung, die wir anbieten — das Kontingent ist bewusst klein. Konditionen und Start klären wir im persönlichen Gespräch.",
     cta: "Verfügbarkeit anfragen",
-    href: WA_URL,
+    href: wa("Hi Jenny, ich interessiere mich für die Intensiv-Begleitung Exklusiv (ab 2.900 €). Wann ist der nächste freie Platz?"),
   },
 ];
 
@@ -217,7 +212,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           </button>
         </div>
 
-        <article className="signature-block" aria-labelledby="signature-title">
+        <article className="signature-block" id="angebot-signatur" aria-labelledby="signature-title">
           <div className="signature-tag">{SIGNATURE.tag}</div>
 
           <div className="signature-img tile">
@@ -257,7 +252,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
             </div>
 
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
-              <a className="btn btn-primary" href={WA_URL} target="_blank" rel="noopener">
+              <a className="btn btn-primary" href={wa("Hi Jenny, bitte setzt mich auf die Warteliste für das Signaturprogramm „Reizoffen & führbar“ (nächster Start 15.10.). Unser Hund kurz:")} target="_blank" rel="noopener">
                 Warteliste anfragen <span className="arrow" aria-hidden="true">→</span>
               </a>
               <a className="btn btn-ghost" href={BOOK_URL} target="_blank" rel="noopener">Kennenlern-Coaching →</a>
@@ -265,7 +260,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           </div>
         </article>
 
-        <article className="ok-block" aria-labelledby="ok-title">
+        <article className="ok-block" id="angebot-kennenlern" aria-labelledby="ok-title">
           <div className="signature-tag">Der beste Einstieg · 49 €</div>
           <div className="ok-body">
             <div className="mono" style={{ marginBottom: 14 }}>Online-Kennenlern · 30 Min Zoom + Videoanalyse</div>
@@ -326,7 +321,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
 
         <div className="any-grid">
           {OFFERS.map((o, idx) => (
-            <article key={o.num} className="any-card">
+            <article key={o.num} id={o.id} className="any-card">
               <div className="any-card-img">
                 <TrainingSlider
                   seed={`online-${o.title}`}
@@ -376,10 +371,44 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           <div>
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Begleitung im Alltag · Die oooh my dog! App</div>
             <h3 id="app-title" className="serif app-h">Euer Training in der Tasche.</h3>
-            <p className="app-p">
+            <p className="app-p" style={{ marginBottom: 22 }}>
+              Ob Training wirkt, entscheidet sich nicht im Termin. Es entscheidet sich dazwischen.
+              Genau dafür haben wir unsere eigene App gebaut: euer digitales Trainingszentrum und
+              Alltagsbegleiter in einem.
+            </p>
+            <div className="app-steps">
+              <div className="app-step">
+                <span className="serif" style={{ color: "var(--accent-ink)", fontWeight: 700, fontSize: 16 }}>01</span>
+                <div>
+                  <div className="serif app-step-t">Aufnehmen.</div>
+                  <p className="app-step-d">Die Alltagssituation festhalten: Foto oder Video, direkt aus der App, in Sekunden beim Trainer-Team.</p>
+                </div>
+              </div>
+              <div className="app-step">
+                <span className="serif" style={{ color: "var(--accent-ink)", fontWeight: 700, fontSize: 16 }}>02</span>
+                <div>
+                  <div className="serif app-step-t">Rückmeldung.</div>
+                  <p className="app-step-d">Persönlicher Chat, Sprachnotiz und eine konkrete Übungsempfehlung — keine generischen Tipps.</p>
+                </div>
+              </div>
+              <div className="app-step">
+                <span className="serif" style={{ color: "var(--accent-ink)", fontWeight: 700, fontSize: 16 }}>03</span>
+                <div>
+                  <div className="serif app-step-t">Fortschritt.</div>
+                  <p className="app-step-d">Trainingstagebuch, Erinnerungen und Fortschritts-Matrix: Ihr seht, wie aus Üben Veränderung wird.</p>
+                </div>
+              </div>
+            </div>
+            <p className="app-p" style={{ marginTop: 22 }}>
               Heimtierausweis, Impf-Ampel, Trainingstagebuch, Fortschritts-Matrix und Video-Upload
               für eure Analysen — die App hält euren Trainingsalltag zwischen den Terminen zusammen.
             </p>
+            <div style={{ marginTop: 24 }}>
+              <a className="btn btn-primary" href="https://app.oooh-my-dog.de/auth" target="_blank" rel="noopener">
+                Kostenlos registrieren <span className="arrow" aria-hidden="true">→</span>
+              </a>
+              <div className="mono" style={{ marginTop: 12, color: "var(--ink-3)" }}>Free-Tarif · 0 € · Persönliche Freigabe durch unser Team</div>
+            </div>
           </div>
           <div className="app-tiers">
             <div className="app-tier">
@@ -447,6 +476,21 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           .app-tier { background: var(--bg-2); border: 1px solid var(--line-2); padding: 18px 16px; }
           .app-tier-price { font-size: 22px; font-weight: 600; color: var(--cream); letter-spacing: -0.015em; }
           .app-tier-per { font-size: 13px; color: var(--ink-3); font-weight: 400; }
+          .app-steps { display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+          .app-step { display: grid; grid-template-columns: 36px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+          .app-step-t { font-size: 16px; font-weight: 600; color: var(--cream); margin-bottom: 4px; letter-spacing: -0.01em; }
+          .app-step-d { font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+
+          /* Anker-Ziele aus dem Selektor: weich anspringen + dezent markieren */
+          [id^="angebot-"] { scroll-margin-top: 96px; }
+          [id^="angebot-"]:target { animation: offerGlow 1.6s ease-out 1; }
+          @keyframes offerGlow {
+            0% { box-shadow: 0 0 0 2px var(--omd-yellow); }
+            100% { box-shadow: 0 0 0 2px transparent; }
+          }
+          @media (prefers-reduced-motion: reduce) {
+            [id^="angebot-"]:target { animation: none; box-shadow: 0 0 0 2px var(--omd-yellow); }
+          }
 
           @media (min-width: 700px) {
             .signature-block { padding: 44px 36px 40px; gap: 40px; grid-template-columns: 1fr 1.2fr; }

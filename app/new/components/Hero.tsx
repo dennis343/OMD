@@ -70,7 +70,7 @@ export default function Hero({ onOpenSelector }: HeroProps) {
     <section
       aria-labelledby="hero-headline"
       className="theme-dark hero-section"
-      style={{ position: "relative", overflow: "hidden", borderBottom: "2px solid var(--omd-yellow)", paddingTop: 48, paddingBottom: 64 }}
+      style={{ position: "relative", overflow: "clip", borderBottom: "2px solid var(--omd-yellow)", paddingTop: 48, paddingBottom: 64 }}
     >
       <div className="hero-bg" aria-hidden="true">
         <img
@@ -157,8 +157,8 @@ export default function Hero({ onOpenSelector }: HeroProps) {
       </div>
 
       <style>{`
-        .hero-bg { position: absolute; inset: 0; z-index: 0; }
-        .hero-bg img { width: 100%; height: 118%; object-fit: cover; object-position: 68% 40%; will-change: transform; }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: clip; }
+        .hero-bg img { width: 100%; height: 118%; max-width: 100%; object-fit: cover; object-position: 68% 40%; will-change: transform; }
         .hero-veil {
           position: absolute; inset: 0;
           background:
