@@ -111,7 +111,7 @@ export default function Method() {
           ))}
         </div>
 
-        <div className="dev-model" data-fx>
+        <div className="dev-model" id="entwicklungsmodell" data-fx>
           <div className="dev-model-head">
             <div>
               <div className="eyebrow" style={{ marginBottom: 14 }}>Das Grundprinzip</div>

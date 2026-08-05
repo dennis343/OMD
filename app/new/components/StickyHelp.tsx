@@ -20,6 +20,16 @@ function isDismissed(): boolean {
   }
 }
 
+// Solange der Consent-Dialog offen ist (noch keine Entscheidung), bleibt die
+// Sticky-Bar verborgen — beide Elemente sitzen sonst übereinander.
+function consentDecided(): boolean {
+  try {
+    return localStorage.getItem("omd-consent-v1") !== null;
+  } catch {
+    return true;
+  }
+}
+
 export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
   const [visible, setVisible] = useState(false);
   const [nearFooter, setNearFooter] = useState(false);
@@ -33,7 +43,7 @@ export default function StickyHelp({ onOpenSelector, selectorOpen }: Props) {
       const total = doc.scrollHeight - window.innerHeight;
       if (total <= 0) return;
       const progress = scrolled / total;
-      setVisible(progress > SHOW_AFTER_SCROLL);
+      setVisible(progress > SHOW_AFTER_SCROLL && consentDecided());
 
       const finalSection = document.getElementById("kontakt");
       if (finalSection) {

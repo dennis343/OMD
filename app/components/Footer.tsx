@@ -12,9 +12,11 @@ const COLS: Column[] = [
     items: [
       ["Kennenlern-Coaching", BOOK_URL],
       ["Einzelcoaching", WA_URL],
-      ["Orientierung & Führung", "#vor-ort"],
-      ["Soziales Lernen", "#vor-ort"],
-      ["Spezialthemen", "#vor-ort"],
+      ["Orientierung & Führung", "#gruppen-basis"],
+      ["Soziales Lernen", "#gruppen-basis"],
+      ["Exklusivgruppen & Profi-Spaziergang", "#gruppen-exklusiv"],
+      ["Pakete & Maulkorb-Veredelung", "#pakete"],
+      ["Tour-Termine DACH", "#tour"],
     ],
   },
   {

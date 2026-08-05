@@ -296,7 +296,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           </div>
         </article>
 
-        <div className="standards-block" aria-labelledby="standards-title">
+        <div className="standards-block" id="online-standards" aria-labelledby="standards-title">
           <div style={{ marginBottom: 36 }}>
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Unsere Standards · Online</div>
             <h3 id="standards-title" className="serif standards-h">
@@ -367,7 +367,7 @@ export default function Anywhere({ onOpenSelector }: AnywhereProps) {
           ))}
         </div>
 
-        <div className="app-block" aria-labelledby="app-title">
+        <div className="app-block" id="app-block" aria-labelledby="app-title">
           <div>
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Begleitung im Alltag · Die oooh my dog! App</div>
             <h3 id="app-title" className="serif app-h">Euer Training in der Tasche.</h3>

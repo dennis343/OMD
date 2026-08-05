@@ -89,6 +89,7 @@ export default function TrainingSlider({
       </div>
 
       <style>{`
+        .training-slider { overflow: clip; }
         @media (max-width: 639px) {
           .training-slider {
             --ts-h: calc(var(--ts-h, 160px) * 0.78);

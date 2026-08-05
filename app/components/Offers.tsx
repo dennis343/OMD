@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL, wa } from "@/app/lib/constants";
 import { OFFERS_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
@@ -106,7 +107,7 @@ const TOUR: Tour = {
   img: OFFERS_IMG.tour,
 };
 
-type GroupItem = { name: string; desc: string; mehrwert: string };
+type GroupItem = { name: string; desc: string; mehrwert: string; meta?: string; stufen?: string[] };
 type Group = { name: string; title: string; nutzen: string; items: GroupItem[] };
 
 const BASIS_GROUPS: Group[] = [
@@ -138,7 +139,7 @@ const BASIS_GROUPS: Group[] = [
     nutzen: "Hier wird aus Reaktion Kooperation — zwischen Hund, Halter und Umwelt. Ideal für Teams, die nicht nur „funktionieren“, sondern gemeinsam denken wollen.",
     items: [
       {
-        name: "Sozialkontakt",
+        name: "Sozialkontakt moderiert",
         desc: "Strukturierte, gut moderierte Hundebegegnungen — für Hunde, die unsicher, überschwänglich oder pöbelig sind. Ihr lernt zu lesen, einzuordnen und passend zu reagieren, statt zu hoffen.",
         mehrwert: "Begegnungen mit anderen Hunden werden kalkulierbar. Ihr nehmt eurem Hund den Stress — und euch selbst die ständige Anspannung beim Spaziergang.",
       },
@@ -148,7 +149,7 @@ const BASIS_GROUPS: Group[] = [
         mehrwert: "Ihr versteht, wie minimale Signale große Wirkung entfalten. Diese Klarheit überträgt sich direkt in jeden Alltagsmoment — Leine, Freilauf, Begegnung.",
       },
       {
-        name: "Begleithunde",
+        name: "Begleithundetraining",
         desc: "Vorbereitung auf die Begleithundeprüfung — alltagsnah, fair und mit echtem Trainingsnutzen. Auch ohne Prüfungsambition ein hervorragendes Programm für saubere Grundlagen.",
         mehrwert: "Ein anerkannter Nachweis, dass ihr als Team funktioniert — und ein Trainingsweg, der euren Alltag spürbar entspannt, weit über die Prüfung hinaus.",
       },
@@ -165,16 +166,28 @@ const EXKLUSIV_GROUP: Group = {
       name: "Basics Exklusiv",
       desc: "Exklusive Vertiefung der Grundlagen in kleiner Runde — Bindung, Aufmerksamkeit, Impulskontrolle, sauberes Markersystem. Für Teams, die mit Anspruch und Tiefe arbeiten wollen.",
       mehrwert: "Trainingsqualität, die in normalen Gruppen so nicht möglich ist: viel Feedback, individuelle Korrektur, ein echter Schritt im Niveau.",
+      meta: "SA 11–12 Uhr · MO 19–20 Uhr · wechselnd (teils Hundeplatz, teils extern)",
     },
     {
-      name: "Anti-Giftköder Exklusiv",
-      desc: "Strukturiertes, exklusives Anti-Giftköder-Training mit echtem Aufbau — vom Markersignal über Distanzarbeit bis zur sauberen Generalisierung im Alltag. Kein „einmal Tabu üben“, sondern verlässlich abrufbar.",
-      mehrwert: "Ihr nehmt die Sorge „was, wenn er etwas frisst“ aus eurem Alltag — und gewinnt Sicherheit auf jedem Spaziergang, auch dort, wo unbekannte Reize liegen.",
+      name: "Leinenführigkeit Exklusiv",
+      desc: "Exklusives Leinenführigkeits-Training in Kleinstgruppe — lockerer Leinengriff, Orientierung am Menschen und entspanntes Vorbeigehen an Reizen, strukturiert aufgebaut vom Trainingsplatz bis in euren echten Alltag. Kein stures Nachplappern von Übungen, sondern Führung, die auch dann trägt, wenn es brenzlig wird.",
+      mehrwert: "Ziehen, Zerren und Ausweichmanöver hören auf, euren Tag zu bestimmen. Spaziergänge werden wieder das, was sie sein sollen — eure gemeinsame Zeit.",
+      meta: "SO 11–12 Uhr · Ort wechselnd",
     },
     {
       name: "Jagdkontrolle Exklusiv",
       desc: "Exklusive Arbeit am echten Jagdverhalten — Rückruf unter starken Reizen, Impulskontrolle, alternative Verhaltensketten. Für Hunde, die jagen wollen, und Halter, die wieder Freilauf wagen möchten.",
       mehrwert: "Freilauf wird wieder möglich — ohne dass ihr euren Hund permanent an der Leine halten müsst. Ihr lernt, ihn zu führen, statt ihn zurückzuhalten.",
+      meta: "FR 18–19 Uhr · SA 10–11 Uhr · Ort wechselnd",
+    },
+    {
+      // Intern: Im Buchungsportal heißt das Format „Profi-Spaziergang (BASIS PROFI)".
+      // Auf der Website bewusst in der Exklusiv/Premium-Kategorie, nur „Profi-Spaziergang".
+      name: "Profi-Spaziergang",
+      desc: "Geführter Spaziergang unter Profi-Bedingungen — hier wird Alltag gelebt, nicht inszeniert. Ihr trainiert eure Themen dort, wo sie wirklich passieren: an Straßen, auf Wegen, in Begegnungen. Jenny begleitet, korrigiert und vertieft live, während es passiert.",
+      mehrwert: "Kein künstlicher Trainingsaufbau, keine Laborbedingungen. Ihr sammelt echte Wiederholungen in echten Situationen — mit einem Profi an eurer Seite statt allein zu Hause.",
+      meta: "Jede zweite Woche · Donnerstag 19:00 Uhr · Ort wechselnd",
+      stufen: ["Alltag", "Reiz", "Führung", "Vertiefung"],
     },
   ],
 };
@@ -185,6 +198,8 @@ type Paket = {
   headline: string;
   desc: string;
   inhalte: string[];
+  labels?: string[];
+  hideInklusiv?: boolean;
   cta: string;
   ctaHref: string;
   accent: string;
@@ -204,13 +219,13 @@ const PAKETE: Paket[] = [
     name: "Welpen-Premium-Paket",
     tag: "Welpe · Premium-Start",
     headline: "Der saubere Start ins Hundeleben — mit System.",
-    desc: "Das vollständige Paket für Welpenhalter, die von Anfang an richtig aufstellen wollen. Kennenlern-Einzel, freie Basisgruppen-Teilnahmen, Einzelstunden am Wunschort und Talks — alles aufeinander abgestimmt.",
+    desc: "Das vollständige Paket für Welpenhalter, die von Anfang an richtig aufstellen wollen: zwölf moderierte Basisgruppen-Stunden, ein Einzeltraining bei euch zu Hause und drei Talks — alles aufeinander abgestimmt.",
     inhalte: [
-      "1× Kennenlern-Einzel",
-      "6× freie Basisgruppen-Teilnahme",
-      "2× Einzeltraining am Wunschort",
-      "3× oooh my dog! Talks",
+      "12× Teilnahme in den Basisgruppen (z. B. Sozialkontakt moderiert)",
+      "1× Einzeltraining bei euch zu Hause (zzgl. Fahrtkosten)",
+      "3× oooh my dog! Talks (Zoom)",
     ],
+    labels: ["12× Basisgruppen", "1× Einzeltraining zuhause", "3× oooh my dog! Talks"],
     cta: "Welpen-Premium-Paket anfragen",
     ctaHref: wa("Hi Jenny, ich interessiere mich für das Welpen-Premium-Paket. Unser Welpe: (Rasse, Alter)"),
     accent: "var(--brass)",
@@ -242,7 +257,98 @@ const PAKETE: Paket[] = [
     ctaHref: wa("Hi Jenny, ich interessiere mich für das Traveller-Paket. Unsere Situation kurz:"),
     accent: "var(--moss)",
   },
+  {
+    name: "Maulkorb & Biothane-Veredelung",
+    tag: "Service · Premium",
+    headline: "Sicherheit, die entspannt getragen wird.",
+    desc: "Gemeinsam wählen wir den passenden Maulkorb für euren Hund aus, passen ihn individuell an und veredeln ihn mit hochwertigen Biothane-Riemen. Enthalten sind der Maulkorb, die Anpassung, die Biothane-Veredelung, eine Trainingsanleitung zur Vorbereitung sowie Tipps für ein entspanntes Maulkorbtraining — damit der Maulkorb für euren Hund kein Verbot ist, sondern ein Stück Sicherheit, das er entspannt trägt.",
+    inhalte: [
+      "Maulkorb nach Maß",
+      "Individuelle Anpassung",
+      "Biothane-Veredelung",
+      "Trainingsanleitung zur Vorbereitung",
+      "Tipps für entspanntes Maulkorbtraining",
+    ],
+    hideInklusiv: true,
+    cta: "Maulkorb-Termin anfragen",
+    ctaHref: wa("Hi Jenny, ich interessiere mich für die Maulkorb & Biothane-Veredelung. Unser Hund: (Rasse, Größe)."),
+    accent: "var(--brass)",
+  },
 ];
+
+// Ortsvorschlag: Kein Backend — der Absenden-Button öffnet WhatsApp mit
+// vorbefülltem, angebotsspezifischem Text aus den Formularwerten.
+function TourSuggest() {
+  const [ort, setOrt] = useState("");
+  const [anlage, setAnlage] = useState("");
+  const [kontakt, setKontakt] = useState("Ja, ich habe schon mit den Betreibern gesprochen");
+
+  const submit = () => {
+    if (!ort.trim()) return;
+    const msg = `Hi Jenny, Ortsvorschlag für die Tour: ${ort.trim()}. Hundeplatz/Anlage: ${anlage.trim() || "—"}. Kontakt zu Betreibern: ${kontakt}.`;
+    window.open(wa(msg), "_blank", "noopener");
+  };
+
+  return (
+    <div className="suggest-block">
+      <div className="eyebrow" style={{ marginBottom: 14 }}>Eure Region · Eure Location</div>
+      <h4 className="serif suggest-h">Ihr kennt einen Hundeplatz — wir bringen das Training.</h4>
+      <p className="suggest-p">
+        Ihr habt in eurer Nähe einen Hundeplatz oder eine Trainingsanlage, die sich für einen
+        Tag oder ein Wochenende anmieten lässt — und im besten Fall schon mit den Betreibern
+        gesprochen? Dann sagt uns, wo. Genug konkrete Vorschläge aus einer Region, und die
+        nächste Tour kommt zu euch.
+      </p>
+
+      <form
+        className="suggest-form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          submit();
+        }}
+      >
+        <div className="suggest-field">
+          <label className="mono" htmlFor="suggest-ort">Ort / Region *</label>
+          <input
+            id="suggest-ort"
+            type="text"
+            required
+            value={ort}
+            onChange={(e) => setOrt(e.target.value)}
+          />
+        </div>
+        <div className="suggest-field">
+          <label className="mono" htmlFor="suggest-anlage">Hundeplatz / Anlage</label>
+          <input
+            id="suggest-anlage"
+            type="text"
+            placeholder="Name oder Adresse, falls bekannt"
+            value={anlage}
+            onChange={(e) => setAnlage(e.target.value)}
+          />
+        </div>
+        <div className="suggest-field">
+          <label className="mono" htmlFor="suggest-kontakt">Kontakt vorhanden?</label>
+          <select
+            id="suggest-kontakt"
+            value={kontakt}
+            onChange={(e) => setKontakt(e.target.value)}
+          >
+            <option>Ja, ich habe schon mit den Betreibern gesprochen</option>
+            <option>Nein, aber die Anlage ist mir bekannt</option>
+          </select>
+        </div>
+        <button className="btn btn-primary" type="submit" disabled={!ort.trim()} style={{ opacity: ort.trim() ? 1 : 0.5 }}>
+          Ort vorschlagen <span className="arrow" aria-hidden="true">→</span>
+        </button>
+      </form>
+
+      <div className="mono" style={{ marginTop: 16, color: "var(--ink-3)" }}>
+        Grundsätzliche Möglichkeit zur Tages- oder Wochenendmiete vorausgesetzt — wir melden uns, bevor wir planen.
+      </div>
+    </div>
+  );
+}
 
 export default function Offers(_props: OffersProps = {}) {
   return (
@@ -273,7 +379,7 @@ export default function Offers(_props: OffersProps = {}) {
           <span className="tile-caption">Mülheim · Freifeld · Alltagsarbeit</span>
         </div>
 
-        <div className="kennenlern-head">
+        <div className="kennenlern-head" id="vor-ort-einstieg">
           <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>Einstieg · Zwei Wege</div>
           <h3 className="serif kennenlern-h">So beginnt die Zusammenarbeit mit uns.</h3>
           <p className="kennenlern-lead">
@@ -329,7 +435,7 @@ export default function Offers(_props: OffersProps = {}) {
           ))}
         </div>
 
-        <article className="entry-card individual-entry">
+        <article className="entry-card individual-entry" id="vor-ort-vip">
           <div className="entry-badge" style={{ background: INDIVIDUAL.accent }}>{INDIVIDUAL.tag}</div>
 
           <h3 className="serif entry-title" style={{ fontSize: 26 }}>{INDIVIDUAL.title}</h3>
@@ -372,7 +478,7 @@ export default function Offers(_props: OffersProps = {}) {
           </a>
         </article>
 
-        <article className="tour-block">
+        <article className="tour-block" id="tour">
           <div className="tour-tag">{TOUR.tag}</div>
 
           <div className="tour-img tile">
@@ -404,10 +510,12 @@ export default function Offers(_props: OffersProps = {}) {
             <a className="btn btn-primary" style={{ marginTop: 24 }} href={TOUR.ctaHref} target="_blank" rel="noopener">
               {TOUR.cta} <span className="arrow" aria-hidden="true">→</span>
             </a>
+
+            <TourSuggest />
           </div>
         </article>
 
-        <div className="group-head">
+        <div className="group-head" id="gruppen-basis">
           <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>Basisgruppen · Sortiert nach Wirkung</div>
           <h3 className="serif group-h">Sortiert nach Wirkung — nicht nach Kursliste.</h3>
           <p className="group-lead">
@@ -447,7 +555,7 @@ export default function Offers(_props: OffersProps = {}) {
           ))}
         </div>
 
-        <div className="exklusiv-block">
+        <div className="exklusiv-block" id="gruppen-exklusiv">
           <div className="exklusiv-badge">EXKLUSIV · PREMIUM</div>
           <div className="exklusiv-head">
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12, letterSpacing: "0.2em" }}>{EXKLUSIV_GROUP.name}</div>
@@ -463,10 +571,13 @@ export default function Offers(_props: OffersProps = {}) {
                   <span className="serif exklusiv-item-name">{it.name}</span>
                   <span className="exklusiv-item-flag mono">EXKLUSIV</span>
                 </div>
+                {it.meta && (
+                  <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 6 }}>{it.meta}</div>
+                )}
                 <div style={{ margin: "8px 0 14px" }}>
                   <TrainingSlider
                     seed={`exklusiv-${it.name}`}
-                    labels={["Analyse", "Aufbau", "Distanz", "Reiz", "Generalisierung", "Alltag"]}
+                    labels={it.stufen ?? ["Analyse", "Aufbau", "Distanz", "Reiz", "Generalisierung", "Alltag"]}
                     height={150}
                     slideWidth={220}
                     reverse={i % 2 === 1}
@@ -492,10 +603,10 @@ export default function Offers(_props: OffersProps = {}) {
           </span>
         </div>
 
-        <div className="pakete-head">
+        <div className="pakete-head" id="pakete">
           <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Pakete · Premium-Bundles</div>
           <h3 className="serif pakete-h">
-            Drei besondere Pakete — <span style={{ color: "var(--ink-3)" }}>für die wichtigsten Lebenslagen.</span>
+            Besondere Pakete — <span style={{ color: "var(--ink-3)" }}>für die wichtigsten Lebenslagen und Anlässe.</span>
           </h3>
           <p className="pakete-lead">
             Sorgfältig kuratierte Bundles aus Einzeltraining, Gruppen und Talks. Aufeinander abgestimmt, mit fester Struktur und persönlicher Begleitung.
@@ -512,7 +623,7 @@ export default function Offers(_props: OffersProps = {}) {
               <div style={{ margin: "6px 0 16px" }}>
                 <TrainingSlider
                   seed={`paket-${p.name}`}
-                  labels={p.inhalte.map((it) => it.replace(/^\d+×\s*/, ""))}
+                  labels={p.labels ?? p.inhalte.map((it) => it.replace(/^\d+×\s*/, ""))}
                   height={130}
                   slideWidth={190}
                   reverse={i === 1}
@@ -530,14 +641,16 @@ export default function Offers(_props: OffersProps = {}) {
                 </ul>
               </div>
 
-              <div className="paket-block">
-                <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>→ Inklusiv-Leistungen</div>
-                <ul className="paket-inklusiv">
-                  {PAKET_INKLUSIV.map((it) => (
-                    <li key={it}>· {it}</li>
-                  ))}
-                </ul>
-              </div>
+              {!p.hideInklusiv && (
+                <div className="paket-block">
+                  <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 10 }}>→ Inklusiv-Leistungen</div>
+                  <ul className="paket-inklusiv">
+                    {PAKET_INKLUSIV.map((it) => (
+                      <li key={it}>· {it}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               <a className="btn btn-primary paket-cta" href={p.ctaHref} target="_blank" rel="noopener">
                 {p.cta} <span className="arrow" aria-hidden="true">→</span>
@@ -585,6 +698,31 @@ export default function Offers(_props: OffersProps = {}) {
         .tour-list { list-style: none; }
         .tour-list li { padding: 10px 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); display: flex; gap: 10px; border-bottom: 1px solid var(--line); }
         .tour-list li:last-child { border-bottom: none; }
+
+        .suggest-block { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 32px; }
+        .suggest-h { font-size: clamp(22px, 3.4vw, 32px); letter-spacing: -0.018em; line-height: 1.1; font-weight: 600; margin-bottom: 14px; max-width: 24ch; }
+        .suggest-p { font-size: 15.5px; line-height: 1.65; color: var(--ink-2); max-width: 56ch; margin-bottom: 22px; }
+        .suggest-form { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        .suggest-field { display: flex; flex-direction: column; gap: 8px; }
+        .suggest-field label { color: var(--accent-ink); }
+        .suggest-field input, .suggest-field select {
+          width: 100%;
+          min-height: 48px;
+          padding: 12px 14px;
+          font: inherit;
+          font-size: 16px;
+          color: var(--ink);
+          background: var(--bg-2);
+          border: 1px solid var(--line-2);
+          border-radius: 4px;
+        }
+        .suggest-field input:focus-visible, .suggest-field select:focus-visible { border-color: var(--omd-yellow); outline: none; }
+        .suggest-form .btn { justify-content: center; margin-top: 4px; }
+        @media (min-width: 700px) {
+          .suggest-form { grid-template-columns: 1fr 1fr; }
+          .suggest-field:nth-child(3) { grid-column: 1 / -1; }
+          .suggest-form .btn { grid-column: 1 / -1; justify-content: flex-start; justify-self: start; }
+        }
 
         .group-head { margin-bottom: 24px; }
         .group-h { font-size: clamp(24px, 3.8vw, 44px); letter-spacing: -0.018em; font-weight: 600; max-width: 22ch; margin-bottom: 16px; }

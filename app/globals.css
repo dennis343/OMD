@@ -575,3 +575,8 @@ section { position: relative; }
   background: var(--omd-yellow);
   pointer-events: none;
 }
+
+/* ---------- Mobile type safety (lange Wörter, keine Überläufer) ---------- */
+@media (max-width: 640px) {
+  h1, h2, h3, h4 { hyphens: auto; overflow-wrap: break-word; }
+}
