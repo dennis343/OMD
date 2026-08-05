@@ -1,4 +1,5 @@
 import { BOOK_ONLINE_URL, BOOK_URL, GRUPPEN_URL, WA_URL } from "@/app/lib/constants";
+import { OFFERS_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
 
 type OffersProps = { onOpenSelector?: () => void };
@@ -14,6 +15,7 @@ type Entry = {
   cta: string;
   ctaHref: string;
   accent: string;
+  scarcity?: string;
 };
 
 const KENNENLERN: Entry[] = [
@@ -33,6 +35,7 @@ const KENNENLERN: Entry[] = [
     cta: "Termin am Platz buchen",
     ctaHref: BOOK_URL,
     accent: "var(--brass)",
+    scarcity: "Echte Knappheit: Vor-Ort-Termine sind regelmäßig ausgebucht — online startet ihr sofort.",
   },
   {
     tag: "Online · Videoanalyse",
@@ -100,7 +103,7 @@ const TOUR: Tour = {
   ],
   cta: "Auf die Tour-Warteliste",
   ctaHref: WA_URL,
-  img: "https://picsum.photos/seed/omd-tour/1600/900",
+  img: OFFERS_IMG.tour,
 };
 
 type GroupItem = { name: string; desc: string; mehrwert: string };
@@ -262,7 +265,7 @@ export default function Offers(_props: OffersProps = {}) {
         </div>
 
         <div className="local-banner tile">
-          <img src="https://picsum.photos/seed/omd-local/1800/900" alt="Vor-Ort-Training in Mülheim" loading="lazy" />
+          <img src={OFFERS_IMG.local} alt="Vor-Ort-Training in Mülheim" loading="lazy" />
           <span className="tile-caption">Mülheim · Freifeld · Alltagsarbeit</span>
         </div>
 
@@ -312,6 +315,9 @@ export default function Offers(_props: OffersProps = {}) {
                 </ul>
               </div>
 
+              {e.scarcity && (
+                <div className="mono" style={{ color: "var(--accent-ink)", marginTop: 8 }}>{e.scarcity}</div>
+              )}
               <a className="btn btn-primary" href={e.ctaHref} target="_blank" rel="noopener">
                 {e.cta} <span className="arrow" aria-hidden="true">→</span>
               </a>

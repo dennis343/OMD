@@ -1,4 +1,5 @@
 import { WA_URL } from "@/app/lib/constants";
+import { PRO_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
 
 type Module = {
@@ -15,7 +16,7 @@ type Module = {
 const WHY_JENNY = [
   { t: "Eigene Premium-Schule", d: "Jenny führt selbst eine Hundeschule mit System — vom Kennenlern-Einzel bis zum Signaturprogramm. Keine Theorie, sondern gelebte Praxis." },
   { t: "Didaktik + Kommunikation", d: "Studium der Erwachsenenbildung und 13 Jahre Führungsarbeit in der Kommunikationsbranche. Jenny kann Fachwissen nicht nur haben, sondern auch vermitteln — an Halter und an Kolleg:innen." },
-  { t: "Anspruchsvolle Fälle", d: "Der Schwerpunkt liegt seit Jahren auf reizoffenen, unsicheren und energiegeladenen Hunden. Jenny lebt selbst mit zwei belgischen Schäferhunden — das prägt das System." },
+  { t: "Anspruchsvolle Fälle", d: "Der Schwerpunkt liegt seit Jahren auf reizoffenen, unsicheren und energiegeladenen Hunden. Jenny ist § 11 TSchG-zertifizierte Hundetrainerin und Verhaltensberaterin und besitzt die behördliche Zulassung nach § 6 LHundG NRW — auch für die Arbeit mit gefährlichen Hunden und Hunden bestimmter Rassen." },
   { t: "System, das skaliert", d: "Angebotsarchitektur, Didaktik, Positionierung und Kundenführung — alles ist so gebaut, dass es in anderen Schulen übernommen und angepasst werden kann." },
 ];
 
@@ -50,13 +51,6 @@ const MODULES: Module[] = [
   },
 ];
 
-const REFERENCES = [
-  { name: "Hundeschule Nordwind", role: "Case Lab · Supervision", img: "https://picsum.photos/seed/ref-1/600/600" },
-  { name: "Tailwind Training", role: "Premium System · Strategie", img: "https://picsum.photos/seed/ref-2/600/600" },
-  { name: "Hundewelt Rheinaue", role: "Methodik-Intensivtage", img: "https://picsum.photos/seed/ref-3/600/600" },
-  { name: "Clever Paws", role: "Angebotsarchitektur", img: "https://picsum.photos/seed/ref-4/600/600" },
-];
-
 export default function Pro() {
   return (
     <section id="pro" aria-labelledby="pro-heading" className="sec-pad" style={{ borderBottom: "1px solid var(--line)" }}>
@@ -83,7 +77,7 @@ export default function Pro() {
 
         <div className="why-jenny">
           <div className="why-jenny-img tile">
-            <img src="https://picsum.photos/seed/jenny-pro/900/1100" alt="Jennifer Bakir bei der Pro-Beratung" loading="lazy" />
+            <img src={PRO_IMG.jenny} alt="Jennifer Bakir bei der Pro-Beratung" loading="lazy" />
             <span className="tile-caption">Jenny · Pro-Beratung</span>
           </div>
           <div>
@@ -160,25 +154,17 @@ export default function Pro() {
           <div style={{ marginBottom: 32 }}>
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 12 }}>Referenzen · Schulen, mit denen wir arbeiten</div>
             <h3 className="serif refs-head">Keine Behauptungen, sondern Zusammenarbeit.</h3>
-          </div>
-          <div className="refs-grid">
-            {REFERENCES.map((r) => (
-              <div key={r.name} className="ref-card">
-                <div className="tile ref-img">
-                  <img src={r.img} alt={r.name} loading="lazy" />
-                </div>
-                <div style={{ marginTop: 14 }}>
-                  <div className="serif" style={{ fontSize: 16, color: "var(--cream)" }}>{r.name}</div>
-                  <div className="mono" style={{ marginTop: 4 }}>{r.role}</div>
-                </div>
-              </div>
-            ))}
+            <p className="refs-lead">
+              Konkrete Referenzprojekte und Schulen nennen wir euch im persönlichen Gespräch —
+              Diskretion gehört für uns zum Premium-Anspruch dazu. Was wir euch hier zeigen können:
+              die Ergebnisse unserer Arbeit im eigenen Haus — und wie wir im Pro Case Lab arbeiten.
+            </p>
           </div>
 
           <div className="ref-video">
             <div className="mono" style={{ color: "var(--accent-ink)", marginBottom: 16 }}>Videoausschnitt · Pro Case Lab in Aktion</div>
             <div className="tile ref-video-tile">
-              <img src="https://picsum.photos/seed/pro-video/1600/900" alt="Pro Case Lab · Videoausschnitt" loading="lazy" />
+              <img src={PRO_IMG.video} alt="Pro Case Lab · Videoausschnitt" loading="lazy" />
               <div className="play-btn">
                 <div className="play-icon" aria-hidden="true">▶</div>
                 <div className="mono" style={{ marginTop: 12 }}>Pro-Showreel · 2:10 · Fallarbeit, Strategie, Supervision</div>
@@ -229,8 +215,7 @@ export default function Pro() {
 
         .refs-block { margin-top: 64px; padding-top: 56px; border-top: 1px solid var(--line-2); }
         .refs-head { font-size: clamp(24px, 3.6vw, 40px); letter-spacing: -0.016em; font-weight: 600; max-width: 24ch; }
-        .refs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-        .ref-img { aspect-ratio: 1 / 1; }
+        .refs-lead { font-size: 16px; line-height: 1.65; color: var(--ink-2); max-width: 62ch; margin-top: 18px; font-family: var(--serif); font-weight: 400; }
         .ref-video { margin-top: 48px; }
         .ref-video-tile { height: 240px; position: relative; }
         .play-btn { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 3; }
@@ -242,7 +227,6 @@ export default function Pro() {
 
         @media (min-width: 700px) {
           .why-grid { grid-template-columns: 1fr 1fr; gap: 20px 28px; }
-          .refs-grid { grid-template-columns: repeat(4, 1fr); }
           .ref-video-tile { height: 360px; }
         }
         @media (min-width: 900px) {

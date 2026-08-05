@@ -9,7 +9,19 @@ const FAQS = [
   },
   {
     q: "Wir wohnen nicht in Mülheim — kommt ihr für uns überhaupt infrage?",
-    a: "Ja. Die Säule Online ist genau dafür gebaut. Ob Videoanalyse, Signaturprogramm oder Club — ihr bekommt dieselbe Methodik digital, ohne Anfahrt. Die meisten unserer Online-Kunden haben uns noch nie persönlich gesehen.",
+    a: "Ja. Die Säule Online ist genau dafür gebaut. Ob Videoanalyse, Signaturprogramm oder Club — ihr bekommt dieselbe Methodik digital, ohne Anfahrt. Die meisten unserer Online-Kunden haben uns noch nie persönlich gesehen. Und wenn ihr außerhalb von Deutschland lebt: Videoanalyse und Programm funktionieren über jede Zeitzone hinweg.",
+  },
+  {
+    q: "Ist das Online-Kennenlern die abgespeckte Version vom Kennenlernen vor Ort?",
+    a: "Nein — für die meisten von euch ist es der bessere Einstieg. Auf einem fremden Platz zeigt euer Hund nicht sein Alltagsverhalten. Per Video sehen wir ihn zuhause, auf eurer Route, in genau der Situation, die euch belastet. Dieselbe Trainerin, dasselbe System — nur ohne Anfahrt und Wartezeit. Danach haltet ihr euren Trainingsweg schriftlich in den Händen.",
+  },
+  {
+    q: "Funktioniert Videoanalyse wirklich so gut wie ein Termin vor Ort?",
+    a: "Für die Analyse oft besser: Training findet ohnehin in eurem Alltag statt — eure Straße, euer Wohnzimmer, euer Feldweg. Genau dort sehen wir euren Hund per Video. Und wir sind ehrlich über Grenzen: Was online lösbar ist, lösen wir online. Was einen Vor-Ort-Termin braucht, sagen wir euch direkt — und bieten ihn an, in Mülheim oder auf DACH-Tour.",
+  },
+  {
+    q: "Warum kostet das Online-Kennenlern nur 49 €?",
+    a: "49 € sind die Eintrittskarte, kein Rabatt. Niedrige Hürte, volle Leistung: Jenny analysiert eure Situation persönlich — die Analyse ist dieselbe wie bei jedem unserer Kunden. Ihr startet diese Woche, statt auf einen der regelmäßig ausgebuchten Vor-Ort-Termine zu warten.",
   },
   {
     q: "Unser Hund ist reizoffen, unsicher oder schnell überfordert. Ist das bei euch richtig?",
@@ -25,7 +37,7 @@ const FAQS = [
   },
   {
     q: "Was kostet das?",
-    a: "Digitale Produkte haben transparente Preise und sind direkt buchbar. Vor-Ort- und B2B-Leistungen werden nach Bedarf individuell besprochen — ein kurzes Gespräch, ein klarer Vorschlag.",
+    a: "Alle Preise stehen auf dieser Seite: Online-Kennenlern 49 €, oooh my dog! Club 55 €/Monat, die App ab 0 €. Programme, Vor-Ort- und B2B-Leistungen werden nach Bedarf individuell besprochen — ein kurzes Gespräch, ein klarer Vorschlag. Kein „Analysegespräch“, in dem euch ein vierstelliger Preis überraschend verkauft wird, und keine Zusatzkosten mitten im Programm.",
   },
   {
     q: "Wie viel Zeit muss ich investieren?",

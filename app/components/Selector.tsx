@@ -40,6 +40,18 @@ const SELECTOR_STEPS: Step[] = [
     ],
   },
   {
+    id: "ort",
+    when: (a) => a.track === "vor-ort" || a.track === "online",
+    question: "Wo seid ihr zuhause — und wie schnell wollt ihr starten?",
+    hint: "Damit wir euch den richtigen Einstieg zeigen — nicht irgendeinen.",
+    options: [
+      { val: "muelheim", label: "Mülheim & Ruhrgebiet", sub: "Vor-Ort-Termine am Hundeplatz sind für uns machbar" },
+      { val: "dach", label: "Außerhalb — irgendwo im DACH-Raum", sub: "Online starten, DACH-Tour oder Mülheim-Besuch möglich" },
+      { val: "fern", label: "Ich lebe außerhalb von DACH", sub: "Auf Deutsch arbeiten — über jede Zeitzone hinweg" },
+      { val: "schnell", label: "Ort egal — so schnell wie möglich starten", sub: "Diese Woche statt in sechs" },
+    ],
+  },
+  {
     id: "paket_kind",
     when: (a) => a.track === "paket",
     question: "Welches Paket passt zu eurer Situation?",
@@ -52,7 +64,7 @@ const SELECTOR_STEPS: Step[] = [
   },
   {
     id: "topic",
-    when: (a) => a.track === "vor-ort",
+    when: (a) => a.track === "vor-ort" && a.ort === "muelheim",
     question: "Was sind eure wichtigsten Themen?",
     hint: "Mehrfachauswahl möglich — wählt bis zu drei Themen.",
     multi: true,
@@ -72,7 +84,7 @@ const SELECTOR_STEPS: Step[] = [
   },
   {
     id: "digital",
-    when: (a) => a.track === "online",
+    when: (a) => a.track === "online" && a.ort !== "schnell",
     question: "Wie wollt ihr online arbeiten?",
     hint: "Alles digital — ortsunabhängig im gesamten DACH-Raum.",
     options: [
@@ -128,6 +140,7 @@ function recommend(answers: Answers): string[] {
   }
 
   if (track === "online") {
+    if (answers.ort === "schnell") return ["online-kennenlern"];
     const d = answers.digital as string | undefined;
     if (d === "einstieg") return ["online-kennenlern"];
     if (d === "einschaetzung") return ["videoanalyse"];
@@ -136,6 +149,10 @@ function recommend(answers: Answers): string[] {
     if (d === "messenger") return ["messenger-beratung"];
     return ["online-kennenlern"];
   }
+
+  // Vor Ort gewählt, aber nicht aus der Region: Das Online-Kennenlern ist die
+  // ehrliche Empfehlung — wir wollen den Hund dort sehen, wo das Problem lebt.
+  if (answers.ort && answers.ort !== "muelheim") return ["online-kennenlern"];
 
   const topics = (answers.topic as string[] | undefined) || [];
   if (!topics.length) return ["orientierung-note"];
@@ -152,6 +169,7 @@ type Result = {
   tag: string;
   desc: string;
   ziel?: string;
+  rationale?: string;
   ctaLabel?: string;
   ctaHref?: string;
   external?: boolean;
@@ -222,6 +240,7 @@ const RESULT_MAP: Record<string, Result> = {
     title: "Kennenlern-Einzel · Online",
     tag: "Einstieg · Online",
     desc: "30-Minuten-Zoomtermin mit Anamnesebogen, Videoanalyse von 3–5 Alltagsszenen, strategischer Trainingsplanung und schriftlicher Nachbereitung. 49 €. Von überall aus.",
+    rationale: "Weil wir euren Hund dort sehen wollen, wo das Problem lebt: zuhause, auf eurer Route, in genau der Situation, die euch belastet. Kein Trostpreis — für die meisten der bessere Einstieg.",
     ctaLabel: "Online-Kennenlern für 49 € buchen",
     ctaHref: BOOK_ONLINE_URL,
     external: true,
@@ -397,7 +416,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
 
   const track = answers.track as string | undefined;
   const results = finished ? recommend(answers).map((k) => RESULT_MAP[k]).filter(Boolean) : [];
-  const isVorOrt = finished && track === "vor-ort";
+  const isVorOrt = finished && track === "vor-ort" && answers.ort === "muelheim";
 
   return (
     <div
@@ -620,7 +639,13 @@ export default function Selector({ open, onClose }: SelectorProps) {
                   <h4 className="serif" style={{ fontSize: 22, letterSpacing: "-0.02em", fontWeight: 400, marginBottom: 12, lineHeight: 1.15 }}>
                     {r.title}
                   </h4>
-                  <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: 20, flex: 1 }}>{r.desc}</p>
+                  <p style={{ fontSize: 14, lineHeight: 1.55, color: "var(--ink-2)", marginBottom: r.rationale ? 14 : 20, flex: r.rationale ? undefined : 1 }}>{r.desc}</p>
+                  {r.rationale && (
+                    <div style={{ fontSize: 13.5, lineHeight: 1.55, color: "var(--cream)", background: "var(--bg-2)", borderLeft: "2px solid var(--omd-yellow)", padding: "12px 14px", marginBottom: 20, flex: 1 }}>
+                      <span style={{ color: "var(--accent-ink)", fontFamily: "var(--mono)", fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", display: "block", marginBottom: 6, fontWeight: 700 }}>Warum diese Empfehlung</span>
+                      {r.rationale}
+                    </div>
+                  )}
                   {r.ctaLabel && r.ctaHref && (
                     <div style={{ borderTop: "1px solid var(--line)", paddingTop: 16 }}>
                       <a

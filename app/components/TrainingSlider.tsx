@@ -1,5 +1,7 @@
 "use client";
 
+import { slideSrc } from "@/app/lib/slideImages";
+
 type Slide = { src?: string; label?: string; alt?: string };
 
 type Props = {
@@ -37,7 +39,7 @@ export default function TrainingSlider({
           "Begegnung",
           "Ruhe",
         ]).map((l, i) => ({
-          src: `https://picsum.photos/seed/${encodeURIComponent(seed)}-${i}/${slideWidth * 2}/${height * 2}`,
+          src: slideSrc(seed, i, slideWidth * 2),
           label: l,
           alt: `${seed} · ${l}`,
         }));
