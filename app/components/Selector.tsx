@@ -147,7 +147,7 @@ const RESULT_MAP: Record<string, Result> = {
     ziel: "Spaziergänge werden leicht — ihr könnt euch auf euren Hund verlassen.",
   },
   "gruppe-sozialkontakt": {
-    title: "Sozialkontakt",
+    title: "Sozialkontakt moderiert",
     tag: "Basisgruppe · Vor Ort",
     desc: "Strukturierte, gut moderierte Hundebegegnungen für unsichere, überschwängliche oder pöbelige Hunde. Ihr lernt zu lesen, einzuordnen und passend zu reagieren.",
     ziel: "Begegnungen werden kalkulierbar — kein Stress, keine Dauer-Anspannung.",
@@ -159,16 +159,16 @@ const RESULT_MAP: Record<string, Result> = {
     ziel: "Minimale Signale, große Wirkung — überträgt sich direkt in den Alltag.",
   },
   "gruppe-begleithunde": {
-    title: "Begleithunde",
+    title: "Begleithundetraining",
     tag: "Basisgruppe · Vor Ort",
     desc: "Vorbereitung auf die Begleithundeprüfung — alltagsnah, fair und mit echtem Trainingsnutzen. Auch ohne Prüfungsambition ein Programm für saubere Grundlagen.",
     ziel: "Anerkannter Nachweis als Team — und spürbar entspannterer Alltag.",
   },
-  "gruppe-giftkoeder": {
-    title: "Anti-Giftköder",
+  "gruppe-leinenfuehrigkeit": {
+    title: "Leinenführigkeit Exklusiv",
     tag: "Exklusivgruppe · Vor Ort",
-    desc: "Strukturiertes Anti-Giftköder-Training mit echtem Aufbau — vom Markersignal über Distanzarbeit bis zur sauberen Generalisierung im Alltag. Verlässlich abrufbar.",
-    ziel: "Die Sorge „was, wenn er etwas frisst“ fällt weg — auf jedem Spaziergang.",
+    desc: "Exklusives Leinenführigkeits-Training in Kleinstgruppe — lockerer Leinengriff, Orientierung am Menschen und entspanntes Vorbeigehen an Reizen, vom Trainingsplatz bis in euren echten Alltag.",
+    ziel: "Ziehen und Zerren hören auf — Spaziergänge werden wieder gemeinsame Zeit.",
   },
   "gruppe-jagdkontrolle": {
     title: "Jagdkontrolle",
@@ -684,6 +684,7 @@ export default function Selector({ open, onClose }: SelectorProps) {
             position: relative;
             display: flex;
             flex-direction: column;
+            overscroll-behavior: contain;
           }
           .sel-head {
             display: flex;

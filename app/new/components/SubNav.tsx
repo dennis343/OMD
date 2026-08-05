@@ -23,10 +23,10 @@ const GROUPS: Group[] = [
     items: [
       { id: "vor-ort-einstieg", label: "Einstieg" },
       { id: "vor-ort-vip", label: "VIP-Einzel" },
-      { id: "vor-ort-tour", label: "DACH-Tour" },
-      { id: "vor-ort-gruppen", label: "Basisgruppen" },
-      { id: "vor-ort-exklusiv", label: "Exklusivgruppen" },
-      { id: "vor-ort-pakete", label: "Pakete" },
+      { id: "tour", label: "DACH-Tour" },
+      { id: "gruppen-basis", label: "Basisgruppen" },
+      { id: "gruppen-exklusiv", label: "Exklusivgruppen" },
+      { id: "pakete", label: "Pakete" },
     ],
   },
   {
@@ -196,6 +196,9 @@ export default function SubNav() {
         /* Anker-Offsets: Hauptnav + Subnav */
         body section[id],
         body [id^="vor-ort-"],
+        body [id^="gruppen-"],
+        body #tour,
+        body #pakete,
         body [id^="pro-"],
         body [id^="angebot-"],
         body #entwicklungsmodell,
@@ -207,6 +210,9 @@ export default function SubNav() {
           .subnav { top: 68px; }
           body section[id],
           body [id^="vor-ort-"],
+          body [id^="gruppen-"],
+          body #tour,
+          body #pakete,
           body [id^="pro-"],
           body [id^="angebot-"],
           body #entwicklungsmodell,
