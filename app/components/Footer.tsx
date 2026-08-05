@@ -23,8 +23,9 @@ const COLS: Column[] = [
       ["Reizoffen & führbar", "#anywhere"],
       ["Videoanalyse Pro", "#anywhere"],
       ["oooh my dog! Club", "#anywhere"],
+      ["Live-Sessions & Talk", "#anywhere"],
+      ["Digitale Kurspakete", "#anywhere"],
       ["Saisonale Sprints", "#anywhere"],
-      ["Online-Sprechstunde", "#anywhere"],
     ],
   },
   {

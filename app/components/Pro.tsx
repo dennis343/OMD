@@ -16,7 +16,7 @@ type Module = {
 const WHY_JENNY = [
   { t: "Eigene Premium-Schule", d: "Jenny führt selbst eine Hundeschule mit System — vom Kennenlern-Einzel bis zum Signaturprogramm. Keine Theorie, sondern gelebte Praxis." },
   { t: "Didaktik + Kommunikation", d: "Studium der Erwachsenenbildung und 13 Jahre Führungsarbeit in der Kommunikationsbranche. Jenny kann Fachwissen nicht nur haben, sondern auch vermitteln — an Halter und an Kolleg:innen." },
-  { t: "Anspruchsvolle Fälle", d: "Der Schwerpunkt liegt seit Jahren auf reizoffenen, unsicheren und energiegeladenen Hunden. Jenny ist § 11 TSchG-zertifizierte Hundetrainerin und Verhaltensberaterin und besitzt die behördliche Zulassung nach § 6 LHundG NRW — auch für die Arbeit mit gefährlichen Hunden und Hunden bestimmter Rassen." },
+  { t: "Anspruchsvolle Fälle", d: "Der Schwerpunkt liegt seit Jahren auf reizoffenen, unsicheren und energiegeladenen Hunden. Jenny ist § 11 TSchG-zertifizierte Hundetrainerin und in Ausbildung zur zertifizierten Verhaltensberaterin für Hunde; dazu besitzt sie die behördliche Zulassung nach § 6 LHundG NRW — auch für die Arbeit mit gefährlichen Hunden und Hunden bestimmter Rassen." },
   { t: "System, das skaliert", d: "Angebotsarchitektur, Didaktik, Positionierung und Kundenführung — alles ist so gebaut, dass es in anderen Schulen übernommen und angepasst werden kann." },
 ];
 

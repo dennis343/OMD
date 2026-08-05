@@ -29,7 +29,7 @@ const PILLARS: Pillar[] = [
     tag: "DACH · Digital",
     headline: "Für Hundehalter im gesamten deutschsprachigen Raum",
     desc: "Online-Coaching, Videoanalyse, Programme und flexible Begleitung — ohne Anfahrt, aber mit System. Auch wenn ihr nicht in Mülheim wohnt.",
-    items: ["Reizoffen & führbar", "Videoanalyse Pro", "oooh my dog! Club", "Saisonale Sprints", "Online-Sprechstunde"],
+    items: ["Reizoffen & führbar", "Videoanalyse Pro", "oooh my dog! Club", "Saisonale Sprints", "Digitale Kurspakete"],
     accent: "var(--brass)",
     featured: true,
     cta: "Digitale Angebote ansehen",
