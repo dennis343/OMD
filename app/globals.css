@@ -71,7 +71,7 @@ html, body {
 }
 p { line-height: 1.65; }
 
-body { overflow-x: hidden; }
+html, body { overflow-x: clip; }
 
 section[id] { scroll-margin-top: 72px; }
 @media (min-width: 1024px) { section[id] { scroll-margin-top: 80px; } }

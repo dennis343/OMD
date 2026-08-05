@@ -1,4 +1,4 @@
-import { WA_URL } from "@/app/lib/constants";
+import { wa } from "@/app/lib/constants";
 import { PRO_IMG } from "@/app/lib/slideImages";
 import TrainingSlider from "./TrainingSlider";
 
@@ -10,6 +10,7 @@ type Module = {
   nutzen: string;
   includes: string[];
   cta: string;
+  ctaHref: string;
   featured?: boolean;
 };
 
@@ -29,6 +30,7 @@ const MODULES: Module[] = [
     nutzen: "Ihr führt schwierige Fälle sicherer, kommuniziert klarer mit Haltern und trefft fundiertere Trainingsentscheidungen.",
     includes: ["Fundierte Fallbesprechungen", "Klare Einordnung", "Blick auf Trainingslogik und Halterführung", "Übertragbare Entscheidungslogiken"],
     cta: "Pro Case Lab anfragen",
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das OMD Pro Case Lab. Mein Business kurz:"),
   },
   {
     n: "07",
@@ -38,6 +40,7 @@ const MODULES: Module[] = [
     nutzen: "Ihr habt klarere Angebote, höhere Kundenbindung, weniger 1:1-Stundendruck und ein System, das auch ohne ständige Präsenz der Chefin funktioniert.",
     includes: ["Schärfung des Angebotsportfolios", "Didaktische Kurslogik", "Struktur für Kundenerfolg", "Ansatzpunkte für skalierbare Formate"],
     cta: "Business-Beratung anfragen",
+    ctaHref: wa("Hi Jenny, ich interessiere mich für das Premium Hundeschule System. Meine Hundeschule kurz:"),
     featured: true,
   },
   {
@@ -48,6 +51,7 @@ const MODULES: Module[] = [
     nutzen: "Ihr spart euch teure Fehlentscheidungen und startet entweder mit realistischen Erwartungen — oder mit der Klarheit, dass dieser Weg nicht der richtige ist.",
     includes: ["Ehrliche Einordnung statt Schönfärberei", "Realistischer Blick auf Anforderungen", "Orientierung zu Qualität und Verantwortung", "Saubere Entscheidungshilfe"],
     cta: "Realitätscheck ansehen",
+    ctaHref: wa("Hi Jenny, ich möchte den Berufswechsel-Realitätscheck ansehen."),
   },
 ];
 
@@ -143,7 +147,7 @@ export default function Pro() {
                 </ul>
               </div>
 
-              <a className="btn-link" href={WA_URL} target="_blank" rel="noopener" style={{ color: "var(--accent-ink)" }}>
+              <a className="btn-link" href={m.ctaHref} target="_blank" rel="noopener" style={{ color: "var(--accent-ink)" }}>
                 {m.cta} →
               </a>
             </article>
@@ -180,7 +184,7 @@ export default function Pro() {
               Kurzes Erstgespräch, ehrliche Diagnose: Wo steht ihr, und welches Modul trägt jetzt den größten Hebel?
             </p>
           </div>
-          <a className="btn btn-primary" href={WA_URL} target="_blank" rel="noopener" style={{ justifyContent: "center" }}>
+          <a className="btn btn-primary" href={wa("Hi Jenny, ich arbeite selbst mit Hunden und möchte ein Gespräch vereinbaren.")} target="_blank" rel="noopener" style={{ justifyContent: "center" }}>
             Gespräch per WhatsApp <span className="arrow" aria-hidden="true">→</span>
           </a>
         </div>
